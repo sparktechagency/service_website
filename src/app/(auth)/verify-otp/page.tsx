@@ -1,5 +1,5 @@
 "use client"
-import ForgotPasswordForm from "@/components/auth/ForgotPasswordForm";
+import VerifyotpForm from "@/components/auth/VerifyotpForm";
 import Image from "next/image";
 
 const VerifyOtpPage = () => {
@@ -14,7 +14,7 @@ const VerifyOtpPage = () => {
           verification code</p>
 
           {/* Login Form */}
-          <ForgotPasswordForm/>
+          <VerifyotpForm/>
 
         </div>
       </div>

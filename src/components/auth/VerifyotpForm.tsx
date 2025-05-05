@@ -1,15 +1,14 @@
+import { SuccessToast } from "@/helper/ValidationHelper";
+import { useRef, useState } from "react";
 
 const VerifyotpForm = () => {
-    const [code, setCode] = useState<string[]>(new Array(5).fill(''));
+  const [code, setCode] = useState<string[]>(new Array(4).fill(""));
   const inputRefs = useRef<Array<HTMLInputElement | null>>([]);
   const isLoading = false;
-  const isDisabled = code.find((cv)=>cv=="") == ""; //check if any code is empty string
-
-
-
+  const isDisabled = code.find((cv) => cv == "") == ""; //check if any code is empty string
 
   const handleChange = (element: HTMLInputElement, index: number) => {
-    const value = element.value.replace(/[^0-9]/g, '');
+    const value = element.value.replace(/[^0-9]/g, "");
     const newCode = [...code];
 
     if (value) {
@@ -22,57 +21,64 @@ const VerifyotpForm = () => {
     }
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>, index: number) => {
-    if (e.key === 'Backspace') {
+  const handleKeyDown = (
+    e: React.KeyboardEvent<HTMLInputElement>,
+    index: number
+  ) => {
+    if (e.key === "Backspace") {
       const newCode = [...code];
       if (code[index]) {
         // Clear current value
-        newCode[index] = '';
+        newCode[index] = "";
         setCode(newCode);
       } else if (index > 0) {
         // Move to previous input
         inputRefs.current[index - 1]?.focus();
         const updatedCode = [...code];
-        updatedCode[index - 1] = '';
+        updatedCode[index - 1] = "";
         setCode(updatedCode);
       }
     }
   };
 
-
- 
   const handleVerify = () => {
     console.log(code);
-    const otp = code.join('');
-    SuccessToast("Verify Success")
-  }
+    const otp = code.join("");
+    SuccessToast("Verify Success");
+  };
   return (
     <>
-     <form className="space-y-4">
-              {/* Code Inputs */}
-      <div className="flex justify-center gap-3 mb-6">
-        {code.map((digit, idx) => (
-          <input
-            key={idx}
-            type="text"
-            maxLength={1}
-            value={digit}
-            onChange={(e) => handleChange(e.target, idx)}
-            onKeyDown={(e) => handleKeyDown(e, idx)}
-            ref={(el) => {
+      <form className="space-y-4">
+        {/* Code Inputs */}
+        <div className="flex justify-center gap-3 mb-6">
+          {code.map((digit, idx) => (
+            <input
+              key={idx}
+              type="text"
+              maxLength={1}
+              value={digit}
+              onChange={(e) => handleChange(e.target, idx)}
+              onKeyDown={(e) => handleKeyDown(e, idx)}
+              ref={(el) => {
                 inputRefs.current[idx] = el;
-            }}
-            className="w-12 h-12 border border-gray-300 rounded-md text-center text-xl focus:outline-none focus:ring-2 focus:ring-blue-400"
-          />
-        ))}
-      </div>
-     
-             <button className="w-full bg-primary hover:bg-[#2b4773] cursor-pointer text-white py-2 rounded-md font-semibold transition-colors duration-100">
-               Continue
-             </button>
-           </form>
-    </>
-  )
-}
+              }}
+              className="w-12 h-12 border border-gray-300 rounded-md text-center text-xl focus:outline-none focus:ring-2 focus:ring-blue-400"
+            />
+          ))}
+        </div>
 
-export default VerifyotpForm
+        <button
+          onClick={handleVerify}
+          disabled={isDisabled || isLoading}
+          className="w-full bg-primary hover:bg-[#2b4773] cursor-pointer text-white py-2 rounded-md font-semibold transition-colors duration-100 disabled:cursor-not-allowed"
+        >
+         {
+            isLoading ? "Verifying..." : "Verify"
+        }
+        </button>
+      </form>
+    </>
+  );
+};
+
+export default VerifyotpForm;
