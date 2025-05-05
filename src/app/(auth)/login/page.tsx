@@ -8,10 +8,10 @@ const LoginPage = () => {
     <>
      <div className="min-h-screen flex flex-col justify-center md:justify-start md:flex-row">
       {/* Left Side */}
-      <div className="w-full md:w-1/2 flex items-center justify-center bg-white p-10">
+      <div className="w-full md:w-1/2 flex items-center justify-center bg-white p-5 md:p-10">
         <div className="w-full max-w-md">
-          <h2 className="text-3xl font-bold mb-2">Welcome back!</h2>
-          <p className="text-gray-600 mb-6">Welcome back! please enter your details</p>
+          <h2 className="text-3xl md:text-3xl font-bold mb-2 text-title text-center">Login to Continue</h2>
+          {/* <p className="text-gray-600 mb-6">Welcome back! please enter your details</p> */}
 
           {/* Login Form */}
           <LoginForm/>
