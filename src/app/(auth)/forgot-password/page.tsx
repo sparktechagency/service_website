@@ -5,12 +5,12 @@ import Image from "next/image";
 const ForgostPasswordPage = () => {
   return (
     <>
-     <div className="min-h-screen flex flex-col justify-center md:justify-start md:flex-row">
+     <div className="min-h-screen flex flex-col justify-center md:justify-start md:flex-row bg-gray-50">
       {/* Left Side */}
-      <div className="w-full md:w-1/2 flex items-center justify-center bg-white p-10">
-        <div className="w-full max-w-md">
+      <div className="w-full md:w-1/2 flex items-center justify-center bg-gray-50 p-3 sm:p-10">
+        <div className="w-full max-w-md bg-white py-6 px-4 md:px-6 shadow-md rounded-md">
           <h2 className="text-3xl font-bold mb-2 text-title">Forgot Password?</h2>
-          <p className="text-gray-600 mb-6">Enter your email address and we will send you a
+          <p className="text-gray-600 text-sm sm:text-md mb-6">Enter your email address and we will send you a
           verification code</p>
 
           {/* Login Form */}

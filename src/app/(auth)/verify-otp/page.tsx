@@ -5,15 +5,15 @@ import Image from "next/image";
 const VerifyOtpPage = () => {
   return (
     <>
-     <div className="min-h-screen flex flex-col justify-center md:justify-start md:flex-row">
+     <div className="min-h-screen flex flex-col justify-center md:justify-start md:flex-row bg-gray-50">
       {/* Left Side */}
-      <div className="w-full md:w-1/2 flex items-center justify-center bg-white p-10">
-        <div className="w-full max-w-md">
-          <h2 className="text-3xl font-bold mb-2 text-title">Forgot Password?</h2>
-          <p className="text-gray-600 mb-6">Enter your email address and we will send you a
-          verification code</p>
+      <div className="w-full md:w-1/2 flex items-center justify-center bg-gray-50 p-3 sm:p-10">
+        <div className="w-full max-w-md bg-white py-6 px-4 md:px-6 shadow-md rounded-md">
+          <h2 className="text-3xl font-bold mb-2 text-title text-center">Verify OTP</h2>
+          {/* <p className="text-gray-600 mb-6">Enter your email address and we will send you a
+          verification code</p> */}
+          <p className="text-gray-600 mb-6 text-center"> Enter the 6-digit code sent to your email.</p>
 
-          {/* Login Form */}
           <VerifyotpForm/>
 
         </div>
@@ -22,7 +22,7 @@ const VerifyOtpPage = () => {
       {/* Right Side */}
       <div className="hidden md:flex md:w-1/2 items-center justify-center bg-blue-50 p-10">
         <div className="text-center">
-          <Image src="/images/auth/forgot.png" alt="Login Illustration" width={400} height={400} />
+          <Image src="/images/auth/verify.png" alt="Login Illustration" width={400} height={400} />
         </div>
       </div>
     </div>

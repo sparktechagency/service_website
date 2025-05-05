@@ -1,8 +1,10 @@
 import { SuccessToast } from "@/helper/ValidationHelper";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const VerifyotpForm = () => {
   const [code, setCode] = useState<string[]>(new Array(4).fill(""));
+  const [seconds, setSeconds] = useState(120);
+  const [canResend, setCanResend] = useState(false);
   const inputRefs = useRef<Array<HTMLInputElement | null>>([]);
   const isLoading = false;
   const isDisabled = code.find((cv) => cv == "") == ""; //check if any code is empty string
@@ -19,6 +21,23 @@ const VerifyotpForm = () => {
         inputRefs.current[index + 1]?.focus();
       }
     }
+  };
+
+  // Timer countdown
+  useEffect(() => {
+    if (seconds > 0) {
+      const timer = setTimeout(() => setSeconds(seconds - 1), 1000);
+      return () => clearTimeout(timer);
+    } else {
+      setCanResend(true);
+    }
+  }, [seconds]);
+
+  const handleResend = () => {
+    if (!canResend) return;
+    // trigger resend OTP logic here
+    setSeconds(60);
+    setCanResend(false);
   };
 
   const handleKeyDown = (
@@ -72,10 +91,28 @@ const VerifyotpForm = () => {
           disabled={isDisabled || isLoading}
           className="w-full bg-primary hover:bg-[#2b4773] cursor-pointer text-white py-2 rounded-md font-semibold transition-colors duration-100 disabled:cursor-not-allowed"
         >
-         {
-            isLoading ? "Verifying..." : "Verify"
-        }
+          {isLoading ? "Verifying..." : "Verify"}
         </button>
+        {/* Resend & Timer */}
+        <div className="text-center text-sm mb-6">
+          {canResend ? (
+            <button
+              onClick={handleResend}
+              className="text-blue-600 font-medium hover:underline"
+            >
+              Resend Code
+            </button>
+          ) : (
+            <span className="text-gray-500">
+              Resend code in
+              {/* <span className="font-semibold">{seconds}s</span> */}
+              <span className="font-semibold pl-2">
+                {String(Math.floor(seconds / 60)).padStart(2, "0")}:
+                {String(seconds % 60).padStart(2, "0")}
+              </span>
+            </span>
+          )}
+        </div>
       </form>
     </>
   );

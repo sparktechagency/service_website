@@ -4,7 +4,7 @@ import { useState } from "react";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
 
-const CandidateRegisterForm = () => {
+const ResetPasswordForm = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState<boolean>(false);
 
@@ -12,41 +12,12 @@ const CandidateRegisterForm = () => {
   return (
     <>
       <form className="space-y-4">
-      <div>
-          <label
-            htmlFor="name"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Candidate Name
-          </label>
-          <input
-            type="text"
-            id="name"
-            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm px-4 py-2"
-            placeholder="enter your name"
-          />
-        </div>
-        <div>
-          <label
-            htmlFor="email"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Email
-          </label>
-          <input
-            type="email"
-            id="email"
-            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm px-4 py-2"
-            placeholder="enter your email here"
-          />
-        </div>
-
         <div>
           <label
             htmlFor="password"
             className="block text-sm font-medium text-gray-700"
           >
-            Password
+           New Password
           </label>
           <div className="relative">
             <input
@@ -68,7 +39,7 @@ const CandidateRegisterForm = () => {
             htmlFor="confirmPass"
             className="block text-sm font-medium text-gray-700"
           >
-           Confirm Password
+           Confirm New Password
           </label>
           <div className="relative">
             <input
@@ -85,13 +56,12 @@ const CandidateRegisterForm = () => {
             </span>
           </div>
         </div>
-
         <button className="w-full bg-primary hover:bg-[#2b4773] cursor-pointer text-white py-2 rounded-md font-semibold transition-colors duration-100">
-          Sign Up
+          Set Password
         </button>
       </form>
     </>
   );
 };
 
-export default CandidateRegisterForm;
+export default ResetPasswordForm;

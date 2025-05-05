@@ -1,7 +1,6 @@
 "use client"
 import CandidateRegisterForm from "@/components/auth/CandidateRegisterForm";
 import EmplyerRegisterForm from "@/components/auth/EmplyerRegisterForm";
-import LoginForm from "@/components/auth/LoginForm";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -10,14 +9,14 @@ const RegisterPage = () => {
   const [userType, setUserType] = useState("Candidate");
 
   return (
-    <div className="min-h-screen flex flex-col md:flex-row">
+    <div className="min-h-screen flex justify-center md:justify-start md:flex-row bg-gray-50">
       {/* Left Form */}
-      <div className="w-full md:w-1/2 flex items-center justify-center p-8 md:px-20">
-      <div className="w-full max-w-md">
+      <div className="w-full md:w-1/2 flex items-center justify-center p-3 md:10 bg-gray-50">
+      <div className="w-full max-w-md bg-white py-6 px-4 md:px-6 shadow-md rounded-md">
 
-        <h2 className="text-3xl font-bold text-red-400 mb-1">Sign Up</h2>
-        <p className="text-gray-600 mb-4">Enter Your Personal Data</p>
-        <div className="border-b mb-6" />
+        <h2 className="text-2xl sm:text-3xl font-bold text-primary mb-3 text-center">Create an Account</h2>
+        {/* <p className="text-gray-600 mb-4">Enter Your Personal Data</p> */}
+       
 
         {/* Toggle Buttons */}
         <div className="flex gap-4 mb-6">
@@ -25,7 +24,7 @@ const RegisterPage = () => {
             <button
             key={type}
             onClick={() => setUserType(type)}
-            className={`px-4 py-2 cursor-pointer rounded-full border text-sm font-medium shadow-sm ${
+            className={`px-4 py-2 cursor-pointer rounded-full border text-sm font-medium ${
               userType === type
               ? "bg-[#22385C] text-white"
               : "text-[#22385C] bg-white border-[#22385C]"
@@ -47,8 +46,8 @@ const RegisterPage = () => {
 
         <p className="text-sm text-center mt-4 text-gray-500">
           Already have an account?{" "}
-          <Link href="/login" className="text-red-400 hover:underline">
-            login
+          <Link href="/login" className="text-[#3AB0FF] hover:underline">
+            Sign In
           </Link>
         </p>
         </div>
