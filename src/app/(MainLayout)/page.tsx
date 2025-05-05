@@ -1,8 +1,9 @@
+import Navbar from "@/components/shared/Navbar"
 
 const HomePage = () => {
   return (
     <>
-      <h1>This is Home Page</h1>
+      <Navbar/>
     </>
   )
 }
