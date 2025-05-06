@@ -1,4 +1,5 @@
 "use client"
+import { links } from '@/data/data';
 import Image from 'next/image';
 import { useState } from 'react';
 import { FaBell, FaBars, FaTimes } from 'react-icons/fa';
@@ -7,11 +8,10 @@ import { FiUser } from 'react-icons/fi';
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const links = ['Home', 'Find Work', 'Employers', 'Candidates', 'Pricing Plans', 'Customer Supports', 'Blog'];
 
   return (
-    <nav className="bg-[#1f3556] text-white px-4 py-3 shadow-md">
-      <div className="max-w-7xl mx-auto flex justify-between items-center">
+    <nav className="bg-[#1f3556] text-white shadow-md px-4">
+      <div className="mx-auto max-w-7xl h-[80px] flex justify-between items-center">
         {/* Logo */}
         <div className="flex items-center">
             <Image src="/images/logo.png" alt="logo" width={70} height={70} />
@@ -37,7 +37,7 @@ const Navbar = () => {
 
         {/* Hamburger */}
         <div className="md:hidden">
-          <button onClick={() => setMenuOpen(!menuOpen)}>
+          <button className="cursor-pointer" onClick={() => setMenuOpen(!menuOpen)}>
             {menuOpen ? <FaTimes /> : <FaBars />}
           </button>
         </div>
@@ -48,7 +48,7 @@ const Navbar = () => {
         <div className="md:hidden mt-6 space-y-3">
           <ul className="flex flex-col space-y-2">
             {links.map((link, idx) => (
-              <li key={idx} className="hover:text-pink-300">{link}</li>
+              <li key={idx} className="hover:text-[#FF7D7D] cursor-pointer duration-200">{link}</li>
             ))}
           </ul>
           <div className="flex flex-col space-y-2 mt-4">
