@@ -1,3 +1,4 @@
+"use client"
 import { SuccessToast } from "@/helper/ValidationHelper";
 import { useEffect, useRef, useState } from "react";
 

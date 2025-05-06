@@ -2,6 +2,7 @@
 
 import HeroForm from "./HeroForm";
 
+
 const HeroSection = () => {
   return (
     <section className="relative min-h-[calc(100vh-80px)] w-full bg-[url('/images/hero.png')] bg-center bg-no-repeat bg-cover flex items-center justify-center px-4">

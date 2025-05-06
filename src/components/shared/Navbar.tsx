@@ -45,7 +45,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="md:hidden mt-6 space-y-3">
+        <div className="md:hidden mt-6 space-y-3 pb-4">
           <ul className="flex flex-col space-y-2">
             {links.map((link, idx) => (
               <li key={idx} className="hover:text-[#FF7D7D] cursor-pointer duration-200">{link}</li>
