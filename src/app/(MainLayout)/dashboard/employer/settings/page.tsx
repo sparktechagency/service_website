@@ -1,9 +1,4 @@
 import {
-    Layers,
-    Briefcase,
-    Bookmark,
-    Bell,
-    Settings,
     User,
     UserCircle,
     Cog,
@@ -26,58 +21,7 @@ import CandidateAccountSettings from "@/components/dashboard/candidate/Candidate
   
   const CandidateSettingsPage = () => {
     return (
-      <div className="flex flex-col lg:flex-row min-h-screen bg-white max-w-7xl mx-auto">
-        {/* Sidebar */}
-        <aside className="w-full lg:w-64 border-r border-gray-200 bg-white">
-          <div className="p-4 border-b border-gray-200">
-            <h2 className="text-xs font-semibold text-gray-500 tracking-wider uppercase">Candidate Dashboard</h2>
-          </div>
-          <nav className="p-2">
-            <ul className="space-y-1">
-              <li>
-                <a href="#" className="flex items-center px-3 py-2 text-sm text-gray-600 rounded-md hover:bg-gray-100">
-                  <Layers className="w-5 h-5 mr-3 text-gray-500" />
-                  Overview
-                </a>
-              </li>
-              <li>
-                <a href="#" className="flex items-center px-3 py-2 text-sm text-gray-600 rounded-md hover:bg-gray-100">
-                  <Briefcase className="w-5 h-5 mr-3 text-gray-500" />
-                  Applied Jobs
-                </a>
-              </li>
-              <li>
-                <a href="#" className="flex items-center px-3 py-2 text-sm text-gray-600 rounded-md hover:bg-gray-100">
-                  <Bookmark className="w-5 h-5 mr-3 text-gray-500" />
-                  Favorite Jobs
-                </a>
-              </li>
-              <li>
-                <a href="#" className="flex items-center px-3 py-2 text-sm text-gray-600 rounded-md hover:bg-gray-100">
-                  <Bell className="w-5 h-5 mr-3 text-gray-500" />
-                  <span>Job Alert</span>
-                  <span className="ml-auto bg-gray-100 text-gray-600 text-xs px-2 py-0.5 rounded-full">09</span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="flex items-center px-3 py-2 text-sm font-medium text-gray-900 bg-gray-100 rounded-md"
-                >
-                  <Settings className="w-5 h-5 mr-3 text-gray-500" />
-                  Settings
-                </a>
-              </li>
-            </ul>
-          </nav>
-          {/* <div className="mt-auto p-4 absolute bottom-0 lg:relative">
-            <button className="flex items-center text-sm text-gray-600 hover:text-gray-900">
-              <LogOut className="w-5 h-5 mr-2" />
-              Log-out
-            </button>
-          </div> */}
-        </aside>
-  
+      <>
         {/* Main Content */}
         <main className="flex-1 p-4 md:p-6 lg:p-8">
           <div className="max-w-4xl mx-auto">
@@ -303,7 +247,7 @@ import CandidateAccountSettings from "@/components/dashboard/candidate/Candidate
             </Tabs>
           </div>
         </main>
-      </div>
+      </>
     )
   }
   

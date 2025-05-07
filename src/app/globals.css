@@ -13,6 +13,7 @@
   --font-mono: var(--font-geist-mono);
   --color-primary: #22385C; 
   --color-title: #4E4E4E;
+  --color-light-gray: #E7F0FA;
 }
 
 @media (prefers-color-scheme: dark) {
