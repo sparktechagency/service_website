@@ -70,10 +70,10 @@ export default function RelatedJobs() {
       <div className="flex justify-between items-center mb-8">
         <h2 className="text-2xl md:text-3xl font-bold text-gray-800">Related Jobs</h2>
         <div className="flex space-x-2">
-          <button className="p-2 rounded-md bg-gray-100 hover:bg-gray-200 transition-colors">
+          <button className="p-2 rounded-md bg-gray-100 hover:bg-gray-200 transition-colors cursor-pointer">
             <ChevronLeft className="h-5 w-5 text-gray-600" />
           </button>
-          <button className="p-2 rounded-md bg-gray-100 hover:bg-gray-200 transition-colors">
+          <button className="p-2 rounded-md bg-gray-100 hover:bg-gray-200 transition-colors cursor-pointer">
             <ChevronRight className="h-5 w-5 text-gray-600" />
           </button>
         </div>
@@ -81,7 +81,7 @@ export default function RelatedJobs() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {jobs.map((job) => (
-          <div key={job.id} className="border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow">
+          <div key={job.id} className="border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow cursor-pointer">
             <div className="flex items-start mb-4">
               <div
                 className={`w-10 h-10 ${job.logoColor} text-white flex items-center justify-center rounded-md mr-3 flex-shrink-0`}

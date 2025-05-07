@@ -53,7 +53,7 @@ export default function JobPostingPage() {
               >
                 <Bookmark className={`h-5 w-5 ${bookmarked ? "fill-current text-blue-600" : ""}`} />
               </Button>
-              <Button className="w-full md:w-auto bg-[#1e3a8a] hover:bg-[#152a61] text-white flex items-center gap-2">
+              <Button className="w-full md:w-auto cursor-pointer bg-[#1e3a8a] hover:bg-[#152a61] text-white flex items-center gap-2">
                 Apply Now
                 <span className="ml-1">→</span>
               </Button>
@@ -109,16 +109,16 @@ export default function JobPostingPage() {
           {/* Share this job */}
           <div className="mt-12">
             <p className="text-gray-600 mb-3">Share this job:</p>
-            <div className="flex gap-2">
-              <Button variant="outline" size="sm" className="flex items-center gap-2">
+            <div className="flex gap-2 flex-wrap">
+              <Button variant="outline" size="sm" className="flex items-center gap-2 cursor-pointer">
                 <Facebook className="h-4 w-4" />
                 Facebook
               </Button>
-              <Button variant="outline" size="sm" className="flex items-center gap-2">
+              <Button variant="outline" size="sm" className="flex items-center gap-2 cursor-pointer">
                 <Twitter className="h-4 w-4" />
                 Facebook
               </Button>
-              <Button variant="outline" size="sm" className="flex items-center gap-2">
+              <Button variant="outline" size="sm" className="flex items-center gap-2 cursor-pointer">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
