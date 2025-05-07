@@ -1,8 +1,8 @@
-import { Job } from "@/data/job.data";
+import { IJob } from "@/types/job.type";
 import { BookmarkIcon, ArrowRightIcon } from "lucide-react"
 import Image from "next/image"
 
-const JobCard = ({ job }: { job: Job }) =>{
+const JobCard = ({ job }: { job: IJob }) =>{
   return (
     <div className="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden">
       <div className="p-4 flex flex-col md:flex-row md:items-center">
@@ -11,7 +11,7 @@ const JobCard = ({ job }: { job: Job }) =>{
           <div className={`w-10 h-10 rounded flex items-center justify-center ${job.logoBackground}`}>
             {job.logo && (
               <Image
-                src={job.logo || "/placeholder.svg"}
+                src={"/images/profile.png"}
                 alt={`${job.company} logo`}
                 width={24}
                 height={24}

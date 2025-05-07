@@ -2,9 +2,9 @@
 
 import { useState } from "react"
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react"
-import Sidebar from "./sidebar"
-import JobCard from "./job-card"
 import { jobData } from "@/data/job.data"
+import JobCard from "./JobCard"
+import Sidebar from "./Sidebar"
 
 const CandidateDashboard = () => {
   const [currentPage, setCurrentPage] = useState(1)
