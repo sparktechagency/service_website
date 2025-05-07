@@ -22,6 +22,8 @@ import {
   import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
   import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
   import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import CandidateProfileForm from "@/components/dashboard/candidate/CandidateProfileForm"
+import CandidateAccountSettings from "@/components/dashboard/candidate/CandidateAccountSettings"
   
   const CandidateSettingsPage = () => {
     return (
@@ -80,30 +82,30 @@ import {
         {/* Main Content */}
         <main className="flex-1 p-4 md:p-6 lg:p-8">
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-2xl font-semibold text-gray-900 mb-6">Setting</h1>
+            <h1 className="text-2xl font-semibold text-gray-900 mb-6">Settings</h1>
   
             <Tabs defaultValue="personal" className="w-full">
               <TabsList className="mb-6 border-b border-gray-200 w-full justify-start">
                 <TabsTrigger
                   value="personal"
-                  className="flex items-center gap-2 data-[state=active]:border-b-2 data-[state=active]:border-blue-600 rounded-none pb-3"
+                  className="flex items-center gap-2 data-[state=active]:border-b-2 data-[state=active]:border-blue-600 rounded-none pb-3 cursor-pointer"
                 >
                   <User className="w-4 h-4" />
                   Personal
                 </TabsTrigger>
                 <TabsTrigger
                   value="profile"
-                  className="flex items-center gap-2 data-[state=active]:border-b-2 data-[state=active]:border-blue-600 rounded-none pb-3"
+                  className="flex items-center gap-2 data-[state=active]:border-b-2 data-[state=active]:border-blue-600 rounded-none pb-3 cursor-pointer"
                 >
                   <UserCircle className="w-4 h-4" />
                   Profile
                 </TabsTrigger>
                 <TabsTrigger
                   value="account"
-                  className="flex items-center gap-2 data-[state=active]:border-b-2 data-[state=active]:border-blue-600 rounded-none pb-3"
+                  className="flex items-center gap-2 data-[state=active]:border-b-2 data-[state=active]:border-blue-600 rounded-none pb-3 cursor-pointer"
                 >
                   <Cog className="w-4 h-4" />
-                  Account Setting
+                  Account Settings
                 </TabsTrigger>
               </TabsList>
   
@@ -287,15 +289,17 @@ import {
               </TabsContent>
   
               <TabsContent value="profile">
-                <div className="flex items-center justify-center h-40 border rounded-md">
-                  <p className="text-gray-500">Profile settings content</p>
-                </div>
+                {/* <div className="flex items-center justify-center h-40 border rounded-md"> */}
+                  {/* <p className="text-gray-500">Profile settings content</p> */}
+                {/* </div> */}
+                <CandidateProfileForm/>
               </TabsContent>
   
               <TabsContent value="account">
-                <div className="flex items-center justify-center h-40 border rounded-md">
+                {/* <div className="flex items-center justify-center h-40 border rounded-md">
                   <p className="text-gray-500">Account settings content</p>
-                </div>
+                </div> */}
+                <CandidateAccountSettings/>
               </TabsContent>
             </Tabs>
           </div>
