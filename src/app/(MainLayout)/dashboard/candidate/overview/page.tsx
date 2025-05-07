@@ -3,7 +3,7 @@ import { Bell, Bookmark, BriefcaseIcon, ChevronRight, LogOut, Settings } from "l
 
 export default function CandidateDashboard() {
   return (
-    <div className="flex min-h-screen flex-col md:flex-row">
+    <div className="flex min-h-screen flex-col md:flex-row max-w-7xl mx-auto">
       {/* Sidebar */}
       <aside className="w-full border-r border-gray-200 bg-white md:w-64 lg:w-72">
         <div className="p-4 md:p-6">
@@ -62,17 +62,17 @@ export default function CandidateDashboard() {
             </a>
           </nav>
         </div>
-        <div className="mt-auto p-4">
+        {/* <div className="mt-auto p-4">
           <button className="flex w-full items-center space-x-2 rounded-md px-3 py-2 text-sm font-medium text-gray-600 hover:bg-gray-50">
             <LogOut className="h-5 w-5 text-gray-500" />
             <span>Log-out</span>
           </button>
-        </div>
+        </div> */}
       </aside>
 
       {/* Main Content */}
       <main className="flex-1 overflow-auto">
-        <div className="mx-auto max-w-6xl p-4 md:p-6 lg:p-8">
+        <div className="mx-auto max-w-5xl p-4 md:p-6 lg:p-8">
           {/* Header */}
           <div className="mb-6">
             <h1 className="text-xl font-semibold text-gray-900">Hello, Esther Howard</h1>

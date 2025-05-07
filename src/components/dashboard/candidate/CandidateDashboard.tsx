@@ -15,7 +15,7 @@ const CandidateDashboard = () => {
   const currentJobs = jobData.slice(startIndex, startIndex + jobsPerPage)
 
   return (
-    <div className="flex flex-col md:flex-row min-h-screen">
+    <div className="flex flex-col md:flex-row min-h-screen max-w-7xl mx-auto">
       {/* Sidebar for larger screens */}
       <div className="hidden md:block md:w-64 lg:w-72 border-r border-gray-200 min-h-screen">
         <Sidebar />
