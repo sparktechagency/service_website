@@ -10,3 +10,11 @@ export interface IJob {
   timeRemaining?: string;
   status: "active" | "expired" | "expiring";
 }
+
+export type ISubscription = {
+  tier: string;
+  price: number;
+  description: string;
+  features: string[];
+  recommended?: boolean;
+};

@@ -9,7 +9,7 @@ type TProps = {
 const EmployerDashboardLayout = ({ children }: TProps) => {
   return (
     <>
-      <section className="flex min-h-screen flex-col md:flex-row max-w-7xl mx-auto">
+      <section className="flex min-h-screen flex-col md:flex-row max-w-7xl mx-auto bg-gray-50">
         {/* Sidebar */}
         <EmployerSidebar/>
         {children}

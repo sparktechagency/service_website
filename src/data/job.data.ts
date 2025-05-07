@@ -1,4 +1,4 @@
-import { IJob } from "@/types/job.type";
+import { IJob, ISubscription } from "@/types/job.type";
 
 export const jobData: IJob[] = [
   {
@@ -139,5 +139,53 @@ export const jobData: IJob[] = [
     salary: "$30k-$35k",
     timeRemaining: "4 Days Remaining",
     status: "active",
+  },
+];
+
+export const subscriptionData: ISubscription[] = [
+  {
+    tier: "BASIC",
+    price: 19,
+    description:
+      "Praesent eget pulvinar orci. Duis at pellentesque ligula convallis.",
+    features: [
+      "Post 1 Job",
+      "Urgent & Featured Jobs",
+      "Highlights Job with Colors",
+      "Access & Saved 5 Candidates",
+      "10 Days Resume Visibility",
+      "24/7 Critical Support",
+    ],
+    recommended: false
+  },
+  {
+    tier: "STANDARD",
+    price: 39,
+    description:
+      "Praesent eget pulvinar orci. Duis at pellentesque ligula convallis.",
+    features: [
+      "3 Active Jobs",
+      "Urgent & Featured Jobs",
+      "Highlights Job with Colors",
+      "Access & Saved 10 Candidates",
+      "20 Days Resume Visibility",
+      "24/7 Critical Support",
+    ],
+    recommended: true,
+  },
+  {
+    tier: "PREMIUM",
+    price: 59,
+    description:
+      "Praesent eget pulvinar orci. Duis at pellentesque ligula convallis.",
+    features: [
+      "6 Active Jobs",
+      "Urgent & Featured Jobs",
+      "Highlights Job with Colors",
+      "Access & Saved 20 Candidates",
+      "30 Days Resume Visibility",
+      "24/7 Critical Support",
+    ],
+    recommended: false
   },
 ];
