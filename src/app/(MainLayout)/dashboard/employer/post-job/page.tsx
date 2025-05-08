@@ -1,5 +1,5 @@
 "use client"
-import PostJobForm from "@/components/dashboard/employer/PostJob/PostJobForm";
+import PostJobForm from "@/components/dashboard/employer/PostJobForm/PostJobForm";
 
 
 const PostJobPage = () => {

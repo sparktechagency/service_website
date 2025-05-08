@@ -1,5 +1,5 @@
 
-import Subscription from "@/components/dashboard/employer/PostJob/Subscription";
+import Subscription from "@/components/dashboard/employer/subscription/Subscription";
 
 const SubscriptionPage = () => {
   return (
