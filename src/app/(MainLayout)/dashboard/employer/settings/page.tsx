@@ -1,8 +1,9 @@
+"use client"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import CandidateAccountSettings from "@/components/dashboard/candidate/CandidateAccountSettings";
 import SocialLinkForm from "@/components/dashboard/employer/settings/SocialLinkForm";
 import CompanyInformation from "@/components/dashboard/employer/settings/CompanyInformation";
 import { Cog, User, UserCircle } from "lucide-react";
+import EmployerAccountSettings from "@/components/dashboard/employer/settings/AccountSettings/EmployerAccountSettings";
 
 const EmployerSettingsPage = () => {
   return (
@@ -46,7 +47,7 @@ const EmployerSettingsPage = () => {
               <SocialLinkForm />
             </TabsContent>
             <TabsContent value="account">
-              <CandidateAccountSettings />
+              <EmployerAccountSettings />
             </TabsContent>
           </Tabs>
         </div>
