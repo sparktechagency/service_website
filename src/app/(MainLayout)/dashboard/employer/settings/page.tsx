@@ -18,8 +18,9 @@ import {
   import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import CandidateProfileForm from "@/components/dashboard/candidate/CandidateProfileForm"
 import CandidateAccountSettings from "@/components/dashboard/candidate/CandidateAccountSettings"
+import SocialLinkForm from "@/components/dashboard/employer/settings/SocialLinkForm"
   
-  const CandidateSettingsPage = () => {
+  const EmployerSettingsPage = () => {
     return (
       <>
         {/* Main Content */}
@@ -27,21 +28,28 @@ import CandidateAccountSettings from "@/components/dashboard/candidate/Candidate
           <div className="max-w-4xl mx-auto">
             <h1 className="text-2xl font-semibold text-gray-900 mb-6">Settings</h1>
   
-            <Tabs defaultValue="personal" className="w-full">
+            <Tabs defaultValue="company" className="w-full">
               <TabsList className="mb-6 border-b border-gray-200 w-full justify-start">
                 <TabsTrigger
-                  value="personal"
+                  value="company"
                   className="flex items-center gap-2 data-[state=active]:border-b-2 data-[state=active]:border-blue-600 rounded-none pb-3 cursor-pointer"
                 >
                   <User className="w-4 h-4" />
-                  Personal
+                  Company Info
                 </TabsTrigger>
                 <TabsTrigger
-                  value="profile"
+                  value="foundation"
                   className="flex items-center gap-2 data-[state=active]:border-b-2 data-[state=active]:border-blue-600 rounded-none pb-3 cursor-pointer"
                 >
                   <UserCircle className="w-4 h-4" />
-                  Profile
+                  Founding Info
+                </TabsTrigger>
+                <TabsTrigger
+                  value="social"
+                  className="flex items-center gap-2 data-[state=active]:border-b-2 data-[state=active]:border-blue-600 rounded-none pb-3 cursor-pointer"
+                >
+                  <UserCircle className="w-4 h-4" />
+                  Social Media Profile
                 </TabsTrigger>
                 <TabsTrigger
                   value="account"
@@ -52,7 +60,7 @@ import CandidateAccountSettings from "@/components/dashboard/candidate/Candidate
                 </TabsTrigger>
               </TabsList>
   
-              <TabsContent value="personal" className="space-y-8">
+              <TabsContent value="company" className="space-y-8">
                 <section>
                   <h2 className="text-lg font-medium text-gray-900 mb-6">Basic Information</h2>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -231,17 +239,13 @@ import CandidateAccountSettings from "@/components/dashboard/candidate/Candidate
                 </section>
               </TabsContent>
   
-              <TabsContent value="profile">
-                {/* <div className="flex items-center justify-center h-40 border rounded-md"> */}
-                  {/* <p className="text-gray-500">Profile settings content</p> */}
-                {/* </div> */}
+              <TabsContent value="foundation">
                 <CandidateProfileForm/>
               </TabsContent>
-  
-              <TabsContent value="account">
-                {/* <div className="flex items-center justify-center h-40 border rounded-md">
-                  <p className="text-gray-500">Account settings content</p>
-                </div> */}
+              <TabsContent value="social">
+                <SocialLinkForm/>
+              </TabsContent>
+              <TabsContent value="account"> 
                 <CandidateAccountSettings/>
               </TabsContent>
             </Tabs>
@@ -251,4 +255,4 @@ import CandidateAccountSettings from "@/components/dashboard/candidate/Candidate
     )
   }
   
-  export default CandidateSettingsPage;
+  export default EmployerSettingsPage;
