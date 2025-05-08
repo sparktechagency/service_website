@@ -1,9 +1,7 @@
-"use client"
-
+"use client";
 
 import { useState } from "react"
 import Image from "next/image"
-import { Bold, Italic, Underline, Strikethrough, Link2, List, ListOrdered } from "lucide-react"
 
 const CompanyInformation = () => {
   const [logo, setLogo] = useState<File | null>(null)
@@ -38,7 +36,7 @@ const CompanyInformation = () => {
   }
 
   return (
-    <div className="max-w-4xl mx-auto p-4 md:p-6">
+    <div className="max-w-4xl mx-auto bg-white p-4 md:p-6">
       <div className="mb-8">
         <h2 className="text-xl font-medium mb-4">Logo & Banner Image</h2>
 

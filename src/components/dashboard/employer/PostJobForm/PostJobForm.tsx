@@ -1,14 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import {
-  Bold,
-  Italic,
-  Underline,
-  Strikethrough,
-  List,
-  ListOrdered,
-} from "lucide-react";
 
 const PostJobForm = () => {
   const [jobTitle, setJobTitle] = useState("");
@@ -24,72 +16,6 @@ const PostJobForm = () => {
   const [location, setLocation] = useState("");
   const [description, setDescription] = useState("");
   const [responsibilities, setResponsibilities] = useState("");
-
-  const SelectField = ({
-    label,
-    value,
-    onChange,
-    options = [],
-    placeholder = "Select...",
-  }) => (
-    <div className="mb-4">
-      <label className="block text-sm font-medium text-gray-700 mb-1">
-        {label}
-      </label>
-      <div className="relative">
-        <select
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-        >
-          <option value="">{placeholder}</option>
-          {options.map((option) => (
-            <option key={option} value={option}>
-              {option}
-            </option>
-          ))}
-        </select>
-        <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
-          <svg
-            className="h-4 w-4 text-gray-400"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M19 9l-7 7-7-7"
-            />
-          </svg>
-        </div>
-      </div>
-    </div>
-  );
-
-  const InputField = ({
-    label,
-    value,
-    onChange,
-    placeholder,
-    type = "text",
-    optional = false,
-  }) => (
-    <div className="mb-4">
-      <label className="block text-sm font-medium text-gray-700 mb-1">
-        {label}{" "}
-        {optional && <span className="text-gray-500 text-xs">(Optional)</span>}
-      </label>
-      <input
-        type={type}
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        placeholder={placeholder}
-        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-      />
-    </div>
-  );
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -119,10 +45,13 @@ const PostJobForm = () => {
     "Internship",
   ];
 
-  const categoryOptions = [
-    "Water Supply",
-    "Plumbing",
-    "Day Labor"
+  const categoryOptions = ["Water Supply", "Plumbing", "Day Labor"];
+  const educationOptions = [
+    "High School",
+    "Bachelor's",
+    "Master's",
+    "PhD",
+    "Other",
   ];
 
   return (
@@ -134,15 +63,21 @@ const PostJobForm = () => {
             onSubmit={handleSubmit}
             className="bg-white px-4 py-6 rounded-md"
           >
-            <InputField
-              label="Job Title"
-              value={jobTitle}
-              onChange={setJobTitle}
-              placeholder="Add job title"
-            />
+            <div className="mb-4">
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Job Title
+              </label>
+              <input
+                type="text"
+                value={expirationDate}
+                onChange={(e) => setExpirationDate(e.target.value)}
+                placeholder="enter job title"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              />
+            </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="mb-4">
+              <div className="mb-4">
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Type
                 </label>
@@ -204,6 +139,7 @@ const PostJobForm = () => {
               </div>
             </div>
 
+            {/* salary */}
             <div className="mt-6 mb-4">
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Salary <span className="text-gray-500 text-xs">(Optional)</span>
@@ -234,39 +170,63 @@ const PostJobForm = () => {
                 Advance Information
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <SelectField
-                  label="Education"
-                  value={education}
-                  onChange={setEducation}
-                  options={[
-                    "High School",
-                    "Bachelor's",
-                    "Master's",
-                    "PhD",
-                    "Other",
-                  ]}
-                />
-                <SelectField
-                  label="Experience"
-                  value={experience}
-                  onChange={setExperience}
-                  options={[
-                    "Entry Level",
-                    "1-3 years",
-                    "3-5 years",
-                    "5-10 years",
-                    "10+ years",
-                  ]}
-                />
-                <SelectField
-                  label="Skill"
-                  value={skill}
-                  onChange={setSkill}
-                  options={["Beginner", "Intermediate", "Advanced", "Expert"]}
-                />
+                <div className="mb-4">
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Education
+                  </label>
+                  <div className="relative">
+                    <select className="w-full px-3 py-2 border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                      <option value="">Select Category</option>
+                      {educationOptions?.map((option) => (
+                        <option key={option} value={option}>
+                          {option}
+                        </option>
+                      ))}
+                    </select>
+                    <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                      <svg
+                        className="h-4 w-4 text-gray-400"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <div className="mb-4">
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                   Experience
+                  </label>
+                  <input
+                    type="text"
+                    value={expirationDate}
+                    onChange={(e) => setSkill(e.target.value)}
+                    placeholder="enter address"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  />
+                </div>
+                <div className="mb-4">
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                   Skills
+                  </label>
+                  <input
+                    type="text"
+                    value={expirationDate}
+                    onChange={(e) => setSkill(e.target.value)}
+                    placeholder="enter address"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  />
+                </div>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
-              <div className="mb-4">
+                <div className="mb-4">
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Vacancies
                   </label>
@@ -289,12 +249,18 @@ const PostJobForm = () => {
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
                 </div>
-                <InputField
-                  label="Location"
-                  value={location}
-                  onChange={setLocation}
-                  placeholder="Enter job location"
-                />
+                <div className="mb-4">
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Address
+                  </label>
+                  <input
+                    type="text"
+                    value={expirationDate}
+                    onChange={(e) => setExpirationDate(e.target.value)}
+                    placeholder="enter address"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  />
+                </div>
               </div>
             </div>
 
