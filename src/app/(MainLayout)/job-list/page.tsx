@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client"
 
 import type React from "react"
@@ -113,10 +114,10 @@ export default function JobListings() {
 
   const toggleBookmark = (jobId: number, e: React.MouseEvent) => {
     e.stopPropagation()
-    setBookmarkedJobs((prev) => ({
-      ...prev,
-      [jobId]: !prev[jobId],
-    }))
+    // setBookmarkedJobs((prev) => ({
+    //   ...prev,
+    //   [jobId]: !prev[jobId],
+    // }))
   }
 
   return (
@@ -183,7 +184,7 @@ export default function JobListings() {
 
           <div className="flex items-center space-x-4">
             <button onClick={(e) => toggleBookmark(job.id, e)} className="text-gray-400 hover:text-gray-600">
-              <FiBookmark size={20} className={bookmarkedJobs[job.id] ? "fill-current text-gray-600" : ""} />
+              {/* <FiBookmark size={20} className={bookmarkedJobs[job.id] ? "fill-current text-gray-600" : ""} /> */}
             </button>
 
             <button className="bg-blue-50 cursor-pointer hover:bg-primary hover:text-white text-primary px-4 py-2 rounded-md flex items-center duration-200 transition-colors">
