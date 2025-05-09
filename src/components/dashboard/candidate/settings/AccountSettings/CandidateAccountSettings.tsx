@@ -1,12 +1,11 @@
 "use client"
 
 import { useState } from "react"
-import { Eye, EyeOff, MapPin, Mail, FileText, AlertCircle } from "lucide-react"
+import { MapPin, Mail, FileText, AlertCircle } from "lucide-react"
+import ChangePasswordForm from "./ChangePasswordForm"
+import DeleteCandidateAccount from "./DeleteCandidateAccount"
 
 const CandidateAccountSettings =() => {
-  const [showCurrentPassword, setShowCurrentPassword] = useState(false)
-  const [showNewPassword, setShowNewPassword] = useState(false)
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const [profileIsPublic, setProfileIsPublic] = useState(true)
   const [resumeIsPrivate, setResumeIsPrivate] = useState(true)
 
@@ -197,94 +196,10 @@ const CandidateAccountSettings =() => {
           </div>
         </div>
 
-        {/* Change Password Section */}
-        <div className="bg-white p-6 rounded-lg shadow-sm">
-          <h2 className="text-xl font-semibold mb-4">Change Password</h2>
-          <div className="grid md:grid-cols-3 gap-4">
-            <div>
-              <label htmlFor="current-password" className="block text-sm font-medium text-gray-700 mb-1">
-                Current Password
-              </label>
-              <div className="relative">
-                <input
-                  id="current-password"
-                  type={showCurrentPassword ? "text" : "password"}
-                  placeholder="Password"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowCurrentPassword(!showCurrentPassword)}
-                  className="absolute right-3 top-2.5 text-gray-400"
-                >
-                  {showCurrentPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                </button>
-              </div>
-            </div>
+       
+       <ChangePasswordForm/>
 
-            <div>
-              <label htmlFor="new-password" className="block text-sm font-medium text-gray-700 mb-1">
-                New Password
-              </label>
-              <div className="relative">
-                <input
-                  id="new-password"
-                  type={showNewPassword ? "text" : "password"}
-                  placeholder="Password"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowNewPassword(!showNewPassword)}
-                  className="absolute right-3 top-2.5 text-gray-400"
-                >
-                  {showNewPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                </button>
-              </div>
-            </div>
-
-            <div>
-              <label htmlFor="confirm-password" className="block text-sm font-medium text-gray-700 mb-1">
-                Confirm Password
-              </label>
-              <div className="relative">
-                <input
-                  id="confirm-password"
-                  type={showConfirmPassword ? "text" : "password"}
-                  placeholder="Password"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                  className="absolute right-3 top-2.5 text-gray-400"
-                >
-                  {showConfirmPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-4">
-            <button className="px-4 py-2 bg-blue-800 text-white rounded-md hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-              Save Changes
-            </button>
-          </div>
-        </div>
-
-        {/* Delete Account Section */}
-        <div className="bg-white p-6 rounded-lg shadow-sm">
-          <h2 className="text-xl font-semibold mb-4">Delete Your Account</h2>
-          <p className="text-sm text-gray-600 mb-4">
-            If you delete your JobSpot account, you will no longer be able to get information about the matched jobs,
-            following employers, and job alert, shortlisted jobs and more. You will be abandoned from all the services
-            of JobSpot.com.
-          </p>
-          <button className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 flex items-center gap-2">
-            <AlertCircle className="h-4 w-4" />
-            Close Account
-          </button>
-        </div>
+       <DeleteCandidateAccount/>
       </div>
     </div>
   )

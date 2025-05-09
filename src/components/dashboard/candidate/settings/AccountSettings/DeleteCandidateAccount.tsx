@@ -1,17 +1,16 @@
 "use client";
 import { X } from "lucide-react";
-import React from "react";
 
-const DeleteAccount = () => {
+const DeleteCandidateAccount = () => {
   return (
     <>
-      <div className="mt-12 border border-gray-200 rounded-md p-4">
+      <div className="bg-white p-6 rounded-lg shadow-sm">
         <h3 className="text-lg font-medium mb-2">Delete Your Account</h3>
         <p className="text-sm text-gray-600 mb-4">
-          If you delete your Jobpilot account, you will no longer be able to get
+          If you delete your JobSpot account, you will no longer be able to get
           information about the matched jobs, following employers, and job
           alert, shortlisted jobs and more. You will be abandoned from all the
-          services of Jobpilot.com.
+          services of JobSpot.com.
         </p>
         <button
           type="button"
@@ -25,4 +24,4 @@ const DeleteAccount = () => {
   );
 };
 
-export default DeleteAccount;
+export default DeleteCandidateAccount;

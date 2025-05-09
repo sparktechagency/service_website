@@ -127,7 +127,7 @@ const ChangePasswordForm = () => {
             type="submit"
             className="px-4 py-2 bg-primary hover:bg-[#2b4773] text-white font-medium rounded-md focus:outline-none transition-colors cursor-pointer"
           >
-            Change Password
+            Save Changes
           </button>
         </div>
       </form>
