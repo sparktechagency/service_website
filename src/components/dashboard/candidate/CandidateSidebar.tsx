@@ -30,10 +30,10 @@ const CandidateSidebar = () =>{
             label="Favourite Jobs"
           />
           <SidebarLink
-            href="/dashboard/candidate/job-alert"
+            href="/dashboard/candidate/job-alerts"
             icon={<BellIcon className="h-5 w-5" />} 
-            label="Job Alert"
-            active
+            label="Job Alerts"
+            badge="09"
           />  
           <SidebarLink
             href="/dashboard/candidate/settings"
@@ -54,13 +54,11 @@ const SidebarLink = ({
   href,
   icon,
   label,
- // active = false,
   badge,
 }: {
   href: string;
   icon: React.ReactNode;
   label: string;
-  active?: boolean;
   badge?: string;
 }) => {
 

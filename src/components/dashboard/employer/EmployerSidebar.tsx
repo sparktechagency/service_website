@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import {
   LayoutDashboardIcon,
   SettingsIcon,
@@ -24,7 +24,7 @@ const EmployerSidebar = () => {
             icon={<LayoutDashboardIcon className="h-5 w-5" />}
             label="Overview"
           />
-           <SidebarLink
+          <SidebarLink
             href="/dashboard/employer/subscription"
             icon={<Podcast className="h-5 w-5" />}
             label="Subscription"
@@ -37,11 +37,10 @@ const EmployerSidebar = () => {
           />
           <SidebarLink
             href="/dashboard/employer/my-jobs"
-            icon={<BriefcaseBusiness className="h-5 w-5" />} 
+            icon={<BriefcaseBusiness className="h-5 w-5" />}
             label="My Jobs"
-            active
           />
-         
+
           <SidebarLink
             href="/dashboard/employer/settings"
             icon={<SettingsIcon className="h-5 w-5" />}
@@ -59,26 +58,20 @@ const SidebarLink = ({
   href,
   icon,
   label,
- // active = false,
   badge,
 }: {
   href: string;
   icon: React.ReactNode;
   label: string;
-  active?: boolean;
   badge?: string;
 }) => {
-
-
   const pathname = usePathname();
   const router = useRouter();
   const active = pathname === href;
 
-
-
   return (
     <button
-      onClick={()=>router.push(href)}
+      onClick={() => router.push(href)}
       className={`flex w-full cursor-pointer items-center space-x-2 px-3 py-2 rounded-md ${
         active
           ? "bg-[#E7F0FA] text-primary border-l-4 border-[#092443]"
