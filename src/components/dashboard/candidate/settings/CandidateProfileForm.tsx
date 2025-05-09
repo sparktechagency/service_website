@@ -1,4 +1,4 @@
-import { Calendar, ChevronDown } from "lucide-react"
+import { ChevronDown } from "lucide-react"
 
 const CandidateProfileForm = () =>{
   return (
@@ -113,8 +113,8 @@ const CandidateProfileForm = () =>{
                 </option>
                 <option value="high-school">High School</option>
                 <option value="associate">Associate Degree</option>
-                <option value="bachelor">Bachelor's Degree</option>
-                <option value="master">Master's Degree</option>
+                <option value="bachelor">Bachelor &lsquo; s Degree</option>
+                <option value="master">Master &lsquo; s Degree</option>
                 <option value="doctorate">Doctorate</option>
               </select>
               <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">

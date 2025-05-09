@@ -5,7 +5,7 @@ import Image from "next/image";
 type TProps = {
     icon: string;
     name: string;
-    positions: string;
+    positions: number;
 }
 
 const CategoryCard = ({ icon, name, positions }: TProps) => {

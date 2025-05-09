@@ -2,12 +2,7 @@
 
 import { useState } from "react"
 import {
-  LayoutDashboard,
-  Briefcase,
   FileText,
-  User,
-  Settings,
-  LogOut,
   ChevronDown,
   MoreVertical,
   ChevronLeft,
@@ -20,7 +15,7 @@ import {
 } from "lucide-react"
 
 const MyJobsPage = () => {
-  const [activeMenu, setActiveMenu] = useState("my-jobs")
+  //const [activeMenu, setActiveMenu] = useState("my-jobs")
   const [activeDropdown, setActiveDropdown] = useState(4)
   const [activePage, setActivePage] = useState(1)
   const [filterValue, setFilterValue] = useState("All Jobs")
@@ -94,15 +89,6 @@ const MyJobsPage = () => {
     },
   ]
 
-  const MenuItem = ({ id, icon, label }) => (
-    <div
-      className={`flex items-center gap-3 px-4 py-3 cursor-pointer hover:bg-blue-50 ${activeMenu === id ? "bg-blue-100 border-l-4 border-blue-600" : ""}`}
-      onClick={() => setActiveMenu(id)}
-    >
-      {icon}
-      <span className="text-gray-700">{label}</span>
-    </div>
-  )
 
   const toggleDropdown = (id) => {
     if (activeDropdown === id) {

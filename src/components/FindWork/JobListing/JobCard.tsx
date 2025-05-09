@@ -10,7 +10,7 @@ export type TJob = {
   location: string;
   jobType: string;
   salary: string;
-  featured: true;
+  featured?: boolean;
 };
 
 const JobCard = ({ job }: { job: TJob }) => {

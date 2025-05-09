@@ -1,5 +1,5 @@
 
-import { FaDribbble, FaTwitter, FaFacebookF, FaInstagram, FaYoutube, FaSlack, FaFigma, FaMicrosoft, FaReddit, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaDribbble, FaTwitter, FaFacebookF, FaInstagram, FaYoutube, FaSlack, FaFigma, FaMicrosoft } from 'react-icons/fa';
 import JobCard from './JobCard';
 
 const jobs = [

@@ -1,5 +1,6 @@
-import { FaTools, FaLaptopCode, FaStore } from "react-icons/fa";
-import { GiFactory } from "react-icons/gi";
+"use client"
+
+import { FaLaptopCode } from "react-icons/fa";
 
 const trendingData = [
   {

@@ -63,7 +63,6 @@ const VerifyotpForm = () => {
 
   const handleVerify = () => {
     console.log(code);
-    const otp = code.join("");
     SuccessToast("Verify Success");
   };
   return (

@@ -1,4 +1,4 @@
-import { FaMapMarkerAlt, FaSearch, FaSearchLocation } from 'react-icons/fa';
+import { FaMapMarkerAlt, FaSearch } from 'react-icons/fa';
 import { AiOutlineArrowDown } from 'react-icons/ai';
 
 const SearchForm = () => {

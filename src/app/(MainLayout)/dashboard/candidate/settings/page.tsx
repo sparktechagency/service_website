@@ -1,34 +1,4 @@
-import {
-  User,
-  UserCircle,
-  Cog,
-  Upload,
-  Link,
-  FileText,
-  MoreVertical,
-  Edit,
-  Trash2,
-  Plus,
-} from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import CandidateAccountSettings from "@/components/dashboard/candidate/settings/AccountSettings/CandidateAccountSettings";
-import CandidateProfileForm from "@/components/dashboard/candidate/settings/CandidateProfileForm";
+"use client"
 import CandidateTabs from "@/components/dashboard/candidate/settings/CandidateTabs";
 
 const CandidateSettingsPage = () => {
