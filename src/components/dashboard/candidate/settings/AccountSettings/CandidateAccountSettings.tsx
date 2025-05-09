@@ -1,9 +1,10 @@
 "use client"
 
 import { useState } from "react"
-import { MapPin, Mail, FileText, AlertCircle } from "lucide-react"
+import { MapPin, FileText} from "lucide-react"
 import ChangePasswordForm from "./ChangePasswordForm"
 import DeleteCandidateAccount from "./DeleteCandidateAccount"
+import ContactForm from "./ContactForm"
 
 const CandidateAccountSettings =() => {
   const [profileIsPublic, setProfileIsPublic] = useState(true)
@@ -12,63 +13,8 @@ const CandidateAccountSettings =() => {
   return (
     <div className="container py-6 max-w-3xl">
       <div className="space-y-8">
-        {/* Contact Info Section */}
-        <div className="bg-white p-6 rounded-lg shadow-sm">
-          <h2 className="text-xl font-semibold mb-4">Contact Info</h2>
-          <div className="space-y-4">
-            <div>
-              <label htmlFor="map-location" className="block text-sm font-medium text-gray-700 mb-1">
-                Map Location
-              </label>
-              <input
-                id="map-location"
-                type="text"
-                placeholder="Enter your location"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-            </div>
-
-            <div>
-              <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
-                Phone
-              </label>
-              <div className="flex">
-                <div className="relative">
-                  <select className="h-10 rounded-l-md border border-r-0 border-gray-300 bg-white px-3 py-2 text-sm flex items-center gap-1 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <option>🇧🇩 +880</option>
-                    <option>🇺🇸 +1</option>
-                    <option>🇬🇧 +44</option>
-                  </select>
-                </div>
-                <input
-                  id="phone"
-                  type="text"
-                  placeholder="Phone number"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-r-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-              </div>
-            </div>
-
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                Email
-              </label>
-              <div className="relative">
-                <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-                <input
-                  id="email"
-                  type="email"
-                  placeholder="Email address"
-                  className="w-full pl-10 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-              </div>
-            </div>
-
-            <button className="px-4 py-2 bg-blue-800 text-white rounded-md hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-              Save Changes
-            </button>
-          </div>
-        </div>
+       
+       <ContactForm/>
 
         {/* Notification Section */}
         <div className="bg-white p-6 rounded-lg shadow-sm">
