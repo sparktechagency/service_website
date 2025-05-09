@@ -18,25 +18,25 @@ const PostJobForm = () => {
   const [description, setDescription] = useState("");
   const [responsibilities, setResponsibilities] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission
-    console.log({
-      jobTitle,
-      tags,
-      category,
-      salary,
-      currency,
-      education,
-      experience,
-      skill,
-      vacancies,
-      expirationDate,
-      location,
-      description,
-      responsibilities,
-    });
-  };
+  // const handleSubmit = (e: { preventDefault: () => void; }) => {
+  //   e.preventDefault();
+  //   // Handle form submission
+  //   console.log({
+  //     jobTitle,
+  //     tags,
+  //     category,
+  //     salary,
+  //     currency,
+  //     education,
+  //     experience,
+  //     skill,
+  //     vacancies,
+  //     expirationDate,
+  //     location,
+  //     description,
+  //     responsibilities,
+  //   });
+  // };
 
   const typeOptions = [
     "Full-time",
@@ -61,7 +61,7 @@ const PostJobForm = () => {
         <div className="max-6xl mx-auto p-4 sm:p-6 rounded-lg">
           <h1 className="text-2xl font-bold text-gray-800 mb-4">Post a job</h1>
           <form
-            onSubmit={handleSubmit}
+            // onSubmit={handleSubmit}
             className="bg-white px-4 py-6 rounded-md"
           >
             <div className="mb-4">
