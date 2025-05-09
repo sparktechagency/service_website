@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client"
 
 import { useState } from "react"
@@ -90,12 +91,12 @@ const MyJobsPage = () => {
   ]
 
 
-  const toggleDropdown = (id) => {
-    if (activeDropdown === id) {
-      setActiveDropdown(null)
-    } else {
-      setActiveDropdown(id)
-    }
+  const toggleDropdown = (id:number) => {
+    // if (activeDropdown === id) {
+    //   setActiveDropdown(null)
+    // } else {
+    //   setActiveDropdown(id)
+    // }
   }
 
   return (
