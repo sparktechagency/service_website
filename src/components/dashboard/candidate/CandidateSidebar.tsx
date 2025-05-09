@@ -1,59 +1,54 @@
 "use client"
-import {
-  LayoutDashboardIcon,
-  SettingsIcon,
-  CirclePlus,
-  BriefcaseBusiness,
-  Podcast,
-} from "lucide-react";
-import { usePathname, useRouter } from "next/navigation";
+import { LayoutDashboardIcon, BriefcaseIcon, BookmarkIcon, BellIcon, SettingsIcon } from "lucide-react"
+import { usePathname, useRouter } from "next/navigation"
 
-const EmployerSidebar = () => {
+const CandidateSidebar = () =>{
   return (
     <>
-      <aside className="w-full py-6 border-r border-gray-200 bg-white md:w-64 lg:w-72">
+    <aside className="w-full py-6 border-r border-gray-200 bg-white md:w-64 lg:w-72">
         <div className="px-4 mb-6">
           <h2 className="text-sm font-semibold uppercase tracking-wider text-gray-500">
-            Employer Dashboard
+            Candidate Dashboard
           </h2>
         </div>
 
         <nav className="flex-1 space-y-1 px-2">
           <SidebarLink
-            href="/dashboard/employer/overview"
+            href="/dashboard/candidate/overview"
             icon={<LayoutDashboardIcon className="h-5 w-5" />}
             label="Overview"
           />
            <SidebarLink
-            href="/dashboard/employer/subscription"
-            icon={<Podcast className="h-5 w-5" />}
-            label="Subscription"
+            href="/dashboard/candidate/applied-jobs"
+            icon={<BriefcaseIcon className="h-5 w-5" />}
+            label="Applied Jobs"
             // badge="08"
           />
           <SidebarLink
-            href="/dashboard/employer/post-job"
-            icon={<CirclePlus className="h-5 w-5" />}
-            label="Post a job"
+            href="/dashboard/candidate/favourite-jobs"
+            icon={<BookmarkIcon className="h-5 w-5" />}
+            label="Favourite Jobs"
           />
           <SidebarLink
-            href="/dashboard/employer/my-jobs"
-            icon={<BriefcaseBusiness className="h-5 w-5" />} 
-            label="My Jobs"
+            href="/dashboard/candidate/job-alert"
+            icon={<BellIcon className="h-5 w-5" />} 
+            label="Job Alert"
             active
-          />
-         
+          />  
           <SidebarLink
-            href="/dashboard/employer/settings"
+            href="/dashboard/candidate/settings"
             icon={<SettingsIcon className="h-5 w-5" />}
             label="Settings"
           />
         </nav>
       </aside>
     </>
-  );
-};
+  )
+}
 
-export default EmployerSidebar;
+export default CandidateSidebar;
+
+
 
 const SidebarLink = ({
   href,
