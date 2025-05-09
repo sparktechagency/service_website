@@ -1,19 +1,19 @@
 "use client"
 import { useState } from "react"
 import { User, UserCircle, Cog } from "lucide-react";
-import CandidatePersonalForm from "./CandidatePersonalForm";
-import CandidateProfileForm from "./CandidateProfileForm";
-import CandidateAccountSettings from "./AccountSettings/CandidateAccountSettings";
+import SocialLinkForm from "./SocialLinkForm";
+import CompanyInformation from "./CompanyInformation";
+import EmployerAccountSettings from "./AccountSettings/EmployerAccountSettings";
 
 const tabItems =  [
   {
-    title: "Personal",
-    key: "personal",
+    title: "Company Info",
+    key: "company",
     icon: User
   },
   {
-    title: "Profile",
-    key: "profile",
+    title: "Social Media",
+    key: "social",
     icon: UserCircle
   },
   {
@@ -23,8 +23,8 @@ const tabItems =  [
   }
 ]
 
-const CandidateTabs = () =>{
-  const [activeTab, setActiveTab] = useState("personal")
+const EmployerTabs = () =>{
+  const [activeTab, setActiveTab] = useState("company")
 
   return (
     <div className="w-full">
@@ -50,13 +50,13 @@ const CandidateTabs = () =>{
 
       {/* Tab Content */}
       <div className="w-full">
-        {activeTab === "personal" && <CandidatePersonalForm/>}
-        {activeTab === "profile" && <CandidateProfileForm />}
-        {activeTab === "account" && <CandidateAccountSettings />}
+        {activeTab === "company" && <CompanyInformation/>}
+        {activeTab === "social" && <SocialLinkForm />}
+        {activeTab === "account" && <EmployerAccountSettings />}
       </div>
     </div>
   );
 }
 
 
-export default CandidateTabs;
+export default EmployerTabs;
