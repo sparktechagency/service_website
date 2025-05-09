@@ -29,6 +29,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import CandidateAccountSettings from "@/components/dashboard/candidate/settings/AccountSettings/CandidateAccountSettings";
 import CandidateProfileForm from "@/components/dashboard/candidate/settings/CandidateProfileForm";
+import CandidateTabs from "@/components/dashboard/candidate/settings/CandidateTabs";
 
 const CandidateSettingsPage = () => {
   return (
@@ -39,7 +40,9 @@ const CandidateSettingsPage = () => {
             Settings
           </h1>
 
-          <Tabs defaultValue="personal" className="w-full">
+          <CandidateTabs/>
+
+          {/* <Tabs defaultValue="personal" className="w-full">
             <TabsList className="mb-6 border-b border-gray-200 w-full justify-start">
               <TabsTrigger
                 value="personal"
@@ -287,7 +290,7 @@ const CandidateSettingsPage = () => {
             <TabsContent value="account">
               <CandidateAccountSettings />
             </TabsContent>
-          </Tabs>
+          </Tabs> */}
         </div>
       </main>
     </>

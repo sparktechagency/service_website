@@ -1,8 +1,8 @@
-import { Bold, Calendar, ChevronDown, Italic, Link, List, ListOrdered, Strikethrough, Underline } from "lucide-react"
+import { Calendar, ChevronDown } from "lucide-react"
 
 const CandidateProfileForm = () =>{
   return (
-    <div className="max-w-3xl">
+    <div className="bg-white p-6 rounded-lg shadow-sm">
       <form className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Nationality */}
@@ -38,14 +38,11 @@ const CandidateProfileForm = () =>{
             </label>
             <div className="relative">
               <input
-                type="text"
+                type="date"
                 id="dob"
                 placeholder="dd/mm/yyyy"
-                className="block w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-gray-500 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+                className="block w-full cursor-pointer rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-gray-500 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
               />
-              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-                <Calendar className="h-4 w-4 text-gray-400" />
-              </div>
             </div>
           </div>
 
@@ -158,44 +155,22 @@ const CandidateProfileForm = () =>{
           <label htmlFor="biography" className="block text-sm font-medium text-gray-700">
             Biography
           </label>
-          <div className="border border-gray-300 rounded-md overflow-hidden">
-            <textarea
+           <textarea
               id="biography"
               rows={6}
-              className="block w-full border-0 py-3 px-4 text-gray-500 focus:ring-0 focus:outline-none sm:text-sm"
+              className="block w-full border border-gray-300 rounded-md py-3 px-4 text-gray-500 focus:ring-0 focus:outline-none focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
               placeholder="Write down your biography here. Let the employers know who you are..."
             ></textarea>
-            <div className="border-t border-gray-300 bg-gray-50 p-2 flex flex-wrap gap-1">
-              <button type="button" className="p-1.5 rounded-md hover:bg-gray-200 text-gray-600" title="Bold">
-                <Bold className="h-4 w-4" />
-              </button>
-              <button type="button" className="p-1.5 rounded-md hover:bg-gray-200 text-gray-600" title="Italic">
-                <Italic className="h-4 w-4" />
-              </button>
-              <button type="button" className="p-1.5 rounded-md hover:bg-gray-200 text-gray-600" title="Underline">
-                <Underline className="h-4 w-4" />
-              </button>
-              <button type="button" className="p-1.5 rounded-md hover:bg-gray-200 text-gray-600" title="Strikethrough">
-                <Strikethrough className="h-4 w-4" />
-              </button>
-              <button type="button" className="p-1.5 rounded-md hover:bg-gray-200 text-gray-600" title="Link">
-                <Link className="h-4 w-4" />
-              </button>
-              <button type="button" className="p-1.5 rounded-md hover:bg-gray-200 text-gray-600" title="Bullet List">
-                <List className="h-4 w-4" />
-              </button>
-              <button type="button" className="p-1.5 rounded-md hover:bg-gray-200 text-gray-600" title="Numbered List">
-                <ListOrdered className="h-4 w-4" />
-              </button>
-            </div>
-          </div>
+          {/* <div className="border border-gray-300 rounded-md overflow-hidden">
+           
+          </div> */}
         </div>
 
         {/* Save Button */}
         <div>
           <button
             type="submit"
-            className="inline-flex justify-center rounded-md border border-transparent bg-blue-900 py-2 px-6 text-sm font-medium text-white shadow-sm hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            className="inline-flex  bg-primary hover:bg-[#2b4773] cursor-pointer justify-center rounded-md border border-transparent py-2 px-6 text-sm font-medium text-white shadow-sm focus:outline-none"
           >
             Save Changes
           </button>

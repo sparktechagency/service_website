@@ -19,7 +19,7 @@ const ContactForm = () => {
                   id="location"
                   type="text"
                   placeholder="Enter Your Location"
-                  className="w-full pl-10 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full pl-10 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 focus:ring-blue-500"
                 />
               </div>
             </div>
@@ -34,7 +34,7 @@ const ContactForm = () => {
                   id="phone"
                   type="text"
                   placeholder="Email address"
-                  className="w-full pl-10 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full pl-10 px-3 py-2 border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none focus:ring-blue-500"
                 />
               </div>
             </div>
@@ -49,12 +49,12 @@ const ContactForm = () => {
                   id="email"
                   type="email"
                   placeholder="Email address"
-                  className="w-full pl-10 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full pl-10 px-3 py-2 border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none focus:ring-blue-500"
                 />
               </div>
             </div>
 
-            <button className="px-4 py-2 bg-primary hover:bg-[#2b4773] text-white rounded-md focus:outline-none">
+            <button className="px-4 py-2 bg-primary hover:bg-[#2b4773] cursor-pointer text-white rounded-md focus:outline-none">
               Save Changes
             </button>
           </div>

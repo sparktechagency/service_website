@@ -11,7 +11,7 @@ const CandidateAccountSettings =() => {
   const [resumeIsPrivate, setResumeIsPrivate] = useState(true)
 
   return (
-    <div className="container py-6 max-w-3xl">
+    <div className="container max-w-3xl">
       <div className="space-y-8">
        
        <ContactForm/>
