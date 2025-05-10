@@ -1,71 +1,119 @@
 "use client"
-import { links } from '@/data/data';
-import Image from 'next/image';
-import { useState } from 'react';
-import { FaBell, FaBars, FaTimes } from 'react-icons/fa';
-import { FiUser } from 'react-icons/fi';
 
-const Navbar = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
+import { useState } from "react"
+import Link from "next/link";
+import { Bell, Menu, X } from "lucide-react"
+import Image from "next/image";
 
+export default function Navbar() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   return (
-    <nav className="bg-[#1f3556] text-white shadow-md px-4">
-      <div className="mx-auto max-w-7xl h-[80px] flex justify-between items-center">
+    <nav className="sticky top-0 h-[88px] z-50 w-full bg-[#1a2c4e] text-white shadow-md">
+      <div className="mx-auto h-full flex max-w-7xl items-center justify-between px-4 py-3">
         {/* Logo */}
-        <div className="flex items-center">
-            <Image src="/images/logo.png" alt="logo" width={70} height={70} />
+        <Link href="/" className="flex items-center">
+          <Image src="/images/logo.png" alt="logo" width={70} height={70} />
+        </Link>
+          {/* <Link href="/" className="flex items-center">
+            <span className="text-xl font-bold text-rose-500">Tradieez</span>
+          </Link> */}
+
+        {/* Desktop Navigation */}
+        <div className="hidden space-x-6 md:flex">
+          <Link href="/" className="hover:text-gray-300">
+            Home
+          </Link>
+          <Link href="/find-work" className="hover:text-gray-300">
+            Find Work
+          </Link>
+          {/* <Link href="/employers" className="hover:text-gray-300">
+            Employers
+          </Link> */}
+          <Link href="/candidates" className="hover:text-gray-300">
+            Candidates
+          </Link>
+           <Link href="/dashboard/candidate/overview" className="hover:text-gray-300">
+            Candidate-Dashboard
+          </Link>
+           <Link href="/dashboard/employer/overview" className="hover:text-gray-300">
+            Employer-Dashboard
+          </Link>
+          <Link href="/blog" className="hover:text-gray-300">
+            Blog
+          </Link>
         </div>
 
-        {/* Desktop Links */}
-        <ul className="hidden md:flex space-x-6 text-sm">
-          {links.map((link, idx) => (
-            <li key={idx} className="hover:text-[#FF7D7D] cursor-pointer duration-200">{link}</li>
-          ))}
-        </ul>
-
-        {/* Buttons */}
-        <div className="hidden md:flex items-center space-x-4">
-          <button className="border px-4 py-1 rounded text-sm">Sign In</button>
-          <button className="bg-white text-[#1f3556] font-semibold px-4 py-1 rounded text-sm">Post A Job</button>
-          <FaBell className="text-lg" />
-          <div className="flex items-center space-x-2">
-            <FiUser className="text-lg" />
+        {/* Desktop Right Side */}
+        <div className="hidden items-center space-x-4 md:flex">
+          <Link href="/login" className="rounded-md border border-white px-4 py-1.5 text-sm hover:bg-white/10">
+            Sign In
+          </Link>
+          <Link
+            href="/dashboard/employer/post-job"
+            className="rounded-md bg-white px-4 py-1.5 text-sm font-medium text-[#1a2c4e] hover:bg-gray-100"
+          >
+            Post A Job
+          </Link>
+          <button className="relative rounded-full p-1 hover:bg-white/10">
+            <Bell size={20} />
+            <span className="absolute right-0 top-0 h-2 w-2 rounded-full bg-red-500"></span>
+          </button>
+          <div className="flex items-center gap-2">
+            <div className="h-8 w-8 rounded-full bg-gray-300"></div>
             <span className="text-sm">Andrew Ainsley</span>
           </div>
         </div>
 
-        {/* Hamburger */}
-        <div className="md:hidden">
-          <button className="cursor-pointer" onClick={() => setMenuOpen(!menuOpen)}>
-            {menuOpen ? <FaTimes /> : <FaBars />}
+        {/* Mobile Menu Button */}
+        <div className="flex md:hidden">
+          <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="rounded-md p-2 hover:bg-white/10">
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
       </div>
 
       {/* Mobile Menu */}
-      {menuOpen && (
-        <div className="md:hidden mt-6 space-y-3 pb-4">
-          <ul className="flex flex-col space-y-2">
-            {links.map((link, idx) => (
-              <li key={idx} className="hover:text-[#FF7D7D] cursor-pointer duration-200">{link}</li>
-            ))}
-          </ul>
-          <div className="flex flex-col space-y-2 mt-4">
-           <div className="flex justify-between items-center gap-3">
-           <button className="border px-4 py-[3px] rounded text-xs w-full cursor-pointer">Sign In</button>
-           <button className="bg-white text-[#1f3556] font-semibold px-4 py-1 rounded text-xs w-full cursor-pointer">Post A Job</button>
-           </div>
-            <div className="flex items-center space-x-2">
-              <FaBell />
-              <FiUser />
-              <span>Andrew Ainsley</span>
+      {isMenuOpen && (
+        <div className="md:hidden">
+          <div className="space-y-1 px-4 pb-3 pt-2">
+            <Link href="/" className="block rounded-md px-3 py-2 hover:bg-white/10">
+              Home
+            </Link>
+            <Link href="/find-work" className="block rounded-md px-3 py-2 hover:bg-white/10">
+              Find Work
+            </Link>
+            {/* <Link href="/employers" className="block rounded-md px-3 py-2 hover:bg-white/10">
+              Employers
+            </Link> */}
+            <Link href="/candidates" className="block rounded-md px-3 py-2 hover:bg-white/10">
+              Candidates
+            </Link>
+            <Link href="/pricing" className="block rounded-md px-3 py-2 hover:bg-white/10">
+              Pricing Plans
+            </Link>
+            <Link href="/support" className="block rounded-md px-3 py-2 hover:bg-white/10">
+              Customer Supports
+            </Link>
+            <Link href="/blog" className="block rounded-md px-3 py-2 hover:bg-white/10">
+              Blog
+            </Link>
+            <div className="my-3 border-t border-white/20 pt-3">
+              <Link href="/signin" className="block rounded-md px-3 py-2 hover:bg-white/10">
+                Sign In
+              </Link>
+              <Link href="/post-job" className="mt-2 block rounded-md bg-white px-3 py-2 text-center text-[#1a2c4e]">
+                Post A Job
+              </Link>
+              <div className="mt-4 flex items-center gap-2 px-3">
+                <div className="h-8 w-8 rounded-full bg-gray-300"></div>
+                <span className="text-sm">Andrew Ainsley</span>
+                <Bell size={20} className="ml-auto" />
+              </div>
             </div>
           </div>
         </div>
       )}
     </nav>
-  );
-};
-
-export default Navbar;
+  )
+}
