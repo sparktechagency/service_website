@@ -1,4 +1,5 @@
 import { IJob } from "@/types/job.type";
+import getTypeColor from "@/utils/getTypeColor";
 import { BookmarkIcon, ArrowRightIcon } from "lucide-react"
 import Image from "next/image"
 
@@ -32,7 +33,7 @@ const JobCard = ({ job }: { job: IJob }) =>{
           </div>
 
           <div className="col-span-1 flex items-center">
-            <div className="bg-blue-50 text-blue-700 text-xs px-2 py-1 rounded">{job.type}</div>
+            <div className={`${getTypeColor(job.type)} text-xs px-2 py-1 rounded`}>{job.type}</div>
           </div>
 
           <div className="col-span-1 flex items-center text-sm">
