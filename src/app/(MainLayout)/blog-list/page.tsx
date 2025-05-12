@@ -3,6 +3,7 @@
 import { useState } from "react"
 import Image from "next/image"
 import BlogCard from "@/components/blog/BlogCard"
+import { IBlog } from "@/types/blog.type"
 
 const BlogListPage = () => {
   const [searchQuery, setSearchQuery] = useState("")
@@ -54,7 +55,7 @@ const BlogListPage = () => {
 
   const popularTags = ["Design", "Programming", "Health & Care", "Motion Design", "Photography", "Politics"]
 
-  const blogPosts = [
+  const blogPosts: IBlog[] = [
     {
       id: 1,
       title: "Proin sit amet massa eget odio consectetur ultricies.",

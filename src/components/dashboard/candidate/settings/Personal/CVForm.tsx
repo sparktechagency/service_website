@@ -2,7 +2,6 @@
 import {
   File,
   MoreVertical,
-  Pencil,
   Plus,
   Trash2,
 } from "lucide-react";
