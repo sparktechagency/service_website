@@ -1,6 +1,5 @@
 import Image from "next/image";
 import {
-  Bell,
   Bookmark,
   BriefcaseIcon,
   ChevronRight,
@@ -109,7 +108,7 @@ const CandidateOverviewPage = () => {
               {/* Table Body */}
               <div className="divide-y divide-gray-200">
                 {/* Job Item 1 */}
-                <div className="grid grid-cols-1 gap-4 p-4 md:grid-cols-12 md:gap-6 md:p-6">
+                <div className="grid grid-cols-1 gap-4 p-4 md:grid-cols-12 md:gap-6 md:p-6 hover:bg-blue-50 duration-200">
                   <div className="col-span-4 flex items-start gap-3">
                     <div className="flex h-12 w-12 items-center justify-center rounded-md bg-green-500 text-white">
                       <span className="font-bold">Up</span>
@@ -179,7 +178,7 @@ const CandidateOverviewPage = () => {
                 </div>
 
                 {/* Job Item 2 */}
-                <div className="grid grid-cols-1 gap-4 p-4 md:grid-cols-12 md:gap-6 md:p-6">
+                <div className="grid grid-cols-1 gap-4 p-4 md:grid-cols-12 md:gap-6 md:p-6 hover:bg-blue-50 duration-200">
                   <div className="col-span-4 flex items-start gap-3">
                     <div className="flex h-12 w-12 items-center justify-center rounded-md bg-pink-500 text-white">
                       <svg
@@ -255,7 +254,7 @@ const CandidateOverviewPage = () => {
                 </div>
 
                 {/* Job Item 3 */}
-                <div className="grid grid-cols-1 gap-4 p-4 md:grid-cols-12 md:gap-6 md:p-6">
+                <div className="grid grid-cols-1 gap-4 p-4 md:grid-cols-12 md:gap-6 md:p-6 hover:bg-blue-50 duration-200">
                   <div className="col-span-4 flex items-start gap-3">
                     <div className="flex h-12 w-12 items-center justify-center rounded-md bg-black text-white">
                       <svg
@@ -331,7 +330,7 @@ const CandidateOverviewPage = () => {
                 </div>
 
                 {/* Job Item 4 */}
-                <div className="grid grid-cols-1 gap-4 p-4 md:grid-cols-12 md:gap-6 md:p-6 bg-gray-50">
+                <div className="grid grid-cols-1 gap-4 p-4 md:grid-cols-12 md:gap-6 md:p-6 hover:bg-blue-50 duration-200">
                   <div className="col-span-4 flex items-start gap-3">
                     <div className="flex h-12 w-12 items-center justify-center rounded-md bg-white text-blue-500 shadow-sm">
                       <svg
