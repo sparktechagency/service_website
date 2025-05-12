@@ -24,7 +24,7 @@ const LoginForm = () => {
           <input
             type="email"
             id="email"
-            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm px-4 py-2"
+            className="mt-1 block w-full border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 focus:ring-blue-500 px-4 py-2"
             placeholder="enter your email here"
           />
         </div>
@@ -40,7 +40,7 @@ const LoginForm = () => {
             <input
               type={showPassword ? "text" : "password"}
               id="password"
-              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm px-4 py-2 pr-10"
+              className="mt-1 block w-full border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 focus:ring-blue-500 px-4 py-2 pr-10"
               placeholder="********"
             />
             <span

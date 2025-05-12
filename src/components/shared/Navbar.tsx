@@ -30,9 +30,9 @@ export default function Navbar() {
           {/* <Link href="/employers" className="hover:text-gray-300">
             Employers
           </Link> */}
-          <Link href="/candidates" className="hover:text-gray-300">
+          {/* <Link href="/candidates" className="hover:text-gray-300">
             Candidates
-          </Link>
+          </Link> */}
            <Link href="/dashboard/candidate/overview" className="hover:text-gray-300">
             Candidate-Dashboard
           </Link>

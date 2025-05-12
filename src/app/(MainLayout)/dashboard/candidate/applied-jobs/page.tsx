@@ -44,7 +44,7 @@ const AppliedJobs = () => {
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
                 {/* Job 1 */}
-                <tr>
+                <tr className="hover:bg-blue-50 duration-200">
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex items-center">
                       <div className="flex-shrink-0 h-10 w-10 bg-green-500 rounded-md flex items-center justify-center text-white">
@@ -88,14 +88,14 @@ const AppliedJobs = () => {
                     </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                    <button className="px-4 py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200">
+                    <button className="rounded-md  bg-gray-100 cursor-pointer hover:bg-primary border border-gray-300 hover:border-primary hover:text-white px-4 py-2 text-sm font-medium text-gray-700 duration-200">
                       View Details
                     </button>
                   </td>
                 </tr>
 
                 {/* Job 2 */}
-                <tr>
+                <tr className="hover:bg-blue-50 duration-200">
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex items-center">
                       <div className="flex-shrink-0 h-10 w-10 bg-pink-500 rounded-md flex items-center justify-center text-white">
@@ -139,14 +139,14 @@ const AppliedJobs = () => {
                     </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                    <button className="px-4 py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200">
+                   <button className="rounded-md  bg-gray-100 cursor-pointer hover:bg-primary border border-gray-300 hover:border-primary hover:text-white px-4 py-2 text-sm font-medium text-gray-700 duration-200">
                       View Details
                     </button>
                   </td>
                 </tr>
 
                 {/* Job 3 */}
-                <tr>
+                <tr className="hover:bg-blue-50 duration-200">
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex items-center">
                       <div className="flex-shrink-0 h-10 w-10 bg-black rounded-md flex items-center justify-center text-white">
@@ -197,14 +197,14 @@ const AppliedJobs = () => {
                     </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                    <button className="px-4 py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200">
+                    <button className="rounded-md  bg-gray-100 cursor-pointer hover:bg-primary border border-gray-300 hover:border-primary hover:text-white px-4 py-2 text-sm font-medium text-gray-700 duration-200">
                       View Details
                     </button>
                   </td>
                 </tr>
 
                 {/* Job 4 - Highlighted */}
-                <tr className="bg-blue-50 border border-blue-200">
+                <tr className="hover:bg-blue-50 duration-200">
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex items-center">
                       <div className="flex-shrink-0 h-10 w-10 bg-white rounded-md flex items-center justify-center">
@@ -256,14 +256,14 @@ const AppliedJobs = () => {
                     </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                    <button className="px-4 py-2 bg-blue-700 text-white rounded-md hover:bg-blue-800">
+                   <button className="rounded-md  bg-gray-100 cursor-pointer hover:bg-primary border border-gray-300 hover:border-primary hover:text-white px-4 py-2 text-sm font-medium text-gray-700 duration-200">
                       View Details
                     </button>
                   </td>
                 </tr>
 
                 {/* Job 5 */}
-                <tr>
+                <tr className="hover:bg-blue-50 duration-200">
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex items-center">
                       <div className="flex-shrink-0 h-10 w-10 bg-blue-400 rounded-md flex items-center justify-center text-white">
@@ -314,7 +314,7 @@ const AppliedJobs = () => {
                     </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                    <button className="px-4 py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200">
+                    <button className="rounded-md  bg-gray-100 cursor-pointer hover:bg-primary border border-gray-300 hover:border-primary hover:text-white px-4 py-2 text-sm font-medium text-gray-700 duration-200">
                       View Details
                     </button>
                   </td>

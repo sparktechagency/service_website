@@ -17,9 +17,9 @@ export const jobData: IJob[] = [
     logo: "/placeholder.svg?height=24&width=24",
     logoBackground: "bg-red-600",
     location: "Minnesota, USA",
-    type: "Full Time",
+    type: "Part Time",
     salary: "$30k-$50k",
-    timeRemaining: "4 Days Remaining",
+    //timeRemaining: "4 Days Remaining",
     status: "active",
   },
   {
@@ -30,7 +30,7 @@ export const jobData: IJob[] = [
     location: "United Kingdom of Great Britain",
     type: "Full Time",
     salary: "$20k-$35k",
-    timeRemaining: "4 Days Remaining",
+    //timeRemaining: "4 Days Remaining",
     status: "active",
   },
   {
@@ -41,7 +41,7 @@ export const jobData: IJob[] = [
     location: "Mymensingh, Bangladesh",
     type: "Full Time",
     salary: "$40k-$50k",
-    timeRemaining: "4 Days Remaining",
+    //timeRemaining: "4 Days Remaining",
     status: "active",
   },
   {
@@ -62,7 +62,7 @@ export const jobData: IJob[] = [
     location: "Sivas, Turkey",
     type: "Full Time",
     salary: "$20k-$70k",
-    timeRemaining: "4 Days Remaining",
+    //timeRemaining: "4 Days Remaining",
     status: "active",
   },
   {
@@ -104,7 +104,7 @@ export const jobData: IJob[] = [
     location: "Konya, Turkey",
     type: "Temporary",
     salary: "$10k-$25k",
-    timeRemaining: "4 Days Remaining",
+    //timeRemaining: "4 Days Remaining",
     status: "active",
   },
   {

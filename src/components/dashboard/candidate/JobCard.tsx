@@ -4,7 +4,7 @@ import Image from "next/image"
 
 const JobCard = ({ job }: { job: IJob }) =>{
   return (
-    <div className="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden">
+    <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
       <div className="p-4 flex flex-col md:flex-row md:items-center">
         {/* Company Logo */}
         <div className="flex-shrink-0 mb-4 md:mb-0 md:mr-4">
@@ -54,7 +54,7 @@ const JobCard = ({ job }: { job: IJob }) =>{
 
           <button
             className={`px-4 py-2 rounded-md flex items-center text-sm ${
-              job.status === "expired" ? "bg-gray-100 text-gray-500" : "bg-blue-50 text-blue-600 hover:bg-blue-100"
+              job.status === "expired" ? "bg-gray-100 text-gray-500" : "bg-blue-50 text-primary hover:bg-blue-100 cursor-pointer"
             }`}
             disabled={job.status === "expired"}
           >

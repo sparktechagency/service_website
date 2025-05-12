@@ -73,7 +73,7 @@ const PostJobForm = () => {
                 value={expirationDate}
                 onChange={(e) => setExpirationDate(e.target.value)}
                 placeholder="enter job title"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 focus:ring-blue-500"
               />
             </div>
 
@@ -83,7 +83,7 @@ const PostJobForm = () => {
                   Type
                 </label>
                 <div className="relative">
-                  <select className="w-full px-3 py-2 border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                  <select className="w-full px-3 py-2 border border-gray-300 rounded-md appearance-none focus:outline-none focus:border-blue-500 focus:ring-blue-500">
                     <option value="">Select type</option>
                     {typeOptions.map((option) => (
                       <option key={option} value={option}>
@@ -110,10 +110,10 @@ const PostJobForm = () => {
               </div>
               <div className="mb-4">
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Type
+                  Category
                 </label>
                 <div className="relative">
-                  <select className="w-full px-3 py-2 border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                  <select className="w-full px-3 py-2 border border-gray-300 rounded-md appearance-none focus:outline-none focus:border-blue-500 focus:ring-blue-500">
                     <option value="">Select Category</option>
                     {categoryOptions?.map((option) => (
                       <option key={option} value={option}>
@@ -151,7 +151,7 @@ const PostJobForm = () => {
                   value={salary}
                   onChange={(e) => setSalary(e.target.value)}
                   placeholder="Minimum salary..."
-                  className="w-full px-3 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:border-blue-500 focus:ring-blue-500"
                 />
                 <select
                   value={currency}
@@ -176,7 +176,7 @@ const PostJobForm = () => {
                     Education
                   </label>
                   <div className="relative">
-                    <select className="w-full px-3 py-2 border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                    <select className="w-full px-3 py-2 border border-gray-300 rounded-md appearance-none focus:outline-none focus:border-blue-500 focus:ring-blue-500">
                       <option value="">Select Category</option>
                       {educationOptions?.map((option) => (
                         <option key={option} value={option}>
@@ -210,7 +210,7 @@ const PostJobForm = () => {
                     value={expirationDate}
                     onChange={(e) => setSkill(e.target.value)}
                     placeholder="enter address"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 focus:ring-blue-500"
                   />
                 </div>
                 <div className="mb-4">
@@ -222,7 +222,7 @@ const PostJobForm = () => {
                     value={expirationDate}
                     onChange={(e) => setSkill(e.target.value)}
                     placeholder="enter address"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 focus:ring-blue-500"
                   />
                 </div>
               </div>
@@ -235,7 +235,7 @@ const PostJobForm = () => {
                     type="number"
                     value={expirationDate}
                     onChange={(e) => setExpirationDate(e.target.value)}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 focus:ring-blue-500"
                   />
                 </div>
                 <div className="mb-4">
@@ -247,7 +247,7 @@ const PostJobForm = () => {
                     value={expirationDate}
                     onChange={(e) => setExpirationDate(e.target.value)}
                     placeholder="DD/MM/YYYY"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 focus:ring-blue-500"
                   />
                 </div>
                 <div className="mb-4">
@@ -259,7 +259,7 @@ const PostJobForm = () => {
                     value={expirationDate}
                     onChange={(e) => setExpirationDate(e.target.value)}
                     placeholder="enter address"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 focus:ring-blue-500"
                   />
                 </div>
               </div>
@@ -272,12 +272,12 @@ const PostJobForm = () => {
               >
                 Description
               </label>
-              <div className="border border-gray-300 rounded-md overflow-hidden">
+              <div className="">
                 <textarea
                   id="company-details"
                   rows={3}
                   placeholder="write here..."
-                  className="w-full p-3 focus:outline-none"
+                   className="w-full p-3 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500 focus:ring-blue-500"
                 ></textarea>
               </div>
             </div>
@@ -289,12 +289,12 @@ const PostJobForm = () => {
               >
                 Availabilities
               </label>
-              <div className="border border-gray-300 rounded-md overflow-hidden">
+              <div className="">
                 <textarea
                   id="company-details"
                   rows={3}
                   placeholder="write here..."
-                  className="w-full p-3 focus:outline-none"
+                  className="w-full p-3 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500 focus:ring-blue-500"
                 ></textarea>
               </div>
             </div>

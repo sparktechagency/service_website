@@ -1,14 +1,11 @@
 "use client"
-
-import { useState } from "react"
-import { MapPin, FileText} from "lucide-react"
 import ChangePasswordForm from "./ChangePasswordForm"
 import DeleteCandidateAccount from "./DeleteCandidateAccount"
 import ContactForm from "./ContactForm"
+import PrivacySettings from "./PrivacySettings"
 
 const CandidateAccountSettings =() => {
-  const [profileIsPublic, setProfileIsPublic] = useState(true)
-  const [resumeIsPrivate, setResumeIsPrivate] = useState(true)
+ 
 
   return (
     <div className="container max-w-3xl">
@@ -17,7 +14,7 @@ const CandidateAccountSettings =() => {
        <ContactForm/>
 
         {/* Notification Section */}
-        <div className="bg-white p-6 rounded-lg shadow-sm">
+        {/* <div className="bg-white p-6 rounded-lg shadow-sm">
           <h2 className="text-xl font-semibold mb-4">Notification</h2>
           <div className="space-y-3">
             <div className="flex items-start space-x-2">
@@ -55,10 +52,10 @@ const CandidateAccountSettings =() => {
               </label>
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* Job Alerts Section */}
-        <div className="bg-white p-6 rounded-lg shadow-sm">
+        {/* <div className="bg-white p-6 rounded-lg shadow-sm">
           <h2 className="text-xl font-semibold mb-4">Job Alerts</h2>
           <div className="grid md:grid-cols-2 gap-4">
             <div>
@@ -97,51 +94,11 @@ const CandidateAccountSettings =() => {
               Save Changes
             </button>
           </div>
-        </div>
+        </div> */}
 
         {/* Privacy Settings */}
-        <div className="bg-white p-6 rounded-lg shadow-sm">
-          <div className="grid md:grid-cols-2 gap-6">
-            <div>
-              <h2 className="text-xl font-semibold mb-4">Profile Privacy</h2>
-              <div className="flex items-center justify-between">
-                <div className="space-y-0.5">
-                  <span className="font-medium">YES</span>
-                  <p className="text-sm text-gray-500">Your profile is public now</p>
-                </div>
-                <label className="relative inline-flex items-center cursor-pointer">
-                  <input
-                    type="checkbox"
-                    className="sr-only peer"
-                    checked={profileIsPublic}
-                    onChange={() => setProfileIsPublic(!profileIsPublic)}
-                  />
-                  <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
-                </label>
-              </div>
-            </div>
-
-            <div>
-              <h2 className="text-xl font-semibold mb-4">Resume Privacy</h2>
-              <div className="flex items-center justify-between">
-                <div className="space-y-0.5">
-                  <span className="font-medium">NO</span>
-                  <p className="text-sm text-gray-500">Your resume is private now</p>
-                </div>
-                <label className="relative inline-flex items-center cursor-pointer">
-                  <input
-                    type="checkbox"
-                    className="sr-only peer"
-                    checked={!resumeIsPrivate}
-                    onChange={() => setResumeIsPrivate(!resumeIsPrivate)}
-                  />
-                  <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
-                </label>
-              </div>
-            </div>
-          </div>
-        </div>
-
+        <PrivacySettings/>
+        
        
        <ChangePasswordForm/>
 

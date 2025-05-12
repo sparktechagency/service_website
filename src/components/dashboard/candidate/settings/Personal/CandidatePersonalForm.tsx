@@ -1,9 +1,12 @@
-import { FileText, LinkIcon, MoreVertical, Plus, Upload } from "lucide-react"
+"use client";
+import { LinkIcon, Upload } from "lucide-react"
+import CVForm from "./CVForm";
 
 const CandidatePersonalForm = () => {
   return (
     <>
-     <div className="space-y-8">
+      
+     <div className="space-y-8 bg-white p-6 rounded-lg shadow-sm">
             <section>
               <h2 className="text-lg font-medium text-gray-900 mb-6">
                 Basic Information
@@ -37,7 +40,8 @@ const CandidatePersonalForm = () => {
                     </label>
                     <input
                       id="fullname"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                      placeholder="Enter full name"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none focus:ring-blue-500"
                     />
                   </div>
 
@@ -50,7 +54,8 @@ const CandidatePersonalForm = () => {
                     </label>
                     <input
                       id="title"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                       placeholder="Enter title"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none focus:ring-blue-500"
                     />
                   </div>
                 </div>
@@ -62,7 +67,7 @@ const CandidatePersonalForm = () => {
                     Experience
                   </label>
                   <div className="relative">
-                    <select className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 appearance-none">
+                    <select className="block w-full px-3 py-2 border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none focus:ring-blue-500 appearance-none">
                       <option disabled>Select...</option>
                       <option value="entry">Entry Level</option>
                       <option value="junior">Junior (1-3 years)</option>
@@ -91,7 +96,7 @@ const CandidatePersonalForm = () => {
                     Education
                   </label>
                   <div className="relative">
-                    <select className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 appearance-none">
+                    <select className="block w-full px-3 py-2 border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none focus:ring-blue-500 appearance-none">
                       <option disabled>Select...</option>
                       <option value="highschool">High School</option>
                       <option value="associate">Associate Degree</option>
@@ -126,110 +131,20 @@ const CandidatePersonalForm = () => {
                     <LinkIcon className="h-5 w-5 text-gray-400" />
                   </div>
                   <input
-                    className="pl-10 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="pl-10 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 focus:ring-blue-500"
                     placeholder="Website url..."
                   />
                 </div>
               </div>
 
               <div className="mt-6">
-                <button className="px-4 py-2 bg-blue-800 hover:bg-blue-900 text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                <button className="px-4 py-2 bg-primary hover:bg-[#2b4773] cursor-pointer text-white rounded-md shadow-sm focus:outline-none">
                   Save Changes
                 </button>
               </div>
             </section>
 
-            <section>
-              <h2 className="text-lg font-medium text-gray-900 mb-6">
-                Your CV/Resume
-              </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {/* Resume Card 1 */}
-                <div className="bg-white border border-gray-200 rounded-lg shadow-sm p-4 flex items-start justify-between">
-                  <div className="flex items-center">
-                    <FileText className="h-6 w-6 text-gray-500 mr-3 flex-shrink-0" />
-                    <div className="min-w-0">
-                      <p className="text-sm font-medium truncate">
-                        Professional Resume
-                      </p>
-                      <p className="text-xs text-gray-500">3.5 MB</p>
-                    </div>
-                  </div>
-                  <div className="relative ml-2 flex-shrink-0">
-                    <button
-                      className="p-1 rounded-full hover:bg-gray-100"
-                      onClick={() => {
-                        // Toggle dropdown logic would go here
-                      }}
-                    >
-                      <MoreVertical className="h-4 w-4" />
-                    </button>
-                    {/* Dropdown would go here */}
-                  </div>
-                </div>
-
-                {/* Resume Card 2 */}
-                <div className="bg-white border border-gray-200 rounded-lg shadow-sm p-4 flex items-start justify-between">
-                  <div className="flex items-center">
-                    <FileText className="h-6 w-6 text-gray-500 mr-3 flex-shrink-0" />
-                    <div className="min-w-0">
-                      <p className="text-sm font-medium truncate">
-                        Product Designer
-                      </p>
-                      <p className="text-xs text-gray-500">4.7 MB</p>
-                    </div>
-                  </div>
-                  <div className="relative ml-2 flex-shrink-0">
-                    <button
-                      className="p-1 rounded-full hover:bg-gray-100"
-                      onClick={() => {
-                        // Toggle dropdown logic would go here
-                      }}
-                    >
-                      <MoreVertical className="h-4 w-4" />
-                    </button>
-                    {/* Dropdown would go here */}
-                  </div>
-                </div>
-
-                {/* Resume Card 3 */}
-                <div className="bg-white border border-gray-200 rounded-lg shadow-sm p-4 flex items-start justify-between">
-                  <div className="flex items-center">
-                    <FileText className="h-6 w-6 text-gray-500 mr-3 flex-shrink-0" />
-                    <div className="min-w-0">
-                      <p className="text-sm font-medium truncate">
-                        Visual Designer
-                      </p>
-                      <p className="text-xs text-gray-500">1.3 MB</p>
-                    </div>
-                  </div>
-                  <div className="relative ml-2 flex-shrink-0">
-                    <button
-                      className="p-1 rounded-full hover:bg-gray-100"
-                      onClick={() => {
-                        // Toggle dropdown logic would go here
-                      }}
-                    >
-                      <MoreVertical className="h-4 w-4" />
-                    </button>
-                    {/* Dropdown would go here */}
-                  </div>
-                </div>
-
-                {/* Add Resume Card */}
-                <div className="bg-white border border-dashed border-gray-200 rounded-lg p-4 flex items-center justify-center cursor-pointer hover:bg-gray-50">
-                  <div className="text-center">
-                    <div className="mb-2 flex justify-center">
-                      <Plus className="h-6 w-6 text-gray-400" />
-                    </div>
-                    <p className="text-sm font-medium">Add CV/Resume</p>
-                    <p className="text-xs text-gray-500">
-                      Browse file or drop here, only pdf
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </section>
+            <CVForm/>
           </div>
     </>
   )

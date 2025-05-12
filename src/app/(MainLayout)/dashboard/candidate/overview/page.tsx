@@ -23,7 +23,7 @@ const CandidateOverviewPage = () => {
           </div>
 
           {/* Stats Cards */}
-          <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-2">
             <div className="flex items-center justify-between rounded-lg bg-blue-50 p-4">
               <div>
                 <div className="text-2xl font-bold text-gray-900">589</div>
@@ -42,7 +42,7 @@ const CandidateOverviewPage = () => {
                 <Bookmark className="h-6 w-6 text-amber-500" />
               </div>
             </div>
-            <div className="flex items-center justify-between rounded-lg bg-green-50 p-4">
+            {/* <div className="flex items-center justify-between rounded-lg bg-green-50 p-4">
               <div>
                 <div className="text-2xl font-bold text-gray-900">574</div>
                 <div className="text-sm text-gray-500">Job Alerts</div>
@@ -50,7 +50,7 @@ const CandidateOverviewPage = () => {
               <div className="rounded-md bg-white p-3 shadow-sm">
                 <Bell className="h-6 w-6 text-green-500" />
               </div>
-            </div>
+            </div> */}
           </div>
 
           {/* Profile Completion Alert */}
@@ -172,7 +172,7 @@ const CandidateOverviewPage = () => {
                     </span>
                   </div>
                   <div className="col-span-3 flex items-center justify-end">
-                    <button className="rounded-md bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-200">
+                    <button className="rounded-md bg-gray-100 hover:bg-primary border border-gray-300 hover:border-primary hover:text-white px-4 py-2 text-sm font-medium text-gray-700 cursor-pointer duration-200">
                       View Details
                     </button>
                   </div>
@@ -248,7 +248,7 @@ const CandidateOverviewPage = () => {
                     </span>
                   </div>
                   <div className="col-span-3 flex items-center justify-end">
-                    <button className="rounded-md bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-200">
+                    <button className="rounded-md  bg-gray-100 cursor-pointer hover:bg-primary border border-gray-300 hover:border-primary hover:text-white px-4 py-2 text-sm font-medium text-gray-700 duration-200">
                       View Details
                     </button>
                   </div>
@@ -324,7 +324,7 @@ const CandidateOverviewPage = () => {
                     </span>
                   </div>
                   <div className="col-span-3 flex items-center justify-end">
-                    <button className="rounded-md bg-gray-100 text-gray-700 hover:bg-primary hover:text-white duration-200 cursor-pointer px-4 py-2 text-sm font-medium">
+                    <button className="rounded-md bg-gray-100 text-gray-700 hover:bg-primary border border-gray-300 hover:border-primary hover:text-white duration-200 cursor-pointer px-4 py-2 text-sm font-medium">
                       View Details
                     </button>
                   </div>
@@ -400,7 +400,7 @@ const CandidateOverviewPage = () => {
                     </span>
                   </div>
                   <div className="col-span-3 flex items-center justify-end">
-                    <button className="rounded-md bg-gray-100 text-primary hover:bg-primary hover:text-white duration-200 cursor-pointer px-4 py-2 text-sm font-medium">
+                    <button className="rounded-md bg-gray-100 text-primary border border-gray-300 hover:border-primary hover:bg-primary hover:text-white duration-200 cursor-pointer px-4 py-2 text-sm font-medium">
                       View Details
                     </button>
                   </div>
@@ -410,9 +410,9 @@ const CandidateOverviewPage = () => {
           </div>
 
           {/* Footer */}
-          <footer className="mt-12 text-center text-xs text-gray-500">
+          {/* <footer className="mt-12 text-center text-xs text-gray-500">
             © 2024 Tradeez - Job Portal. All rights Reserved
-          </footer>
+          </footer> */}
         </div>
       </main>
     </>

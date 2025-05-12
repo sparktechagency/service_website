@@ -36,37 +36,6 @@ import {
               <li className="hover:text-white cursor-pointer">Blog</li>
             </ul>
           </div>
-
-          {/* Candidate */}
-          <div>
-            <h3 className="text-white font-semibold mb-3">Candidate</h3>
-            <ul className="space-y-2 text-sm">
-              <li className="hover:text-white cursor-pointer">Browse Jobs</li>
-              <li className="hover:text-white cursor-pointer">
-                Browse Employers
-              </li>
-              <li className="hover:text-white cursor-pointer">
-                Candidate Dashboard
-              </li>
-              <li className="hover:text-white cursor-pointer">Saved Jobs</li>
-            </ul>
-          </div>
-
-          {/* Employers */}
-          <div>
-            <h3 className="text-white font-semibold mb-3">Employers</h3>
-            <ul className="space-y-2 text-sm">
-              <li className="hover:text-white cursor-pointer">Post a Job</li>
-              <li className="hover:text-white cursor-pointer">
-                Browse Candidates
-              </li>
-              <li className="hover:text-white cursor-pointer">
-                Employers Dashboard
-              </li>
-              <li className="hover:text-white cursor-pointer">Applications</li>
-            </ul>
-          </div>
-
           {/* Support */}
           <div>
             <h3 className="text-white font-semibold mb-3">Support</h3>

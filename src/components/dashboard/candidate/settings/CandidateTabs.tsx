@@ -1,8 +1,8 @@
 "use client"
 import { useState } from "react"
 import { User, UserCircle, Cog } from "lucide-react";
-import CandidatePersonalForm from "./CandidatePersonalForm";
-import CandidateProfileForm from "./CandidateProfileForm";
+import CandidatePersonalForm from "./Personal/CandidatePersonalForm";
+import CandidateProfileForm from "./Personal/CandidateProfileForm";
 import CandidateAccountSettings from "./AccountSettings/CandidateAccountSettings";
 
 const tabItems =  [
