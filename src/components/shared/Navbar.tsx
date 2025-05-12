@@ -39,8 +39,8 @@ export default function Navbar() {
            <Link href="/dashboard/employer/overview" className="hover:text-gray-300">
             Employer-Dashboard
           </Link>
-          <Link href="/blog" className="hover:text-gray-300">
-            Blog
+          <Link href="/blog-list" className="hover:text-gray-300">
+            Blogs
           </Link>
         </div>
 

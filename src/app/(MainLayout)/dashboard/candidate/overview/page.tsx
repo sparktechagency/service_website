@@ -1,11 +1,15 @@
+"use client";
 import Image from "next/image";
 import {
   Bookmark,
   BriefcaseIcon,
   ChevronRight,
 } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const CandidateOverviewPage = () => {
+    const router = useRouter();
+  
   return (
     <>
       {/* Main Content */}
@@ -41,15 +45,6 @@ const CandidateOverviewPage = () => {
                 <Bookmark className="h-6 w-6 text-amber-500" />
               </div>
             </div>
-            {/* <div className="flex items-center justify-between rounded-lg bg-green-50 p-4">
-              <div>
-                <div className="text-2xl font-bold text-gray-900">574</div>
-                <div className="text-sm text-gray-500">Job Alerts</div>
-              </div>
-              <div className="rounded-md bg-white p-3 shadow-sm">
-                <Bell className="h-6 w-6 text-green-500" />
-              </div>
-            </div> */}
           </div>
 
           {/* Profile Completion Alert */}
@@ -74,7 +69,7 @@ const CandidateOverviewPage = () => {
                   </p>
                 </div>
               </div>
-              <button className="flex items-center gap-2 cursor-pointer rounded-md bg-white px-4 py-2 text-sm font-medium text-red-500 shadow-sm hover:bg-gray-50">
+              <button onClick={()=> router.push('/dashboard/employer/settings')} className="flex items-center gap-2 cursor-pointer rounded-md bg-white px-4 py-2 text-sm font-medium text-red-500 shadow-sm hover:bg-gray-50">
                 Edit Profile
                 <ChevronRight className="h-4 w-4" />
               </button>
