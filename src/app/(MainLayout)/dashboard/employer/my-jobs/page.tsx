@@ -114,7 +114,7 @@ const MyJobsPage = () => {
                 <select
                   value={filterValue}
                   onChange={(e) => setFilterValue(e.target.value)}
-                  className="appearance-none bg-white border border-gray-300 rounded-md pl-3 pr-10 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="appearance-none bg-white border border-gray-300 rounded-md pl-3 pr-10 py-2 text-sm focus:outline-none focus:border-blue-500 focus:ring-blue-500"
                 >
                   <option>All Jobs</option>
                   <option>Active Jobs</option>
