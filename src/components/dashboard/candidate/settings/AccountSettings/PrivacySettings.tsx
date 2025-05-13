@@ -3,7 +3,6 @@ import { useState } from "react";
 
 const PrivacySettings = () => {
    const [profileIsPublic, setProfileIsPublic] = useState(true)
-  const [resumeIsPrivate, setResumeIsPrivate] = useState(true)
 
   return (
     <>
@@ -24,25 +23,6 @@ const PrivacySettings = () => {
                     onChange={() => setProfileIsPublic(!profileIsPublic)}
                   />
                   <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none  rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
-                </label>
-              </div>
-            </div>
-
-            <div>
-              <h2 className="text-xl font-semibold mb-4">Resume Privacy</h2>
-              <div className="flex items-center justify-between">
-                <div className="space-y-0.5">
-                  <span className="font-medium">NO</span>
-                  <p className="text-sm text-gray-500">Your resume is private now</p>
-                </div>
-                <label className="relative inline-flex items-center cursor-pointer">
-                  <input
-                    type="checkbox"
-                    className="sr-only peer"
-                    checked={!resumeIsPrivate}
-                    onChange={() => setResumeIsPrivate(!resumeIsPrivate)}
-                  />
-                  <div className="w-11 h-6 bg-gray-200 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
                 </label>
               </div>
             </div>

@@ -12,7 +12,7 @@ const layout = ({children}: TProps) => {
         {/* <div className="h-screen container mx-auto max-w-ful"> */}
           {children}
         {/* </div> */}
-       <Footer/>
+       {/* <Footer/> */}
      </>
   )
 }

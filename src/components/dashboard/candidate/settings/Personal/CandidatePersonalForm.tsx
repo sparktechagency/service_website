@@ -1,6 +1,7 @@
 "use client";
 import { LinkIcon, Upload } from "lucide-react"
 import CVForm from "./CVForm";
+import WorkExperienceForm from "./WorkExperience/WorkExperienceForm";
 
 const CandidatePersonalForm = () => {
   return (
@@ -136,6 +137,7 @@ const CandidatePersonalForm = () => {
                   />
                 </div>
               </div>
+              <WorkExperienceForm/>
 
               <div className="mt-6">
                 <button className="px-4 py-2 bg-primary hover:bg-[#2b4773] cursor-pointer text-white rounded-md shadow-sm focus:outline-none">

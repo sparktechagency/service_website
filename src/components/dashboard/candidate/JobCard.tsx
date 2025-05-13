@@ -1,9 +1,13 @@
+"use client";
 import { IJob } from "@/types/job.type";
 import getTypeColor from "@/utils/getTypeColor";
-import { BookmarkIcon, ArrowRightIcon } from "lucide-react"
+import { BookmarkIcon } from "lucide-react"
 import Image from "next/image"
+import { useRouter } from "next/navigation";
 
 const JobCard = ({ job }: { job: IJob }) =>{
+  const router = useRouter();
+
   return (
     <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
       <div className="p-4 flex flex-col md:flex-row md:items-center">
@@ -54,13 +58,14 @@ const JobCard = ({ job }: { job: IJob }) =>{
           </button>
 
           <button
+            onClick={()=> job.status !== "expired" && router.push(`/job-details/${job.title}`)}
             className={`px-4 py-2 rounded-md flex items-center text-sm ${
               job.status === "expired" ? "bg-gray-100 text-gray-500" : "bg-blue-50 text-primary hover:bg-blue-100 cursor-pointer"
             }`}
             disabled={job.status === "expired"}
           >
-            {job.status === "expired" ? "Deadline Expired" : "Apply Now"}
-            {job.status !== "expired" && <ArrowRightIcon className="ml-1 h-4 w-4" />}
+            {job.status === "expired" ? "Deadline Expired" : "View Details"}
+            {/* {job.status !== "expired" && <ArrowRightIcon className="ml-1 h-4 w-4" />} */}
           </button>
         </div>
       </div>

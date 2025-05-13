@@ -6,7 +6,7 @@ type TProps = {
 const CandidateDashboardLayout = ({ children }: TProps) => {
   return (
     <>
-      <section className="flex min-h-screen flex-col md:flex-row max-w-7xl mx-auto bg-gray-50">
+      <section className="flex flex-col h-[calc(100vh-90px)] md:flex-row max-w-7xl mx-auto bg-gray-50">
         <CandidateSidebar />
         {children}
       </section>
