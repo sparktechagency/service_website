@@ -50,12 +50,12 @@ export default function Navbar() {
           <Link href="/login" className="rounded-md border border-white px-4 py-1.5 text-sm hover:bg-white/10">
             Sign In
           </Link>
-          <Link
+          {/* <Link
             href="/dashboard/employer/post-job"
             className="rounded-md bg-white px-4 py-1.5 text-sm font-medium text-[#1a2c4e] hover:bg-gray-100"
           >
             Post A Job
-          </Link>
+          </Link> */}
           <button className="relative rounded-full p-1 hover:bg-white/10">
             <Bell size={20} />
             <span className="absolute right-0 top-0 h-2 w-2 rounded-full bg-red-500"></span>
