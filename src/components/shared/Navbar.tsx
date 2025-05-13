@@ -4,6 +4,7 @@ import { useState } from "react"
 import Link from "next/link";
 import { Bell, Menu, X } from "lucide-react"
 import Image from "next/image";
+import MobileMenu from "./MobileMenu";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -77,45 +78,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden bg-primary">
-          <div className="space-y-1 px-4 pb-3 pt-2">
-            <Link href="/" className="block rounded-md px-3 py-2 hover:bg-white/10">
-              Home
-            </Link>
-            <Link href="/find-work" className="block rounded-md px-3 py-2 hover:bg-white/10">
-              Find Work
-            </Link>
-            {/* <Link href="/employers" className="block rounded-md px-3 py-2 hover:bg-white/10">
-              Employers
-            </Link> */}
-            <Link href="/candidates" className="block rounded-md px-3 py-2 hover:bg-white/10">
-              Candidates
-            </Link>
-            <Link href="/pricing" className="block rounded-md px-3 py-2 hover:bg-white/10">
-              Pricing Plans
-            </Link>
-            <Link href="/blog-list" className="block rounded-md px-3 py-2 hover:bg-white/10">
-              Blog
-            </Link>
-            <div className="my-3 border-t border-white/20 pt-3">
-              <Link href="/login" className="block rounded-md px-3 py-2 hover:bg-white/10">
-                Sign In
-              </Link>
-              <Link href="/dashboard/employer/post-job" className="mt-2 block rounded-md bg-white px-3 py-2 text-center text-[#1a2c4e]">
-                Post A Job
-              </Link>
-              <div className="mt-4 flex items-center gap-2 px-3">
-                <Link href="/" className="flex items-center gap-2">
-                  <div className="h-8 w-8 rounded-full">
-                    <Image src="/images/avatar.png" alt="user" width={500} height={600}/>
-                </div>
-                <span className="text-sm">Andrew Ainsley</span>
-                </Link>
-                <Bell size={20} className="ml-auto" />
-              </div>
-            </div>
-          </div>
-        </div>
+        <MobileMenu setIsMenuOpen={setIsMenuOpen}/>
       )}
     </nav>
   )
