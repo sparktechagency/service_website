@@ -9,7 +9,7 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   return (
-    <nav className="sticky top-0 h-[88px] z-50 w-full bg-[#1a2c4e] text-white shadow-md">
+    <nav className="sticky top-0 h-[88px] z-50 w-full bg-primary text-white shadow-md">
       <div className="mx-auto h-full flex max-w-7xl items-center justify-between px-4 py-3">
         {/* Logo */}
         <Link href="/" className="flex items-center">
@@ -59,15 +59,17 @@ export default function Navbar() {
             <Bell size={20} />
             <span className="absolute right-0 top-0 h-2 w-2 rounded-full bg-red-500"></span>
           </button>
-          <div className="flex items-center gap-2">
-            <div className="h-8 w-8 rounded-full bg-gray-300"></div>
+          <div className="flex items-center gap-2 cursor-pointer">
+            <div className="h-8 w-8 rounded-full">
+              <Image src="/images/avatar.png" alt="user" width={500} height={600}/>
+            </div>
             <span className="text-sm">Andrew Ainsley</span>
           </div>
         </div>
 
         {/* Mobile Menu Button */}
         <div className="flex md:hidden">
-          <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="rounded-md p-2 hover:bg-white/10">
+          <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="rounded-md p-2 hover:bg-white/10 cursor-pointer">
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
@@ -75,7 +77,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden">
+        <div className="md:hidden bg-primary">
           <div className="space-y-1 px-4 pb-3 pt-2">
             <Link href="/" className="block rounded-md px-3 py-2 hover:bg-white/10">
               Home
@@ -92,22 +94,23 @@ export default function Navbar() {
             <Link href="/pricing" className="block rounded-md px-3 py-2 hover:bg-white/10">
               Pricing Plans
             </Link>
-            <Link href="/support" className="block rounded-md px-3 py-2 hover:bg-white/10">
-              Customer Supports
-            </Link>
-            <Link href="/blog" className="block rounded-md px-3 py-2 hover:bg-white/10">
+            <Link href="/blog-list" className="block rounded-md px-3 py-2 hover:bg-white/10">
               Blog
             </Link>
             <div className="my-3 border-t border-white/20 pt-3">
-              <Link href="/signin" className="block rounded-md px-3 py-2 hover:bg-white/10">
+              <Link href="/login" className="block rounded-md px-3 py-2 hover:bg-white/10">
                 Sign In
               </Link>
-              <Link href="/post-job" className="mt-2 block rounded-md bg-white px-3 py-2 text-center text-[#1a2c4e]">
+              <Link href="/dashboard/employer/post-job" className="mt-2 block rounded-md bg-white px-3 py-2 text-center text-[#1a2c4e]">
                 Post A Job
               </Link>
               <div className="mt-4 flex items-center gap-2 px-3">
-                <div className="h-8 w-8 rounded-full bg-gray-300"></div>
+                <Link href="/" className="flex items-center gap-2">
+                  <div className="h-8 w-8 rounded-full">
+                    <Image src="/images/avatar.png" alt="user" width={500} height={600}/>
+                </div>
                 <span className="text-sm">Andrew Ainsley</span>
+                </Link>
                 <Bell size={20} className="ml-auto" />
               </div>
             </div>
