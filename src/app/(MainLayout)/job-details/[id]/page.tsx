@@ -5,6 +5,7 @@ import { Bookmark, Facebook, Instagram, MapPin, Twitter } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import RelatedJobs from "@/components/RelatedJobs/RelatedJobs"
+import ApplyModal from "@/components/modal/ApplyModal"
 
 export default function JobPostingPage() {
   const [bookmarked, setBookmarked] = useState(false)
@@ -53,10 +54,8 @@ export default function JobPostingPage() {
               >
                 <Bookmark className={`h-5 w-5 ${bookmarked ? "fill-current text-blue-600" : ""}`} />
               </Button>
-              <Button className="w-full md:w-auto cursor-pointer bg-[#1e3a8a] hover:bg-[#152a61] text-white flex items-center gap-2">
-                Apply Now
-                <span className="ml-1">→</span>
-              </Button>
+              {/*  */}
+              <ApplyModal/>
             </div>
           </div>
 
