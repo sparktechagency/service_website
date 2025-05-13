@@ -2,9 +2,11 @@
 
 import type React from "react"
 import { useState } from "react"
-import { PlusCircle, X, Pencil, Trash2 } from 'lucide-react'
+import WorkExperienceCard from "./WorkExperienceCard"
+import AddWorkExperienceModal from "@/components/modal/AddWorkExperienceModal"
+import { X } from "lucide-react"
 
-interface WorkExperience {
+export interface TWorkExperience {
   id: string
   job_title: string
   company_name: string
@@ -16,7 +18,7 @@ interface WorkExperience {
 }
 
 const WorkExperienceForm = () =>{
-  const [experiences, setExperiences] = useState<WorkExperience[]>([
+  const [experiences, setExperiences] = useState<TWorkExperience[]>([
     {
       id: "1",
       job_title: "Backend Developer",
@@ -30,7 +32,7 @@ const WorkExperienceForm = () =>{
   ])
 
   const [showForm, setShowForm] = useState(false)
-  const [currentExperience, setCurrentExperience] = useState<WorkExperience>({
+  const [currentExperience, setCurrentExperience] = useState<TWorkExperience>({
     id: "",
     job_title: "",
     company_name: "",
@@ -87,15 +89,15 @@ const WorkExperienceForm = () =>{
     setIsEditing(false)
   }
 
-  const editExperience = (experience: WorkExperience) => {
-    setCurrentExperience(experience)
-    setIsEditing(true)
-    setShowForm(true)
-  }
+  // const editExperience = (experience: TWorkExperience) => {
+  //   setCurrentExperience(experience)
+  //   setIsEditing(true)
+  //   setShowForm(true)
+  // }
 
-  const deleteExperience = (id: string) => {
-    setExperiences((prev) => prev.filter((exp) => exp.id !== id))
-  }
+  // const deleteExperience = (id: string) => {
+  //   setExperiences((prev) => prev.filter((exp) => exp.id !== id))
+  // }
 
   return (
     <div className="space-y-6 py-4">
@@ -105,60 +107,15 @@ const WorkExperienceForm = () =>{
 
       {/* List of experiences */}
       <div className="space-y-4">
-        {experiences.map((experience) => (
-          <div key={experience.id} className="border rounded-md overflow-hidden border-gray-200">
-            <div className="bg-gray-50 p-4">
-              <div className="flex justify-between items-start">
-                <div>
-                  <h3 className="text-lg font-medium">{experience.job_title}</h3>
-                  <p className="text-sm text-gray-500">
-                    {experience.company_name} • {experience.location}
-                  </p>
-                </div>
-                <div className="flex space-x-2">
-                  <button
-                    type="button"
-                    className="p-1 text-gray-500 hover:text-gray-700 rounded-full hover:bg-gray-100 cursor-pointer"
-                    onClick={() => editExperience(experience)}
-                  >
-                    <Pencil className="h-4 w-4" />
-                    <span className="sr-only">Edit</span>
-                  </button>
-                  <button
-                    type="button"
-                    className="p-1 text-gray-500 hover:text-gray-700 rounded-full hover:bg-gray-100 cursor-pointer"
-                    onClick={() => deleteExperience(experience.id)}
-                  >
-                    <Trash2 className="h-4 w-4" />
-                    <span className="sr-only">Delete</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div className="p-4">
-              <div className="text-sm text-gray-500 mb-2">
-                {new Date(experience.from_date).toLocaleDateString("en-US", {
-                  year: "numeric",
-                  month: "short",
-                })}{" "}
-                -{" "}
-                {experience.current
-                  ? "Present"
-                  : experience.to_date
-                    ? new Date(experience.to_date).toLocaleDateString("en-US", {
-                        year: "numeric",
-                        month: "short",
-                      })
-                    : "Present"}
-              </div>
-              <p className="text-sm">{experience.details}</p>
-            </div>
-          </div>
+        {experiences.map((experience, index) => (
+          <WorkExperienceCard experience={experience} key={index}/>
         ))}
       </div>
 
+      <AddWorkExperienceModal/>
+
       {/* Add experience button */}
-      {!showForm && (
+      {/* {!showForm && (
         <button
           type="button"
           className="w-full py-2 border border-dashed cursor-pointer rounded-md flex items-center justify-center text-gray-500 hover:text-gray-700 hover:border-gray-300"
@@ -167,7 +124,7 @@ const WorkExperienceForm = () =>{
           <PlusCircle className="mr-2 h-4 w-4" />
           Add Work Experience
         </button>
-      )}
+      )} */}
 
       {/* Experience form */}
       {showForm && (

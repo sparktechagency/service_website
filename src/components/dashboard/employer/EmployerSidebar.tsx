@@ -5,6 +5,7 @@ import {
   CirclePlus,
   BriefcaseBusiness,
   Podcast,
+  MessageSquareMore,
 } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 
@@ -40,7 +41,11 @@ const EmployerSidebar = () => {
             icon={<BriefcaseBusiness className="h-5 w-5" />}
             label="My Jobs"
           />
-
+           <SidebarLink
+            href="/dashboard/employer/messages"
+            icon={<MessageSquareMore className="h-5 w-5" />}
+            label="Messages"
+          />
           <SidebarLink
             href="/dashboard/employer/settings"
             icon={<SettingsIcon className="h-5 w-5" />}

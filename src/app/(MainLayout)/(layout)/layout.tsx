@@ -1,4 +1,4 @@
-import Navbar from "@/components/shared/Navbar";
+import Footer from "@/components/shared/Footer";
 import React from "react";
 
 type TProps = {
@@ -7,8 +7,9 @@ type TProps = {
 const layout = ({ children }: TProps) => {
   return (
     <>
-      <Navbar />
       {children}
+
+      <Footer />
     </>
   );
 };
