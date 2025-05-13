@@ -1,52 +1,52 @@
+"use client";
 
-
-
-
+import { TJob } from "@/types/job.type";
+import { MapPin } from "lucide-react";
 import Image from "next/image";
-import { FaMapMarkerAlt } from "react-icons/fa";
-
-export type TJob = {
-  company: string;
-  location: string;
-  jobType: string;
-  salary: string;
-  featured?: boolean;
-};
+import { useRouter } from "next/navigation";
 
 const JobCard = ({ job }: { job: TJob }) => {
+  const router = useRouter();
+
+  
+   
+
   return (
     <>
-      <div className="p-4 bg-white border border-gray-300 rounded-lg shadow-md hover:shadow-lg hover:border-gray-800 flex flex-col space-y-4 cursor-pointer duration-200">
-        <div className="flex items-center gap-4">
-          <div>
-            <Image
-              src="/images/jobs/job1.png"
-              alt="job_icon"
-              width={600}
-              height={600}
-              className="w-[45px] h-[45px] rounded-md"
-            />
-          </div>
-          <div>
-            <div className="flex items-center gap-3">
-              <h1 className="text-lg text-gray-800">{job.company}</h1>
-              <button className="bg-orange-100 px-2 py-0.5 text-md text-orange-700 rounded-lg">
-                Featured
-              </button>
+      <div onClick={()=>router.push(`/job-list/${job.category}`)} className="border border-gray-200 rounded-lg p-4 bg-white shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+        <div className="flex items-start justify-between mb-4">
+          <div className="flex items-center">
+            <div
+              className={`w-10 h-10 rounded-md flex items-center justify-center ${job.logoColor} text-white`}
+            >
+              <Image
+                src={job.logo || "/placeholder.svg"}
+                alt={job.title}
+                className="w-6 h-6"
+                width={600}
+                height={600}
+              />
             </div>
-            <div className="flex items-center text-sm text-gray-400 gap-1">
-              <FaMapMarkerAlt />
-              <span>{job.location}</span>
+            <div className="ml-3">
+              <h3 className="font-medium text-gray-900">{job.company}</h3>
+              <div className="flex items-center text-gray-500 text-sm">
+                <MapPin className="w-3 h-3 mr-1" />
+                <span className="truncate max-w-[150px]">{job.location}</span>
+              </div>
             </div>
           </div>
+          {/* {job.featured && (
+            <span className="text-xs bg-red-100 text-red-600 px-2 py-1 rounded">
+              Featured
+            </span>
+          )} */}
         </div>
-        <div>
-          {/* title */}
-          <h1 className="text-2xl font-medium text-primary">Water Supply</h1>
-          <div className="text-[#636A80] flex justify-between">
-            <span>{job.jobType}</span>
-            <span>$50k-$60K</span>
-          </div>
+        <h2 className="text-lg font-semibold text-gray-900 mb-2">
+          {job.category}
+        </h2>
+        <div className="flex items-center justify-between text-sm text-gray-500">
+          <span>{job.type}</span>
+          <span className="font-medium">{job.salary}</span>
         </div>
       </div>
     </>

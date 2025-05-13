@@ -3,9 +3,11 @@
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import Link from "next/link";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const router = useRouter();
 
   const togglePassword = () => {
     setShowPassword((prev) => !prev);
@@ -65,7 +67,7 @@ const LoginForm = () => {
           </Link>
         </div>
 
-        <button className="w-full bg-primary hover:bg-[#2b4773] cursor-pointer text-white py-2 rounded-md font-semibold transition-colors duration-100">
+        <button onClick={()=>router.push('/')} className="w-full bg-primary hover:bg-[#2b4773] cursor-pointer text-white py-2 rounded-md font-semibold transition-colors duration-100">
           Sign in
         </button>
       </form>

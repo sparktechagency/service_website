@@ -1,6 +1,12 @@
 "use client"
 
+import { useRouter } from "next/navigation";
+
 const HeroForm = () => {
+  const router = useRouter();
+  const handleSearch = ()=> {
+    router.push('/find-work')
+  }
     return (
       <div className="bg-white rounded-xl shadow-lg p-4 flex flex-col md:flex-row items-stretch md:items-center gap-2 w-full max-w-4xl mx-auto">
         {/* Location Dropdown */}
@@ -21,7 +27,7 @@ const HeroForm = () => {
         </select>
   
         {/* Search Button */}
-        <button className="w-full md:w-auto px-6 py-3 cursor-pointer bg-primary text-white rounded-lg font-medium hover:bg-[#16324f] transition duration-200">
+        <button onClick={handleSearch} className="w-full md:w-auto px-6 py-3 cursor-pointer bg-primary text-white rounded-lg font-medium hover:bg-[#16324f] transition duration-200">
           Search
         </button>
       </div>
