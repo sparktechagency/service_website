@@ -56,7 +56,7 @@ export default function Pagination({
 
   return (
     <div className="flex flex-col sm:flex-row justify-between items-center">
-      <div className="text-sm text-gray-700 dark:text-gray-300 mb-4 sm:mb-0">
+      <div className="text-sm text-gray-700 mb-4 sm:mb-0">
         Showing <span className="font-medium">{startItem}</span>-
         <span className="font-medium">{endItem}</span> out of{' '}
         <span className="font-medium">{totalItems}</span>
@@ -69,7 +69,7 @@ export default function Pagination({
           className={`relative inline-flex items-center px-2 py-2 rounded-md text-sm font-medium ${
             currentPage === 1 
               ? 'text-gray-400 cursor-not-allowed' 
-              : 'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700'
+              : 'text-gray-700 hover:bg-gray-100'
           } transition-colors duration-150`}
         >
           <span className="sr-only">Previous</span>
@@ -78,17 +78,17 @@ export default function Pagination({
         
         {visiblePages.map((page, idx) => (
           page === "..." ? (
-            <span key={`ellipsis-${idx}`} className="px-3 py-2 text-gray-500 dark:text-gray-400">
+            <span key={`ellipsis-${idx}`} className="px-3 py-2 text-gray-500">
               ...
             </span>
           ) : (
             <button
               key={`page-${page}`}
               onClick={() => onPageChange(page as number)}
-              className={`relative inline-flex items-center px-3 py-2 rounded-md text-sm font-medium ${
+              className={`relative inline-flex items-center px-3 py-2 rounded-md text-sm font-medium cursor-pointer ${
                 currentPage === page
                   ? 'bg-blue-600 text-white' 
-                  : 'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700'
+                  : 'text-gray-700 hover:bg-gray-100'
               } transition-colors duration-150`}
               aria-current={currentPage === page ? 'page' : undefined}
             >

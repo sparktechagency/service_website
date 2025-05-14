@@ -10,10 +10,10 @@ export default function NotificationsHeader({ count }: NotificationsHeaderProps)
   return (
     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
       <div className="flex items-center">
-        <h1 className="text-2xl font-bold text-gray-900 dark:text-white">My Notifications</h1>
+        <h1 className="text-2xl font-bold text-gray-900">My Notifications</h1>
         {count > 0 && (
           <div className="ml-3 flex items-center">
-            <span className="inline-flex items-center justify-center px-2.5 py-0.5 rounded-full text-sm font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200 transition-all duration-200">
+            <span className="inline-flex items-center justify-center px-2.5 py-0.5 rounded-full text-sm font-medium bg-blue-100 text-blue-800 transition-all duration-200">
               {count}
             </span>
           </div>
