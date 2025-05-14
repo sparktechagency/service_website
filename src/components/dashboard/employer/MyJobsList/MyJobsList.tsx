@@ -11,12 +11,14 @@ import {
   XCircle,
   Clock,
 } from "lucide-react"
+import { useRouter } from "next/navigation"
 
 const MyJobsList = () => {
   //const [activeMenu, setActiveMenu] = useState("my-jobs")
   const [activeDropdown, setActiveDropdown] = useState(4)
   const [activePage, setActivePage] = useState(1)
-  const [filterValue, setFilterValue] = useState("All Jobs")
+  const [filterValue, setFilterValue] = useState("All Jobs");
+  const router = useRouter();
 
   const jobs = [
     {
@@ -99,26 +101,26 @@ const MyJobsList = () => {
   return (
     <>
        {/* Main Content */}
-       <div className="flex-1 overflow-auto p-6">
+        <div className="flex-1 overflow-auto p-3 sm:p-4 md:p-6">
         <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
-            <h1 className="text-xl font-bold text-gray-800 mb-4 md:mb-0">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4 md:mb-6">
+            <h1 className="text-lg sm:text-xl font-bold text-gray-800 mb-3 md:mb-0">
               My Jobs <span className="text-gray-500 font-normal">(589)</span>
             </h1>
             <div className="flex items-center">
-              <span className="text-sm text-gray-600 mr-2">Job status</span>
+              <span className="text-xs sm:text-sm text-gray-600 mr-2">Job status</span>
               <div className="relative">
                 <select
                   value={filterValue}
                   onChange={(e) => setFilterValue(e.target.value)}
-                  className="appearance-none bg-white border border-gray-300 rounded-md pl-3 pr-10 py-2 text-sm focus:outline-none focus:border-blue-500 focus:ring-blue-500"
+                  className="appearance-none bg-white border border-gray-300 rounded-md pl-2 sm:pl-3 pr-8 sm:pr-10 py-1.5 sm:py-2 text-xs sm:text-sm focus:outline-none focus:border-blue-500 focus:ring-blue-500"
                 >
                   <option>All Jobs</option>
                   <option>Active Jobs</option>
                   <option>Expired Jobs</option>
                 </select>
                 <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
-                  <ChevronDown className="h-4 w-4 text-gray-500" />
+                  <ChevronDown className="h-3 sm:h-4 w-3 sm:w-4 text-gray-500" />
                 </div>
               </div>
             </div>
@@ -127,11 +129,11 @@ const MyJobsList = () => {
           {/* Jobs Table */}
           <div className="bg-white rounded-lg shadow-sm overflow-hidden">
             {/* Table Header */}
-            <div className="grid grid-cols-12 bg-gray-100 py-3 px-4 text-sm font-medium text-gray-600">
-              <div className="col-span-5 md:col-span-6">JOBS</div>
+            <div className="grid grid-cols-12 bg-gray-100 py-3 px-3 sm:px-4 text-xs sm:text-sm font-medium text-gray-600">
+              <div className="col-span-6 md:col-span-6">JOBS</div>
               <div className="col-span-3 md:col-span-2 text-center">STATUS</div>
-              <div className="col-span-3 md:col-span-2 text-center">APPLICATIONS</div>
-              <div className="col-span-1 md:col-span-2 text-center">ACTIONS</div>
+              <div className="col-span-3 md:col-span-2 text-center hidden sm:block">APPLICATIONS</div>
+              <div className="hidden md:block md:col-span-2 text-center">ACTIONS</div>
             </div>
 
             {/* Table Body */}
@@ -139,87 +141,71 @@ const MyJobsList = () => {
               {jobs.map((job) => (
                 <div
                   key={job.id}
-                  className={`grid grid-cols-12 py-4 px-4 text-sm hover:bg-blue-50 duration-200 rounded-md`}
+                  className="grid grid-cols-12 py-3 sm:py-4 px-3 sm:px-4 text-xs sm:text-sm hover:bg-blue-50 duration-200 rounded-md"
                 >
-                  <div className="col-span-5 md:col-span-6">
-                    <div className="font-medium text-gray-800">{job.title}</div>
+                  <div className="col-span-6 md:col-span-6">
+                    <div className="font-medium text-gray-800 truncate">{job.title}</div>
                     <div className="text-gray-500 flex flex-col sm:flex-row sm:items-center mt-1">
-                      <span>{job.type}</span>
+                      <span className="text-xs sm:text-sm">{job.type}</span>
                       <span className="hidden sm:inline mx-2">•</span>
-                      <span className="flex items-center mt-1 sm:mt-0">
+                      <span className="flex items-center text-xs sm:text-sm mt-1 sm:mt-0">
                         {job.status === "Active" ? (
                           <Clock className="h-3 w-3 text-gray-400 mr-1" />
                         ) : (
                           <Clock className="h-3 w-3 text-gray-400 mr-1" />
                         )}
-                        {job.timeLeft}
+                        <span className="truncate">{job.timeLeft}</span>
                       </span>
                     </div>
                   </div>
                   <div className="col-span-3 md:col-span-2 flex justify-center items-center">
                     {job.status === "Active" ? (
-                      <div className="flex items-center text-green-600">
-                        <CheckCircle className="h-4 w-4 mr-1" />
-                        <span>Active</span>
+                      <div className="flex items-center text-green-600 text-xs sm:text-sm">
+                        <CheckCircle className="h-3 sm:h-4 w-3 sm:w-4 mr-1" />
+                        <span className="hidden xs:inline">Active</span>
                       </div>
                     ) : (
-                      <div className="flex items-center text-red-500">
-                        <XCircle className="h-4 w-4 mr-1" />
-                        <span>Expire</span>
+                      <div className="flex items-center text-red-500 text-xs sm:text-sm">
+                        <XCircle className="h-3 sm:h-4 w-3 sm:w-4 mr-1" />
+                        <span className="hidden xs:inline">Expire</span>
                       </div>
                     )}
                   </div>
-                  <div className="col-span-3 md:col-span-2 flex justify-center items-center text-gray-600">
-                    <FileText className="h-4 w-4 mr-1" />
-                    <span>{job.applications} Applications</span>
+                  <div className="col-span-3 md:col-span-2 flex justify-center items-center text-gray-600 text-xs sm:text-sm">
+                    <FileText className="h-3 sm:h-4 w-3 sm:w-4 mr-1" />
+                    <span className="hidden sm:inline">{job.applications} Applications</span>
+                    <span className="sm:hidden">{job.applications}</span>
                   </div>
-                  <div className="col-span-1 md:col-span-2 flex justify-end md:justify-center items-center relative">
-                    {/* <button className="px-3 py-1.5 bg-blue-50 text-blue-700 rounded-md text-xs font-medium hidden md:block">
-                      View Applications
-                    </button> */}
-                     <button className="rounded-md bg-gray-100 hover:bg-primary border border-gray-300 hover:border-primary hover:text-white px-4 py-2 text-sm font-medium text-gray-700 cursor-pointer duration-200">
-                     View Applications
-                    </button>
-                    {/* <button
-                      className="text-gray-500 hover:text-gray-700 p-1 rounded-full hover:bg-gray-100"
-                      onClick={() => toggleDropdown(job.id)}
+                  <div className="hidden md:flex md:col-span-2 justify-center items-center">
+                    <button
+                      onClick={() => router.push(`/dashboard/employer/applications/${job.id}`)}
+                      className="rounded-md bg-gray-100 hover:bg-primary border border-gray-300 hover:border-primary hover:text-white px-2 sm:px-4 py-1 sm:py-2 text-xs sm:text-sm font-medium text-gray-700 cursor-pointer duration-200 whitespace-nowrap"
                     >
-                      <MoreVertical className="h-5 w-5" />
-                    </button> */}
-
-                    {/* Dropdown Menu */}
-                    {/* {activeDropdown === job.id && (
-                      <div className="absolute right-0 top-8 z-10 w-48 bg-white rounded-md shadow-lg border border-gray-200">
-                        <div className="py-1">
-                          <button className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                            <Award className="h-4 w-4 mr-2 text-blue-600" />
-                            Promote Job
-                          </button>
-                          <button className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                            <Eye className="h-4 w-4 mr-2 text-blue-600" />
-                            View Detail
-                          </button>
-                          <button className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                            <Clock className="h-4 w-4 mr-2 text-blue-600" />
-                            Make it Expire
-                          </button>
-                        </div>
-                      </div>
-                    )} */}
+                      View Applications
+                    </button>
+                  </div>
+                  {/* Mobile Actions - Only visible on small screens */}
+                  <div className="col-span-12 mt-2 flex justify-end md:hidden">
+                    <button
+                      onClick={() => router.push(`/dashboard/employer/applications/${job.id}`)}
+                      className="rounded-md bg-gray-100 hover:bg-primary border border-gray-300 hover:border-primary hover:text-white px-3 py-1 text-xs font-medium text-gray-700 cursor-pointer duration-200"
+                    >
+                      View Applications
+                    </button>
                   </div>
                 </div>
               ))}
             </div>
 
             {/* Pagination */}
-            <div className="flex justify-center items-center py-4 border-t border-gray-200">
-              <button className="p-2 rounded-full hover:bg-gray-100">
-                <ChevronLeft className="h-5 w-5 text-gray-500" />
+            <div className="flex justify-center items-center py-3 sm:py-4 border-t border-gray-200">
+              <button className="p-1 sm:p-2 rounded-full hover:bg-gray-100">
+                <ChevronLeft className="h-4 w-4 text-gray-500" />
               </button>
               {[1, 2, 3, 4, 5].map((page) => (
                 <button
                   key={page}
-                  className={`w-8 h-8 mx-1 rounded-full flex items-center justify-center text-sm ${
+                  className={`w-6 h-6 sm:w-8 sm:h-8 mx-0.5 sm:mx-1 rounded-full flex items-center justify-center text-xs sm:text-sm ${
                     activePage === page ? "bg-blue-800 text-white" : "text-gray-600 hover:bg-gray-100"
                   }`}
                   onClick={() => setActivePage(page)}
@@ -227,8 +213,8 @@ const MyJobsList = () => {
                   {page.toString().padStart(2, "0")}
                 </button>
               ))}
-              <button className="p-2 rounded-full hover:bg-gray-100">
-                <ChevronRight className="h-5 w-5 text-gray-500" />
+              <button className="p-1 sm:p-2 rounded-full hover:bg-gray-100">
+                <ChevronRight className="h-4 w-4 text-gray-500" />
               </button>
             </div>
           </div>

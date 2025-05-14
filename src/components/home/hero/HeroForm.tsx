@@ -8,14 +8,10 @@ const HeroForm = () => {
     router.push('/find-work')
   }
     return (
-      <div className="bg-white rounded-xl shadow-lg p-4 flex flex-col md:flex-row items-stretch md:items-center gap-2 w-full max-w-4xl mx-auto">
+      <div className="bg-white rounded-xl shadow-lg p-4 flex flex-col md:flex-row items-stretch md:items-center gap-2 w-full max-w-4xl mx-auto" >
         {/* Location Dropdown */}
-        <select className="w-full md:flex-1 px-4 py-3 rounded-lg bg-white text-gray-700 shadow focus:outline-none">
-          <option value="">Select Location</option>
-          <option>New York</option>
-          <option>Los Angeles</option>
-          <option>Chicago</option>
-        </select>
+        <input type="text" placeholder="Location..." className="w-full md:flex-1 px-4 py-3 rounded-lg bg-white text-gray-700 shadow focus:outline-none" />
+         
   
         {/* Category Dropdown */}
         <select className="w-full md:flex-1 px-4 py-3 rounded-lg bg-white text-gray-700 shadow focus:outline-none">

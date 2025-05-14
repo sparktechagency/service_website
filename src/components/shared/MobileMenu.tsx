@@ -33,6 +33,18 @@ const MobileMenu = ({ setIsMenuOpen }: TProps) => {
           >
             Find Work
           </div>
+          <div
+            onClick={() => handleNavigate("/dashboard/candidate/overview")}
+            className="block rounded-md px-3 py-2 hover:bg-white/10 cursor-pointer"
+          >
+            Candidate-Dashboard
+          </div>
+          <div
+            onClick={() => handleNavigate("/dashboard/employer/overview")}
+            className="block rounded-md px-3 py-2 hover:bg-white/10 cursor-pointer"
+          >
+            Employer-Dashboard
+          </div>
           {/* <Link href="/employers" className="block rounded-md px-3 py-2 hover:bg-white/10">
               Employers
             </Link> */}
