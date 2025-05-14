@@ -5,10 +5,12 @@ import Link from "next/link";
 import { Bell, Menu, X } from "lucide-react"
 import Image from "next/image";
 import MobileMenu from "./MobileMenu";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  
+  const pathname = usePathname();
   const router = useRouter();
 
   return (
@@ -24,10 +26,10 @@ export default function Navbar() {
 
         {/* Desktop Navigation */}
         <div className="hidden space-x-6 md:flex">
-          <Link href="/" className="hover:text-gray-300">
+          <Link href="/" className={`hover:text-secondary ${pathname === "/" ? "text-secondary" : "text-white"}`}>
             Home
           </Link>
-          <Link href="/find-work" className="hover:text-gray-300">
+          <Link href="/find-work" className={`hover:text-secondary ${pathname === "/find-work" ? "text-secondary" : "text-white"}`}>
             Find Work
           </Link>
           {/* <Link href="/employers" className="hover:text-gray-300">
@@ -36,13 +38,13 @@ export default function Navbar() {
           {/* <Link href="/candidates" className="hover:text-gray-300">
             Candidates
           </Link> */}
-           <Link href="/dashboard/candidate/overview" className="hover:text-gray-300">
+           <Link href="/dashboard/candidate/overview" className={`hover:text-secondary ${pathname === "/dashboard/candidate/overview" ? "text-secondary" : "text-white"}`}>
             Candidate-Dashboard
           </Link>
-           <Link href="/dashboard/employer/overview" className="hover:text-gray-300">
+           <Link href="/dashboard/employer/overview" className={`hover:text-secondary ${pathname === "/dashboard/employer/overview" ? "text-secondary" : "text-white"}`}>
             Employer-Dashboard
           </Link>
-          <Link href="/blog-list" className="hover:text-gray-300">
+          <Link href="/blog-list" className={`hover:text-secondary ${pathname === "/blog-list" ? "text-secondary" : "text-white"}`}>
             Blogs
           </Link>
         </div>
