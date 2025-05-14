@@ -53,7 +53,7 @@ const MobileMenu = ({ setIsMenuOpen }: TProps) => {
                 Post A Job
               </div> */}
             <div
-              onClick={() => handleNavigate("//dashboard/employer/post-job")}
+              onClick={() => handleNavigate("/dashboard/employer/post-job")}
               className="mt-2 cursor-pointer block rounded-md bg-white px-3 py-2 text-center text-[#1a2c4e]"
             >
               Sign In
@@ -73,7 +73,7 @@ const MobileMenu = ({ setIsMenuOpen }: TProps) => {
                 </div>
                 <span className="text-sm">Andrew Ainsley</span>
               </div>
-              <Bell size={20} className="ml-auto" />
+              <Bell onClick={() => handleNavigate("/notifications")} size={20} className="ml-auto" />
             </div>
           </div>
         </div>

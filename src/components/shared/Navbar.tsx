@@ -5,9 +5,11 @@ import Link from "next/link";
 import { Bell, Menu, X } from "lucide-react"
 import Image from "next/image";
 import MobileMenu from "./MobileMenu";
+import { useRouter } from "next/navigation";
 
 export default function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const router = useRouter();
 
   return (
     <nav className="sticky top-0 h-[88px] z-50 w-full bg-primary text-white shadow-md">
@@ -56,7 +58,7 @@ export default function Navbar() {
           >
             Post A Job
           </Link> */}
-          <button className="relative rounded-full p-1 hover:bg-white/10">
+          <button onClick={()=>router.push('/notifications')} className="relative rounded-full p-1 cursor-pointer hover:bg-white/10">
             <Bell size={20} />
             <span className="absolute right-0 top-0 h-2 w-2 rounded-full bg-red-500"></span>
           </button>
