@@ -1,12 +1,13 @@
 "use client";
-import MyJobsList from "@/components/dashboard/employer/MyJobsList/MyJobsList"
+import ApplicationList from "@/components/dashboard/employer/MyJobsList/ApplicationList";
+import MyJobsList from "@/components/dashboard/employer/MyJobsList/MyJobsList";
+import { useAppSelector } from "@/redux/hooks/hooks";
 
 const MyJobsPage = () => {
-  return (
-    <>
-      <MyJobsList/>
-    </>
-  )
-}
+  const { viewApplication } = useAppSelector((state) => state.job);
+  return <>
+       {viewApplication ? <ApplicationList /> : <MyJobsList />}
+  </>;
+};
 
-export default MyJobsPage
+export default MyJobsPage;
