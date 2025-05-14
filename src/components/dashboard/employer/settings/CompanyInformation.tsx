@@ -45,9 +45,9 @@ const CompanyInformation = () => {
           <div className="col-span-1">
             <p className="text-sm mb-2">Upload Logo</p>
             <div className="relative">
-              <div className="bg-slate-400 aspect-square rounded-md overflow-hidden">
+              <div className="bg-slate-400 max-h-[200px] w-full aspect-square rounded-md overflow-hidden">
                 {logoPreview ? (
-                  <Image src={logoPreview || "/placeholder.svg"} alt="Logo preview" fill className="object-cover" />
+                  <Image src={logoPreview || "/placeholder.svg"} alt="Logo preview" fill className="object-cover h-full" />
                 ) : (
                   <label htmlFor="logo-upload" className="flex items-center justify-center h-full cursor-pointer">
                     <span className="sr-only">Upload logo</span>
@@ -89,9 +89,9 @@ const CompanyInformation = () => {
           <div className="col-span-1 md:col-span-2">
             <p className="text-sm mb-2">Banner Image</p>
             <div className="relative">
-              <div className="bg-slate-400 aspect-[2/1] rounded-md overflow-hidden">
+              <div className="bg-slate-400 h-[200px] w-full aspect-[2/1] rounded-md overflow-hidden">
                 {bannerPreview ? (
-                  <Image src={bannerPreview || "/placeholder.svg"} alt="Banner preview" fill className="object-cover" />
+                  <Image src={bannerPreview || "/placeholder.svg"} alt="Banner preview" fill className="object-cover h-full" />
                 ) : (
                   <label htmlFor="banner-upload" className="flex items-center justify-center h-full cursor-pointer">
                     <span className="sr-only">Upload banner</span>

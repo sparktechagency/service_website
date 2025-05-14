@@ -57,7 +57,7 @@ const PostJobForm = () => {
 
   return (
     <>
-      <div className="flex-1">
+      <div className="flex-1 overflow-auto">
         <div className="max-6xl mx-auto p-4 sm:p-6 rounded-lg">
           <h1 className="text-2xl font-bold text-gray-800 mb-4">Post a job</h1>
           <form

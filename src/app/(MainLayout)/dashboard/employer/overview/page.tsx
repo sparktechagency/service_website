@@ -153,7 +153,7 @@ const EmployerOverviewPage = () => {
                     Active
                   </span>
                 </div>
-                <div className="col-span-3 flex items-center justify-end">
+                <div onClick={()=>router.push(`/job-details/1`)} className="col-span-3 flex items-center justify-end">
                   <button className="rounded-md bg-gray-100 text-primary border border-gray-300 hover:border-primary hover:bg-primary hover:text-white duration-200 cursor-pointer px-4 py-2 text-sm font-medium">
                     View Details
                   </button>
@@ -218,7 +218,7 @@ const EmployerOverviewPage = () => {
                     Active
                   </span>
                 </div>
-                <div className="col-span-3 flex items-center justify-end">
+                <div onClick={()=>router.push(`/job-details/2`)} className="col-span-3 flex items-center justify-end">
                   <button className="rounded-md bg-gray-100 text-primary border border-gray-300 hover:border-primary hover:bg-primary hover:text-white duration-200 cursor-pointer px-4 py-2 text-sm font-medium">
                     View Details
                   </button>
@@ -283,7 +283,7 @@ const EmployerOverviewPage = () => {
                     Active
                   </span>
                 </div>
-                <div className="col-span-3 flex items-center justify-end">
+                <div onClick={()=>router.push(`/job-details/3`)} className="col-span-3 flex items-center justify-end">
                   <button className="rounded-md bg-gray-100 text-primary border border-gray-300 hover:border-primary hover:bg-primary hover:text-white duration-200 cursor-pointer px-4 py-2 text-sm font-medium">
                     View Details
                   </button>
@@ -349,7 +349,7 @@ const EmployerOverviewPage = () => {
                   </span>
                 </div>
                 <div className="col-span-3 flex items-center justify-end">
-                  <button className="rounded-md bg-gray-100 text-primary border border-gray-300 hover:border-primary hover:bg-primary hover:text-white duration-200 cursor-pointer px-4 py-2 text-sm font-medium">
+                  <button onClick={()=>router.push(`/job-details/4`)} className="rounded-md bg-gray-100 text-primary border border-gray-300 hover:border-primary hover:bg-primary hover:text-white duration-200 cursor-pointer px-4 py-2 text-sm font-medium">
                     View Details
                   </button>
                 </div>

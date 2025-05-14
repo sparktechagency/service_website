@@ -39,7 +39,7 @@ const AddWorkExperienceModal = () => {
               </button>
             </div>
           </div>
-          <form>
+          <div>
             <div className="py-2 space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
@@ -53,7 +53,7 @@ const AddWorkExperienceModal = () => {
                     id="job_title"
                     name="job_title"
                     type="text"
-                    className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:border-blue-500 focus:ring-blue-500"
                     placeholder="e.g. Software Engineer"
                     required
                   />
@@ -69,7 +69,7 @@ const AddWorkExperienceModal = () => {
                     id="company_name"
                     name="company_name"
                     type="text"
-                    className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:border-blue-500 focus:ring-blue-500"
                     placeholder="e.g. Tech Solutions Ltd."
                     required
                   />
@@ -87,7 +87,7 @@ const AddWorkExperienceModal = () => {
                   id="location"
                   name="location"
                   type="text"
-                  className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 focus:ring-blue-500"
                   placeholder="e.g. San Francisco, CA"
                   required
                 />
@@ -105,7 +105,7 @@ const AddWorkExperienceModal = () => {
                     id="from_date"
                     name="from_date"
                     type="date"
-                    className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 focus:ring-blue-500"
                     required
                   />
                 </div>
@@ -125,11 +125,12 @@ const AddWorkExperienceModal = () => {
                     id="to_date"
                     name="to_date"
                     type="date"
-                    className={`w-full px-3 py-2 border rounded-md focus:outline-none ${
-                      current
-                        ? "bg-gray-100 text-gray-400"
-                        : "focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                    }`}
+                    // className={`w-full px-3 py-2 border rounded-md focus:outline-none ${
+                    //   current
+                    //     ? "bg-gray-100 text-gray-400"
+                    //     : "focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    // }`}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 focus:ring-blue-500"
                     // value={currentExperience.to_date}
                     // onChange={handleInputChange}
                     // disabled={currentExperience.current}
@@ -160,7 +161,7 @@ const AddWorkExperienceModal = () => {
                 <textarea
                   id="details"
                   name="details"
-                  className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 focus:ring-blue-500"
                   placeholder="Describe your responsibilities and achievements"
                   rows={4}
                 />
@@ -169,18 +170,20 @@ const AddWorkExperienceModal = () => {
             <div className="flex items-center space-x-2">
               <button
                 type="button"
+                 onClick={() => setModalOpen(false)}
                 className="px-4 py-2 w-full cursor-pointer border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none"
               >
                 Cancel
               </button>
               <button
                 type="submit"
+                 onClick={() => setModalOpen(false)}
                 className="px-4 cursor-pointer py-2 w-full border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none"
               >
                 Save
               </button>
             </div>
-          </form>
+          </div>
         </div>
       </Modal>
     </>
