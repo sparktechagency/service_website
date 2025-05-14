@@ -47,6 +47,9 @@ export default function Navbar() {
           <Link href="/blog-list" className={`hover:text-secondary ${pathname === "/blog-list" ? "text-secondary" : "text-white"}`}>
             Blogs
           </Link>
+           <Link href="/contact" className={`hover:text-secondary ${pathname === "/blog-list" ? "text-secondary" : "text-white"}`}>
+           Contact
+          </Link>
         </div>
 
         {/* Desktop Right Side */}
