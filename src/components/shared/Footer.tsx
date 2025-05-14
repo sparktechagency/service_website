@@ -1,6 +1,7 @@
 "use client"
 
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import {
     FaFacebookF,
     FaYoutube,
@@ -9,6 +10,12 @@ import {
   } from 'react-icons/fa';
   
   const Footer = () => {
+      const router = useRouter();
+      const handleNavigate = (path: string) => {
+        router.push(path);
+      };
+
+    
     return (
       <footer className="bg-primary text-gray-300 pt-12 pb-6">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-5 gap-8 px-4">
@@ -30,21 +37,20 @@ import {
           <div>
             <h3 className="text-white font-semibold mb-3">Quick Link</h3>
             <ul className="space-y-2 text-sm">
-              <li className="hover:text-white cursor-pointer">About</li>
-              <li className="hover:text-white cursor-pointer">Contact</li>
-              <li className="hover:text-white cursor-pointer">Pricing</li>
-              <li className="hover:text-white cursor-pointer">Blog</li>
+              <li onClick={() => handleNavigate("/contact")} className="hover:text-white cursor-pointer">Contact</li>
+              {/* <li onClick={() => handleNavigate("/")} className="hover:text-white cursor-pointer">Pricing</li> */}
+              <li onClick={() => handleNavigate("/blog-list")} className="hover:text-white cursor-pointer">Blog</li>
             </ul>
           </div>
           {/* Support */}
           <div>
             <h3 className="text-white font-semibold mb-3">Support</h3>
             <ul className="space-y-2 text-sm">
-              <li className="hover:text-white cursor-pointer">Faqs</li>
-              <li className="hover:text-white cursor-pointer">
+              {/* <li className="hover:text-white cursor-pointer">Faqs</li> */}
+              <li onClick={() => handleNavigate("/terms-condition")} className="hover:text-white cursor-pointer">
                 Privacy Policy
               </li>
-              <li className="hover:text-white cursor-pointer">
+              <li onClick={() => handleNavigate("/terms-condition")} className="hover:text-white cursor-pointer">
                 Terms & Conditions
               </li>
             </ul>
