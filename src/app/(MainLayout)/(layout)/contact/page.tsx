@@ -57,7 +57,7 @@ const ContactPage = () => {
       </header> */}
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 md:px-8 py-12">
+      <main className="max-w-7xl mx-auto px-4 md:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
           {/* Left Column */}
           <div className="flex flex-col justify-center">

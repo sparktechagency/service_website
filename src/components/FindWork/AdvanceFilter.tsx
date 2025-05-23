@@ -129,7 +129,7 @@ const AdvancedFilter = () => {
             </svg>
           </button>
 
-          <button className="px-4 py-2 text-white bg-primary hover:bg-[#2b4773] cursor-pointer rounded-md focus:outline-none">
+          <button className="px-4 py-2 text-white bg-secondary cursor-pointer rounded-md focus:outline-none">
             Find Job
           </button>
         </div>

@@ -89,7 +89,7 @@ const VerifyotpForm = () => {
         <button
           onClick={handleVerify}
           disabled={isDisabled || isLoading}
-          className="w-full bg-primary hover:bg-[#2b4773] cursor-pointer text-white py-2 rounded-md font-semibold transition-colors duration-100 disabled:cursor-not-allowed"
+          className="w-full bg-primary cursor-pointer text-white py-2 rounded-md font-semibold transition-colors duration-100 disabled:cursor-not-allowed"
         >
           {isLoading ? "Verifying..." : "Verify"}
         </button>

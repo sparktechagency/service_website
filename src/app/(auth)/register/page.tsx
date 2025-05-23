@@ -58,7 +58,7 @@ const RegisterPage = () => {
         <Image
           src="/images/auth/register.png"
           alt="Signup"
-          width={400} height={400}
+          width={600} height={600}
         />
       </div>
     </div>

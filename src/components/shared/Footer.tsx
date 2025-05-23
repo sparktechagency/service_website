@@ -22,7 +22,7 @@ import {
           {/* Logo and Contact Info */}
           <div className="md:col-span-2 space-y-4">
             <div className="flex items-center mb-4">
-              <Image src="/images/logo.png" alt="logo" width={70} height={70} />
+              <Image src="/images/logo.png" alt="logo" width={110} height={110} />
             </div>
             <p>
               <span className="text-gray-400">Call now:</span>{" "}

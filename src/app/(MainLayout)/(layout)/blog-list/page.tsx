@@ -104,7 +104,7 @@ const BlogListPage = () => {
   ]
 
   return (
-    <div className="max-w-7xl mx-auto p-4 md:p-6">
+    <div className="max-w-7xl mx-auto px-4 md:px-6 py-16">
       <div className="flex flex-col md:flex-row gap-6">
         {/* Sidebar */}
         <div className="w-full md:w-1/4 space-y-6">

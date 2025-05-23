@@ -67,7 +67,7 @@ const LoginForm = () => {
           </Link>
         </div>
 
-        <button onClick={()=>router.push('/')} className="w-full bg-primary hover:bg-[#2b4773] cursor-pointer text-white py-2 rounded-md font-semibold transition-colors duration-100">
+        <button onClick={()=>router.push('/')} className="w-full bg-primary cursor-pointer text-white py-2 rounded-md font-semibold transition-colors duration-100">
           Sign in
         </button>
       </div>

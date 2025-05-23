@@ -20,7 +20,7 @@ const ResetPasswordPage = () => {
       {/* Right Side */}
       <div className="hidden md:flex md:w-1/2 items-center justify-center bg-blue-50 p-10">
         <div className="text-center">
-          <Image src="/images/auth/reset.png" alt="Login Illustration" width={400} height={400} />
+          <Image src="/images/auth/reset.png" alt="Login Illustration" width={600} height={600} />
         </div>
       </div>
     </div>
