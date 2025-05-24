@@ -35,7 +35,7 @@ const MobileMenu = ({ setIsMenuOpen }: TProps) => {
           </div>
           <div
             onClick={() => handleNavigate("/find-candidates")}
-            className={`block rounded-md px-3 py-2 hover:bg-white/10 cursor-pointer ${pathname==="/find-work" ? "text-secondary" : "text-white"}`}
+            className={`block rounded-md px-3 py-2 hover:bg-white/10 cursor-pointer ${pathname==="/find-candidates" ? "text-secondary" : "text-white"}`}
           >
             Find-Candidates
           </div>

@@ -32,7 +32,7 @@ export default function Navbar() {
           <Link href="/find-work" className={`hover:text-secondary ${pathname === "/find-work" ? "text-secondary" : "text-white"}`}>
             Find Work
           </Link>
-          <Link href="/find-candidates" className={`hover:text-secondary ${pathname === "/find-work" ? "text-secondary" : "text-white"}`}>
+          <Link href="/find-candidates" className={`hover:text-secondary ${pathname === "/find-candidates" ? "text-secondary" : "text-white"}`}>
             Find-Candidates
           </Link>
           {/* <Link href="/employers" className="hover:text-gray-300">
