@@ -1,20 +1,20 @@
 "use client"
 import React from 'react';
-import Header from './components/Header';
-import CareerObjective from './components/CareerObjective';
-import Skills from './components/Skills';
-import Experience from './components/Experience';
-import PersonalInfo from './components/PersonalInfo';
-import EducationExperience from './components/EducationExperience';
-import ContactInfo from './components/ContactInfo';
-import SocialMedia from './components/SocialMedia';
-import ResumeDownload from './components/ResumeDownload';
 import { mockProfileData } from '@/types/profile.type';
+import ResumeDownload from '@/components/candidates/ResumeDownload';
+import SocialMedia from '@/components/candidates/SocialMedia';
+import ContactInfo from '@/components/candidates/ContactInfo';
+import EducationExperience from '@/components/candidates/EducationExperience';
+import PersonalInfo from '@/components/candidates/PersonalInfo';
+import Experience from '@/components/candidates/Experience';
+import Skills from '@/components/candidates/Skills';
+import CareerObjective from '@/components/candidates/CareerObjective';
+import Header from '@/components/candidates/Header';
 
 const CandidateDetailsPage = ()=> {
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="max-w-5xl mx-auto p-4 md:p-6">
+      <div className="max-w-7xl mx-auto p-4 md:p-6">
         <div className="space-y-6">
           {/* Header Section */}
           <Header profileData={mockProfileData} />

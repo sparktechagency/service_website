@@ -4,6 +4,7 @@ import { MapPin, Bookmark, BookmarkCheck } from 'lucide-react';
 import { Nanny } from '@/types/candidate.type';
 import Image from 'next/image';
 import CandidateButton from '../ui/CandidateButton';
+import { useRouter } from 'next/navigation';
 
 interface NannyCardProps {
   nanny: Nanny;
@@ -12,6 +13,8 @@ interface NannyCardProps {
 }
 
 const CandidateCard: React.FC<NannyCardProps> = ({ nanny, viewMode, onToggleSave }) => {
+
+  const router = useRouter();
 
   
   if (viewMode === 'list') {
@@ -60,6 +63,7 @@ const CandidateCard: React.FC<NannyCardProps> = ({ nanny, viewMode, onToggleSave
         <CandidateButton
           variant="outline" 
           size="sm" 
+          onClick={()=>router.push(`/find-candidates/details/${nanny.id}`)}
           className={`hover:bg-yellow-500 text-gray-900 cursor-pointer`}
         >
           View Profile
@@ -106,6 +110,7 @@ const CandidateCard: React.FC<NannyCardProps> = ({ nanny, viewMode, onToggleSave
       <CandidateButton 
         variant="outline" 
         size="sm" 
+        onClick={()=>router.push(`/find-candidates/details/${nanny.id}`)}
         className={`w-full mt-2 hover:bg-yellow-500 text-gray-900 cursor-pointer`}
       >
         View Profile
