@@ -1,11 +1,11 @@
+"use client";
 import React, { useState, useMemo } from 'react';
-import Header from './components/layout/Header';
-import FilterSidebar from './components/layout/FilterSidebar';
-import NannyList from './components/nannies/NannyList';
-import Pagination from './components/ui/Pagination';
-import ViewControls from './components/ui/ViewControls';
-import { nannies as nannyData } from './data/nannies';
+import { nannies as nannyData } from '@/data/candidate.data';
 import { EducationLevel, ExperienceRange, Nanny, ViewMode } from '@/types/candidate.type';
+import CandidateList from '@/components/candidates/CandidateList';
+import Pagination from '@/components/ui/Pagination';
+import ViewControls from '@/components/ui/ViewControls';
+import FilterSidebar from '@/components/ui/FilterSidebar';
 
 const FindCandidatePage = () =>{
   // Filters
@@ -67,10 +67,10 @@ const FindCandidatePage = () =>{
   
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header />
+      {/* <Header /> */}
       
-      <main className="container mx-auto px-4 py-8">
-        <h1 className="text-2xl font-bold text-gray-900 mb-6">Find Your Perfect Nanny</h1>
+      <main className="max-w-7xl mx-auto px-4 py-8">
+        <h1 className="text-2xl font-bold text-gray-900 mb-6">Find The Perfect candidates</h1>
         
         <div className="flex flex-col md:flex-row gap-6">
           {/* Sidebar with filters */}
@@ -87,11 +87,11 @@ const FindCandidatePage = () =>{
           
           {/* Main content with nanny listings */}
           <div className="flex-1">
-            <div className="mb-4 flex items-center justify-between">
+            {/* <div className="mb-4 flex items-center justify-between">
               <p className="text-gray-700">
-                <span className="font-medium">{filteredNannies.length}</span> nannies found
+                <span className="font-medium">{filteredNannies.length}</span> Candidates Found
               </p>
-            </div>
+            </div> */}
             
             <ViewControls 
               viewMode={viewMode}
@@ -100,7 +100,7 @@ const FindCandidatePage = () =>{
               setItemsPerPage={setItemsPerPage}
             />
             
-            <NannyList 
+            <CandidateList
               nannies={paginatedNannies} 
               viewMode={viewMode}
               onToggleSave={handleToggleSave}
@@ -116,14 +116,6 @@ const FindCandidatePage = () =>{
           </div>
         </div>
       </main>
-      
-      <footer className="bg-white border-t border-gray-200 py-6 mt-12">
-        <div className="container mx-auto px-4">
-          <p className="text-center text-gray-500 text-sm">
-            &copy; {new Date().getFullYear()} NannyFinder. All rights reserved.
-          </p>
-        </div>
-      </footer>
     </div>
   );
 }
