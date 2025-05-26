@@ -51,7 +51,7 @@ const CandidatePersonalForm = () => {
                       htmlFor="title"
                       className="block text-sm font-medium text-gray-700 mb-2"
                     >
-                      Title/headline
+                      Current Job Title
                     </label>
                     <input
                       id="title"
@@ -122,8 +122,29 @@ const CandidatePersonalForm = () => {
                   </div>
                 </div>
               </div>
+              <div className="space-y-6 mt-8">
+      <SectionTitle 
+        title="Legal Information" 
+        subtitle="Please confirm the following" 
+      />
+      
+      <div className="space-y-4">
+        <FormCheckbox
+          label="I confirm that I have the Right to Work in the UK"
+          name="rightToWork"
+          checked={formData.rightToWork}
+          onChange={handleCheckboxChange}
+          required
+        />
+        
+        <p className="text-sm text-gray-500 mt-4">
+          By submitting this form, you confirm that the information provided is true and complete. 
+          We will process your data in accordance with our privacy policy.
+        </p>
+      </div>
+    </div>
 
-              <div className="mt-6">
+              {/* <div className="mt-6">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Personal Website
                 </label>
@@ -136,7 +157,7 @@ const CandidatePersonalForm = () => {
                     placeholder="Website url..."
                   />
                 </div>
-              </div>
+              </div> */}
               <WorkExperienceForm/>
 
               <div className="mt-6">

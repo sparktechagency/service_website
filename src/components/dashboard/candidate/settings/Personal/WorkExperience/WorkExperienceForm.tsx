@@ -102,7 +102,7 @@ const WorkExperienceForm = () =>{
   return (
     <div className="space-y-6 py-4">
       <div className="flex items-center justify-between">
-        <h2 className="text-xl font-semibold">Work Experience</h2>
+        <h2 className="text-xl font-semibold">Previous Work Experience</h2>
       </div>
 
       {/* List of experiences */}
