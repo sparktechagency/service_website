@@ -127,7 +127,7 @@ export default function Navbar() {
             </span>
           </button>
 
-          <div className="flex items-center gap-2 cursor-pointer">
+          <div onClick={() => router.push("/dashboard/candidate/settings")} className="flex items-center gap-2 cursor-pointer">
             <div className="h-8 w-8 rounded-full">
               <Image
                 src="/images/avatar.png"
