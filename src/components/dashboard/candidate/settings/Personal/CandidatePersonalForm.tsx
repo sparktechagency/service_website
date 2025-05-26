@@ -1,9 +1,19 @@
 "use client";
-import { LinkIcon, Upload } from "lucide-react"
+import { Upload } from "lucide-react"
 import CVForm from "./CVForm";
 import WorkExperienceForm from "./WorkExperience/WorkExperienceForm";
+import SectionTitle from "@/components/ui/SectionTitle";
+import React from "react";
 
 const CandidatePersonalForm = () => {
+  //const [checked, setChecked] = useState(false);
+
+  //const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //const { name,checked } = e.target;
+    // setFormData(prev => ({ ...prev, [name]: checked }));
+    //setChecked(!checked);
+  //};
+  
   return (
     <>
       
@@ -129,13 +139,22 @@ const CandidatePersonalForm = () => {
       />
       
       <div className="space-y-4">
-        <FormCheckbox
-          label="I confirm that I have the Right to Work in the UK"
-          name="rightToWork"
-          checked={formData.rightToWork}
-          onChange={handleCheckboxChange}
+        <div className="flex items-start">
+      <div className="flex items-center h-5">
+        <input
+          type="checkbox"
+          //checked={checked}
+          //onChange
           required
+          className="w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
         />
+      </div>
+      <div className="ml-3 text-sm">
+        <label htmlFor="right" className="font-medium text-gray-700">
+          I confirm that I have the Right to Work in the U <span className="text-red-500 ml-1">*</span>
+        </label>
+      </div>
+    </div>
         
         <p className="text-sm text-gray-500 mt-4">
           By submitting this form, you confirm that the information provided is true and complete. 

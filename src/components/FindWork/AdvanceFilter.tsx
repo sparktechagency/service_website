@@ -1,42 +1,41 @@
 "use client"
 
-import { useState } from "react"
 
 const AdvancedFilter = () => {
-  const [isOpen, setIsOpen] = useState(false)
-  const [filters, setFilters] = useState({
-    experience: "4-6 Years",
-    salary: "$6000 - $8000",
-    jobType: ["Full Time"],
-    education: ["Graduation"],
-    category: ["Water Supply"],
-  })
+  //const [isOpen, setIsOpen] = useState(false)
+  // const [filters, setFilters] = useState({
+  //   experience: "4-6 Years",
+  //   salary: "$6000 - $8000",
+  //   jobType: ["Full Time"],
+  //   education: ["Graduation"],
+  //   category: ["Water Supply"],
+  // })
 
-  const toggleFilter = () => setIsOpen(!isOpen)
+  //const toggleFilter = () => setIsOpen(!isOpen)
 
-  const handleExperienceChange = (value: string) => {
-    setFilters({ ...filters, experience: value })
-  }
+  // const handleExperienceChange = (value: string) => {
+  //   setFilters({ ...filters, experience: value })
+  // }
 
-  const handleSalaryChange = (value: string) => {
-    setFilters({ ...filters, salary: value })
-  }
+  // const handleSalaryChange = (value: string) => {
+  //   setFilters({ ...filters, salary: value })
+  // }
 
-  const handleCheckboxChange = (category: "jobType" | "education" | "category", value: string) => {
-    const currentValues = [...filters[category]]
+  // const handleCheckboxChange = (category: "jobType" | "education" | "category", value: string) => {
+  //   const currentValues = [...filters[category]]
 
-    if (currentValues.includes(value)) {
-      setFilters({
-        ...filters,
-        [category]: currentValues.filter((item) => item !== value),
-      })
-    } else {
-      setFilters({
-        ...filters,
-        [category]: [...currentValues, value],
-      })
-    }
-  }
+  //   if (currentValues.includes(value)) {
+  //     setFilters({
+  //       ...filters,
+  //       [category]: currentValues.filter((item) => item !== value),
+  //     })
+  //   } else {
+  //     setFilters({
+  //       ...filters,
+  //       [category]: [...currentValues, value],
+  //     })
+  //   }
+  // }
 
   return (
     <div className="w-full">
@@ -66,7 +65,7 @@ const AdvancedFilter = () => {
           />
         </div>
 
-        <div className="relative flex-1">
+        {/* <div className="relative flex-1">
           <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
             <svg
               className="w-4 h-4 text-gray-500"
@@ -110,10 +109,10 @@ const AdvancedFilter = () => {
             <option>Education</option>
             <option>Finance</option>
           </select>
-        </div>
+        </div> */}
 
         <div className="flex flex-col sm:flex-row gap-2">
-          <button
+          {/* <button
             onClick={toggleFilter}
             className="flex items-center justify-center gap-2 px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none"
           >
@@ -127,7 +126,7 @@ const AdvancedFilter = () => {
             >
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
             </svg>
-          </button>
+          </button> */}
 
           <button className="px-4 py-2 text-white bg-secondary cursor-pointer rounded-md focus:outline-none">
             Find Job
@@ -136,10 +135,14 @@ const AdvancedFilter = () => {
       </div>
 
       {/* Advanced Filter Section */}
-      {isOpen && (
+      {
+        
+      }
+
+
+      {/*isOpen && (
         <div className="mt-4 bg-white rounded-lg shadow-sm p-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
-            {/* Experience */}
             <div>
               <h3 className="font-medium mb-3">Experience</h3>
               <div className="space-y-2">
@@ -166,8 +169,6 @@ const AdvancedFilter = () => {
                 ))}
               </div>
             </div>
-
-            {/* Salary */}
             <div>
               <h3 className="font-medium mb-3">Salary</h3>
               <div className="space-y-2">
@@ -194,8 +195,6 @@ const AdvancedFilter = () => {
                 ))}
               </div>
             </div>
-
-            {/* Job Type */}
             <div>
               <h3 className="font-medium mb-3">Job Type</h3>
               <div className="space-y-2">
@@ -214,8 +213,6 @@ const AdvancedFilter = () => {
                 )}
               </div>
             </div>
-
-            {/* Education */}
             <div>
               <h3 className="font-medium mb-3">Education</h3>
               <div className="space-y-2">
@@ -235,7 +232,6 @@ const AdvancedFilter = () => {
               </div>
             </div>
 
-            {/* Category */}
             <div>
               <h3 className="font-medium mb-3">Category</h3>
               <div className="space-y-2">
@@ -256,7 +252,7 @@ const AdvancedFilter = () => {
             </div>
           </div>
         </div>
-      )}
+      )*/}
     </div>
   )
 }
