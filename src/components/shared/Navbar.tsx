@@ -76,6 +76,14 @@ export default function Navbar() {
           >
             Employer-Dashboard
           </Link>
+           {/* <Link
+            href="/dashboard/employer/subscription"
+            className={`hover:text-secondary ${
+              pathname === "/dashboard/employer/subscription" ? "text-secondary" : "text-white"
+            }`}
+          >
+            Subscription
+          </Link> */}
           <Link
             href="/blog-list"
             className={`hover:text-secondary ${

@@ -8,7 +8,7 @@ const RegisterSection = () => {
     {
       title: 'Become a Candidate',
       description:
-        'Cras in massa pellentesque, mollis ligula non, luctus dui. Morbi sed efficitur dolor. Pelque augue risus, aliqu.',
+       " Start your job search today! Create a profile, explore job opportunities, and connect with top employers. Let us help you find the right fit for your skills and goals.",
       bg: 'bg-gray-200',
       text: 'text-gray-900',
       buttonBg: 'bg-white',
@@ -17,7 +17,7 @@ const RegisterSection = () => {
     {
       title: 'Become a Employer',
       description:
-        'Cras in massa pellentesque, mollis ligula non, luctus dui. Morbi sed efficitur dolor. Pelque augue risus, aliqu.',
+        'Find the perfect candidates for your team. Post job listings, review applications, and connect with skilled professionals ready to contribute to your business success.',
       bg: 'bg-primary',
       text: 'text-white',
       buttonBg: 'bg-white',

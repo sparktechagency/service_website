@@ -68,7 +68,7 @@ const Trending = () => {
           </h2>
           <p className="md:text-lg text-gray-800 mb-12 text-justify">
             Explore the career opportunities that are booming right now. From
-            technology and engineering to healthcare and skilled trades — these
+            technology and engineering to skilled trades — these
             fields offer exciting roles, excellent growth, and bright
             futures.Whether youre just starting your journey or looking for a
             fresh start, discover industries that are shaping tomorrows world.

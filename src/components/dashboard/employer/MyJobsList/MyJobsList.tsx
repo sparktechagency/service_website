@@ -150,7 +150,7 @@ const MyJobsList = () => {
                     <div className="text-gray-500 flex flex-col sm:flex-row sm:items-center mt-1">
                       <span className="text-xs sm:text-sm">{job.type}</span>
                       <span className="hidden sm:inline mx-2">•</span>
-                      <span className="underline text-blue-400 cursor-pointer hover:text-blue-600">view more</span>
+                      <span onClick={()=>router.push(`/job-details/${job.id}`)} className="underline text-blue-400 cursor-pointer hover:text-blue-600">view details</span>
                       {/* <span className="flex items-center text-xs sm:text-sm mt-1 sm:mt-0">
                         {job.status === "Active" ? (
                           <Clock className="h-3 w-3 text-gray-400 mr-1" />
@@ -199,7 +199,7 @@ const MyJobsList = () => {
                     >
                       View Applications
                     </button> */}
-                      <SquarePen onClick={() => router.push(`/dashboard/employer/edit-job/${job.id}`)} className="h-3 sm:h-4 w-3 sm:w-4 mr-1 text-green-500 cursor-pointer" /> 
+                     <SquarePen onClick={() => router.push(`/dashboard/employer/edit-job/${job.id}`)} className="h-3 sm:h-4 w-3 sm:w-4 mr-1 text-green-500 cursor-pointer" /> 
                      <DeleteJobModal/>
                   </div>
                 </div>

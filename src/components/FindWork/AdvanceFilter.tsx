@@ -60,7 +60,7 @@ const AdvancedFilter = () => {
           </div>
           <input
             type="text"
-            placeholder="Job title, Keyword..."
+            placeholder="search by title, location..."
             className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 focus:ring-blue-500"
           />
         </div>
@@ -88,6 +88,40 @@ const AdvancedFilter = () => {
             placeholder="Location"
             className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 focus:ring-blue-500"
           />
+        </div> */}
+
+        <div className="relative flex-1">
+          <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+            <svg
+              className="w-4 h-4 text-gray-500"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+          </div>
+          <select className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 focus:ring-blue-500 appearance-none text-gray-600">
+            <option>Select Category</option>
+            <option>Production & Operations</option>
+            <option>Quality Control & Assurance</option>
+            <option>Maintenance & Repair</option>
+            <option>Supply Chain & Logistics</option>
+            <option>Health & Safety</option>
+            <option>Packaging & Finishing</option>
+            <option>Mechanical Engineering</option>
+            <option>Electrical Engineering</option>
+            <option>Civil & Structural Engineering</option>
+            <option>Industrial & Manufacturing Engineering</option>
+            <option>Automation & Robotics</option>
+            <option>Project & Design Engineering</option>
+          </select>
         </div>
 
         <div className="relative flex-1">
@@ -99,17 +133,23 @@ const AdvancedFilter = () => {
               viewBox="0 0 24 24"
               stroke="currentColor"
             >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M19 9l-7 7-7-7"
+              />
             </svg>
           </div>
-          <select className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 focus:ring-blue-500 appearance-none">
-            <option>Select Category</option>
-            <option>Technology</option>
-            <option>Healthcare</option>
-            <option>Education</option>
-            <option>Finance</option>
+          <select className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 focus:ring-blue-500 appearance-none text-gray-600">
+            <option>Select Type</option>
+            <option>Part Time</option>
+            <option>Full Time</option>
+            <option>Internship</option>
+            <option>Remote</option>
+            <option>Temporary</option>
           </select>
-        </div> */}
+        </div>
 
         <div className="flex flex-col sm:flex-row gap-2">
           {/* <button
@@ -135,10 +175,7 @@ const AdvancedFilter = () => {
       </div>
 
       {/* Advanced Filter Section */}
-      {
-        
-      }
-
+      {}
 
       {/*isOpen && (
         <div className="mt-4 bg-white rounded-lg shadow-sm p-4">
@@ -254,7 +291,7 @@ const AdvancedFilter = () => {
         </div>
       )*/}
     </div>
-  )
+  );
 }
 
 export default AdvancedFilter

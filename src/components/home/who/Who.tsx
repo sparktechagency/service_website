@@ -7,7 +7,7 @@ const Who = () => {
           Who we are & What we do
           </h2>
           <p className="md:text-lg text-gray-800 mb-12 text-justify">
-          Tradieez is a modern recruitment platform designed exclusively for the manufacturing and engineering industries. We are passionate about making the hiring process smarter, faster, and more transparent. By cutting out traditional recruiters, we empower employers and candidates to connect directly and efficiently. At MachMakers, we believe that opportunity should be based on skills, not just resumes, and that hiring should be simple and honest.
+          Matchmaker is a modern recruitment platform designed exclusively for the manufacturing and engineering industries. We are passionate about making the hiring process smarter, faster, and more transparent. By cutting out traditional recruiters, we empower employers and candidates to connect directly and efficiently. At MachMakers, we believe that opportunity should be based on skills, not just resumes, and that hiring should be simple and honest.
           </p>
         </div>
       </section>

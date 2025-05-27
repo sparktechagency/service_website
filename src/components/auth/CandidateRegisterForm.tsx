@@ -3,16 +3,15 @@
 import { useState } from "react";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
-
 const CandidateRegisterForm = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState<boolean>(false);
-
+  const [showConfirmPassword, setShowConfirmPassword] =
+    useState<boolean>(false);
 
   return (
     <>
       <form className="space-y-4">
-      <div>
+        <div>
           <label
             htmlFor="name"
             className="block text-sm font-medium text-gray-700"
@@ -40,7 +39,7 @@ const CandidateRegisterForm = () => {
             placeholder="enter your email here"
           />
         </div>
-         <div>
+        <div>
           <label
             htmlFor="phone"
             className="block text-sm font-medium text-gray-700"
@@ -54,25 +53,25 @@ const CandidateRegisterForm = () => {
             placeholder="enter your phone number"
           />
         </div>
-         <div className="space-y-4">
-        <div className="flex items-start">
-      <div className="flex items-center h-5">
-        <input
-          type="checkbox"
-          //checked={checked}
-          //onChange
-          required
-          className="w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-        />
-      </div>
-      <div className="ml-3 text-sm">
-        <label htmlFor="right" className="font-medium text-gray-700">
-          I confirm that I have the Right to Work in the UK <span className="text-red-500 ml-1">*</span>
-        </label>
-      </div>
-    </div>
-        
-      </div>
+        <div className="space-y-4">
+          <div className="flex items-start">
+            <div className="flex items-center h-5">
+              <input
+                type="checkbox"
+                //checked={checked}
+                //onChange
+                required
+                className="w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+              />
+            </div>
+            <div className="ml-3 text-sm">
+              <label htmlFor="right" className="font-medium text-gray-700">
+                I confirm that I have the Right to Work in the UK{" "}
+                <span className="text-red-500 ml-1">*</span>
+              </label>
+            </div>
+          </div>
+        </div>
 
         <div>
           <label
@@ -90,7 +89,7 @@ const CandidateRegisterForm = () => {
             />
             <span
               className="absolute inset-y-0 right-3 flex items-center text-xl text-gray-500 cursor-pointer"
-              onClick={()=> setShowPassword((prev) => !prev)}
+              onClick={() => setShowPassword((prev) => !prev)}
             >
               {showPassword ? <AiFillEyeInvisible /> : <AiFillEye />}
             </span>
@@ -101,7 +100,7 @@ const CandidateRegisterForm = () => {
             htmlFor="confirmPass"
             className="block text-sm font-medium text-gray-700"
           >
-           Confirm Password
+            Confirm Password
           </label>
           <div className="relative">
             <input
@@ -112,7 +111,7 @@ const CandidateRegisterForm = () => {
             />
             <span
               className="absolute inset-y-0 right-3 flex items-center text-xl text-gray-500 cursor-pointer"
-              onClick={()=> setShowConfirmPassword((prev) => !prev)}
+              onClick={() => setShowConfirmPassword((prev) => !prev)}
             >
               {showConfirmPassword ? <AiFillEyeInvisible /> : <AiFillEye />}
             </span>
