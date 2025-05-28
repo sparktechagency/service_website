@@ -1,6 +1,6 @@
 "use client"
 
-import BlogDetail from "@/components/blog/BlogDetail";
+import BlogDetail from "@/components/blogDetail/BlogDetail";
 import { blogPost } from "@/data/blog.data";
 
 const BlogDetailsPage = () => {

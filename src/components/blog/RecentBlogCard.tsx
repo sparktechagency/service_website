@@ -1,7 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
-import { Clock, Eye } from 'lucide-react';
+import { Eye } from 'lucide-react';
 import { IRecentBlog } from '@/types/blog.type';
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface BlogCardProps {
   blog: IRecentBlog;
@@ -56,12 +58,12 @@ const RecentBlogCard : React.FC<BlogCardProps> = ({ blog }) => {
           <div className="text-sm text-gray-500">
             <span className="font-medium text-gray-700">{author}</span> • {date}
           </div>
-          <a 
-            href={`/blog/${blog.id}`} 
+          <Link
+            href={`/blog-list/details/${blog.id}`} 
             className="text-blue-800 font-medium text-sm hover:text-blue-600 transition-colors"
           >
             Read more
-          </a>
+          </Link>
         </div>
       </div>
     </article>

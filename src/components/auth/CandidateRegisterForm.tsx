@@ -44,7 +44,7 @@ const CandidateRegisterForm = () => {
             htmlFor="phone"
             className="block text-sm font-medium text-gray-700"
           >
-            Phone Number(only USA)
+            Phone Number(only UK)
           </label>
           <input
             type="text"
@@ -53,26 +53,21 @@ const CandidateRegisterForm = () => {
             placeholder="enter your phone number"
           />
         </div>
-        <div className="space-y-4">
-          <div className="flex items-start">
-            <div className="flex items-center h-5">
-              <input
-                type="checkbox"
-                //checked={checked}
-                //onChange
-                required
-                className="w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-              />
-            </div>
-            <div className="ml-3 text-sm">
-              <label htmlFor="right" className="font-medium text-gray-700">
-                I confirm that I have the Right to Work in the UK{" "}
-                <span className="text-red-500 ml-1">*</span>
-              </label>
-            </div>
-          </div>
+        <div>
+          <label
+            htmlFor="phone"
+            className="block text-sm font-medium text-gray-700"
+          >
+            Phone Number(only UK)
+          </label>
+          <input
+            type="text"
+            id="phone"
+            className="mt-1 block w-full border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 focus:ring-blue-500 px-4 py-2"
+            placeholder="enter your phone number"
+          />
         </div>
-
+      
         <div>
           <label
             htmlFor="password"
@@ -115,6 +110,24 @@ const CandidateRegisterForm = () => {
             >
               {showConfirmPassword ? <AiFillEyeInvisible /> : <AiFillEye />}
             </span>
+          </div>
+        </div>
+           <div className="space-y-4">
+          <div className="flex items-start">
+            <div className="flex items-center h-5">
+              <input
+                type="checkbox"
+                //checked={checked}
+                //onChange
+                required
+                className="w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+              />
+            </div>
+            <div className="ml-3 text-sm">
+              <label htmlFor="right" className="font-medium text-gray-700">
+                I confirm that I have the Right to Work in the UK{" "}
+              </label>
+            </div>
           </div>
         </div>
 

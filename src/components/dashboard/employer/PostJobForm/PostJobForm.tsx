@@ -41,18 +41,35 @@ const PostJobForm = () => {
   const typeOptions = [
     "Full-time",
     "Part-time",
-    "Contract",
-    "Freelance",
-    "Internship",
+    "Fixed-Term / Contract",
+    "Temporary",
+    "Apprenticeship",
+    "Graduate / Entry-Level",
+    "Remote / Hybrid",
   ];
 
-  const categoryOptions = ["Water Supply", "Plumbing", "Day Labor"];
   const educationOptions = [
-    "High School",
-    "Bachelor's",
-    "Master's",
-    "PhD",
+    "GCSE or equivalent",
+    "Apprenticeship",
+    "HNC/HND",
+    "Degree",
     "Other",
+  ];
+
+  const experienceOptions = [
+    "Entry Level",
+    "1-2 years",
+    "2-4 years",
+    "5-6 years",
+    "10+ years",
+  ];
+
+  const patternOptions = [
+    "Day Shift",
+    "Evening Shift",
+    "Days",
+    "Hours",
+    "Flexibility",
   ];
 
   return (
@@ -72,7 +89,7 @@ const PostJobForm = () => {
                 type="text"
                 value={expirationDate}
                 onChange={(e) => setExpirationDate(e.target.value)}
-                placeholder="enter job title"
+                placeholder="e.g. CNC Machinist, Maintenance Engineer"
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 focus:ring-blue-500"
               />
             </div>
@@ -83,7 +100,7 @@ const PostJobForm = () => {
                   Type
                 </label>
                 <div className="relative">
-                  <select className="w-full px-3 py-2 border border-gray-300 rounded-md appearance-none focus:outline-none focus:border-blue-500 focus:ring-blue-500">
+                  <select className="w-full px-3 py-2 border border-gray-300 text-gray-700 rounded-md appearance-none focus:outline-none focus:border-blue-500 focus:ring-blue-500">
                     <option value="">Select type</option>
                     {typeOptions.map((option) => (
                       <option key={option} value={option}>
@@ -113,13 +130,26 @@ const PostJobForm = () => {
                   Category
                 </label>
                 <div className="relative">
-                  <select className="w-full px-3 py-2 border border-gray-300 rounded-md appearance-none focus:outline-none focus:border-blue-500 focus:ring-blue-500">
+                  <select className="w-full px-3 py-2 border border-gray-300 text-gray-700 rounded-md appearance-none focus:outline-none focus:border-blue-500 focus:ring-blue-500">
                     <option value="">Select Category</option>
-                    {categoryOptions?.map((option) => (
+                    {/* {categoryOptions?.map((option) => (
                       <option key={option} value={option}>
                         {option}
                       </option>
-                    ))}
+                    ))} */}
+                    <option>Select Category</option>
+                    <option>Production & Operations</option>
+                    <option>Quality Control & Assurance</option>
+                    <option>Maintenance & Repair</option>
+                    <option>Supply Chain & Logistics</option>
+                    <option>Health & Safety</option>
+                    <option>Packaging & Finishing</option>
+                    <option>Mechanical Engineering</option>
+                    <option>Electrical Engineering</option>
+                    <option>Civil & Structural Engineering</option>
+                    <option>Industrial & Manufacturing Engineering</option>
+                    <option>Automation & Robotics</option>
+                    <option>Project & Design Engineering</option>
                   </select>
                   <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
                     <svg
@@ -170,15 +200,114 @@ const PostJobForm = () => {
               <h2 className="text-lg font-medium text-gray-800 mb-4">
                 Advance Information
               </h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="col-span-3 grid grid-cols-1 lg:grid-cols-2 gap-4">
+                  <div className="mb-4">
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Education
+                    </label>
+                    <div className="relative">
+                      <select className="w-full px-3 py-2 border border-gray-300 text-gray-700 rounded-md appearance-none focus:outline-none focus:border-blue-500 focus:ring-blue-500">
+                        <option value="">Select Category</option>
+                        {educationOptions?.map((option) => (
+                          <option key={option} value={option}>
+                            {option}
+                          </option>
+                        ))}
+                      </select>
+                      <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                        <svg
+                          className="h-4 w-4 text-gray-400"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M19 9l-7 7-7-7"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mb-4">
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Exprience
+                    </label>
+                    <div className="relative">
+                      <select className="w-full px-3 py-2 border border-gray-300 text-gray-700 rounded-md appearance-none focus:outline-none focus:border-blue-500 focus:ring-blue-500">
+                        <option value="">Select experience</option>
+                        {experienceOptions.map((option) => (
+                          <option key={option} value={option}>
+                            {option}
+                          </option>
+                        ))}
+                      </select>
+                      <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                        <svg
+                          className="h-4 w-4 text-gray-400"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M19 9l-7 7-7-7"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="mb-4 col-span-3">
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Skills (technical or soft skills, Comma Separated)
+                  </label>
+                  <textarea
+                    placeholder="e.g. CNC Programming, TIG Welding"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 focus:ring-blue-500"
+                  ></textarea>
+                </div>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                 <div className="mb-4">
                   <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Education
+                    Vacancies
+                  </label>
+                  <input
+                    type="number"
+                    value={expirationDate}
+                    onChange={(e) => setExpirationDate(e.target.value)}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 focus:ring-blue-500"
+                  />
+                </div>
+                <div className="mb-4">
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Expiration Date
+                  </label>
+                  <input
+                    type="date"
+                    value={expirationDate}
+                    onChange={(e) => setExpirationDate(e.target.value)}
+                    placeholder="DD/MM/YYYY"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 focus:ring-blue-500"
+                  />
+                </div>
+              </div>
+              <div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="mb-4">
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Job Pattern
                   </label>
                   <div className="relative">
-                    <select className="w-full px-3 py-2 border border-gray-300 rounded-md appearance-none focus:outline-none focus:border-blue-500 focus:ring-blue-500">
-                      <option value="">Select Category</option>
-                      {educationOptions?.map((option) => (
+                    <select className="w-full px-3 py-2 border border-gray-300 text-gray-700 rounded-md appearance-none focus:outline-none focus:border-blue-500 focus:ring-blue-500">
+                      <option value="">Select pattern</option>
+                      {patternOptions.map((option) => (
                         <option key={option} value={option}>
                           {option}
                         </option>
@@ -201,56 +330,7 @@ const PostJobForm = () => {
                     </div>
                   </div>
                 </div>
-                <div className="mb-4">
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                   Experience
-                  </label>
-                  <input
-                    type="text"
-                    value={expirationDate}
-                    onChange={(e) => setSkill(e.target.value)}
-                    placeholder="enter address"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 focus:ring-blue-500"
-                  />
-                </div>
-                <div className="mb-4">
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                   Skills
-                  </label>
-                  <input
-                    type="text"
-                    value={expirationDate}
-                    onChange={(e) => setSkill(e.target.value)}
-                    placeholder="enter address"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 focus:ring-blue-500"
-                  />
-                </div>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
-                <div className="mb-4">
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Vacancies
-                  </label>
-                  <input
-                    type="number"
-                    value={expirationDate}
-                    onChange={(e) => setExpirationDate(e.target.value)}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 focus:ring-blue-500"
-                  />
-                </div>
-                <div className="mb-4">
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Expiration Date
-                  </label>
-                  <input
-                    type="text"
-                    value={expirationDate}
-                    onChange={(e) => setExpirationDate(e.target.value)}
-                    placeholder="DD/MM/YYYY"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 focus:ring-blue-500"
-                  />
-                </div>
-                <div className="mb-4">
+                 <div className="mb-4">
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Address
                   </label>
@@ -261,6 +341,7 @@ const PostJobForm = () => {
                     placeholder="enter address"
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 focus:ring-blue-500"
                   />
+                </div>
                 </div>
               </div>
             </div>
@@ -276,24 +357,7 @@ const PostJobForm = () => {
                 <textarea
                   id="company-details"
                   rows={3}
-                  placeholder="write here..."
-                   className="w-full p-3 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500 focus:ring-blue-500"
-                ></textarea>
-              </div>
-            </div>
-
-            <div className="mb-6">
-              <label
-                htmlFor="company-details"
-                className="block text-sm font-medium mb-2"
-              >
-                Availabilities
-              </label>
-              <div className="">
-                <textarea
-                  id="company-details"
-                  rows={3}
-                  placeholder="write here..."
+                  placeholder="write a description about the job..."
                   className="w-full p-3 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500 focus:ring-blue-500"
                 ></textarea>
               </div>

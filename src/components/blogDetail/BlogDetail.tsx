@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import { BlogPost } from '../types/blog';
-import BlogHeader from './BlogHeader';
-import BlogContent from './BlogContent';
+// import Footer from './Footer';
+import { relatedPosts } from '@/data/blog.data';
 import RelatedPosts from './RelatedPosts';
-import Footer from './Footer';
-import { relatedPosts } from '../data/blogData';
+import BlogContent from './BlogContent';
+import BlogHeader from './BlogHeader';
+import { BlogPost } from '@/types/blog.type';
 
 interface BlogDetailProps {
   post: BlogPost;
@@ -67,7 +67,6 @@ const BlogDetail: React.FC<BlogDetailProps> = ({ post }) => {
       <RelatedPosts posts={relatedPosts} />
       
       {/* Footer */}
-      <Footer />
     </div>
   );
 };

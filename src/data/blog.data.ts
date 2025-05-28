@@ -1,4 +1,4 @@
-import { IBlog, IRecentBlog } from "@/types/blog.type";
+import { BlogPost, IBlog, IRecentBlog } from "@/types/blog.type";
 
 export const blogPosts: IBlog[] = [
     {
@@ -73,8 +73,8 @@ export const blogPosts: IBlog[] = [
   {
     id: 3,
     title: 'Sustainable Manufacturing: Jobs of the Future',
-    excerpt: 'Explore how the push for sustainability is creating new roles and opportunities in the manufacturing industry.',
-    category: 'Business & Hiring',
+    excerpt: 'Explore how th"e push for sustainability is creating new roles and opportunities in the manufacturing industry.',
+    category: "Mindset & Growth",
     date: 'May 5, 2025',
     author: 'David Rodriguez',
     readTime: '10 min read',
@@ -149,14 +149,14 @@ export const relatedPosts = [
     id: 2,
     title: 'How AI is Transforming Quality Control in Manufacturing',
     excerpt: 'Explore how artificial intelligence is revolutionizing quality assurance processes.',
-    category: 'Technology',
+    category: 'Industry Insights',
     imageUrl: 'https://images.pexels.com/photos/1108101/pexels-photo-1108101.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
   },
   {
     id: 3,
     title: 'Sustainable Materials in Modern Manufacturing',
     excerpt: 'A deep dive into eco-friendly materials that are changing production processes.',
-    category: 'Sustainability',
+    category: 'Career & Skills',
     imageUrl: 'https://images.pexels.com/photos/2233416/pexels-photo-2233416.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
   },
   {
