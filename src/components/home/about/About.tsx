@@ -1,4 +1,4 @@
-const Who = () => {
+const About = () => {
   return (
     <>
       <section className="py-16 px-4">
@@ -21,7 +21,7 @@ const Who = () => {
 
             <p className="md:text-lg text-gray-600 text-justify">
               We built MachMakers because we understand the pressures on both
-              sides. Whether you're growing your team or stepping into a new
+              sides. Whether you&rsquo;re growing your team or stepping into a new
               role, the hiring process shouldn’t be a barrier; it should be a
               bridge.
             </p>
@@ -122,4 +122,4 @@ const Who = () => {
   );
 };
 
-export default Who;
+export default About;

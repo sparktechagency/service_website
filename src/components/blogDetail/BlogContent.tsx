@@ -88,7 +88,7 @@ const BlogContent: React.FC<BlogContentProps> = ({ post }) => {
               <p>
                 Skills in statistical analysis, machine learning, and data
                 visualization are increasingly becoming core requirements rather
-                than "nice-to-haves."
+                than nice-to-haves
               </p>
               <h2 id="skill-5">5. Additive Manufacturing Knowledge</h2>
               <p>

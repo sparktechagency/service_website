@@ -1,6 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
+import { Map } from "lucide-react";
+import dynamic from "next/dynamic";
 import { useState } from "react";
 
 const PostJobForm = () => {
@@ -17,6 +20,20 @@ const PostJobForm = () => {
   const [location, setLocation] = useState("");
   const [description, setDescription] = useState("");
   const [responsibilities, setResponsibilities] = useState("");
+  const [selectedLocation, setSelectedLocation] = useState();
+
+   const MapComponent = dynamic(() => import('@/components/Location/LocationMap'), {
+    ssr: false, // This is critical - it prevents the component from loading during SSR
+    loading: () => (
+      <div className="h-full flex items-center justify-center bg-gray-100 rounded-lg">
+        <div className="text-center">
+          <Map size={32} className="mx-auto text-blue-500 animate-pulse" />
+          <p className="mt-2 text-gray-600 text-sm">Loading map...</p>
+        </div>
+      </div>
+    ),
+  });
+
 
   // const handleSubmit = (e: { preventDefault: () => void; }) => {
   //   e.preventDefault();
@@ -71,6 +88,20 @@ const PostJobForm = () => {
     "Hours",
     "Flexibility",
   ];
+
+  const rateOptions = [
+    "Per Hour",
+    "Per Day",
+    "Per Year"
+  ];
+
+
+    // Handle location selection from map
+    const handleLocationSelect = (location: any) => {
+      setSelectedLocation(location);
+      // setValue('latitude', location[0].toFixed(6));
+      // setValue('longitude', location[1].toFixed(6));
+    };
 
   return (
     <>
@@ -170,32 +201,6 @@ const PostJobForm = () => {
               </div>
             </div>
 
-            {/* salary */}
-            <div className="mt-6 mb-4">
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Salary <span className="text-gray-500 text-xs">(Optional)</span>
-              </label>
-              <div className="flex">
-                <input
-                  type="text"
-                  value={salary}
-                  onChange={(e) => setSalary(e.target.value)}
-                  placeholder="Minimum salary..."
-                  className="w-full px-3 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:border-blue-500 focus:ring-blue-500"
-                />
-                <select
-                  value={currency}
-                  onChange={(e) => setCurrency(e.target.value)}
-                  className="w-24 px-3 py-2 border border-l-0 border-gray-300 rounded-r-md bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                >
-                  <option value="USD">USD</option>
-                  <option value="EUR">EUR</option>
-                  <option value="GBP">GBP</option>
-                  <option value="JPY">JPY</option>
-                </select>
-              </div>
-            </div>
-
             <div className="mt-8 mb-4">
               <h2 className="text-lg font-medium text-gray-800 mb-4">
                 Advance Information
@@ -273,6 +278,51 @@ const PostJobForm = () => {
                   ></textarea>
                 </div>
               </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                     <div className="mb-4">
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Salary(Optional)
+                    </label>
+                    <input
+                      type="number"
+                      value={salary}
+                      onChange={(e) => setSalary(e.target.value)}
+                      placeholder="e.g. 400"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 focus:ring-blue-500"
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Rate
+                    </label>
+                    <div className="relative">
+                      <select disabled={!salary} className="w-full px-3 py-2 border border-gray-300 text-gray-700 rounded-md disabled:bg-gray-400 appearance-none focus:outline-none focus:border-blue-500 focus:ring-blue-500">
+                        <option value="">Select rate</option>
+                        {rateOptions.map((option) => (
+                          <option key={option} value={option}>
+                            {option}
+                          </option>
+                        ))}
+                      </select>
+                      <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                        <svg
+                          className="h-4 w-4 text-gray-400"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M19 9l-7 7-7-7"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                 
+                </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                 <div className="mb-4">
                   <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -301,49 +351,59 @@ const PostJobForm = () => {
               <div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="mb-4">
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Job Pattern
-                  </label>
-                  <div className="relative">
-                    <select className="w-full px-3 py-2 border border-gray-300 text-gray-700 rounded-md appearance-none focus:outline-none focus:border-blue-500 focus:ring-blue-500">
-                      <option value="">Select pattern</option>
-                      {patternOptions.map((option) => (
-                        <option key={option} value={option}>
-                          {option}
-                        </option>
-                      ))}
-                    </select>
-                    <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
-                      <svg
-                        className="h-4 w-4 text-gray-400"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M19 9l-7 7-7-7"
-                        />
-                      </svg>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Job Pattern
+                    </label>
+                    <div className="relative">
+                      <select className="w-full px-3 py-2 border border-gray-300 text-gray-700 rounded-md appearance-none focus:outline-none focus:border-blue-500 focus:ring-blue-500">
+                        <option value="">Select pattern</option>
+                        {patternOptions.map((option) => (
+                          <option key={option} value={option}>
+                            {option}
+                          </option>
+                        ))}
+                      </select>
+                      <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                        <svg
+                          className="h-4 w-4 text-gray-400"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M19 9l-7 7-7-7"
+                          />
+                        </svg>
+                      </div>
                     </div>
                   </div>
-                </div>
-                 <div className="mb-4">
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Address
-                  </label>
-                  <input
-                    type="text"
-                    value={expirationDate}
-                    onChange={(e) => setExpirationDate(e.target.value)}
-                    placeholder="enter address"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 focus:ring-blue-500"
-                  />
-                </div>
+                  <div className="mb-4">
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Address
+                    </label>
+                    <input
+                      type="text"
+                      value={expirationDate}
+                      onChange={(e) => setExpirationDate(e.target.value)}
+                      placeholder="enter address"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 focus:ring-blue-500"
+                    />
+                  </div>
                 </div>
               </div>
+            </div>
+            <div className="order-1 lg:order-2 h-[350px] lg:h-[500px] mb-6">
+              {/* <LocationMap
+                onLocationSelect={handleLocationSelect}
+                selectedLocation={selectedLocation}
+              /> */}
+              <MapComponent
+                onLocationSelect={handleLocationSelect}
+                selectedLocation={selectedLocation}
+              />
             </div>
 
             <div className="mb-6">

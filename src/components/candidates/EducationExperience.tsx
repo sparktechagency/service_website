@@ -16,7 +16,7 @@ const EducationExperience: React.FC<EducationExperienceProps> = ({ profileData }
           </div>
           <div>
             <p className="text-xs text-gray-500">EXPERIENCE</p>
-            <p className="text-sm font-medium text-gray-700">{profileData.experienceYears} Years</p>
+            <p className="text-sm font-medium text-gray-700">2-4 Years</p>
           </div>
         </div>
         

@@ -37,6 +37,16 @@ const AdvancedFilter = () => {
   //   }
   // }
 
+  const typeOptions = [
+    "Full-time",
+    "Part-time",
+    "Fixed-Term / Contract",
+    "Temporary",
+    "Apprenticeship",
+    "Graduate / Entry-Level",
+    "Remote / Hybrid",
+  ];
+
   return (
     <div className="w-full">
       {/* Search Bar */}
@@ -143,11 +153,11 @@ const AdvancedFilter = () => {
           </div>
           <select className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 focus:ring-blue-500 appearance-none text-gray-600">
             <option>Select Type</option>
-            <option>Part Time</option>
-            <option>Full Time</option>
-            <option>Internship</option>
-            <option>Remote</option>
-            <option>Temporary</option>
+             {typeOptions.map((option) => (
+                      <option key={option} value={option}>
+                        {option}
+                      </option>
+                    ))}
           </select>
         </div>
 
