@@ -1,3 +1,5 @@
+import RecentBlogCard from "@/components/blog/RecentBlogCard"
+import { recentBlogs } from "@/data/blog.data"
 
 const RecentBlogList = () => {
   return (
@@ -7,10 +9,12 @@ const RecentBlogList = () => {
           <h2 className="text-3xl font-semibold mb-6 text-gray-900">
            Recent Blogs
           </h2>
-           <div className="w-full md:w-3/4 space-y-6">
-          {blogPosts.map((post, index) => (
-            <BlogCard key={index} post={post} />
+           {/* <div className="w-full md:w-3/4 space-y-6"> */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {recentBlogs.map(blog => (
+            <RecentBlogCard key={blog.id} blog={blog} />
           ))}
+        {/* </div> */}
         </div>
         </div>
       </section>

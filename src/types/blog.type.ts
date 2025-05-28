@@ -6,3 +6,14 @@ export type IBlog = {
   image: string;
   excerpt: string;
 };
+
+export interface IRecentBlog {
+  id: number;
+  title: string;
+  excerpt: string;
+  category: string;
+  date: string;
+  author: string;
+  readTime: string;
+  imageUrl: string;
+}
