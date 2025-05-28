@@ -12,8 +12,8 @@ const HomePage = () => {
        {/* <StatsSection/> */}
        <RegisterSection/>
        <PopularCategories/>
+        <RecentBlogList/>
        <Who/>
-       <RecentBlogList/>
     </>
   )
 }

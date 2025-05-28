@@ -1,5 +1,5 @@
 import React from 'react';
-import { Clock } from 'lucide-react';
+import { Clock, Eye } from 'lucide-react';
 import { IRecentBlog } from '@/types/blog.type';
 import Image from 'next/image';
 
@@ -11,12 +11,12 @@ const RecentBlogCard : React.FC<BlogCardProps> = ({ blog }) => {
   const { title, excerpt, category, date, author, readTime, imageUrl } = blog;
   
   const getCategoryColor = (category: string) => {
-    switch(category.toLowerCase()) {
-      case 'manufacturing':
+    switch(category) {
+      case 'Industry Insights':
         return 'bg-blue-100 text-blue-800';
-      case 'engineering':
+      case 'Career & Skills':
         return 'bg-emerald-100 text-emerald-800';
-      case 'technology':
+      case 'Business & Hiring':
         return 'bg-purple-100 text-purple-800';
       default:
         return 'bg-gray-100 text-gray-800';
@@ -40,8 +40,8 @@ const RecentBlogCard : React.FC<BlogCardProps> = ({ blog }) => {
             {category}
           </span>
           <div className="flex items-center ml-3 text-gray-500 text-xs">
-            <Clock className="h-3 w-3 mr-1" />
-            <span>{readTime}</span>
+            <Eye className="h-3 w-3 mr-1" />
+            <span>{10}</span>
           </div>
         </div>
         <h3 className="text-xl font-bold mb-3 text-gray-900 line-clamp-2 hover:text-blue-800 transition-colors">

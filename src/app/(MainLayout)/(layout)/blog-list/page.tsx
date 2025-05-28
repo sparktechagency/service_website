@@ -3,7 +3,7 @@
 import { useState } from "react"
 import Image from "next/image"
 import BlogCard from "@/components/blog/BlogCard"
-import { IBlog } from "@/types/blog.type";
+import { blogPosts } from "@/data/blog.data";
 
 
 
