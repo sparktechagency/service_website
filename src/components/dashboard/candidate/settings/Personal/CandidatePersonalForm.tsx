@@ -2,7 +2,6 @@
 import { Upload } from "lucide-react";
 import CVForm from "./CVForm";
 import WorkExperienceForm from "./WorkExperience/WorkExperienceForm";
-import SectionTitle from "@/components/ui/SectionTitle";
 import React from "react";
 
 const CandidatePersonalForm = () => {
@@ -59,7 +58,7 @@ const CandidatePersonalForm = () => {
                   htmlFor="title"
                   className="block text-sm font-medium text-gray-700 mb-2"
                 >
-                  Current Job Title
+                  Job Seeking Title
                 </label>
                 <input
                   id="title"
@@ -159,7 +158,7 @@ const CandidatePersonalForm = () => {
               </div>
             </div>
           </div>
-          <div className="space-y-6 mt-8">
+          {/* <div className="space-y-6 mt-8">
             <SectionTitle
               title="Legal Information"
               subtitle="Please confirm the following"
@@ -190,7 +189,7 @@ const CandidatePersonalForm = () => {
                 accordance with our privacy policy.
               </p>
             </div>
-          </div>
+          </div> */}
 
           {/* <div className="mt-6">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
