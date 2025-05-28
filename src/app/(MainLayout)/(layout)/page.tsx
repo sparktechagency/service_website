@@ -1,19 +1,19 @@
 import HeroSection from "@/components/home/hero/HeroSection"
 import PopularCategories from "@/components/home/PopularCategory/PopularCategories"
+import RecentBlogList from "@/components/home/RecentBlogList/RecentBlogList"
 import RegisterSection from "@/components/home/register/RegisterSection"
-import StatsSection from "@/components/home/stats/StatsSection"
-import Trending from "@/components/home/trending/Trending"
+//import StatsSection from "@/components/home/stats/StatsSection"
 import Who from "@/components/home/who/Who"
 
 const HomePage = () => {
   return (
     <>
        <HeroSection/>
-       <StatsSection/>
+       {/* <StatsSection/> */}
        <RegisterSection/>
        <PopularCategories/>
-       <Trending/>
        <Who/>
+       <RecentBlogList/>
     </>
   )
 }

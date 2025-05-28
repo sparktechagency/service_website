@@ -10,15 +10,12 @@ const HeroSection = () => {
       <div className="absolute inset-0 bg-[rgba(17,24,39,0.7)] z-10"></div>
 
       {/* Content */}
-      <div className="relative z-20 text-white max-w-4xl w-full text-center md:text-left">
-        <h1 className="text-3xl md:text-5xl font-bold mb-4 leading-tight">
-          Hire the Best, get Hired by the Best
+      <div className="relative z-20 text-white max-w-5xl w-full text-center md:text-left">
+        <h1 className="text-3xl md:text-4xl font-bold mb-4 leading-tight text-center">
+           Direct Access to the People Who Make It Happen 
         </h1>
-        <p className="text-base md:text-lg font-medium mb-8">
-          Each month, more than 3 million job seekers turn to{" "}
-          <span className="font-bold">website</span> in their search for work,
-          making over <span className="font-bold">140.00 applications</span>{" "}
-          every single day.
+        <p className="text-base md:text-lg font-medium mb-8 text-center">
+          Our mission: To simplify hiring in the manufacturing and engineering sectors, giving candidates more control and employers a direct route to the right people.
         </p>
         <HeroForm />
       </div>

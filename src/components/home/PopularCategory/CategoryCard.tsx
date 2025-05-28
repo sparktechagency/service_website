@@ -21,7 +21,7 @@ const CategoryCard = ({ icon, name, positions }: TProps) => {
         />
       </div>
       <div>
-        <h3 className="font-semibold text-gray-800">{name}</h3>
+        <h3 className="font-semibold text-[15px] text-gray-800">{name}</h3>
         <p className="text-sm text-gray-500">{positions} Open positions</p>
       </div>
     </div>

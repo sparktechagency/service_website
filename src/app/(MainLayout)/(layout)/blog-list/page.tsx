@@ -3,11 +3,15 @@
 import { useState } from "react"
 import Image from "next/image"
 import BlogCard from "@/components/blog/BlogCard"
-import { IBlog } from "@/types/blog.type"
+import { IBlog } from "@/types/blog.type";
+
+
+
 
 const BlogListPage = () => {
   const [searchQuery, setSearchQuery] = useState("")
   const [isOpen, setIsOpen] = useState(false)
+
 
   const categories = [
     { id: 1, name: "Graphics & Design", checked: false },
@@ -55,53 +59,6 @@ const BlogListPage = () => {
 
   const popularTags = ["Design", "Programming", "Health & Care", "Motion Design", "Photography", "Politics"]
 
-  const blogPosts: IBlog[] = [
-    {
-      id: 1,
-      title: "Proin sit amet massa eget odio consectetur ultricies.",
-      date: "Nov 12, 2021",
-      comments: 25,
-      image: "/images/blogs/blog1.png",
-      excerpt:
-        "Integer imperdiet mauris eget nisi ultricies, quis hendrerit est consequat. Vivamus et vulputat odio. Maecenas porta erat sed massa bibendum pellentesque.",
-    },
-    {
-      id: 2,
-      title: "Praesent tristique sagittis malesuada. Nulla vulputate pretium",
-      date: "Nov 12, 2021",
-      comments: 25,
-      image: "/images/blogs/blog2.png",
-      excerpt:
-        "Integer imperdiet mauris eget nisi ultricies, quis hendrerit est consequat. Vivamus et vulputat odio. Maecenas porta erat sed massa bibendum pellentesque.",
-    },
-    {
-      id: 3,
-      title: "Integer volutpat fringilla ipsum, nec tempor risus facilisis eget.",
-      date: "Nov 12, 2021",
-      comments: 25,
-      image: "/images/blogs/blog3.png",
-      excerpt:
-        "Integer imperdiet mauris eget nisi ultricies, quis hendrerit est consequat. Vivamus et vulputat odio. Maecenas porta erat sed massa bibendum pellentesque.",
-    },
-    {
-      id: 4,
-      title: "Praesent hendrerit diam ac metus finibus, id vehicula velit suscipit.",
-      date: "Nov 12, 2021",
-      comments: 25,
-      image: "/images/blogs/blog4.png",
-      excerpt:
-        "Integer imperdiet mauris eget nisi ultricies, quis hendrerit est consequat. Vivamus et vulputat odio. Maecenas porta erat sed massa bibendum pellentesque.",
-    },
-    {
-      id: 5,
-      title: "Nullam et est vel eros sodales sollicitudin.",
-      date: "Nov 12, 2021",
-      comments: 25,
-      image: "/images/blogs/blog1.png",
-      excerpt:
-        "Integer imperdiet mauris eget nisi ultricies, quis hendrerit est consequat. Vivamus et vulputat odio. Maecenas porta erat sed massa bibendum pellentesque.",
-    },
-  ]
 
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-6 py-16">

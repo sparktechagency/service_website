@@ -8,7 +8,7 @@ const RegisterSection = () => {
     {
       title: 'Become a Candidate',
       description:
-       " Start your job search today! Create a profile, explore job opportunities, and connect with top employers. Let us help you find the right fit for your skills and goals.",
+       "Find manufacturing and engineering jobs. Create your profile to connect directly with employers who are actively hiring for roles that value your experience.",
       bg: 'bg-gray-200',
       text: 'text-gray-900',
       buttonBg: 'bg-white',
@@ -17,7 +17,7 @@ const RegisterSection = () => {
     {
       title: 'Become a Employer',
       description:
-        'Find the perfect candidates for your team. Post job listings, review applications, and connect with skilled professionals ready to contribute to your business success.',
+        "Take control of your hiring. Connect directly with skilled talent actively seeking roles in the manufacturing and engineering sectors." ,
       bg: 'bg-primary',
       text: 'text-white',
       buttonBg: 'bg-white',

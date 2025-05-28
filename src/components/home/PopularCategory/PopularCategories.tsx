@@ -2,47 +2,49 @@ import React from 'react';
 import CategoryCard from './CategoryCard';
 
 const categories = [
-    {
-      name: 'Water Supply',
-      positions: 357,
-      icon: '/images/icons/water.png',
-    },
-    {
-      name: 'Kitchen Setup',
-      positions: 312,
-      icon: '/images/icons/kitchen.png',
-    },
-    {
-      name: 'Gas Connection',
-      positions: 297,
-      icon: '/images/icons/fire.png',
-    },
-    {
-      name: 'Masonry',
-      positions: 247,
-      icon: '/images/icons/fire.png',
-    },
-    {
-        name: 'Water Supply',
-        positions: 357,
-        icon: '/images/icons/water.png',
-      },
-      {
-        name: 'Kitchen Setup',
-        positions: 312,
-        icon: '/images/icons/kitchen.png',
-      },
-      {
-        name: 'Gas Connection',
-        positions: 297,
-        icon: '/images/icons/fire.png',
-      },
-      {
-        name: 'Masonry',
-        positions: 247,
-        icon: '/images/icons/fire.png',
-      },
-  ];
+  {
+    name: 'Engineering',
+    positions: 420,
+    icon: '/images/icons/water.png',
+  },
+  {
+    name: 'Manufacturing & Production',
+    positions: 385,
+    icon: '/images/icons/water.png',
+  },
+  {
+    name: 'Supply Chain & Logistics',
+    positions: 312,
+    icon: '/images/icons/water.png',
+  },
+  {
+    name: 'Sales & Marketing',
+    positions: 278,
+    icon: '/images/icons/water.png',
+  },
+  {
+    name: 'Office & IT Support',
+    positions: 198,
+    icon: '/images/icons/water.png',
+  },
+  {
+    name: 'QHSE (Quality, Health, Safety & Environment)',
+    positions: 164,
+    icon: '/images/icons/water.png',
+  },
+  {
+    name: 'Leadership & Management',
+    positions: 142,
+    icon: '/images/icons/water.png',
+  },
+  {
+    name: 'Apprenticeships & Graduates',
+    positions: 109,
+    icon: '/images/icons/water.png',
+  },
+];
+
+
   
  
 
