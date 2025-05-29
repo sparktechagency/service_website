@@ -2,7 +2,6 @@ import React from "react";
 
 // import TableOfContents from './TableOfContents';
 import { BlogPost } from "@/types/blog.type";
-import { TableOfContents } from "lucide-react";
 
 interface BlogContentProps {
   post: BlogPost;

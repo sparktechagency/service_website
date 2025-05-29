@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 import React, { useState, useMemo } from 'react';
 import { nannies as nannyData } from '@/data/candidate.data';
-import { EducationLevel, ExperienceRange, Nanny, ViewMode } from '@/types/candidate.type';
+import { ExperienceRange, Nanny, ViewMode } from '@/types/candidate.type';
 import CandidateList from '@/components/candidates/CandidateList';
 import Pagination from '@/components/ui/Pagination';
 import ViewControls from '@/components/ui/ViewControls';
@@ -9,9 +10,7 @@ import FilterSidebar from '@/components/ui/FilterSidebar';
 
 const FindCandidatePage = () =>{
   // Filters
-  const [locationRadius, setLocationRadius] = useState<number>(25);
   const [selectedExperience, setSelectedExperience] = useState<ExperienceRange | null>('3-4');
-  const [selectedEducation, setSelectedEducation] = useState<EducationLevel>('all');
   
   // View controls
   const [viewMode, setViewMode] = useState<ViewMode>('list');
@@ -21,7 +20,7 @@ const FindCandidatePage = () =>{
   const [currentPage, setCurrentPage] = useState<number>(1);
   
   // Nannies data
-  const [nannies, setNannies] = useState<Nanny[]>(nannyData);
+ const [nannies, setNannies] = useState<Nanny[]>(nannyData);
   
   // Filter nannies based on selected filters
   const filteredNannies = useMemo(() => {
@@ -74,14 +73,8 @@ const FindCandidatePage = () =>{
         
         <div className="flex flex-col md:flex-row gap-6">
           {/* Sidebar with filters */}
-          <div className="w-full md:w-64">
+          <div className="w-full md:w-84">
             <FilterSidebar 
-              locationRadius={locationRadius}
-              setLocationRadius={setLocationRadius}
-              selectedExperience={selectedExperience}
-              setSelectedExperience={setSelectedExperience}
-              selectedEducation={selectedEducation}
-              setSelectedEducation={setSelectedEducation}
             />
           </div>
           

@@ -98,6 +98,18 @@ const CompanyInformation = () => {
         />
       </div>
 
+      <div className="mb-6">
+        <label htmlFor="company-name" className="block text-sm font-medium mb-2">
+          Company Website (optional)
+        </label>
+        <input
+          type="text"
+          placeholder="https://example.com/"
+          id="company-name"
+          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+        />
+      </div>
+
       {/* Company Details */}
       <div className="mb-6">
         <label htmlFor="company-details" className="block text-sm font-medium mb-2">

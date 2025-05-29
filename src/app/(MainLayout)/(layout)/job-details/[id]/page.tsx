@@ -1,14 +1,15 @@
 "use client"
 
-import { useState } from "react"
-import { Bookmark, Facebook, Instagram, MapPin, Twitter } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { MapPin } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import RelatedJobs from "@/components/RelatedJobs/RelatedJobs"
 import ApplyModal from "@/components/modal/ApplyModal"
+import { FaInstagram } from "react-icons/fa"
+import { useRouter } from "next/navigation"
 
 export default function JobPostingPage() {
-  const [bookmarked, setBookmarked] = useState(false)
+  //const [bookmarked, setBookmarked] = useState(false)
+  const router = useRouter();
 
   return (
     <>
@@ -20,19 +21,16 @@ export default function JobPostingPage() {
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-8">
             <div className="flex items-center gap-4">
               <div className="w-16 h-16 rounded-full overflow-hidden bg-gradient-to-br from-pink-500 via-red-500 to-yellow-500 flex items-center justify-center">
-                <Instagram className="w-8 h-8 text-white" />
+                <FaInstagram  className="w-8 h-8 text-white" />
               </div>
               <div>
                 <div className="flex items-center gap-2 flex-wrap">
-                  <h1 className="text-2xl font-semibold">Water Supply</h1>
-                  <Badge variant="outline" className="bg-red-100 text-red-600 border-red-200">
-                    Featured
-                  </Badge>
+                  <h1 className="text-2xl font-semibold">Quality Assurance Engineer</h1>
                   <Badge variant="outline" className="bg-blue-100 text-blue-600 border-blue-200">
                     Part time
                   </Badge>
                 </div>
-                <div className="flex flex-col sm:flex-row gap-2 sm:gap-6 mt-2 text-sm text-gray-500">
+                {/* <div className="flex flex-col sm:flex-row gap-2 sm:gap-6 mt-2 text-sm text-gray-500">
                   <a href="https://instagram.com" className="flex items-center gap-1 hover:text-gray-700">
                     <span className="text-gray-400">https://instagram.com</span>
                   </a>
@@ -42,18 +40,19 @@ export default function JobPostingPage() {
                   <a href="mailto:career@instagram.com" className="flex items-center gap-1 hover:text-gray-700">
                     <span>career@instagram.com</span>
                   </a>
-                </div>
+                </div> */}
               </div>
             </div>
             <div className="flex items-center gap-3 w-full md:w-auto">
-              <Button
+              {/* <Button
                 variant="outline"
                 size="icon"
                 className="rounded-md border-gray-200"
                 onClick={() => setBookmarked(!bookmarked)}
               >
                 <Bookmark className={`h-5 w-5 ${bookmarked ? "fill-current text-blue-600" : ""}`} />
-              </Button>
+              </Button> */}
+              <span onClick={()=> router.push(`/employer-details/4`)} className="text-sm underline text-blue-500 cursor-pointer">View Employer</span>
               {/*  */}
               <ApplyModal/>
             </div>
@@ -106,7 +105,7 @@ export default function JobPostingPage() {
           </div>
 
           {/* Share this job */}
-          <div className="mt-12">
+          {/* <div className="mt-12">
             <p className="text-gray-600 mb-3">Share this job:</p>
             <div className="flex gap-2 flex-wrap">
               <Button variant="outline" size="sm" className="flex items-center gap-2 cursor-pointer">
@@ -137,7 +136,7 @@ export default function JobPostingPage() {
                 Pinterest
               </Button>
             </div>
-          </div>
+          </div> */}
         </div>
 
         {/* Job Overview Sidebar */}

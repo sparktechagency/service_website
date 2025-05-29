@@ -1,49 +1,62 @@
-import React from 'react';
-import { UserCircle, Bookmark } from 'lucide-react';
-import Image from 'next/image';
-import { ProfileData } from '@/types/profile.type';
+import React from "react";
+import { Briefcase, MapPin } from "lucide-react";
+import Image from "next/image";
+import { ProfileData } from "@/types/profile.type";
 
 interface HeaderProps {
   profileData: ProfileData;
 }
 
-const Header: React.FC<HeaderProps> = ({ profileData }) => {
+const Header: React.FC<HeaderProps> = () => {
   return (
-    <div className="w-full flex flex-col md:flex-row justify-between items-start md:items-center gap-4 p-4 bg-white rounded-lg shadow-sm">
-      <div className="flex items-center gap-4">
-        {profileData.avatar ? (
+    <div className="bg-white rounded-lg shadow-md overflow-hidden">
+    
+
+      <div className="pt-20 pb-6 px-8">
+           <div className="h-32 w-32 rounded-full border-4 border-white bg-white shadow-sm overflow-hidden">
           <Image
-            src={profileData.avatar} 
-            alt={profileData.name}
+            src="https://images.pexels.com/photos/3771807/pexels-photo-3771807.jpeg"
+            alt="Profile"
             width={600}
             height={600}
-            className="w-16 h-16 md:w-20 md:h-20 rounded-full object-cover border-2 border-gray-100"
+            className="h-full w-full object-cover"
           />
-        ) : (
-          <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-blue-100 flex items-center justify-center">
-            <UserCircle className="w-12 h-12 md:w-16 md:h-16 text-blue-500" />
-          </div>
-        )}
-        <div>
-          <h1 className="text-xl md:text-2xl font-semibold text-gray-800">{profileData.name}</h1>
-          <p className="text-sm md:text-base text-gray-500">{profileData.title}</p>
         </div>
-      </div>
-      
-      <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
-        <button 
-          className="flex items-center cursor-pointer justify-center gap-1 px-4 py-2 border border-gray-200 rounded-md text-gray-700 hover:bg-gray-50 transition-colors"
-          aria-label="Save profile"
-        >
-          <Bookmark className="w-4 h-4" />
-          <span className="hidden sm:inline">Save</span>
-        </button>
-        {/* <button 
-          className="flex items-center justify-center gap-1 px-4 py-2 bg-amber-500 text-white rounded-md hover:bg-amber-600 transition-colors"
-        >
-          <ExternalLink className="w-4 h-4" />
-          <span>View Profile</span>
-        </button> */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between">
+       
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900">Sarah Johnson</h1>
+            <div className="mt-1 flex flex-wrap items-center gap-x-2 text-gray-600">
+              <Briefcase size={18} className="flex-shrink-0" />
+              <span className="font-medium">
+                Production Supervisor, Product Manager, Quality Assurance Engineer
+              </span>
+            </div>
+            <div className="mt-1 flex items-center text-gray-600">
+              <MapPin size={18} className="flex-shrink-0" />
+              <span className="ml-1">San Francisco (15 mile radius)</span>
+            </div>
+          </div>
+
+          <div className="mt-4 sm:mt-0">
+            <div className="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-800 rounded-full font-medium text-sm">
+              Available from: June 1, 2025
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-4 flex flex-wrap gap-2">
+          <span>Job Seeking: </span>
+          <span className="inline-flex items-center px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-sm font-medium">
+            Production Supervisor
+          </span>
+          <span className="inline-flex items-center px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-sm font-medium">
+            Quality Manager
+          </span>
+          <span className="inline-flex items-center px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-sm font-medium">
+            Test Technician
+          </span>
+        </div>
       </div>
     </div>
   );

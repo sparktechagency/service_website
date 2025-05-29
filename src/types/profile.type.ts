@@ -36,12 +36,11 @@ export const mockProfileData: ProfileData = {
   avatar: "https://images.pexels.com/photos/2613260/pexels-photo-2613260.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", 
   careerObjective: "I am interested to apply for the UNIX Designer position at [XactMacker]. With a strong background in user-center design and a passion for creating intuitive digital experiences, I am confident in my ability to contribute effectively to your team.",
   skills: [
-    "UNIX Design: Sketching, Prototyping, Interaction Design",
-    "Design Tools: Figma, Adobe XD, Sketch, Photoshop, Illustrator",
-    "User Research: Usability Testing, A/B Testing, User Personas, Journey Mapping",
-    "Collaboration Agile, Scrum, Cross-functional Teams",
-    "Familiar with HTML5, CSS3, JavaScript (basic understanding)",
-    "Usability & Design Systems, WCAG Compliance, Material Design, Human Interface"
+    "Lean Manufacturing",
+    "Process Optimization",
+    "Workflow Management",
+    "Time & Resource Planninge",
+    "Non-Conformance Reporting (NCR)"
   ],
   experience: [
     {
