@@ -3,7 +3,7 @@ export interface Nanny {
   name: string;
   title: string;
   location: string;
-  experience: number;
+  experience: string;
   isSaved: boolean;
   imageUrl: string;
 }

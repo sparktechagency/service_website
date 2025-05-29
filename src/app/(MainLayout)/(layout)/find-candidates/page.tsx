@@ -31,9 +31,9 @@ const FindCandidatePage = () =>{
           ? selectedExperience.split('-').map(Number) 
           : [parseInt(selectedExperience), 100];
           
-        if (!(nanny.experience >= min && (max ? nanny.experience <= max : true))) {
-          return false;
-        }
+        // if (!(nanny.experience >= min && (max ? nanny.experience <= max : true))) {
+        //   return false;
+        // }
       }
       
       return true;
