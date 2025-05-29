@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface RelatedPost {
   id: number;
@@ -50,13 +51,13 @@ const RelatedPosts : React.FC<RelatedPostsProps> = ({ posts }) => {
                 </p>
                 
                 <div className="mt-auto">
-                  <a 
-                    href={`#post-${post.id}`} 
+                  <Link
+                    href={`/blog-list/details/${post.id}`} 
                     className="inline-flex items-center text-teal-600 font-medium text-sm group"
                   >
                     Read More
                     <ArrowRight size={16} className="ml-1 transform group-hover:translate-x-1 transition-transform duration-200" />
-                  </a>
+                  </Link>
                 </div>
               </div>
             </article>

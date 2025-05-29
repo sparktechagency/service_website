@@ -4,8 +4,14 @@ import { User, UserCircle, Cog } from "lucide-react";
 import SocialLinkForm from "./SocialLinkForm";
 import CompanyInformation from "./CompanyInformation";
 import EmployerAccountSettings from "./AccountSettings/EmployerAccountSettings";
+import PersonalForm from "./PersonalForm";
 
 const tabItems =  [
+   {
+    title: "Personal",
+    key: "personal",
+    icon: User
+  },
   {
     title: "Company Info",
     key: "company",
@@ -50,6 +56,7 @@ const EmployerTabs = () =>{
 
       {/* Tab Content */}
       <div className="w-full">
+        {activeTab === "personal" && <PersonalForm/>}
         {activeTab === "company" && <CompanyInformation/>}
         {activeTab === "social" && <SocialLinkForm />}
         {activeTab === "account" && <EmployerAccountSettings />}

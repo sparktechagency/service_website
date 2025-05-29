@@ -2,39 +2,94 @@
 import { Upload } from "lucide-react";
 import CVForm from "./CVForm";
 import WorkExperienceForm from "./WorkExperience/WorkExperienceForm";
-import React from "react";
+import React, { useState } from "react";
+import Image from "next/image";
 
 const CandidatePersonalForm = () => {
-  //const [checked, setChecked] = useState(false);
+  const [logo, setLogo] = useState<File | null>(null);
+  const [logoPreview, setLogoPreview] = useState<string | null>(null);
 
-  //const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //const { name,checked } = e.target;
-  // setFormData(prev => ({ ...prev, [name]: checked }));
-  //setChecked(!checked);
-  //};
+  const handleLogoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      setLogo(file);
+      setLogoPreview(URL.createObjectURL(file));
+    }
+  };
+
+  const handleRemoveLogo = () => {
+    setLogo(null);
+    setLogoPreview(null);
+  };
 
   return (
     <>
       <div className="space-y-8 bg-white p-6 rounded-lg shadow-sm">
         <section>
-          <h2 className="text-lg font-medium text-gray-900 mb-6">
-            Basic Information
-          </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Logo Upload */}
             <div className="col-span-1">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Profile Picture
-              </label>
-              <div className="border border-dashed border-gray-300 rounded-md p-4 sm:p-6 flex flex-col items-center justify-center">
-                <div className="mb-4">
-                  <Upload className="h-8 w-8 sm:h-10 sm:w-10 text-gray-400" />
+              <p className="text-lg mb-2">Upload Profile Picture</p>
+              <div className="relative">
+                <div className="bg-slate-400 max-h-[200px] w-full aspect-square rounded-md overflow-hidden">
+                  {logoPreview ? (
+                    <Image
+                      src={logoPreview || "/placeholder.svg"}
+                      alt="Logo preview"
+                      fill
+                      className="object-cover h-full"
+                    />
+                  ) : (
+                    <label
+                      htmlFor="logo-upload"
+                      className="flex items-center justify-center h-full cursor-pointer"
+                    >
+                      <span className="sr-only">Upload Profile Picture</span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-8 w-8 text-white"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                        />
+                      </svg>
+                    </label>
+                  )}
+                  <input
+                    id="logo-upload"
+                    type="file"
+                    accept="image/*"
+                    className="hidden"
+                    onChange={handleLogoChange}
+                  />
                 </div>
-                <p className="text-sm font-medium text-gray-900 text-center">
-                  Browse photo or drop here
-                </p>
-                <p className="text-xs text-gray-500 mt-1 text-center">
-                  A photo larger than 400 pixels work best. Max photo size 5 MB.
-                </p>
+                {logo && (
+                  <div className="mt-2 flex items-center justify-between">
+                    <span className="text-xs text-gray-500">
+                      {(logo.size / (1024 * 1024)).toFixed(1)} MB
+                    </span>
+                    <div className="space-x-2">
+                      <button
+                        onClick={handleRemoveLogo}
+                        className="text-xs text-blue-600 hover:underline"
+                      >
+                        Remove
+                      </button>
+                      <label
+                        htmlFor="logo-upload"
+                        className="text-xs text-blue-600 hover:underline cursor-pointer"
+                      >
+                        Replace
+                      </label>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
 

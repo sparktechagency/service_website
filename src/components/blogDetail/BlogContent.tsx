@@ -13,7 +13,7 @@ const BlogContent: React.FC<BlogContentProps> = ({ post }) => {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
         {/* Main Content */}
-        <div className="lg:col-span-8 overflow-hidden">
+        <div className="lg:col-span-12 overflow-hidden">
           <div className="prose prose-lg max-w-none prose-headings:font-semibold prose-headings:tracking-tight prose-headings:text-gray-800 prose-headings:mt-10 prose-headings:mb-4 prose-p:text-gray-600 prose-p:leading-relaxed prose-p:mb-6 prose-a:text-teal-600 prose-a:font-medium prose-a:no-underline hover:prose-a:underline">
             <p className="text-xl md:text-2xl font-light text-gray-700 mb-8 leading-relaxed">
               {post.excerpt}
@@ -159,13 +159,13 @@ const BlogContent: React.FC<BlogContentProps> = ({ post }) => {
         </div>
 
         {/* Sidebar */}
-        <div className="lg:col-span-4">
-          <div className="lg:sticky lg:top-8 space-y-10">
+        {/* <div className="lg:col-span-4"> */}
+          {/* <div className="lg:sticky lg:top-8 space-y-10"> */}
             {/* Table of Contents */}
-            <TableOfContents />
+            {/* <TableOfContents /> */}
 
             {/* Author Card */}
-            <div className="bg-gray-50 p-6 rounded-xl shadow-sm">
+            {/* <div className="bg-gray-50 p-6 rounded-xl shadow-sm">
               <h3 className="text-lg font-semibold text-gray-800 mb-3">
                 About the Author
               </h3>
@@ -182,7 +182,7 @@ const BlogContent: React.FC<BlogContentProps> = ({ post }) => {
                   </p>
                 </div>
               </div>
-            </div>
+            </div> */}
 
             {/* Newsletter Signup */}
             {/* <div className="bg-teal-50 p-6 rounded-xl">
@@ -207,8 +207,8 @@ const BlogContent: React.FC<BlogContentProps> = ({ post }) => {
                 </button>
               </form>
             </div> */}
-          </div>
-        </div>
+          {/* </div> */}
+        {/* </div> */}
       </div>
     </div>
   );

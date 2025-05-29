@@ -1,8 +1,10 @@
 "use client";
 import { IBlog } from "@/types/blog.type";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const BlogCard = ({ post }: {post: IBlog}) => {
+  const router = useRouter();
   return (
     <>
       <div className="border rounded-lg overflow-hidden flex flex-col md:flex-row p-4 border-gray-200 hover:shadow-md">
@@ -49,7 +51,7 @@ const BlogCard = ({ post }: {post: IBlog}) => {
           </div>
           <h2 className="text-lg font-medium mb-2">{post.title}</h2>
           <p className="text-sm text-gray-600 mb-3">{post.excerpt}</p>
-          <div className="flex items-center text-sm text-blue-500 cursor-pointer">
+          <div onClick={()=>router.push(`/blog-list/details/${post.id}`)} className="flex items-center text-sm text-blue-500 cursor-pointer">
             <span>Read more</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"

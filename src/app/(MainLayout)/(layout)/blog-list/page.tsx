@@ -48,16 +48,16 @@ const BlogListPage = () => {
     },
   ]
 
-  const galleryImages = [
-    "/images/blogs/blog3.png",
-    "/images/blogs/blog3.png",
-    "/images/blogs/blog3.png",
-    "/images/blogs/blog3.png",
-    "/images/blogs/blog3.png",
-    "/images/blogs/blog3.png",
-  ];
+  // const galleryImages = [
+  //   "/images/blogs/blog3.png",
+  //   "/images/blogs/blog3.png",
+  //   "/images/blogs/blog3.png",
+  //   "/images/blogs/blog3.png",
+  //   "/images/blogs/blog3.png",
+  //   "/images/blogs/blog3.png",
+  // ];
 
-  const popularTags = ["Design", "Programming", "Health & Care", "Motion Design", "Photography", "Politics"]
+  // const popularTags = ["Design", "Programming", "Health & Care", "Motion Design", "Photography", "Politics"]
 
 
   return (
@@ -145,7 +145,7 @@ const BlogListPage = () => {
           </div>
 
           {/* Gallery */}
-          <div className="border border-gray-200 rounded-lg p-4">
+          {/* <div className="border border-gray-200 rounded-lg p-4">
             <h2 className="font-medium mb-3">Gallery</h2>
             <div className="grid grid-cols-3 gap-2">
               {galleryImages.map((image, index) => (
@@ -160,10 +160,10 @@ const BlogListPage = () => {
                 </div>
               ))}
             </div>
-          </div>
+          </div> */}
 
           {/* Popular Tag */}
-          <div className="border border-gray-200 rounded-lg p-4">
+          {/* <div className="border border-gray-200 rounded-lg p-4">
             <h2 className="font-medium mb-3">Popular Tag</h2>
             <div className="flex flex-wrap gap-2">
               {popularTags.map((tag, index) => (
@@ -177,7 +177,7 @@ const BlogListPage = () => {
                 </span>
               ))}
             </div>
-          </div>
+          </div> */}
         </div>
 
         {/* Main Content */}

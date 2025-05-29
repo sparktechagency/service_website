@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { Calendar, Tag, Eye } from 'lucide-react';
-import { BlogPost } from '@/types/blog.type';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import React, { useEffect, useState } from "react";
+import { Calendar, Tag, Eye } from "lucide-react";
+import { BlogPost } from "@/types/blog.type";
 
 interface BlogHeaderProps {
   post: BlogPost;
@@ -14,14 +15,14 @@ const BlogHeader: React.FC<BlogHeaderProps> = ({ post }) => {
       setIsScrolled(window.scrollY > 50);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <header className="relative w-full">
       {/* Hero Image with Parallax Effect */}
-      <div className="relative h-[40vh] md:h-[60vh] lg:h-[70vh] overflow-hidden">
+      {/* <div className="relative h-[40vh] md:h-[60vh] lg:h-[70vh] overflow-hidden">
         <div 
           className="absolute inset-0 bg-cover bg-center transform transition-transform duration-3000"
           style={{ 
@@ -30,6 +31,10 @@ const BlogHeader: React.FC<BlogHeaderProps> = ({ post }) => {
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-80"></div>
+      </div> */}
+      <div className="relative h-[40vh] md:h-[60vh] lg:h-[70vh] rounded-md overflow-hidden w-full bg-[url('/images/blogs/industry.jpg')] bg-center bg-no-repeat bg-cover flex items-center justify-center px-4">
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-[rgba(17,24,39,0.7)] z-10"></div>
       </div>
 
       {/* Title and Meta Info Overlay */}
@@ -37,13 +42,15 @@ const BlogHeader: React.FC<BlogHeaderProps> = ({ post }) => {
         <div className="max-w-4xl mx-auto">
           <div className="flex items-center space-x-2 mb-4 opacity-90">
             <Tag size={16} className="text-teal-400" />
-            <span className="text-teal-400 font-medium text-sm">{post.category}</span>
+            <span className="text-teal-400 font-medium text-sm">
+              {post.category}
+            </span>
           </div>
-          
+
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-6 tracking-tight">
             {post.title}
           </h1>
-          
+
           <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 text-gray-100 text-sm">
             <div className="flex items-center space-x-2">
               <div className="w-8 h-8 rounded-full bg-teal-500 flex items-center justify-center text-white font-medium">
@@ -51,13 +58,13 @@ const BlogHeader: React.FC<BlogHeaderProps> = ({ post }) => {
               </div>
               <span>{post.author}</span>
             </div>
-            
+
             <div className="flex items-center space-x-6">
               <div className="flex items-center">
                 <Calendar size={16} className="mr-2 text-teal-400" />
                 <span>{post.date}</span>
               </div>
-              
+
               <div className="flex items-center">
                 <Eye size={16} className="mr-2 text-teal-400" />
                 <span>{20}</span>
