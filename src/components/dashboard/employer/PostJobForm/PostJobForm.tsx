@@ -95,6 +95,18 @@ const PostJobForm = () => {
     "Per Year"
   ];
 
+  const categoryOptions = [
+  "Engineering",
+  "Manufacturing & Production",
+  "Supply Chain & Logistics",
+  "Sales & Marketing",
+  "Office & IT Support",
+  "QHSE (Quality, Health, Safety & Environment)",
+  "Leadership & Management",
+  "Apprenticeships & Graduates"
+];
+
+
 
     // Handle location selection from map
     const handleLocationSelect = (location: any) => {
@@ -163,24 +175,11 @@ const PostJobForm = () => {
                 <div className="relative">
                   <select className="w-full px-3 py-2 border border-gray-300 text-gray-700 rounded-md appearance-none focus:outline-none focus:border-blue-500 focus:ring-blue-500">
                     <option value="">Select Category</option>
-                    {/* {categoryOptions?.map((option) => (
+                    {categoryOptions?.map((option) => (
                       <option key={option} value={option}>
                         {option}
                       </option>
-                    ))} */}
-                    <option>Select Category</option>
-                    <option>Production & Operations</option>
-                    <option>Quality Control & Assurance</option>
-                    <option>Maintenance & Repair</option>
-                    <option>Supply Chain & Logistics</option>
-                    <option>Health & Safety</option>
-                    <option>Packaging & Finishing</option>
-                    <option>Mechanical Engineering</option>
-                    <option>Electrical Engineering</option>
-                    <option>Civil & Structural Engineering</option>
-                    <option>Industrial & Manufacturing Engineering</option>
-                    <option>Automation & Robotics</option>
-                    <option>Project & Design Engineering</option>
+                    ))} 
                   </select>
                   <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
                     <svg
@@ -213,7 +212,7 @@ const PostJobForm = () => {
                     </label>
                     <div className="relative">
                       <select className="w-full px-3 py-2 border border-gray-300 text-gray-700 rounded-md appearance-none focus:outline-none focus:border-blue-500 focus:ring-blue-500">
-                        <option value="">Select Category</option>
+                        <option value="">Select Education</option>
                         {educationOptions?.map((option) => (
                           <option key={option} value={option}>
                             {option}

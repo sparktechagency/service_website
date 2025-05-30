@@ -14,14 +14,11 @@ const BlogListPage = () => {
 
 
   const categories = [
-    { id: 1, name: "Graphics & Design", checked: false },
-    { id: 2, name: "Code & Programming", checked: true },
-    { id: 3, name: "Digital Marketing", checked: false },
-    { id: 4, name: "Video & Animation", checked: false },
-    { id: 5, name: "Music & Audio", checked: false },
-    { id: 6, name: "Finance & Accounting", checked: false },
-    { id: 7, name: "Health & Care", checked: false },
-    { id: 8, name: "Data Science", checked: false },
+    { id: 1, name: "Industry Insights", checked: false },
+    { id: 2, name: "Career & Skills", checked: true },
+    { id: 3, name: "Business & Hiring", checked: false },
+    { id: 4, name: "Mindset & Growth", checked: false },
+    { id: 5, name: "Real Stories ", checked: false },
   ]
 
   const recentPosts = [

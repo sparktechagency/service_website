@@ -15,7 +15,7 @@ const RegisterSection = () => {
       buttonText: 'text-blue-900',
     },
     {
-      title: 'Become a Employer',
+      title: 'Become an Employer',
       description:
         "Take control of your hiring. Connect directly with skilled talent actively seeking roles in the manufacturing and engineering sectors." ,
       bg: 'bg-primary',

@@ -45,7 +45,7 @@ const EmplyerRegisterForm = () => {
             htmlFor="phone"
             className="block text-sm font-medium text-gray-700"
           >
-            Phone Number(only USA)
+            Phone Number(only UK)
           </label>
           <input
             type="text"
