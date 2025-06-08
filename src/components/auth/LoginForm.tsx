@@ -1,8 +1,5 @@
 "use client";
-
-import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import Link from "next/link";
-import { useState } from "react";
 import CustomInput from "../ui/CustomInput";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -13,14 +10,10 @@ import { z } from "zod";
 type TFormValues = z.infer<typeof loginSchema>
 
 const LoginForm = () => {
-  const [showPassword, setShowPassword] = useState(false);
   const {handleSubmit, control } = useForm({
         resolver: zodResolver(loginSchema),
   })
 
-  const togglePassword = () => {
-    setShowPassword((prev) => !prev);
-  };
 
 
     const onSubmit: SubmitHandler<TFormValues> = (data) => {
@@ -30,44 +23,8 @@ const LoginForm = () => {
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-        {/* <div>
-          <label
-            htmlFor="email"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Email
-          </label>
-          <input
-            type="email"
-            id="email"
-            className="mt-1 block w-full border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 focus:ring-blue-500 px-4 py-2"
-            placeholder="enter your email here"
-          />
-        </div> */}
-        <CustomInput label="Email" name="email" type="text" control={control}/>
-
-        <div>
-          <label
-            htmlFor="password"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Password
-          </label>
-          <div className="relative">
-            <input
-              type={showPassword ? "text" : "password"}
-              id="password"
-              className="mt-1 block w-full border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 focus:ring-blue-500 px-4 py-2 pr-10"
-              placeholder="********"
-            />
-            <span
-              className="absolute inset-y-0 right-3 flex items-center text-xl text-gray-500 cursor-pointer"
-              onClick={togglePassword}
-            >
-              {showPassword ? <AiFillEyeInvisible /> : <AiFillEye />}
-            </span>
-          </div>
-        </div>
+        <CustomInput label="Email" name="email" type="text" control={control} placeholder="Enter email address"/>
+        <CustomInput label="Password" name="password" type="password" control={control} placeholder="Enter your password"/>
 
         <div className="flex justify-between items-center">
           <label className="flex items-center text-sm">
