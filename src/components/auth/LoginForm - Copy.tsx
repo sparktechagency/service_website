@@ -3,34 +3,20 @@
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import Link from "next/link";
 import { useState } from "react";
-import CustomInput from "../ui/CustomInput";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { loginSchema } from "@/schemas/auth.schema";
-import { z } from "zod";
-
-
-type TFormValues = z.infer<typeof loginSchema>
+import { useRouter } from "next/navigation";
 
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const {handleSubmit, control } = useForm({
-        resolver: zodResolver(loginSchema),
-  })
+  const router = useRouter();
 
   const togglePassword = () => {
     setShowPassword((prev) => !prev);
   };
 
-
-    const onSubmit: SubmitHandler<TFormValues> = (data) => {
-      console.log(data);
-    };
-
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-        {/* <div>
+      <div className="space-y-4">
+        <div>
           <label
             htmlFor="email"
             className="block text-sm font-medium text-gray-700"
@@ -43,8 +29,7 @@ const LoginForm = () => {
             className="mt-1 block w-full border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 focus:ring-blue-500 px-4 py-2"
             placeholder="enter your email here"
           />
-        </div> */}
-        <CustomInput label="Email" name="email" type="text" control={control}/>
+        </div>
 
         <div>
           <label
@@ -82,10 +67,10 @@ const LoginForm = () => {
           </Link>
         </div>
 
-        <button type="submit" className="w-full bg-primary cursor-pointer text-white py-2 rounded-md font-semibold transition-colors duration-100">
+        <button onClick={()=>router.push('/')} className="w-full bg-primary cursor-pointer text-white py-2 rounded-md font-semibold transition-colors duration-100">
           Sign in
         </button>
-      </form>
+      </div>
     </>
   );
 };
