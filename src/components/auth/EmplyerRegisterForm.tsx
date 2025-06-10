@@ -12,6 +12,7 @@ import { useRegisterMutation } from "@/redux/features/auth/authApi";
 import Error from "../validation/Error";
 import { SetRegisterError } from "@/redux/features/auth/authSlice";
 import { CgSpinnerTwo } from "react-icons/cg";
+import CustomCheckbox from "../ui/CustomCheckbox";
 
 type TFormValues = z.infer<typeof registerSchema>;
 
@@ -84,23 +85,10 @@ const EmplyerRegisterForm = () => {
           control={control}
           placeholder="Enter confirm password"
         />
-        <div className="flex items-start">
-          <div className="flex items-center h-5">
-            <input
-              type="checkbox"
-              //checked={checked}
-              //onChange
-              required
-              className="w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-            />
-          </div>
-          <div className="ml-3 text-sm">
-            <label htmlFor="right" className="font-medium text-gray-700">
-              I confirm I am not a recruitment agency and understand this
-              platform is for direct employers and candidates only.
-            </label>
-          </div>
-        </div>
+       
+
+        <CustomCheckbox name="terms" label="I confirm I am not a recruitment agency and understand this
+              platform is for direct employers and candidates only." control={control}/>
 
         <button
           type="submit"
