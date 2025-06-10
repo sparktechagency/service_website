@@ -36,19 +36,20 @@ export const authApi = apiSlice.injectEndpoints({
           const res = await queryFulfilled;
           const token = res?.data?.data?.accessToken;
           const role = res?.data?.data?.user?.authId?.role;
+          console.log(role);
           if (role === "USER" || role === "EMPLOYER") {
-            setToken(token);
             SuccessToast("Login Success");
+            setToken(token);
             setTimeout(() => {
-              window.location.href = "/";
+             window.location.href = "/";
             }, 300);
           } else {
-            dispatch(SetLoginError("You are admin!"));
+            dispatch(SetLoginError("You are admin"));
           }
         } catch (err: any) {
           const status = err?.error?.status;
           if (status === 404) {
-            dispatch(SetLoginError("Could not Find this Email!"));
+            dispatch(SetLoginError("Couldn't find this email address!"));
           }
           if (status === 400) {
             dispatch(SetLoginError("Wrong Password!"));

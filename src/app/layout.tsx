@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import GlobalProvider from "@/providers/GlobalProvider";
 import NextTopLoader from "nextjs-toploader"
+import { Toaster } from "react-hot-toast";
 
 
 const geistSans = Geist({
@@ -38,13 +39,14 @@ export default function RootLayout({
           crawlSpeed={200}
           height={3}
           crawl={true}
-          showSpinner={true}
+          showSpinner={false}
           easing="ease"
           speed={200}
           //shadow="0 0 10px #2299DD,0 0 5px #2299DD"
           shadow="0 0 10px #EC4899,0 0 5px #EC4899"
         />
         {children}
+         <Toaster position="top-center"/>
         </body>
       </html>
     </GlobalProvider>
