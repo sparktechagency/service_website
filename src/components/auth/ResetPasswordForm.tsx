@@ -5,13 +5,28 @@ import CustomInput from "../ui/CustomInput";
 import { resetPasswordSchema } from "@/schemas/auth.schema";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import PasswordStrength from "../validation/PasswordStrength";
+import { useEffect } from "react";
 
 type TFormValues = z.infer<typeof resetPasswordSchema>;
 
 const ResetPasswordForm = () => {
-  const { handleSubmit, control } = useForm({
+  const { handleSubmit, control, watch, trigger } = useForm({
     resolver: zodResolver(resetPasswordSchema),
   });
+
+  const newPassword = watch('newPassword');
+
+  
+    useEffect(() => {
+      if (newPassword) {
+        const confirmPassword = watch("confirmPassword");
+        if (confirmPassword === newPassword) {
+        trigger('confirmPassword');
+      }
+      }
+    }, [newPassword, watch, trigger]);
+
 
   const onSubmit: SubmitHandler<TFormValues> = (data) => {
     console.log(data);
@@ -27,6 +42,7 @@ const ResetPasswordForm = () => {
           control={control}
           placeholder="Enter new password"
         />
+         {newPassword && <PasswordStrength password={newPassword} />}
         <CustomInput
           label="Confirm New Password"
           name="confirmPassword"
