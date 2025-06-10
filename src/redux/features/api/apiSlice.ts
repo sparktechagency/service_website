@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { ErrorToast } from "../../../helper/ValidationHelper.js";
-import { getToken } from "../../../helper/SessionHelper.js";
-import TagTypes from "../../../constant/tagType.constant.js";
+import { ErrorToast } from "../../../helper/ValidationHelper.ts";
+import { getToken } from "../../../helper/SessionHelper.ts";
+import TagTypes from "../../../constant/tagType.constant.ts";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "http://10.0.60.118:5003",
+  baseUrl: "http://24.199.120.27:5004",
   prepareHeaders: async (headers) => {
     if (getToken()) {
       headers.set("Authorization", `Bearer ${getToken() as string}`);

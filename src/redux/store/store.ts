@@ -1,11 +1,17 @@
 import { configureStore } from '@reduxjs/toolkit'
 import jobSliceReducer from '../features/job/jobSlice'
+import authSliceReducer from '../features/auth/authSlice'
+import { apiSlice } from '../features/api/apiSlice'
 
 
 export const store = configureStore({
   reducer: {
-    job: jobSliceReducer
+    [apiSlice.reducerPath]: apiSlice.reducer,
+    job: jobSliceReducer,
+    auth: authSliceReducer
   },
+   middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(apiSlice.middleware)
 })
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

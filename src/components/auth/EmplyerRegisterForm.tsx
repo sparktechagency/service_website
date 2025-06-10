@@ -7,10 +7,18 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { registerSchema } from "@/schemas/auth.schema";
 import PasswordStrength from "../validation/PasswordStrength";
 import { z } from "zod";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
+import { useRegisterMutation } from "@/redux/features/auth/authApi";
+import Error from "../validation/Error";
+import { SetRegisterError } from "@/redux/features/auth/authSlice";
+import { CgSpinnerTwo } from "react-icons/cg";
 
 type TFormValues = z.infer<typeof registerSchema>;
 
 const EmplyerRegisterForm = () => {
+  const dispatch = useAppDispatch();
+  const { RegisterError } = useAppSelector((state) => state.auth);
+  const [register, { isLoading }] = useRegisterMutation();
   const { handleSubmit, control, watch, trigger } = useForm({
     resolver: zodResolver(registerSchema),
   });
@@ -28,11 +36,17 @@ const EmplyerRegisterForm = () => {
   }, [password, watch, trigger]);
 
   const onSubmit: SubmitHandler<TFormValues> = (data) => {
+    dispatch(SetRegisterError(""));
+    register({
+      ...data,
+      role: "EMPLOYER",
+    });
     console.log(data);
   };
 
   return (
     <>
+      {RegisterError && <Error message={RegisterError} />}
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <CustomInput
           label="Employer Name"
@@ -90,9 +104,17 @@ const EmplyerRegisterForm = () => {
 
         <button
           type="submit"
-          className="w-full bg-primary cursor-pointer text-white py-2 rounded-md font-semibold transition-colors duration-100"
+          disabled={isLoading}
+          className="w-full flex items-center cursor-pointer justify-center gap-2 bg-primary text-white py-2 rounded-md hover:bg-dis transition disabled:bg-gray-800 disabled:cursor-not-allowed"
         >
-          Sign Up
+          {isLoading ? (
+            <>
+              <CgSpinnerTwo className="animate-spin" fontSize={16} />
+              Processing...
+            </>
+          ) : (
+            "Sign Up"
+          )}
         </button>
       </form>
     </>

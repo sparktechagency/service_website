@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import TagTypes from "../../../constant/tagType.constant.ts";
+import TagTypes from "@/constant/tagType.constant.ts";
 import {
   getEmail,
   setEmail,
@@ -17,6 +17,40 @@ import {
 
 export const authApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
+     register: builder.mutation({
+      query: (data) => ({
+        url: "/auth/register",
+        method: "POST",
+        body: data,
+      }),
+      async onQueryStarted(_arg, { queryFulfilled, dispatch }) {
+        try {
+          const res = await queryFulfilled;
+          const token = res?.data?.data?.accessToken;
+          const role = res?.data?.data?.user?.authId?.role;
+          if (role === "USER" || role === "EMPLOYER") {
+            setToken(token);
+            SuccessToast("Login Success");
+            setTimeout(() => {
+              window.location.href = "/";
+            }, 300);
+          } else {
+            dispatch(SetLoginError("You are admin!"));
+          }
+        } catch (err: any) {
+          const status = err?.error?.status;
+          if (status === 404) {
+            dispatch(SetLoginError("Could not Find this Email!"));
+          }
+          if (status === 400) {
+            dispatch(SetLoginError("Wrong Password!"));
+          }
+          if (status === 500) {
+            dispatch(SetLoginError("Something Went Wrong"));
+          }
+        }
+      },
+    }),
     login: builder.mutation({
       query: (data) => ({
         url: "/auth/login",
@@ -28,14 +62,14 @@ export const authApi = apiSlice.injectEndpoints({
           const res = await queryFulfilled;
           const token = res?.data?.data?.accessToken;
           const role = res?.data?.data?.user?.authId?.role;
-          if (role === "ADMIN" || role === "SUPER_ADMIN") {
+          if (role === "USER" || role === "EMPLOYER") {
             setToken(token);
             SuccessToast("Login Success");
             setTimeout(() => {
               window.location.href = "/";
             }, 300);
           } else {
-            dispatch(SetLoginError("You are not admin!"));
+            dispatch(SetLoginError("You are admin!"));
           }
         } catch (err: any) {
           const status = err?.error?.status;
@@ -177,6 +211,7 @@ export const authApi = apiSlice.injectEndpoints({
 });
 
 export const {
+  useRegisterMutation,
   useLoginMutation,
   useForgotPasswordSendOtpMutation,
   useForgotPasswordVerifyOtpMutation,
