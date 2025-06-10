@@ -4,7 +4,7 @@ import TagTypes from "@/constant/tagType.constant";
 
 import { getEmail, setEmail, setToken } from "@/helper/SessionHelper";
 import { ErrorToast, SuccessToast } from "@/helper/ValidationHelper";
-import { SetChangePasswordError, SetForgotError, SetLoginError, SetResetPasswordError, SetVerifyOtpError } from "./authSlice";
+import { SetChangePasswordError, SetForgotError, SetLoginError, SetRegisterError, SetResetPasswordError, SetVerifyOtpError } from "./authSlice";
 import { apiSlice } from "../api/apiSlice";
 
 export const authApi = apiSlice.injectEndpoints({
@@ -17,29 +17,11 @@ export const authApi = apiSlice.injectEndpoints({
       }),
       async onQueryStarted(_arg, { queryFulfilled, dispatch }) {
         try {
-          const res = await queryFulfilled;
-          const token = res?.data?.data?.accessToken;
-          const role = res?.data?.data?.user?.authId?.role;
-          if (role === "USER" || role === "EMPLOYER") {
-            setToken(token);
-            SuccessToast("Login Success");
-            setTimeout(() => {
-              window.location.href = "/";
-            }, 300);
-          } else {
-            dispatch(SetLoginError("You are admin!"));
-          }
+          await queryFulfilled;
+          SuccessToast("Please check you email");
         } catch (err: any) {
-          const status = err?.error?.status;
-          if (status === 404) {
-            dispatch(SetLoginError("Could not Find this Email!"));
-          }
-          if (status === 400) {
-            dispatch(SetLoginError("Wrong Password!"));
-          }
-          if (status === 500) {
-            dispatch(SetLoginError("Something Went Wrong"));
-          }
+          const message = err?.error?.data?.message;
+          dispatch(SetRegisterError(message));
         }
       },
     }),

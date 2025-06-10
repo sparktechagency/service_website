@@ -3,6 +3,7 @@
 const TermsAndConditionsPage = () =>{
 
 
+
   return (
     <div className="max-w-7xl mx-auto px-4 py-8 md:py-12">
       <div className="gap-8 w-full lg:gap-16">

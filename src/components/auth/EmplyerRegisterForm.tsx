@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import { useEffect } from "react";
@@ -37,9 +38,10 @@ const EmplyerRegisterForm = () => {
   }, [password, watch, trigger]);
 
   const onSubmit: SubmitHandler<TFormValues> = (data) => {
+    const { terms, ...rest } = data;
     dispatch(SetRegisterError(""));
     register({
-      ...data,
+      ...rest,
       role: "EMPLOYER",
     });
     console.log(data);
@@ -85,10 +87,13 @@ const EmplyerRegisterForm = () => {
           control={control}
           placeholder="Enter confirm password"
         />
-       
 
-        <CustomCheckbox name="terms" label="I confirm I am not a recruitment agency and understand this
-              platform is for direct employers and candidates only." control={control}/>
+        <CustomCheckbox
+          name="terms"
+          label="I confirm I am not a recruitment agency and understand this
+              platform is for direct employers and candidates only."
+          control={control}
+        />
 
         <button
           type="submit"

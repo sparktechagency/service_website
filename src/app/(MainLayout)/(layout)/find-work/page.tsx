@@ -1,9 +1,15 @@
 "use client"
 
 import AdvancedFilter from "@/components/FindWork/AdvanceFilter"
-import JobListings from "@/components/FindWork/JobListing/JobListings"
+import dynamic from "next/dynamic"
+//import JobListings from "@/components/FindWork/JobListing/JobListings"
 
 const FindWorkPage = () => {
+    // Lazy load the heavy component
+const HeavyComponent = dynamic(() => import("@/components/FindWork/JobListing/JobListings"), {
+  loading: () => <div className="p-4 animate-pulse bg-gray-200 rounded">Loading...</div>,
+  ssr: false,
+})
   return (
     <>
       <div className="">
@@ -20,7 +26,7 @@ const FindWorkPage = () => {
         <AdvancedFilter />
       </div>
     </div>
-    <JobListings/>
+    <HeavyComponent/>
 
     </>
   )
