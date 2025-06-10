@@ -1,19 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import TagTypes from "@/constant/tagType.constant.ts";
-import {
-  getEmail,
-  setEmail,
-  setToken,
-} from "../../../helper/SessionHelper.ts";
-import { ErrorToast, SuccessToast } from "../../../helper/ValidationHelper.ts";
-import { apiSlice } from "../api/apiSlice.ts";
-import {
-  SetChangePasswordError,
-  SetForgotError,
-  SetLoginError,
-  SetResetPasswordError,
-  SetVerifyOtpError,
-} from "./authSlice.ts";
+import TagTypes from "@/constant/tagType.constant";
+
+
+import { getEmail, setEmail, setToken } from "@/helper/SessionHelper";
+import { ErrorToast, SuccessToast } from "@/helper/ValidationHelper";
+import { SetChangePasswordError, SetForgotError, SetLoginError, SetResetPasswordError, SetVerifyOtpError } from "./authSlice";
+import { apiSlice } from "../api/apiSlice";
 
 export const authApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({

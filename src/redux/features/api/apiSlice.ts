@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { ErrorToast } from "../../../helper/ValidationHelper.ts";
-import { getToken } from "../../../helper/SessionHelper.ts";
-import TagTypes from "../../../constant/tagType.constant.ts";
+import { getToken } from "@/helper/SessionHelper";
+import { ErrorToast } from "@/helper/ValidationHelper";
+import TagTypes from "@/constant/tagType.constant";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: "http://24.199.120.27:5004",
