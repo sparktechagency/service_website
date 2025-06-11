@@ -14,13 +14,15 @@ import { useRegisterMutation } from "@/redux/features/auth/authApi";
 import { SetRegisterError } from "@/redux/features/auth/authSlice";
 import { CgSpinnerTwo } from "react-icons/cg";
 import Error from "../validation/Error";
+import { useRouter } from "next/navigation";
 
 type TFormValues = z.infer<typeof registerSchema>;
 
 const CandidateRegisterForm = () => {
+  const router = useRouter();
   const dispatch = useAppDispatch();
   const { RegisterError } = useAppSelector((state) => state.auth);
-  const [register, { isLoading }] = useRegisterMutation();
+  const [register, { isLoading, isSuccess }] = useRegisterMutation();
   const { handleSubmit, control, watch, trigger } = useForm({
     resolver: zodResolver(registerSchema),
   });
@@ -37,10 +39,12 @@ const CandidateRegisterForm = () => {
     }
   }, [password, watch, trigger]);
 
-
   //if register is success
-  useEffect(()=>{
-  }, [])
+  useEffect(() => {
+    if (isSuccess) {
+      router.push("/verify-account-otp");
+    }
+  }, [isSuccess, router]);
 
   const onSubmit: SubmitHandler<TFormValues> = (data) => {
     const { terms, ...rest } = data;

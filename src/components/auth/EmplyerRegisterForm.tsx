@@ -14,13 +14,15 @@ import Error from "../validation/Error";
 import { SetRegisterError } from "@/redux/features/auth/authSlice";
 import { CgSpinnerTwo } from "react-icons/cg";
 import CustomCheckbox from "../ui/CustomCheckbox";
+import { useRouter } from "next/navigation";
 
 type TFormValues = z.infer<typeof registerSchema>;
 
 const EmplyerRegisterForm = () => {
+  const router = useRouter();
   const dispatch = useAppDispatch();
   const { RegisterError } = useAppSelector((state) => state.auth);
-  const [register, { isLoading }] = useRegisterMutation();
+  const [register, { isLoading, isSuccess }] = useRegisterMutation();
   const { handleSubmit, control, watch, trigger } = useForm({
     resolver: zodResolver(registerSchema),
   });
@@ -36,6 +38,13 @@ const EmplyerRegisterForm = () => {
       }
     }
   }, [password, watch, trigger]);
+
+  //if register is success
+  useEffect(() => {
+    if (isSuccess) {
+      router.push("/verify-account-otp");
+    }
+  }, [isSuccess, router]);
 
   const onSubmit: SubmitHandler<TFormValues> = (data) => {
     const { terms, ...rest } = data;
