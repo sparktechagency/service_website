@@ -2,22 +2,23 @@
 import TagTypes from "@/constant/tagType.constant";
 
 
-import { getEmail, setEmail, setToken } from "@/helper/SessionHelper";
+import { getEmail, setEmail, setToken, setVerifyEmail } from "@/helper/SessionHelper";
 import { ErrorToast, SuccessToast } from "@/helper/ValidationHelper";
-import { SetChangePasswordError, SetForgotError, SetLoginError, SetRegisterError, SetResetPasswordError, SetVerifyOtpError } from "./authSlice";
+import { SetChangePasswordError, SetForgotError, SetLoginError, SetRegisterError, SetResetPasswordError, SetVerifyAccountError, SetVerifyAccountOtpError, SetVerifyOtpError } from "./authSlice";
 import { apiSlice } from "../api/apiSlice";
 
 export const authApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-     register: builder.mutation({
+    register: builder.mutation({
       query: (data) => ({
         url: "/auth/register",
         method: "POST",
         body: data,
       }),
-      async onQueryStarted(_arg, { queryFulfilled, dispatch }) {
+      async onQueryStarted({email}, { queryFulfilled, dispatch }) {
         try {
           await queryFulfilled;
+          setVerifyEmail(email);
           SuccessToast("Please check you email");
         } catch (err: any) {
           const message = err?.error?.data?.message;
@@ -36,7 +37,6 @@ export const authApi = apiSlice.injectEndpoints({
           const res = await queryFulfilled;
           const token = res?.data?.data?.accessToken;
           const role = res?.data?.data?.user?.authId?.role;
-          console.log(role);
           if (role === "USER" || role === "EMPLOYER") {
             SuccessToast("Login Success");
             setToken(token);
@@ -47,16 +47,8 @@ export const authApi = apiSlice.injectEndpoints({
             dispatch(SetLoginError("You are admin"));
           }
         } catch (err: any) {
-          const status = err?.error?.status;
-          if (status === 404) {
-            dispatch(SetLoginError("Couldn't find this email address!"));
-          }
-          if (status === 400) {
-            dispatch(SetLoginError("Wrong Password!"));
-          }
-          if (status === 500) {
-            dispatch(SetLoginError("Something Went Wrong"));
-          }
+          const message = err?.error?.data?.message;
+          dispatch(SetLoginError(message));
         }
       },
     }),
@@ -72,12 +64,8 @@ export const authApi = apiSlice.injectEndpoints({
           setEmail(email);
           SuccessToast("OTP is sent successfully");
         } catch (err: any) {
-          const status = err?.error?.status;
-          if (status === 400) {
-            dispatch(SetForgotError("Could not Find this Email!"));
-          } else {
-            dispatch(SetForgotError("Something Went Wrong"));
-          }
+          const message = err?.error?.data?.message;
+          dispatch(SetForgotError(message))
         }
       },
     }),
@@ -92,18 +80,8 @@ export const authApi = apiSlice.injectEndpoints({
           await queryFulfilled;
           SuccessToast("Otp is verified successfully");
         } catch (err: any) {
-          const status = err?.error?.status;
           const message = err?.error?.data?.message;
-          if (status === 400) {
-            if (message === "Account does not exist!") {
-              dispatch(SetVerifyOtpError("Could not Find this Email!"));
-            }
-            if (message === "Invalid reset code!") {
-              dispatch(SetVerifyOtpError("Invalid otp code"));
-            }
-          } else {
-            dispatch(SetVerifyOtpError("Something Went Wrong"));
-          }
+          dispatch(SetVerifyOtpError(message));
         }
       },
     }),
@@ -122,13 +100,8 @@ export const authApi = apiSlice.injectEndpoints({
             window.location.href = "/login";
           }, 300);
         } catch (err: any) {
-          const status = err?.error?.status;
           const message = err?.error?.data?.message;
-          if (status === 400) {
-            dispatch(SetResetPasswordError(message));
-          } else {
-            dispatch(SetResetPasswordError("Something Went Wrong"));
-          }
+          dispatch(SetResetPasswordError(message));
         }
       },
     }),
@@ -182,6 +155,67 @@ export const authApi = apiSlice.injectEndpoints({
         }
       },
     }),
+    verifyAccountSendOtp: builder.mutation({
+      query: (data) => ({
+        url: "/auth/active-resend",
+        method: "POST",
+        body: data,
+      }),
+      async onQueryStarted({ email }, { queryFulfilled, dispatch }) {
+        try {
+          await queryFulfilled;
+          setVerifyEmail(email);
+          SuccessToast("OTP is sent successfully");
+        } catch (err: any) {
+          const message = err?.error?.data?.message;
+          if(message === "Cannot read properties of null (reading 'email')"){
+            dispatch(SetVerifyAccountError("Couldn't find this email address"))
+          }
+          else{
+            dispatch(SetVerifyAccountError(message));
+          }
+        }
+      },
+    }),
+    verifyAccountResendOtp: builder.mutation({
+      query: (data) => ({
+        url: "/auth/active-resend",
+        method: "POST",
+        body: data,
+      }),
+      async onQueryStarted({ email }, { queryFulfilled, dispatch }) {
+        try {
+          await queryFulfilled;
+          setVerifyEmail(email);
+          SuccessToast("OTP is sent successfully");
+        } catch (err: any) {
+          const message = err?.error?.data?.message;
+          if(message === "Cannot read properties of null (reading 'email')"){
+            ErrorToast("Couldn't find this email address");
+          }
+          else{
+            ErrorToast(message);
+          }
+        }
+      },
+    }),
+    verifyAccountVerifyOtp: builder.mutation({
+      query: (data) => ({
+        url: "/auth/activate-user",
+        method: "POST",
+        body: data,
+      }),
+      async onQueryStarted({ email }, { queryFulfilled, dispatch }) {
+        try {
+          await queryFulfilled;
+          setVerifyEmail(email);
+          SuccessToast("Account is verified successfully");
+        } catch (err: any) {
+          const message = err?.error?.data?.message;
+          dispatch(SetVerifyAccountOtpError(message));
+        }
+      },
+    }),
   }),
 });
 
@@ -192,5 +226,8 @@ export const {
   useForgotPasswordVerifyOtpMutation,
   useForgotPasswordResetMutation,
   useChangeStatusMutation,
-  useChangePasswordMutation
+  useChangePasswordMutation,
+  useVerifyAccountSendOtpMutation,
+  useVerifyAccountResendOtpMutation,
+  useVerifyAccountVerifyOtpMutation
 } = authApi;

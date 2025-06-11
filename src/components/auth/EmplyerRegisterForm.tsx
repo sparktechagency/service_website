@@ -44,7 +44,6 @@ const EmplyerRegisterForm = () => {
       ...rest,
       role: "EMPLOYER",
     });
-    console.log(data);
   };
 
   return (

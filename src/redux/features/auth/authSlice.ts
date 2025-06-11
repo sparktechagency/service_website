@@ -8,7 +8,9 @@ const initialState = {
     LoginError: "",
     RegisterError: "",
     ChangePasswordError: "",
-    ProfileError: ""
+    ProfileError: "",
+    VerifyAccountError: "",
+    VerifyAccountOtpError: ""
 }
 
 const authSlice = createSlice({
@@ -41,13 +43,19 @@ const authSlice = createSlice({
         },
         SetProfileError : (state, action)=>{
             state.ProfileError=action.payload;
+        },
+        SetVerifyAccountError : (state, action)=>{
+            state.VerifyAccountError=action.payload;
+        },
+        SetVerifyAccountOtpError : (state, action)=>{
+            state.VerifyAccountOtpError=action.payload;
         }
     }
 })
 
 
 
-export const {ShowLoading, HideLoading, SetForgotError, SetVerifyOtpError, SetResetPasswordError, SetLoginError, SetRegisterError, SetChangePasswordError, SetProfileError} = authSlice.actions;
+export const {ShowLoading, HideLoading, SetForgotError, SetVerifyAccountError, SetVerifyAccountOtpError, SetVerifyOtpError, SetResetPasswordError, SetLoginError, SetRegisterError, SetChangePasswordError, SetProfileError} = authSlice.actions;
 
 const authSliceReducer = authSlice.reducer;
 export default authSliceReducer;

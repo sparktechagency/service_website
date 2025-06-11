@@ -1,20 +1,44 @@
 "use client";
 
-import { setVerifyEmail } from "@/helper/SessionHelper";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import CustomInput from "../ui/CustomInput";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { forgotPasswordSendOtpSchema } from "@/schemas/auth.schema";
+import { useVerifyAccountSendOtpMutation } from "@/redux/features/auth/authApi";
+import { z } from "zod";
+import { SetVerifyAccountError } from "@/redux/features/auth/authSlice";
+import Error from "../validation/Error";
+import { useEffect } from "react";
+
+type TFormValues = z.infer<typeof forgotPasswordSendOtpSchema>;
+
 
 const VerifyAccountForm = () => {
   const router = useRouter();
-  const [email, setEmail] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-
-  const handleSendCode = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-    setVerifyEmail(email);
-    router.push("/verify-account-otp");
+  const dispatch = useAppDispatch();
+  const { VerifyAccountError } = useAppSelector((state) => state.auth);
+  const [verifyAccountSendOtp, { isLoading, isSuccess}] = useVerifyAccountSendOtpMutation();
+  const { handleSubmit, control } = useForm({
+      resolver: zodResolver(forgotPasswordSendOtpSchema),
+  });
+  
+  
+  useEffect(()=>{
+    if(isSuccess){
+      router.push("/verify-account-otp");
+    }
+  }, [isSuccess, router])
+  
+  const onSubmit: SubmitHandler<TFormValues> = (data) => {
+    dispatch(SetVerifyAccountError(""));
+    verifyAccountSendOtp(data);
   };
+
+
+
+
   return (
     <>
       {/* Header */}
@@ -47,42 +71,10 @@ const VerifyAccountForm = () => {
           We will send a verification code to your email address
         </p>
       </div>
-
-      <form onSubmit={handleSendCode} className="space-y-5">
-        {/* Email Field */}
-        <div className="space-y-2">
-          <label
-            htmlFor="email"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Email Address
-          </label>
-          <div className="relative">
-            <input
-              id="email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-200 pl-11"
-              placeholder="Enter your email address"
-              required
-            />
-            <svg
-              className="w-5 h-5 text-gray-400 absolute left-3 top-3.5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"
-              />
-            </svg>
-          </div>
-        </div>
-
+      {VerifyAccountError && <Error message={VerifyAccountError} />}
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+        <CustomInput label="Email" name="email" type="text" control={control} placeholder="Enter email address"/>
+        
         {/* Send Code Button */}
         <button
           type="submit"

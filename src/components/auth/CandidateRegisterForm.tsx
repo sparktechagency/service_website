@@ -13,6 +13,7 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
 import { useRegisterMutation } from "@/redux/features/auth/authApi";
 import { SetRegisterError } from "@/redux/features/auth/authSlice";
 import { CgSpinnerTwo } from "react-icons/cg";
+import Error from "../validation/Error";
 
 type TFormValues = z.infer<typeof registerSchema>;
 
@@ -36,6 +37,11 @@ const CandidateRegisterForm = () => {
     }
   }, [password, watch, trigger]);
 
+
+  //if register is success
+  useEffect(()=>{
+  }, [])
+
   const onSubmit: SubmitHandler<TFormValues> = (data) => {
     const { terms, ...rest } = data;
     dispatch(SetRegisterError(""));
@@ -47,6 +53,7 @@ const CandidateRegisterForm = () => {
 
   return (
     <>
+      {RegisterError && <Error message={RegisterError} />}
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <CustomInput
           label="Candidate Name"

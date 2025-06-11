@@ -1,60 +1,41 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
+import { getVerifyEmail } from "@/helper/SessionHelper";
+import {
+  useVerifyAccountResendOtpMutation,
+  useVerifyAccountVerifyOtpMutation,
+} from "@/redux/features/auth/authApi";
+import { SetVerifyAccountOtpError } from "@/redux/features/auth/authSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import Error from "../validation/Error";
 
 const VerifyAccountOtpForm = () => {
   const router = useRouter();
-  const [email, setEmail] = useState("rejaul@gmail.com");
   const [verificationCode, setVerificationCode] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [countdown, setCountdown] = useState(120);
+  const [countdown, setCountdown] = useState(60);
   const [isResending, setIsResending] = useState(false);
+  const [verifyEmail, setVerifyEmail] = useState<string | null>("");
 
-  const handleChangeEmail = () => {
-    setVerificationCode("");
-    setCountdown(0);
-    localStorage.clear();
-    router.push("/verify-account");
-  };
-
-  const handleVerifyCode = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-
-    // Simulate API call
-    setTimeout(() => {
-      setIsLoading(false);
-      console.log("Verifying code:", verificationCode);
-      // Handle successful verification
-      alert("Account verified successfully!");
-    }, 2000);
-  };
-
-  const handleResendCode = () => {
-    if (countdown === 0) {
-      setCountdown(60);
-      setIsResending(true);
-      console.log("Resending verification code to:", email);
-
-      // Restart countdown
-      const timer = setInterval(() => {
-        setCountdown((prev) => {
-          if (prev <= 1) {
-            clearInterval(timer);
-            return 0;
-          }
-          return prev - 1;
-        });
-      }, 1000);
-    }
-  };
+  const dispatch = useAppDispatch();
+  const { VerifyAccountOtpError } = useAppSelector((state) => state.auth);
+  const [verifyAccountVerifyOtp, { isLoading, isSuccess: verifySuccess }] =
+    useVerifyAccountVerifyOtpMutation();
+  const [
+    verifyAccountResendOtp,
+    { isLoading: resendLoading, isSuccess: resendSuccess },
+  ] = useVerifyAccountResendOtpMutation();
 
   useEffect(() => {
     // Simulate API call
+    if (typeof window !== "undefined") {
+      const emailFromStorage = localStorage.getItem("verifyEmail");
+      setVerifyEmail(emailFromStorage);
+    }
+
     setTimeout(() => {
-      setIsLoading(false);
+      //setIsLoading(false);
       //setCountdown(60) // Start 60 second countdown
 
       // Countdown timer
@@ -70,6 +51,65 @@ const VerifyAccountOtpForm = () => {
     }, 2000);
   }, []);
 
+  const handleChangeEmail = () => {
+    setVerificationCode("");
+    setCountdown(0);
+    localStorage.clear();
+    router.push("/verify-account");
+  };
+
+
+  //if verify success
+  useEffect(() => {
+    if (verifySuccess) {
+      localStorage.clear();
+      router.push("/login");
+    }
+  }, [verifySuccess, router]);
+
+  //handle verify
+  const handleVerifyCode = async (e: React.FormEvent) => {
+    e.preventDefault();
+    dispatch(SetVerifyAccountOtpError(""));
+    console.log({
+      activation_code: verificationCode,
+      userEmail: getVerifyEmail(),
+    });
+    verifyAccountVerifyOtp({
+      activation_code: verificationCode,
+      userEmail: getVerifyEmail(),
+    });
+  };
+
+  //if code is resent successfully
+  useEffect(() => {
+    if (!resendLoading && resendSuccess) {
+      setIsResending(false);
+      // Restart countdown
+      const timer = setInterval(() => {
+        setCountdown((prev) => {
+          if (prev <= 1) {
+            clearInterval(timer);
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+    }
+  }, [resendLoading, resendSuccess]);
+
+  //handle resend code
+  const handleResendCode = () => {
+    if (countdown === 0) {
+      setVerificationCode("");
+      setCountdown(60);
+      setIsResending(true);
+      verifyAccountResendOtp({
+        email: getVerifyEmail(),
+      });
+    }
+  };
+
   return (
     <>
       <div className="text-center space-y-2">
@@ -77,9 +117,11 @@ const VerifyAccountOtpForm = () => {
           Enter Verification Code
         </h1>
         <p className="text-gray-600">
-          {`We've sent a 6-digit code to ${email}`}
+          {`We've sent a 6-digit code to ${verifyEmail}`}
         </p>
       </div>
+      {VerifyAccountOtpError && <Error message={VerifyAccountOtpError} />}
+
       <div className="space-y-5">
         <form onSubmit={handleVerifyCode} className="space-y-5">
           {/* Verification Code Field */}
@@ -115,7 +157,7 @@ const VerifyAccountOtpForm = () => {
           <button
             type="submit"
             disabled={isLoading || verificationCode.length !== 6}
-            className="w-full bg-gradient-to-r from-green-500 to-emerald-600 text-white py-3 px-4 rounded-lg font-medium hover:from-green-600 hover:to-emerald-700 focus:ring-4 focus:ring-green-200 transition-all duration-200 transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+            className="w-full cursor-pointer bg-gradient-to-r from-green-500 to-emerald-600 text-white py-3 px-4 rounded-lg font-medium hover:from-green-600 hover:to-emerald-700 focus:ring-4 focus:ring-green-200 transition-all duration-200 transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
           >
             {isLoading ? (
               <div className="flex items-center justify-center space-x-2">
@@ -128,17 +170,6 @@ const VerifyAccountOtpForm = () => {
           </button>
         </form>
 
-        {/* Resend Code */}
-        {/* <div className="text-center space-y-3">
-          <p className="text-sm text-gray-600">{"Didn't receive the code?"}</p>
-          <button
-            onClick={handleResendCode}
-            disabled={countdown > 0}
-            className="text-green-600 hover:text-green-800 font-medium text-sm transition-colors disabled:text-gray-400 disabled:cursor-not-allowed"
-          >
-            {countdown > 0 ? `Resend in ${countdown}s` : "Resend Code"}
-          </button>
-        </div> */}
         {/* Resend Code */}
         <div className="text-center space-y-3">
           <p className="text-sm text-gray-600">{"Didn't receive the code?"}</p>
