@@ -10,17 +10,27 @@ import { useForgotPasswordSendOtpMutation } from "@/redux/features/auth/authApi"
 import { SetForgotError } from "@/redux/features/auth/authSlice";
 import Error from "../validation/Error";
 import { CgSpinnerTwo } from "react-icons/cg";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 type TFormValues = z.infer<typeof forgotPasswordSendOtpSchema>;
 
 const ForgotPasswordForm = () => {
+  const router = useRouter();
   const dispatch = useAppDispatch();
   const { ForgotError } = useAppSelector((state) => state.auth);
-  const [forgotPasswordSendOtp, { isLoading }] =
+  const [forgotPasswordSendOtp, { isLoading, isSuccess }] =
     useForgotPasswordSendOtpMutation();
   const { handleSubmit, control } = useForm({
     resolver: zodResolver(forgotPasswordSendOtpSchema),
   });
+
+
+   useEffect(()=>{
+      if(isSuccess){
+        router.push("/verify-otp");
+      }
+    }, [isSuccess, router])
 
   const onSubmit: SubmitHandler<TFormValues> = (data) => {
     dispatch(SetForgotError(""));

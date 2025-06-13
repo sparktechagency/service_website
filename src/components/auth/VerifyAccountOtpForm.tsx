@@ -31,7 +31,9 @@ const VerifyAccountOtpForm = () => {
     // Simulate API call
     if (typeof window !== "undefined") {
       const emailFromStorage = localStorage.getItem("verifyEmail");
-      setVerifyEmail(emailFromStorage);
+      if(emailFromStorage){
+        setVerifyEmail(emailFromStorage);
+      }
     }
 
     setTimeout(() => {
@@ -71,10 +73,6 @@ const VerifyAccountOtpForm = () => {
   const handleVerifyCode = async (e: React.FormEvent) => {
     e.preventDefault();
     dispatch(SetVerifyAccountOtpError(""));
-    console.log({
-      activation_code: verificationCode,
-      userEmail: getVerifyEmail(),
-    });
     verifyAccountVerifyOtp({
       activation_code: verificationCode,
       userEmail: getVerifyEmail(),

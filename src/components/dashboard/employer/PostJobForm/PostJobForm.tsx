@@ -23,18 +23,6 @@ const PostJobForm = () => {
   const [responsibilities, setResponsibilities] = useState("");
   const [selectedLocation, setSelectedLocation] = useState();
 
-   const MapComponent = dynamic(() => import('@/components/Location/LocationMap'), {
-    ssr: false, // This is critical - it prevents the component from loading during SSR
-    loading: () => (
-      <div className="h-full flex items-center justify-center bg-gray-100 rounded-lg">
-        <div className="text-center">
-          <Map size={32} className="mx-auto text-blue-500 animate-pulse" />
-          <p className="mt-2 text-gray-600 text-sm">Loading map...</p>
-        </div>
-      </div>
-    ),
-  });
-
 
   // const handleSubmit = (e: { preventDefault: () => void; }) => {
   //   e.preventDefault();

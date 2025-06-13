@@ -65,7 +65,34 @@ export const authApi = apiSlice.injectEndpoints({
           SuccessToast("OTP is sent successfully");
         } catch (err: any) {
           const message = err?.error?.data?.message;
-          dispatch(SetForgotError(message))
+          if(message === "Cannot read properties of null (reading 'email')"){
+            dispatch(SetForgotError("Couldn't find this email address"))
+          }
+          else{
+            dispatch(SetForgotError(message))
+          }
+        }
+      },
+    }),
+    forgotPasswordResendOtp: builder.mutation({
+      query: (data) => ({
+        url: "/auth/forgot-resend",
+        method: "POST",
+        body: data,
+      }),
+      async onQueryStarted({ email }, { queryFulfilled }) {
+        try {
+          await queryFulfilled;
+          setEmail(email);
+          SuccessToast("OTP is sent successfully");
+        } catch (err: any) {
+          const message = err?.error?.data?.message;
+          if(message === "Cannot read properties of null (reading 'email')"){
+            ErrorToast("Couldn't find this email address");
+          }
+          else{
+            ErrorToast(message);
+          }
         }
       },
     }),
@@ -183,7 +210,7 @@ export const authApi = apiSlice.injectEndpoints({
         method: "POST",
         body: data,
       }),
-      async onQueryStarted({ email }, { queryFulfilled, dispatch }) {
+      async onQueryStarted({ email }, { queryFulfilled }) {
         try {
           await queryFulfilled;
           setVerifyEmail(email);
@@ -205,10 +232,9 @@ export const authApi = apiSlice.injectEndpoints({
         method: "POST",
         body: data,
       }),
-      async onQueryStarted({ email }, { queryFulfilled, dispatch }) {
+      async onQueryStarted(_, { queryFulfilled, dispatch }) {
         try {
           await queryFulfilled;
-          setVerifyEmail(email);
           SuccessToast("Account is verified successfully");
         } catch (err: any) {
           const message = err?.error?.data?.message;
