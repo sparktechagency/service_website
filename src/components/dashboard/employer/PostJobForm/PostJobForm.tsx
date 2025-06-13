@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
+import LocationMap from "@/components/Location/LocationMap";
 import { Map } from "lucide-react";
 import dynamic from "next/dynamic";
 import { useState } from "react";
@@ -395,14 +396,14 @@ const PostJobForm = () => {
               </div>
             </div>
             <div className="order-1 lg:order-2 h-[350px] lg:h-[500px] mb-6">
-              {/* <LocationMap
-                onLocationSelect={handleLocationSelect}
-                selectedLocation={selectedLocation}
-              /> */}
-              <MapComponent
+              <LocationMap
                 onLocationSelect={handleLocationSelect}
                 selectedLocation={selectedLocation}
               />
+              {/* <MapComponent
+                onLocationSelect={handleLocationSelect}
+                selectedLocation={selectedLocation}
+              /> */}
             </div>
 
             <div className="mb-6">
