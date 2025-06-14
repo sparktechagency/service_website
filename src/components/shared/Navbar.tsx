@@ -120,7 +120,6 @@ export default function Navbar() {
                 height={600}
               />
             </div>
-            <span className="text-sm">Andrew Ainsley</span>
           </div>
         </div>
 

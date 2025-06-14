@@ -5,7 +5,13 @@
 import LocationMap from "@/components/Location/LocationMap";
 import CustomInput from "@/components/ui/CustomInput";
 import CustomSelect from "@/components/ui/CustomSelect";
-import { educationOptions, typeOptions } from "@/data/job.options";
+import CustomTextArea from "@/components/ui/CustomTextArea";
+import {
+  educationOptions,
+  experienceOptions,
+  rateOptions,
+  typeOptions,
+} from "@/data/job.options";
 import { useGetCategoriesQuery } from "@/redux/features/category/categoryApi";
 import { useAppSelector } from "@/redux/hooks/hooks";
 import { loginSchema } from "@/schemas/auth.schema";
@@ -18,12 +24,13 @@ import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 
+  type TFormValues = z.infer<typeof createJobSchema>;
+
 const PostJobForm = () => {
   useGetCategoriesQuery(undefined);
   const [jobTitle, setJobTitle] = useState("");
   const [tags, setTags] = useState("");
   const [category, setCategory] = useState("");
-  const [salary, setSalary] = useState("");
   const [currency, setCurrency] = useState("USD");
   const [education, setEducation] = useState("");
   const [experience, setExperience] = useState("");
@@ -34,7 +41,6 @@ const PostJobForm = () => {
   const [description, setDescription] = useState("");
   const [responsibilities, setResponsibilities] = useState("");
   const [selectedLocation, setSelectedLocation] = useState();
-
 
   // const handleSubmit = (e: { preventDefault: () => void; }) => {
   //   e.preventDefault();
@@ -56,17 +62,6 @@ const PostJobForm = () => {
   //   });
   // };
 
-
-
-
-  const experienceOptions = [
-    "Entry Level",
-    "1-2 years",
-    "2-4 years",
-    "5-6 years",
-    "10+ years",
-  ];
-
   const patternOptions = [
     "Day Shift",
     "Evening Shift",
@@ -75,39 +70,39 @@ const PostJobForm = () => {
     "Flexibility",
   ];
 
-  const rateOptions = [
-    "Per Hour",
-    "Per Day",
-    "Per Year"
-  ];
+ 
 
-    // Handle location selection from map
-    const handleLocationSelect = (location: any) => {
-      setSelectedLocation(location);
-      // setValue('latitude', location[0].toFixed(6));
-      // setValue('longitude', location[1].toFixed(6));
-    };
+  // Handle location selection from map
+  const handleLocationSelect = (location: any) => {
+    setSelectedLocation(location);
+    // setValue('latitude', location[0].toFixed(6));
+    // setValue('longitude', location[1].toFixed(6));
+  };
 
-      const router = useRouter();
-      //const dispatch = useAppDispatch();
-      const { categoryOptions } = useAppSelector((state) => state.category);
-      //const [login, { isLoading }] = useLoginMutation();
+  const router = useRouter();
+  //const dispatch = useAppDispatch();
+  const { categoryOptions } = useAppSelector((state) => state.category);
+  //const [login, { isLoading }] = useLoginMutation();
 
-      const {  handleSubmit, control } = useForm({
-            resolver: zodResolver(createJobSchema),
-            // defaultValues:{
-            //   email: "tayebrayhan10@gmail.com",
-            //   password: "12345678"
-            // }
-      })
-    
-    
-    type TFormValues = z.infer<typeof createJobSchema>
-    
-        const onSubmit: SubmitHandler<TFormValues> = (data) => {
-          // dispatch(SetLoginError(""))
-          // login(data)
-        };
+  const { handleSubmit, control, watch,  formState: { errors } } = useForm({
+    resolver: zodResolver(createJobSchema),
+    // defaultValues:{
+    //   email: "tayebrayhan10@gmail.com",
+    //   password: "12345678"
+    // }
+  });
+
+  const salary = watch("salary");
+  console.log(errors);
+console.log(salary);
+const isDisabled =  errors?.salary && true || salary===undefined && true || isNaN(Number(salary)) || salary===""
+
+
+
+  const onSubmit: SubmitHandler<TFormValues> = (data) => {
+    // dispatch(SetLoginError(""))
+    // login(data)
+  };
 
   return (
     <>
@@ -127,104 +122,61 @@ const PostJobForm = () => {
             />
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <CustomSelect label="Type" name="types" control={control} options={typeOptions}/>
-              <CustomSelect label="Category" name="category" control={control} options={categoryOptions}/>
+              <CustomSelect
+                label="Type"
+                name="types"
+                control={control}
+                options={typeOptions}
+              />
+              <CustomSelect
+                label="Category"
+                name="category"
+                control={control}
+                options={categoryOptions}
+              />
             </div>
 
             <div className="mt-8 mb-4">
               <h2 className="text-lg font-medium text-gray-800 mb-4">
                 Advance Information
               </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="col-span-3 grid grid-cols-1 lg:grid-cols-2 gap-4">
-                    <CustomSelect label="Education" name="education" control={control} options={educationOptions}/>
-                  <div className="mb-4">
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Exprience
-                    </label>
-                    <div className="relative">
-                      <select className="w-full px-3 py-2 border border-gray-300 text-gray-700 rounded-md appearance-none focus:outline-none focus:border-blue-500 focus:ring-blue-500">
-                        <option value="">Select experience</option>
-                        {experienceOptions.map((option) => (
-                          <option key={option} value={option}>
-                            {option}
-                          </option>
-                        ))}
-                      </select>
-                      <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
-                        <svg
-                          className="h-4 w-4 text-gray-400"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M19 9l-7 7-7-7"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="mb-4 col-span-3">
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Skills (technical or soft skills, Comma Separated)
-                  </label>
-                  <textarea
-                    placeholder="e.g. CNC Programming, TIG Welding"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 focus:ring-blue-500"
-                  ></textarea>
-                </div>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="mb-4">
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Salary(Optional)
-                  </label>
-                  <input
-                    type="number"
-                    value={salary}
-                    onChange={(e) => setSalary(e.target.value)}
-                    placeholder="e.g. 400"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 focus:ring-blue-500"
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
+                <CustomSelect
+                  label="Education"
+                  name="education"
+                  control={control}
+                  options={educationOptions}
+                />
+                <CustomSelect
+                  label="Experience"
+                  name="experience"
+                  control={control}
+                  options={experienceOptions}
+                />
+                <div className="col-span-2">
+                  <CustomTextArea
+                    label="Skills (technical or soft skills, Comma Separated)"
+                    name="skill"
+                    control={control}
                   />
                 </div>
-                <div className="mb-4">
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Rate
-                  </label>
-                  <div className="relative">
-                    <select
-                      disabled={!salary}
-                      className="w-full px-3 py-2 border border-gray-300 text-gray-700 rounded-md disabled:bg-gray-400 appearance-none focus:outline-none focus:border-blue-500 focus:ring-blue-500"
-                    >
-                      <option value="">Select rate</option>
-                      {rateOptions.map((option) => (
-                        <option key={option} value={option}>
-                          {option}
-                        </option>
-                      ))}
-                    </select>
-                    <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
-                      <svg
-                        className="h-4 w-4 text-gray-400"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M19 9l-7 7-7-7"
-                        />
-                      </svg>
-                    </div>
-                  </div>
-                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <CustomInput
+                  label=" Salary(Optional)"
+                  name="salary"
+                  type="text"
+                  control={control}
+                  placeholder="e.g. 400"
+                />
+                <CustomSelect
+                  label="Rate"
+                  name="rate"
+                  control={control}
+                  options={rateOptions}
+                  disabled={isDisabled}
+                />
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                 <div className="mb-4">
