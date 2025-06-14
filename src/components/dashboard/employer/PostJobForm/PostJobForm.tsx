@@ -4,13 +4,16 @@
 
 import LocationMap from "@/components/Location/LocationMap";
 import CustomInput from "@/components/ui/CustomInput";
+import CustomSelect from "@/components/ui/CustomSelect";
 import { loginSchema } from "@/schemas/auth.schema";
+import { createJobSchema } from "@/schemas/job.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Map } from "lucide-react";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { z } from "zod";
 
 const PostJobForm = () => {
   const [jobTitle, setJobTitle] = useState("");
@@ -50,13 +53,34 @@ const PostJobForm = () => {
   // };
 
   const typeOptions = [
-    "Full-time",
-    "Part-time",
-    "Fixed-Term / Contract",
-    "Temporary",
-    "Apprenticeship",
-    "Graduate / Entry-Level",
-    "Remote / Hybrid",
+    {
+      label: "Full Time",
+      value: "full_time"
+    },
+     {
+      label: "Part Time",
+      value: "part_time"
+    },
+    {
+      label: "Fixed-Term / Contract",
+      value: "fixedterm_contract"
+    },
+    {
+      label: "Temporary",
+      value: "temporary"
+    },
+    {
+      label: "Apprenticeship",
+      value: "apprenticeship"
+    },
+    {
+      label: "Graduate / Entry-Level",
+      value: "graduate_entrylevel"
+    },
+    {
+      label: "Remote / Hybrid",
+      value: "remote_hybrid"
+    } 
   ];
 
   const educationOptions = [
@@ -114,19 +138,20 @@ const PostJobForm = () => {
       //const { LoginError } = useAppSelector((state) => state.auth);
       //const [login, { isLoading }] = useLoginMutation();
 
-      const {handleSubmit, control } = useForm({
-            resolver: zodResolver(loginSchema),
-            defaultValues:{
-              email: "tayebrayhan10@gmail.com",
-              password: "12345678"
-            }
+      const {  handleSubmit, control } = useForm({
+            resolver: zodResolver(createJobSchema),
+            // defaultValues:{
+            //   email: "tayebrayhan10@gmail.com",
+            //   password: "12345678"
+            // }
       })
     
     
+    type TFormValues = z.infer<typeof createJobSchema>
     
         const onSubmit: SubmitHandler<TFormValues> = (data) => {
-          dispatch(SetLoginError(""))
-          login(data)
+          // dispatch(SetLoginError(""))
+          // login(data)
         };
 
   return (
@@ -135,60 +160,19 @@ const PostJobForm = () => {
         <div className="max-6xl mx-auto p-4 sm:p-6 rounded-lg">
           <h1 className="text-2xl font-bold text-gray-800 mb-4">Post a job</h1>
           <form
-            // onSubmit={handleSubmit}
-            className="bg-white px-4 py-6 rounded-md"
+            onSubmit={handleSubmit(onSubmit)}
+            className="bg-white px-4 py-6 rounded-md space-y-4"
           >
-            {/* <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Job Title
-              </label>
-              <input
-                type="text"
-                value={expirationDate}
-                onChange={(e) => setExpirationDate(e.target.value)}
-                placeholder="e.g. CNC Machinist, Maintenance Engineer"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 focus:ring-blue-500"
-              />
-            </div> */}
-              <CustomInput
-                      label="Employer Name"
-                      name="name"
-                      type="text"
-                      control={control}
-                      placeholder="Enter full name"
-                    />
+            <CustomInput
+              label="Job Title"
+              name="title"
+              type="text"
+              control={control}
+              placeholder="e.g. CNC Machinist, Maintenance Engineer"
+            />
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Type
-                </label>
-                <div className="relative">
-                  <select className="w-full px-3 py-2 border border-gray-300 text-gray-700 rounded-md appearance-none focus:outline-none focus:border-blue-500 focus:ring-blue-500">
-                    <option value="">Select type</option>
-                    {typeOptions.map((option) => (
-                      <option key={option} value={option}>
-                        {option}
-                      </option>
-                    ))}
-                  </select>
-                  <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
-                    <svg
-                      className="h-4 w-4 text-gray-400"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M19 9l-7 7-7-7"
-                      />
-                    </svg>
-                  </div>
-                </div>
-              </div>
+              <CustomSelect label="Type" name="types" control={control} options={typeOptions}/>
               <div className="mb-4">
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Category
@@ -200,7 +184,7 @@ const PostJobForm = () => {
                       <option key={option} value={option}>
                         {option}
                       </option>
-                    ))} 
+                    ))}
                   </select>
                   <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
                     <svg
@@ -298,51 +282,53 @@ const PostJobForm = () => {
                   ></textarea>
                 </div>
               </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                     <div className="mb-4">
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Salary(Optional)
-                    </label>
-                    <input
-                      type="number"
-                      value={salary}
-                      onChange={(e) => setSalary(e.target.value)}
-                      placeholder="e.g. 400"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 focus:ring-blue-500"
-                    />
-                  </div>
-                  <div className="mb-4">
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Rate
-                    </label>
-                    <div className="relative">
-                      <select disabled={!salary} className="w-full px-3 py-2 border border-gray-300 text-gray-700 rounded-md disabled:bg-gray-400 appearance-none focus:outline-none focus:border-blue-500 focus:ring-blue-500">
-                        <option value="">Select rate</option>
-                        {rateOptions.map((option) => (
-                          <option key={option} value={option}>
-                            {option}
-                          </option>
-                        ))}
-                      </select>
-                      <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
-                        <svg
-                          className="h-4 w-4 text-gray-400"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M19 9l-7 7-7-7"
-                          />
-                        </svg>
-                      </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="mb-4">
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Salary(Optional)
+                  </label>
+                  <input
+                    type="number"
+                    value={salary}
+                    onChange={(e) => setSalary(e.target.value)}
+                    placeholder="e.g. 400"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 focus:ring-blue-500"
+                  />
+                </div>
+                <div className="mb-4">
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Rate
+                  </label>
+                  <div className="relative">
+                    <select
+                      disabled={!salary}
+                      className="w-full px-3 py-2 border border-gray-300 text-gray-700 rounded-md disabled:bg-gray-400 appearance-none focus:outline-none focus:border-blue-500 focus:ring-blue-500"
+                    >
+                      <option value="">Select rate</option>
+                      {rateOptions.map((option) => (
+                        <option key={option} value={option}>
+                          {option}
+                        </option>
+                      ))}
+                    </select>
+                    <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                      <svg
+                        className="h-4 w-4 text-gray-400"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
                     </div>
                   </div>
-                 
                 </div>
+              </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                 <div className="mb-4">
                   <label className="block text-sm font-medium text-gray-700 mb-1">
