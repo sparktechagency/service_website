@@ -6,4 +6,12 @@ export interface ApiError {
     message?: string;
   };
 }
+
+
+export type IAuthUser = {
+  id: string;
+  iat: number;
+  email: string;
+  role: "USER" | "EMPLOYER";
+};
   

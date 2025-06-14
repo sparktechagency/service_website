@@ -12,17 +12,16 @@ export default function Navbar() {
   const AuthButton = dynamic(() => import("./AuthButton"), {
     ssr: false,
     loading: () => (
-       <div className="rounded-md border border-white/30 px-4 py-1.5 text-sm bg-white/5 animate-pulse">
-      <div className="h-4 w-16 bg-white/20 rounded"></div>
-    </div>
-    )
+      <div className="rounded-md border border-white/30 px-4 py-1.5 text-sm bg-white/5 animate-pulse">
+        <div className="h-4 w-16 bg-white/20 rounded"></div>
+      </div>
+    ),
   });
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const pathname = usePathname();
   const router = useRouter();
-
 
   return (
     <nav className="sticky top-0 h-[88px] z-50 w-full bg-primary text-white shadow-md">
@@ -57,27 +56,8 @@ export default function Navbar() {
           >
             Find-Candidates
           </Link>
-          <Link
-            href="/dashboard/candidate/overview"
-            className={`hover:text-secondary ${
-              pathname === "/dashboard/candidate/overview"
-                ? "text-secondary"
-                : "text-white"
-            }`}
-          >
-            Candidate-Dashboard
-          </Link>
-          <Link
-            href="/dashboard/employer/overview"
-            className={`hover:text-secondary ${
-              pathname === "/dashboard/employer/overview"
-                ? "text-secondary"
-                : "text-white"
-            }`}
-          >
-            Employer-Dashboard
-          </Link>
-           {/* <Link
+         
+          {/* <Link
             href="/dashboard/employer/subscription"
             className={`hover:text-secondary ${
               pathname === "/dashboard/employer/subscription" ? "text-secondary" : "text-white"
@@ -105,7 +85,7 @@ export default function Navbar() {
 
         {/* Desktop Right Side */}
         <div className="hidden items-center space-x-4 md:flex">
-          <AuthButton/>
+          <AuthButton />
           <button
             onClick={() => router.push("/dashboard/candidate/messages")}
             className="relative rounded-full p-1 cursor-pointer hover:bg-white/10"
@@ -125,7 +105,10 @@ export default function Navbar() {
             </span>
           </button>
 
-          <div onClick={() => router.push("/dashboard/candidate/settings")} className="flex items-center gap-2 cursor-pointer">
+          <div
+            onClick={() => router.push("/dashboard/candidate/settings")}
+            className="flex items-center gap-2 cursor-pointer"
+          >
             <div className="h-8 w-8 rounded-full">
               <Image
                 src="/images/avatar.png"

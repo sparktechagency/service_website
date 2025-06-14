@@ -1,4 +1,7 @@
+import { IAuthUser } from "@/types/global.type";
 import { SuccessToast } from "./ValidationHelper";
+import { jwtDecode } from "jwt-decode";
+
 
 class SessionHelper {
   setToken(token: string) {
@@ -10,6 +13,18 @@ class SessionHelper {
       return localStorage.getItem("token");
     }
     return "";
+  }
+
+  getUserInfo() {
+    const token = getToken();
+    if (token) {
+      const decodedData = jwtDecode(token) as IAuthUser;
+      return decodedData;
+    }
+    if (typeof window !== "undefined" && window.localStorage) {
+       window.localStorage.clear();
+       window.location.href = "/";
+    }
   }
 
   setEmail(email: string) {
