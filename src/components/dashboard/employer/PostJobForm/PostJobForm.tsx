@@ -5,6 +5,9 @@
 import LocationMap from "@/components/Location/LocationMap";
 import CustomInput from "@/components/ui/CustomInput";
 import CustomSelect from "@/components/ui/CustomSelect";
+import { educationOptions, typeOptions } from "@/data/job.options";
+import { useGetCategoriesQuery } from "@/redux/features/category/categoryApi";
+import { useAppSelector } from "@/redux/hooks/hooks";
 import { loginSchema } from "@/schemas/auth.schema";
 import { createJobSchema } from "@/schemas/job.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -16,6 +19,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 
 const PostJobForm = () => {
+  useGetCategoriesQuery(undefined);
   const [jobTitle, setJobTitle] = useState("");
   const [tags, setTags] = useState("");
   const [category, setCategory] = useState("");
@@ -52,44 +56,8 @@ const PostJobForm = () => {
   //   });
   // };
 
-  const typeOptions = [
-    {
-      label: "Full Time",
-      value: "full_time"
-    },
-     {
-      label: "Part Time",
-      value: "part_time"
-    },
-    {
-      label: "Fixed-Term / Contract",
-      value: "fixedterm_contract"
-    },
-    {
-      label: "Temporary",
-      value: "temporary"
-    },
-    {
-      label: "Apprenticeship",
-      value: "apprenticeship"
-    },
-    {
-      label: "Graduate / Entry-Level",
-      value: "graduate_entrylevel"
-    },
-    {
-      label: "Remote / Hybrid",
-      value: "remote_hybrid"
-    } 
-  ];
 
-  const educationOptions = [
-    "GCSE or equivalent",
-    "Apprenticeship",
-    "HNC/HND",
-    "Degree",
-    "Other",
-  ];
+
 
   const experienceOptions = [
     "Entry Level",
@@ -113,19 +81,6 @@ const PostJobForm = () => {
     "Per Year"
   ];
 
-  const categoryOptions = [
-  "Engineering",
-  "Manufacturing & Production",
-  "Supply Chain & Logistics",
-  "Sales & Marketing",
-  "Office & IT Support",
-  "QHSE (Quality, Health, Safety & Environment)",
-  "Leadership & Management",
-  "Apprenticeships & Graduates"
-];
-
-
-
     // Handle location selection from map
     const handleLocationSelect = (location: any) => {
       setSelectedLocation(location);
@@ -135,7 +90,7 @@ const PostJobForm = () => {
 
       const router = useRouter();
       //const dispatch = useAppDispatch();
-      //const { LoginError } = useAppSelector((state) => state.auth);
+      const { categoryOptions } = useAppSelector((state) => state.category);
       //const [login, { isLoading }] = useLoginMutation();
 
       const {  handleSubmit, control } = useForm({
@@ -173,36 +128,7 @@ const PostJobForm = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <CustomSelect label="Type" name="types" control={control} options={typeOptions}/>
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Category
-                </label>
-                <div className="relative">
-                  <select className="w-full px-3 py-2 border border-gray-300 text-gray-700 rounded-md appearance-none focus:outline-none focus:border-blue-500 focus:ring-blue-500">
-                    <option value="">Select Category</option>
-                    {categoryOptions?.map((option) => (
-                      <option key={option} value={option}>
-                        {option}
-                      </option>
-                    ))}
-                  </select>
-                  <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
-                    <svg
-                      className="h-4 w-4 text-gray-400"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M19 9l-7 7-7-7"
-                      />
-                    </svg>
-                  </div>
-                </div>
-              </div>
+              <CustomSelect label="Category" name="category" control={control} options={categoryOptions}/>
             </div>
 
             <div className="mt-8 mb-4">
@@ -211,36 +137,7 @@ const PostJobForm = () => {
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="col-span-3 grid grid-cols-1 lg:grid-cols-2 gap-4">
-                  <div className="mb-4">
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Education
-                    </label>
-                    <div className="relative">
-                      <select className="w-full px-3 py-2 border border-gray-300 text-gray-700 rounded-md appearance-none focus:outline-none focus:border-blue-500 focus:ring-blue-500">
-                        <option value="">Select Education</option>
-                        {educationOptions?.map((option) => (
-                          <option key={option} value={option}>
-                            {option}
-                          </option>
-                        ))}
-                      </select>
-                      <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
-                        <svg
-                          className="h-4 w-4 text-gray-400"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M19 9l-7 7-7-7"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
+                    <CustomSelect label="Education" name="education" control={control} options={educationOptions}/>
                   <div className="mb-4">
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Exprience

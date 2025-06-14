@@ -14,7 +14,6 @@ type TProps = {
 };
 
 const CustomSelect = ({ label, name, control, options }: TProps) => {
-    console.log(options);
   return (
     <>
       <div>
@@ -52,7 +51,7 @@ const CustomSelect = ({ label, name, control, options }: TProps) => {
                 </div>
               </div>
                {error && (
-                 <p className="text-red-600 text-sm mt-1">{"error.message"}</p>
+                 <p className="text-red-600 text-sm mt-1">{error.message}</p>
                 )} 
             </>
           )}

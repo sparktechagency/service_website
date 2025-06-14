@@ -7,10 +7,16 @@ export const createJobSchema = z.object({
       required_error: "Title is required",
     })
     .min(1, "Title is required"),
-  password: z
-    .string({ required_error: "Password is required" })
-    .min(1, "Password is required")
-    .min(6, "Password must be at least 6 characters long")
-    .max(100, "Password is too long")
-    .trim(),
+  types: z
+    .string({
+      invalid_type_error: "Type must be string",
+      required_error: "Select a type",
+    })
+    .min(1, "Select a type"),
+  category: z
+    .string({
+      invalid_type_error: "Category must be string",
+      required_error: "Select a category",
+    })
+    .min(1, "Select a category"),
 });
