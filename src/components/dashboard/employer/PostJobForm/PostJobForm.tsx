@@ -3,9 +3,14 @@
 "use client";
 
 import LocationMap from "@/components/Location/LocationMap";
+import CustomInput from "@/components/ui/CustomInput";
+import { loginSchema } from "@/schemas/auth.schema";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Map } from "lucide-react";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 const PostJobForm = () => {
   const [jobTitle, setJobTitle] = useState("");
@@ -104,6 +109,26 @@ const PostJobForm = () => {
       // setValue('longitude', location[1].toFixed(6));
     };
 
+      const router = useRouter();
+      //const dispatch = useAppDispatch();
+      //const { LoginError } = useAppSelector((state) => state.auth);
+      //const [login, { isLoading }] = useLoginMutation();
+
+      const {handleSubmit, control } = useForm({
+            resolver: zodResolver(loginSchema),
+            defaultValues:{
+              email: "tayebrayhan10@gmail.com",
+              password: "12345678"
+            }
+      })
+    
+    
+    
+        const onSubmit: SubmitHandler<TFormValues> = (data) => {
+          dispatch(SetLoginError(""))
+          login(data)
+        };
+
   return (
     <>
       <div className="flex-1 overflow-auto">
@@ -113,7 +138,7 @@ const PostJobForm = () => {
             // onSubmit={handleSubmit}
             className="bg-white px-4 py-6 rounded-md"
           >
-            <div className="mb-4">
+            {/* <div className="mb-4">
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Job Title
               </label>
@@ -124,7 +149,14 @@ const PostJobForm = () => {
                 placeholder="e.g. CNC Machinist, Maintenance Engineer"
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 focus:ring-blue-500"
               />
-            </div>
+            </div> */}
+              <CustomInput
+                      label="Employer Name"
+                      name="name"
+                      type="text"
+                      control={control}
+                      placeholder="Enter full name"
+                    />
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="mb-4">
