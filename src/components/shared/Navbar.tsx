@@ -6,12 +6,23 @@ import { Bell, Menu, MessageCircleMore, X } from "lucide-react";
 import Image from "next/image";
 import MobileMenu from "./MobileMenu";
 import { usePathname, useRouter } from "next/navigation";
+import dynamic from "next/dynamic";
 
 export default function Navbar() {
+  const AuthButton = dynamic(() => import("./AuthButton"), {
+    ssr: false,
+    loading: () => (
+       <div className="rounded-md border border-white/30 px-4 py-1.5 text-sm bg-white/5 animate-pulse">
+      <div className="h-4 w-16 bg-white/20 rounded"></div>
+    </div>
+    )
+  });
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const pathname = usePathname();
   const router = useRouter();
+
 
   return (
     <nav className="sticky top-0 h-[88px] z-50 w-full bg-primary text-white shadow-md">
@@ -20,10 +31,6 @@ export default function Navbar() {
         <Link href="/" className="flex items-center">
           <Image src="/images/logo.png" alt="logo" width={120} height={120} />
         </Link>
-        {/* <Link href="/" className="flex items-center">
-            <span className="text-xl font-bold text-rose-500">Tradieez</span>
-          </Link> */}
-
         {/* Desktop Navigation */}
         <div className="hidden space-x-6 md:flex">
           <Link
@@ -50,12 +57,6 @@ export default function Navbar() {
           >
             Find-Candidates
           </Link>
-          {/* <Link href="/employers" className="hover:text-gray-300">
-            Employers
-          </Link> */}
-          {/* <Link href="/candidates" className="hover:text-gray-300">
-            Candidates
-          </Link> */}
           <Link
             href="/dashboard/candidate/overview"
             className={`hover:text-secondary ${
@@ -104,18 +105,7 @@ export default function Navbar() {
 
         {/* Desktop Right Side */}
         <div className="hidden items-center space-x-4 md:flex">
-          <Link
-            href="/login"
-            className="rounded-md border border-white px-4 py-1.5 text-sm hover:bg-white/10"
-          >
-            Sign In
-          </Link>
-          {/* <Link
-            href="/dashboard/employer/post-job"
-            className="rounded-md bg-white px-4 py-1.5 text-sm font-medium text-[#1a2c4e] hover:bg-gray-100"
-          >
-            Post A Job
-          </Link> */}
+          <AuthButton/>
           <button
             onClick={() => router.push("/dashboard/candidate/messages")}
             className="relative rounded-full p-1 cursor-pointer hover:bg-white/10"

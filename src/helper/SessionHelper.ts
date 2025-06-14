@@ -1,3 +1,4 @@
+import { SuccessToast } from "./ValidationHelper";
 
 class SessionHelper {
   setToken(token: string) {
@@ -5,7 +6,10 @@ class SessionHelper {
   }
 
   getToken() {
-    return localStorage.getItem("token");
+    if (typeof window !== "undefined" && window.localStorage) {
+      return localStorage.getItem("token");
+    }
+    return "";
   }
 
   setEmail(email: string) {
@@ -36,7 +40,8 @@ class SessionHelper {
 
   logout() {
     localStorage.clear();
-    window.location.href = "/login";
+    window.location.href = "/";
+    SuccessToast("Logout Success");
   }
 }
 

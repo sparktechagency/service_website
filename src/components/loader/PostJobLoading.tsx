@@ -2,7 +2,9 @@
 
 export default function PostJobLoading() {
     return (
-      <div className="p-4 w-full mx-auto animate-pulse">
+      <>
+        <div className="flex-1 overflow-auto">
+          <div className="p-4 max-w-6xl mx-auto animate-pulse">
         <div className="h-6 w-32 bg-gray-200 rounded mb-6" />
   
         {/* Job Title */}
@@ -47,6 +49,8 @@ export default function PostJobLoading() {
         {/* Description */}
         <div className="h-20 bg-gray-200 rounded" />
       </div>
+        </div>
+      </>
     );
   }
   
