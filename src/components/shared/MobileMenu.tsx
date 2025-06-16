@@ -1,5 +1,7 @@
 "use client";
 
+import { logout } from "@/helper/SessionHelper";
+import useUserInfo from "@/hooks/useUserInfo";
 import { Bell, MessageCircleMore } from "lucide-react";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
@@ -10,6 +12,7 @@ type TProps = {
 };
 
 const MobileMenu = ({ setIsMenuOpen }: TProps) => {
+  const userInfo = useUserInfo();
   const pathname = usePathname();
   const router = useRouter();
   const handleNavigate = (path: string) => {
@@ -45,35 +48,31 @@ const MobileMenu = ({ setIsMenuOpen }: TProps) => {
           >
             Find-Candidates
           </div>
-          <div
-            onClick={() => handleNavigate("/dashboard/candidate/overview")}
-            className={`block rounded-md px-3 py-2 hover:bg-white/10 cursor-pointer ${
-              pathname === "/dashboard/candidate/overview"
-                ? "text-secondary"
-                : "text-white"
-            }`}
-          >
-            Candidate-Dashboard
-          </div>
-          <div
-            onClick={() => handleNavigate("/dashboard/employer/overview")}
-            className={`block rounded-md px-3 py-2 hover:bg-white/10 cursor-pointer ${
-              pathname === "/dashboard/employer/overview"
-                ? "text-secondary"
-                : "text-white"
-            }`}
-          >
-            Employer-Dashboard
-          </div>
-          {/* <Link href="/employers" className="block rounded-md px-3 py-2 hover:bg-white/10">
-              Employers
-            </Link> */}
-          {/* <button onClick={()=>handleNavigate("/")} className="block rounded-md px-3 py-2 hover:bg-white/10">
-              Candidates
-            </button> */}
-          {/* <button href="/pricing" className="block rounded-md px-3 py-2 hover:bg-white/10">
-              Pricing Plans
-            </button> */}
+
+          {userInfo?.authId && userInfo?.role === "USER" ? (
+            <div
+              onClick={() => handleNavigate("/dashboard/candidate/overview")}
+              className={`block rounded-md px-3 py-2 hover:bg-white/10 cursor-pointer ${
+                pathname === "/dashboard/candidate/overview"
+                  ? "text-secondary"
+                  : "text-white"
+              }`}
+            >
+              Dashboard
+            </div>
+          ) : (
+            <div
+              onClick={() => handleNavigate("/dashboard/employer/overview")}
+              className={`block rounded-md px-3 py-2 hover:bg-white/10 cursor-pointer ${
+                pathname === "/dashboard/employer/overview"
+                  ? "text-secondary"
+                  : "text-white"
+              }`}
+            >
+              Dashboard
+            </div>
+          )}
+
           <div
             onClick={() => handleNavigate("/blog-list")}
             className={`block rounded-md px-3 py-2 hover:bg-white/10 cursor-pointer ${
@@ -91,16 +90,17 @@ const MobileMenu = ({ setIsMenuOpen }: TProps) => {
             Contact
           </div>
           <div className="my-3 border-t border-white/20 pt-3">
-            {/* <div onClick={()=>handleNavigate("//dashboard/employer/post-job")} className="mt-2 block rounded-md bg-white px-3 py-2 text-center text-[#1a2c4e]">
-                Post A Job
-              </div> */}
-            <div
-              onClick={() => handleNavigate("/dashboard/employer/post-job")}
-              className="mt-2 cursor-pointer block rounded-md bg-white px-3 py-2 text-center text-[#1a2c4e]"
-            >
-              Sign In
-            </div>
-            <div className="mt-4 flex items-center justify-between gap-2 px-3">
+            {userInfo?.authId ? (
+              <>
+
+              <div
+                  onClick={() => logout()}
+                  className="mt-2 w-full block rounded-md border border-white px-3 py-2 text-center text-white"
+                >
+                  Logout
+                </div>
+
+                <div className="mt-4 flex items-center justify-between gap-2 px-3">
               <div
                 onClick={() => handleNavigate("/")}
                 className="flex items-center gap-2"
@@ -117,25 +117,50 @@ const MobileMenu = ({ setIsMenuOpen }: TProps) => {
               </div>
               <div className="flex gap-3">
                 <div
-                className="relative ml-auto cursor-pointer"
-                 onClick={() => handleNavigate("/dashboard/candidate/messages")}
-              >
-                <MessageCircleMore size={20} />
-                <span className="absolute -top-1 -right-1 min-w-[16px] h-[16px] px-[4px] text-[10px] leading-tight flex items-center justify-center rounded-full bg-red-500 text-white">
-                  2
-                </span>
-              </div>
-              <div
-                className="relative ml-auto cursor-pointer"
-                onClick={() => handleNavigate("/notifications")}
-              >
-                <Bell size={20} />
-                <span className="absolute -top-1 -right-1 min-w-[16px] h-[16px] px-[4px] text-[10px] leading-tight flex items-center justify-center rounded-full bg-red-500 text-white">
-                  2
-                </span>
-              </div>
+                  className="relative ml-auto cursor-pointer"
+                  onClick={() =>
+                    handleNavigate(`/dashboard/${userInfo?.role==="USER" ? "candidate" : "employer"}/messages`)
+                  }
+                >
+                  <MessageCircleMore size={20} />
+                  <span className="absolute -top-1 -right-1 min-w-[16px] h-[16px] px-[4px] text-[10px] leading-tight flex items-center justify-center rounded-full bg-red-500 text-white">
+                    2
+                  </span>
+                </div>
+                <div
+                  className="relative ml-auto cursor-pointer"
+                  onClick={() => handleNavigate("/notifications")}
+                >
+                  <Bell size={20} />
+                  <span className="absolute -top-1 -right-1 min-w-[16px] h-[16px] px-[4px] text-[10px] leading-tight flex items-center justify-center rounded-full bg-red-500 text-white">
+                    2
+                  </span>
+                </div>
               </div>
             </div>
+             
+              </>
+            ) : (
+              <>
+                   <div className="flex gap-2">
+                  <div
+                    onClick={() => handleNavigate("/login")}
+                    className="mt-2 w-full block rounded-md border border-white px-3 py-2 text-center text-white"
+                  >
+                    Sign In
+                  </div>
+                  <div
+                    onClick={() =>
+                      handleNavigate("/dashboard/employer/post-job")
+                    }
+                    className="mt-2 cursor-pointer block w-full rounded-md bg-white px-3 py-2 text-center text-[#1a2c4e]"
+                  >
+                    Sign Up
+                  </div>
+                </div>
+              </>
+            )}
+            
           </div>
         </div>
       </div>

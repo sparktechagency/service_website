@@ -2,7 +2,16 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Mail } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import CustomInput from "@/components/ui/CustomInput";
+import { employerPersonalSchema } from "@/schemas/employer.schema";
+import { z } from "zod";
+
+type TFormValues = z.infer<typeof employerPersonalSchema>;
 
 const PersonalForm = () => {
   const [logo, setLogo] = useState<File | null>(null);
@@ -21,11 +30,22 @@ const PersonalForm = () => {
     setLogoPreview(null);
   };
 
+  const router = useRouter();
+  const dispatch = useAppDispatch();
+  const { LoginError } = useAppSelector((state) => state.auth);
+  //const [login, { isLoading }] = useLoginMutation();
+  const { handleSubmit, control } = useForm({
+    resolver: zodResolver(employerPersonalSchema),
+  });
+
+  const onSubmit: SubmitHandler<TFormValues> = (data) => {
+    // dispatch(SetLoginError(""))
+    //login(data)
+  };
+
   return (
     <div className="max-w-4xl mx-auto bg-white p-4 md:p-6">
       <div className="mb-8">
-        {/* <h2 className="text-xl font-medium mb-4">Logo & Banner Image</h2> */}
-
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {/* Logo Upload */}
           <div className="col-span-1">
@@ -93,70 +113,48 @@ const PersonalForm = () => {
             </div>
           </div>
         </div>
-        <div className="bg-white rounded-lg mt-4">
-            <div className="space-y-4">
-              <div>
-                <label
-                  htmlFor="location"
-                  className="block text-sm font-medium text-gray-700 mb-1"
-                >
-                  Name
-                </label>
-                <div className="relative">
-                  <MapPin className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-                  <input
-                    id="location"
-                    type="text"
-                    placeholder="Enter Your Location"
-                    className="w-full pl-10 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 focus:ring-blue-500"
-                  />
-                </div>
-              </div>
+        <form onSubmit={handleSubmit(onSubmit)} className="bg-white rounded-lg mt-4">
+          <div className="space-y-4">
+            <CustomInput
+              label="Name"
+              name="name"
+              type="text"
+              control={control}
+              placeholder="Enter full name"
+            />
 
-              <div>
-                <label
-                  htmlFor="phone"
-                  className="block text-sm font-medium text-gray-700 mb-1"
-                >
-                  Phone
-                </label>
-                <div className="relative">
-                  <Phone className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-                  <input
-                    id="phone"
-                    type="text"
-                    placeholder="Enter contact number"
-                    className="w-full pl-10 px-3 py-2 border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none focus:ring-blue-500"
-                  />
-                </div>
-              </div>
+            <CustomInput
+              label="Phone Number(only UK)"
+              name="phone_number"
+              type="text"
+              control={control}
+              placeholder="Enter phone number"
+            />
 
-              <div>
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-medium text-gray-700 mb-1"
-                >
-                  Email
-                </label>
-                <div className="relative">
-                  <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-                  <input
-                    id="email"
-                    type="email"
-                    placeholder="Email address"
-                    className="w-full pl-10 px-3 py-2 border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none focus:ring-blue-500"
-                  />
-                </div>
+            <div>
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
+                Email
+              </label>
+              <div className="relative">
+                <input
+                  id="email"
+                  type="email"
+                  disabled
+                  placeholder="Email address"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none focus:ring-blue-500"
+                />
               </div>
-
-              <button className="px-4 py-2 bg-primary hover:bg-[#2b4773] cursor-pointer text-white rounded-md focus:outline-none">
-                Save Changes
-              </button>
             </div>
-          </div>
-      </div>
 
-   
+            <button className="px-4 py-2 bg-primary hover:bg-[#2b4773] cursor-pointer text-white rounded-md focus:outline-none">
+              Save Changes
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

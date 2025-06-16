@@ -30,7 +30,7 @@ const tabItems =  [
 ]
 
 const EmployerTabs = () =>{
-  const [activeTab, setActiveTab] = useState("personal")
+  const [activeTab, setActiveTab] = useState("personal");
 
   return (
     <div className="w-full">

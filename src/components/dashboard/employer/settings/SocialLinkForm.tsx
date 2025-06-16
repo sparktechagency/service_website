@@ -1,16 +1,12 @@
 "use client";
 
-
 import { useState } from "react";
-import {
-  Loader2,
-} from "lucide-react";
+import { Loader2 } from "lucide-react";
 import { ImFacebook2 } from "react-icons/im";
 import { FaXTwitter } from "react-icons/fa6";
 import { FaInstagram, FaYoutube } from "react-icons/fa";
 
 const SocialLinkForm = () => {
- 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -23,13 +19,14 @@ const SocialLinkForm = () => {
     setIsSubmitting(false);
   };
 
+
+  
+
   return (
     <div className="p-4 bg-white rounded-lg">
       <form onSubmit={handleSubmit}>
         <div className="space-y-4">
-         
           <div className="space-y-1">
-           
             <div className="flex items-center">
               <div className="relative">
                 <button
@@ -50,7 +47,6 @@ const SocialLinkForm = () => {
             </div>
           </div>
           <div className="space-y-1">
-            
             <div className="flex items-center">
               <div className="relative">
                 <button
@@ -71,7 +67,6 @@ const SocialLinkForm = () => {
             </div>
           </div>
           <div className="space-y-1">
-           
             <div className="flex items-center">
               <div className="relative">
                 <button
