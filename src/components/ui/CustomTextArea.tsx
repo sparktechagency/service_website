@@ -7,9 +7,11 @@ type TProps = {
   label: string;
   name: string;
   control: any;
+  placeholder?: string;
+  rows?: number;
 };
 
-const CustomTextArea = ({ label, name, control }: TProps) => {
+const CustomTextArea = ({ label, name, control, placeholder, rows=2 }: TProps) => {
   return (
     <>
       <div>
@@ -23,7 +25,8 @@ const CustomTextArea = ({ label, name, control }: TProps) => {
             <>
               <textarea
                 {...field}
-                placeholder="e.g. CNC Programming, TIG Welding"
+                rows={rows}
+                placeholder={placeholder}
                 className={`w-full px-3 py-2 border rounded-md focus:outline-none ${error
                           ? "border-red-500 focus:border-red-500"
                           : "border-gray-300 focus:border-blue-500"

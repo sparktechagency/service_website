@@ -66,7 +66,7 @@ export const createJobSchema = z.object({
     })
     .trim()
     .optional(),
-     vacancies: z
+  vacancies: z
     .string({
       invalid_type_error: "Vacancy must be a number",
       required_error: "Vacancy is required",
@@ -79,5 +79,51 @@ export const createJobSchema = z.object({
     .transform((val) => (val === undefined ? undefined : Number(val)))
     .refine((val) => val === undefined || val > 0, {
       message: "Vacancy must be at least 1",
+    }),
+  application_dateline: z
+    .string({
+      invalid_type_error: "Expiration date must be string",
+      required_error: "Select expiration date",
+    })
+    .trim()
+    .min(1, "Select expiration date"),
+  job_pattern: z
+    .string({
+      invalid_type_error: "Job Pattern must be string",
+      required_error: "Select Job Pattern",
+    })
+    .trim()
+    .min(1, "Select Job Pattern"),
+  address: z
+    .string({
+      invalid_type_error: "Address must be string",
+      required_error: "Address is required",
+    })
+    .trim()
+    .min(1, "Address is required"),
+  descriptions: z
+    .string({
+      invalid_type_error: "Description must be string",
+      required_error: "Description is required",
+    })
+    .trim()
+    .min(1, "Description is required"),
+  longitude: z
+    .string()
+    .transform((val) => Number(val))
+    .refine((val) => val >= -180, {
+      message: "Longitude must be >= -180",
+    })
+    .refine((val) => val <= 180, {
+      message: "Longitude must be <= 180",
+    }),
+  latitude: z
+    .string()
+    .transform((val) => Number(val))
+    .refine((val) => val >= -90, {
+      message: "Latitude must be >= -90",
+    })
+    .refine((val) => val <= 90, {
+      message: "Latitude must be <= 90",
     }),
 });

@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import LocationMap from "@/components/Location/LocationMap";
@@ -10,99 +8,88 @@ import CustomTextArea from "@/components/ui/CustomTextArea";
 import {
   educationOptions,
   experienceOptions,
+  patternOptions,
   rateOptions,
   typeOptions,
 } from "@/data/job.options";
 import { useGetCategoriesQuery } from "@/redux/features/category/categoryApi";
+import { useCreateJobMutation } from "@/redux/features/job/jobApi";
 import { useAppSelector } from "@/redux/hooks/hooks";
-import { loginSchema } from "@/schemas/auth.schema";
 import { createJobSchema } from "@/schemas/job.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Map } from "lucide-react";
-import dynamic from "next/dynamic";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { CgSpinnerTwo } from "react-icons/cg";
 import { z } from "zod";
 
-  type TFormValues = z.infer<typeof createJobSchema>;
+type TFormValues = z.infer<typeof createJobSchema>;
 
 const PostJobForm = () => {
   useGetCategoriesQuery(undefined);
-  const [jobTitle, setJobTitle] = useState("");
-  const [tags, setTags] = useState("");
-  const [category, setCategory] = useState("");
-  const [currency, setCurrency] = useState("USD");
-  const [education, setEducation] = useState("");
-  const [experience, setExperience] = useState("");
-  const [skill, setSkill] = useState("");
-  const [vacancies, setVacancies] = useState("");
-  const [expirationDate, setExpirationDate] = useState("");
-  const [location, setLocation] = useState("");
-  const [description, setDescription] = useState("");
-  const [responsibilities, setResponsibilities] = useState("");
-  const [selectedLocation, setSelectedLocation] = useState();
+  const [selectedLocation, setSelectedLocation] = useState<number[]>([
+    37.7749, -122.4194,
+  ]);
 
-  // const handleSubmit = (e: { preventDefault: () => void; }) => {
-  //   e.preventDefault();
-  //   // Handle form submission
-  //   console.log({
-  //     jobTitle,
-  //     tags,
-  //     category,
-  //     salary,
-  //     currency,
-  //     education,
-  //     experience,
-  //     skill,
-  //     vacancies,
-  //     expirationDate,
-  //     location,
-  //     description,
-  //     responsibilities,
-  //   });
-  // };
-
-  const patternOptions = [
-    "Day Shift",
-    "Evening Shift",
-    "Days",
-    "Hours",
-    "Flexibility",
-  ];
-
- 
-
-  // Handle location selection from map
-  const handleLocationSelect = (location: any) => {
-    setSelectedLocation(location);
-    // setValue('latitude', location[0].toFixed(6));
-    // setValue('longitude', location[1].toFixed(6));
-  };
-
-  const router = useRouter();
-  //const dispatch = useAppDispatch();
   const { categoryOptions } = useAppSelector((state) => state.category);
-  //const [login, { isLoading }] = useLoginMutation();
+  const [createJob, { isLoading }] = useCreateJobMutation();
 
-  const { handleSubmit, control, watch,  formState: { errors } } = useForm({
+  const {
+    handleSubmit,
+    control,
+    setValue,
+    watch,
+    formState: { errors },
+  } = useForm({
     resolver: zodResolver(createJobSchema),
-    // defaultValues:{
-    //   email: "tayebrayhan10@gmail.com",
-    //   password: "12345678"
-    // }
+    defaultValues: {
+      latitude: "37.7749",
+      longitude: "-122.4194",
+    },
   });
 
   const salary = watch("salary");
-  console.log(errors);
-console.log(salary);
-const isDisabled =  errors?.salary && true || salary===undefined && true || isNaN(Number(salary)) || salary===""
+  const isDisabled =
+    (errors?.salary && true) ||
+    (salary === undefined && true) ||
+    isNaN(Number(salary)) ||
+    salary === "";
 
+  // Watch the latitude and longitude values
+  const latitude = watch("latitude");
+  const longitude = watch("longitude");
 
+  // Update map when coordinates change in form
+  useEffect(() => {
+    if (latitude && longitude) {
+      const lat = parseFloat(latitude);
+      const lng = parseFloat(longitude);
+      if (!isNaN(lat) && !isNaN(lng)) {
+        setSelectedLocation([lat, lng]);
+      }
+    }
+  }, [latitude, longitude]);
+
+  // Handle location selection from map
+  const handleLocationSelect = (location: number[]) => {
+    setSelectedLocation(location);
+    setValue("latitude", location[0].toFixed(6));
+    setValue("longitude", location[1].toFixed(6));
+  };
 
   const onSubmit: SubmitHandler<TFormValues> = (data) => {
-    // dispatch(SetLoginError(""))
-    // login(data)
+    const { skill, salary, longitude, latitude, ...rest } = data;
+    const finalValues = {
+      ...rest,
+      skill: skill.split(",").map((s) => s.trim()),
+      salary,
+      location: {
+        longitude,
+        latitude,
+      },
+    };
+
+    console.log(finalValues);
+    createJob(finalValues);
   };
 
   return (
@@ -159,6 +146,7 @@ const isDisabled =  errors?.salary && true || salary===undefined && true || isNa
                     label="Skills (technical or soft skills, Comma Separated)"
                     name="skill"
                     control={control}
+                    placeholder="e.g. CNC Programming, TIG Welding"
                   />
                 </div>
               </div>
@@ -187,56 +175,32 @@ const isDisabled =  errors?.salary && true || salary===undefined && true || isNa
                   control={control}
                   placeholder="Enter vacancy"
                 />
-                <CustomDatePicker label="Expiration Date" name="application_dateline" control={control} placeholder="DD/MM/YYYY"/>
+                <CustomDatePicker
+                  label="Expiration Date"
+                  name="application_dateline"
+                  control={control}
+                  placeholder="DD/MM/YYYY"
+                />
               </div>
-              <div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="mb-4">
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Job Pattern
-                    </label>
-                    <div className="relative">
-                      <select className="w-full px-3 py-2 border border-gray-300 text-gray-700 rounded-md appearance-none focus:outline-none focus:border-blue-500 focus:ring-blue-500">
-                        <option value="">Select pattern</option>
-                        {patternOptions.map((option) => (
-                          <option key={option} value={option}>
-                            {option}
-                          </option>
-                        ))}
-                      </select>
-                      <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
-                        <svg
-                          className="h-4 w-4 text-gray-400"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M19 9l-7 7-7-7"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mb-4">
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Address
-                    </label>
-                    <input
-                      type="text"
-                      value={expirationDate}
-                      onChange={(e) => setExpirationDate(e.target.value)}
-                      placeholder="enter address"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 focus:ring-blue-500"
-                    />
-                  </div>
-                </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                <CustomSelect
+                  label="Job Pattern"
+                  name="job_pattern"
+                  control={control}
+                  options={patternOptions}
+                />
+
+                <CustomInput
+                  label="Address"
+                  name="address"
+                  type="text"
+                  control={control}
+                  placeholder="Enter address"
+                />
               </div>
             </div>
-            <div className="order-1 lg:order-2 h-[350px] lg:h-[500px] mb-6">
+            <div className="order-1 lg:order-2 h-[350px] lg:h-[400px] mb-6">
               <LocationMap
                 onLocationSelect={handleLocationSelect}
                 selectedLocation={selectedLocation}
@@ -244,28 +208,29 @@ const isDisabled =  errors?.salary && true || salary===undefined && true || isNa
             </div>
 
             <div className="mb-6">
-              <label
-                htmlFor="company-details"
-                className="block text-sm font-medium mb-2"
-              >
-                Description
-              </label>
-              <div className="">
-                <textarea
-                  id="company-details"
-                  rows={3}
-                  placeholder="write a description about the job..."
-                  className="w-full p-3 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500 focus:ring-blue-500"
-                ></textarea>
-              </div>
+              <CustomTextArea
+                label="Description"
+                name="descriptions"
+                control={control}
+                placeholder="write a description about the job..."
+                rows={3}
+              />
             </div>
 
             <div className="mt-6">
               <button
                 type="submit"
-                className="inline-flex items-center px-4 py-2 bg-primary hover:bg-[#2b4773] text-white font-medium rounded-md cursor-pointer"
+                disabled={isLoading}
+                className="w-full flex items-center cursor-pointer justify-center gap-2 bg-primary text-white py-2 rounded-md hover:bg-dis transition disabled:bg-gray-800 disabled:cursor-not-allowed"
               >
-                Post Job
+                {isLoading ? (
+                  <>
+                    <CgSpinnerTwo className="animate-spin" fontSize={16} />
+                    Processing...
+                  </>
+                ) : (
+                  "Post Job"
+                )}
               </button>
             </div>
           </form>

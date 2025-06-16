@@ -97,3 +97,27 @@ export const rateOptions = [
     value: "par_year",
   },
 ];
+
+
+export const patternOptions = [
+    {
+      label: "Day Shift",
+      value: "day_shift"
+    },
+    {
+      label: "Evening Shift",
+      value: "evening_shift"
+    },
+    {
+      label: "Days",
+      value: "days"
+    },
+    {
+      label: "Hours",
+      value: "hours"
+    },
+     {
+      label: "Flexibility",
+      value: "flexibility"
+    }
+  ];
