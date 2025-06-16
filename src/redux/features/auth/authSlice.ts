@@ -1,4 +1,4 @@
-import {createSlice} from "@reduxjs/toolkit";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
 const initialState = {
     loading:false,
@@ -10,7 +10,9 @@ const initialState = {
     ChangePasswordError: "",
     ProfileError: "",
     VerifyAccountError: "",
-    VerifyAccountOtpError: ""
+    VerifyAccountOtpError: "",
+    isLoading: false,
+    isInitialized: false 
 }
 
 const authSlice = createSlice({
@@ -49,13 +51,21 @@ const authSlice = createSlice({
         },
         SetVerifyAccountOtpError : (state, action)=>{
             state.VerifyAccountOtpError=action.payload;
-        }
+        },
+        SetLoading: (state, action: PayloadAction<boolean>) => {
+           state.isLoading = action.payload
+       },
+         initializeAuth: (state) => {
+    //   state.token = action.payload
+      state.isLoading = false
+      state.isInitialized = true
+    },
     }
 })
 
 
 
-export const {ShowLoading, HideLoading, SetForgotError, SetVerifyAccountError, SetVerifyAccountOtpError, SetVerifyOtpError, SetResetPasswordError, SetLoginError, SetRegisterError, SetChangePasswordError, SetProfileError} = authSlice.actions;
+export const {ShowLoading, HideLoading, SetForgotError, SetVerifyAccountError, SetVerifyAccountOtpError, SetVerifyOtpError, SetResetPasswordError, SetLoginError, SetRegisterError, SetChangePasswordError, SetProfileError, SetLoading, initializeAuth} = authSlice.actions;
 
 const authSliceReducer = authSlice.reducer;
 export default authSliceReducer;

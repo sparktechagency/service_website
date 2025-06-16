@@ -53,6 +53,15 @@ class SessionHelper {
     return localStorage.getItem("otp");
   }
 
+   isLoggedIn() {
+    const token = getToken();
+    if (token) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   logout() {
     localStorage.clear();
     window.location.href = "/";
@@ -64,4 +73,4 @@ class SessionHelper {
 
 
 
-export const { setToken, getToken, setEmail, getEmail, setVerifyEmail, getVerifyEmail, setOtp, getOtp, logout } = new SessionHelper();
+export const { setToken, getToken, setEmail, getEmail, setVerifyEmail, getVerifyEmail, setOtp, getOtp, logout, isLoggedIn } = new SessionHelper();

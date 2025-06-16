@@ -1,5 +1,6 @@
 "use client";
 
+import AuthInitializer from "@/components/auth/AuthInitializer";
 import { store } from "@/redux/store/store";
 import React from "react";
 import { Provider } from "react-redux";
@@ -12,6 +13,7 @@ const GlobalProvider = ({children}: TProps) => {
   return (
     <>
       <Provider store={store}>
+         <AuthInitializer />
         {children}
       </Provider>
     </>

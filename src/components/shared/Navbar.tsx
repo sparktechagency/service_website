@@ -57,15 +57,7 @@ export default function Navbar() {
           >
             Find-Candidates
           </Link>
-         
-          {/* <Link
-            href="/dashboard/employer/subscription"
-            className={`hover:text-secondary ${
-              pathname === "/dashboard/employer/subscription" ? "text-secondary" : "text-white"
-            }`}
-          >
-            Subscription
-          </Link> */}
+
           <DashboardButton/>
           <Link
             href="/blog-list"
