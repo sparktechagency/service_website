@@ -1,5 +1,5 @@
 "use client";
-import { X } from "lucide-react";
+import DeleteAccountModal from "@/components/modal/account/DeleteAccountModal";
 import React from "react";
 
 const DeleteAccount = () => {
@@ -12,13 +12,7 @@ const DeleteAccount = () => {
           including your email, password, profile details, and any saved
           preferences, will be permanently removed from our system. This action cannot be undone.
         </p>
-        <button
-          type="button"
-          className="inline-flex items-center cursor-pointer px-4 py-2 border border-red-300 text-sm font-medium rounded-md text-red-500 hover:bg-red-50 focus:outline-none transition-colors"
-        >
-          <X className="h-4 w-4 mr-2" />
-          Close Account
-        </button>
+        <DeleteAccountModal/>
       </div>
     </>
   );
