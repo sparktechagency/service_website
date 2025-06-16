@@ -49,11 +49,11 @@ export const resetPasswordSchema = z
 export const changePasswordSchema = z
   .object({
     oldPassword: z
-      .string({ required_error: "Old Password is required" })
+      .string({ required_error: "Current Password is required" })
       .trim()
-      .min(1, "Old Password is required")
-      .min(6, "Old Password must be at least 6 characters long")
-      .max(100, "Old Password is too long"),
+      .min(1, "Current Password is required")
+      .min(6, "Current Password must be at least 6 characters long")
+      .max(100, "Current Password is too long"),
     newPassword: z
       .string({ required_error: "New Password is required" })
       .trim()

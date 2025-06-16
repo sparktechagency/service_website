@@ -8,10 +8,9 @@ const DeleteAccount = () => {
       <div className="mt-12 border border-gray-200 rounded-md p-4">
         <h3 className="text-lg font-medium mb-2">Delete Your Account</h3>
         <p className="text-sm text-gray-600 mb-4">
-          If you delete your Jobpilot account, you will no longer be able to get
-          information about the matched jobs, following employers, and job
-          alert, shortlisted jobs and more. You will be abandoned from all the
-          services of Jobpilot.com.
+          If you delete your account, all your personal information,
+          including your email, password, profile details, and any saved
+          preferences, will be permanently removed from our system. This action cannot be undone.
         </p>
         <button
           type="button"
