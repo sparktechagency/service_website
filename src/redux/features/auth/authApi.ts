@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import TagTypes from "@/constant/tagType.constant";
 
 
 import { getAuthId, getEmail, setAuthId, setEmail, setToken, setVerifyEmail } from "@/helper/SessionHelper";
@@ -139,32 +138,6 @@ export const authApi = apiSlice.injectEndpoints({
         }
       },
     }),
-    changeStatus: builder.mutation({
-      query: (data) => ({
-        url: `/auth/block`,
-        method: "PATCH",
-        body: data,
-      }),
-      invalidatesTags: (result) => {
-        if (result?.success) {
-          return [TagTypes.users];
-        }
-        return [];
-      },
-      async onQueryStarted({is_block}, { queryFulfilled }) {
-        try {
-          await queryFulfilled;
-          SuccessToast(`User is ${is_block ? "blocked" : "activated"} successfully`)
-        } catch (err:any) {
-          const status = err?.error?.status;
-          if (status === 404) {
-            ErrorToast(err?.error?.data?.message);
-          } else {
-            ErrorToast("Something Went Wrong!");
-          }
-        }
-      },
-    }),
     changePassword: builder.mutation({
       query: (data) => ({
         url: "/auth/change-password",
@@ -281,7 +254,6 @@ export const {
   useForgotPasswordSendOtpMutation,
   useForgotPasswordVerifyOtpMutation,
   useForgotPasswordResetMutation,
-  useChangeStatusMutation,
   useChangePasswordMutation,
   useVerifyAccountSendOtpMutation,
   useVerifyAccountResendOtpMutation,
