@@ -1,23 +1,26 @@
 "use client";
 
+import { useGetMeQuery } from "@/redux/features/user/userApi";
+import { useAppSelector } from "@/redux/hooks/hooks";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const DashboardButton = () => {
+  const { user } = useAppSelector((state) => state.user);
+  const { isLoading } = useGetMeQuery(undefined);
+
   const pathname = usePathname();
 
-  return (
-    <>
-      <Link
-        href="/dashboard/candidate/overview"
-        className={`hover:text-secondary ${
-          pathname === "/dashboard/candidate/overview"
-            ? "text-secondary"
-            : "text-white"
-        }`}
-      >
-        Candidate-Dashboard
-      </Link>
+  if (isLoading) {
+    return (
+      <div className="rounded-md border border-white/30 px-4 py-1.5 text-sm bg-white/5 animate-pulse">
+        <div className="h-4 w-16 bg-white/20 rounded"></div>
+      </div>
+    );
+  }
+
+  if (!isLoading && user?.authId?.role === "EMPLOYER") {
+    return (
       <Link
         href="/dashboard/employer/overview"
         className={`hover:text-secondary ${
@@ -26,10 +29,25 @@ const DashboardButton = () => {
             : "text-white"
         }`}
       >
-        Employer-Dashboard
+        Dashboard
       </Link>
-    </>
-  );
+    );
+  }
+
+  if (!isLoading && user?.authId?.role === "USER") {
+    return (
+      <Link
+        href="/dashboard/candidate/overview"
+        className={`hover:text-secondary ${
+          pathname === "/dashboard/candidate/overview"
+            ? "text-secondary"
+            : "text-white"
+        }`}
+      >
+        Dashboard
+      </Link>
+    );
+  }
 };
 
 export default DashboardButton;

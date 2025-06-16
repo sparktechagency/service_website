@@ -7,7 +7,8 @@ import { ApiError } from "@/types/global.type";
 import { SetLoginError } from "../auth/authSlice";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "http://24.199.120.27:5004",
+ //baseUrl: "http://24.199.120.27:5004", //http://10.0.60.118
+  baseUrl: "http://10.0.60.118:5004",
   prepareHeaders: async (headers) => {
     if (getToken()) {
       headers.set("Authorization", `Bearer ${getToken() as string}`);

@@ -3,6 +3,7 @@ import jobSliceReducer from '../features/job/jobSlice'
 import authSliceReducer from '../features/auth/authSlice'
 import { apiSlice } from '../features/api/apiSlice'
 import categorySliceReducer from '../features/category/categorySlice'
+import userSliceReducer from '../features/user/userSllice'
 
 
 export const store = configureStore({
@@ -10,6 +11,7 @@ export const store = configureStore({
     [apiSlice.reducerPath]: apiSlice.reducer,
     job: jobSliceReducer,
     auth: authSliceReducer,
+    user: userSliceReducer,
     category: categorySliceReducer
   },
    middleware: (getDefaultMiddleware) =>

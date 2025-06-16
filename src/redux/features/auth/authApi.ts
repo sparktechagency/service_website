@@ -2,7 +2,7 @@
 import TagTypes from "@/constant/tagType.constant";
 
 
-import { getEmail, setEmail, setToken, setVerifyEmail } from "@/helper/SessionHelper";
+import { getAuthId, getEmail, setAuthId, setEmail, setToken, setVerifyEmail } from "@/helper/SessionHelper";
 import { ErrorToast, SuccessToast } from "@/helper/ValidationHelper";
 import { SetChangePasswordError, SetForgotError, SetLoginError, SetRegisterError, SetResetPasswordError, SetVerifyAccountError, SetVerifyAccountOtpError, SetVerifyOtpError } from "./authSlice";
 import { apiSlice } from "../api/apiSlice";
@@ -35,11 +35,13 @@ export const authApi = apiSlice.injectEndpoints({
       async onQueryStarted(_arg, { queryFulfilled, dispatch }) {
         try {
           const res = await queryFulfilled;
+          const authId = res?.data?.data?.id;
           const token = res?.data?.data?.accessToken;
           const role = res?.data?.data?.user?.authId?.role;
           if (role === "USER" || role === "EMPLOYER") {
             SuccessToast("Login Success");
             setToken(token);
+            setAuthId(authId)
             setTimeout(() => {
              window.location.href = "/";
             }, 300);
@@ -48,7 +50,12 @@ export const authApi = apiSlice.injectEndpoints({
           }
         } catch (err: any) {
           const message = err?.error?.data?.message;
-          dispatch(SetLoginError(message));
+          if(message === "User does not exist"){
+            dispatch(SetLoginError("Couldn't find this email address"));
+          }
+          else{
+            dispatch(SetLoginError(message));
+          }
         }
       },
     }),
@@ -236,9 +243,32 @@ export const authApi = apiSlice.injectEndpoints({
         try {
           await queryFulfilled;
           SuccessToast("Account is verified successfully");
+           localStorage.clear();
+          setTimeout(() => {
+            window.location.href = "/login";
+          }, 300);
         } catch (err: any) {
           const message = err?.error?.data?.message;
           dispatch(SetVerifyAccountOtpError(message));
+        }
+      },
+    }),
+    deleteAccount: builder.mutation({
+      query: () => ({
+        url: `/auth/delete-account?authId=${getAuthId()}`,
+        method: "DELETE",
+      }),
+      async onQueryStarted(_, { queryFulfilled }) {
+        try {
+          await queryFulfilled;
+          SuccessToast("Account is deleted successfully");
+          setTimeout(() => {
+            localStorage.clear()
+            window.location.href = "/";
+          }, 300);
+        } catch (err: any) {
+          const message = err?.error?.data?.message;
+          ErrorToast(message)
         }
       },
     }),
@@ -255,5 +285,6 @@ export const {
   useChangePasswordMutation,
   useVerifyAccountSendOtpMutation,
   useVerifyAccountResendOtpMutation,
-  useVerifyAccountVerifyOtpMutation
+  useVerifyAccountVerifyOtpMutation,
+  useDeleteAccountMutation
 } = authApi;

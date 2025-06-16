@@ -106,7 +106,7 @@ const ContactPage = () => {
         </div>
 
         {/* Dynamic Map Section */}
-        <div className="w-full h-80 md:h-96 relative rounded-lg overflow-hidden shadow-md">
+        {/* <div className="w-full h-80 md:h-96 relative rounded-lg overflow-hidden shadow-md">
           {isMounted && (
             <LoadScript
               googleMapsApiKey={
@@ -140,7 +140,7 @@ const ContactPage = () => {
               </GoogleMap>
             </LoadScript>
           )}
-        </div>
+        </div> */}
       </main>
     </div>
   );

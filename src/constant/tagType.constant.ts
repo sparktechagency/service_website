@@ -1,6 +1,7 @@
 
 const TagTypes = {
-   categories: "Categories"
+   categories: "Categories",
+   me: "Me"
 }
 
 export default TagTypes;

@@ -1,5 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
+
 
 import { apiSlice } from "../api/apiSlice";
 import { ErrorToast, SuccessToast } from "@/helper/ValidationHelper";

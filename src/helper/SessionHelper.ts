@@ -1,5 +1,4 @@
 import { IAuthUser } from "@/types/global.type";
-import { SuccessToast } from "./ValidationHelper";
 import { jwtDecode } from "jwt-decode";
 
 
@@ -24,6 +23,15 @@ class SessionHelper {
     if (typeof window !== "undefined" && window.localStorage) {
        window.localStorage.clear();
        window.location.href = "/";
+    }
+  }
+
+   isLoggedIn() {
+    const token = getToken();
+    if (token) {
+      return true;
+    } else {
+      return false;
     }
   }
 
@@ -53,19 +61,18 @@ class SessionHelper {
     return localStorage.getItem("otp");
   }
 
-   isLoggedIn() {
-    const token = getToken();
-    if (token) {
-      return true;
-    } else {
-      return false;
-    }
+  setAuthId(authId: string) {
+    localStorage.setItem("authId", authId);
+  }
+
+  getAuthId() {
+    return localStorage.getItem("authId");
   }
 
   logout() {
     localStorage.clear();
     window.location.href = "/";
-    SuccessToast("Logout Success");
+    //SuccessToast("Logout Success");
   }
 }
 
@@ -73,4 +80,4 @@ class SessionHelper {
 
 
 
-export const { setToken, getToken, setEmail, getEmail, setVerifyEmail, getVerifyEmail, setOtp, getOtp, logout, isLoggedIn } = new SessionHelper();
+export const { setToken, getToken, setEmail, getEmail, setVerifyEmail, getUserInfo, getVerifyEmail, setOtp, getOtp, logout, isLoggedIn, setAuthId, getAuthId } = new SessionHelper();

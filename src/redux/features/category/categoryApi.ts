@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
+
 import TagTypes from "@/constant/tagType.constant";
 import { apiSlice } from "../api/apiSlice";
 import { ErrorToast } from "@/helper/ValidationHelper";
@@ -27,7 +28,6 @@ export const categoryApi = apiSlice.injectEndpoints({
           }));
           dispatch(SetCategoryOptions(Options));
         } catch (err:any) {
-            console.log(err);
          ErrorToast("Server error is occured");
         }
       },
