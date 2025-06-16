@@ -8,7 +8,7 @@ const initialState = {
     LoginError: "",
     RegisterError: "",
     ChangePasswordError: "",
-    ProfileError: "",
+    ProfileError: "This is Profile Error",
     VerifyAccountError: "",
     VerifyAccountOtpError: ""
 }

@@ -27,9 +27,9 @@ export const userApi = apiSlice.injectEndpoints({
         }
       },
     }),
-    updateProfile: builder.mutation({
+    updateEmployerProfile: builder.mutation({
       query: (data) => ({
-        url: `/auth/admin/edit-profile`,
+        url: `/auth/employer/edit-profile`,
         method: "PATCH",
         body: data,
       }),
@@ -42,7 +42,7 @@ export const userApi = apiSlice.injectEndpoints({
       async onQueryStarted(_arg, { queryFulfilled, dispatch }) {
         try {
           await queryFulfilled;
-          SuccessToast("Profile is updated successfully");
+          SuccessToast("Update Success");
         } catch (err:any) {
           const message = err?.error?.data?.message;
           dispatch(SetProfileError(message))
@@ -53,4 +53,4 @@ export const userApi = apiSlice.injectEndpoints({
 });
 
 
-export const { useGetMeQuery, useUpdateProfileMutation } = userApi;
+export const { useGetMeQuery, useUpdateEmployerProfileMutation } = userApi;

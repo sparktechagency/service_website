@@ -9,6 +9,12 @@ const nextConfig: NextConfig = {
         hostname: 'images.pexels.com',
         pathname: '/photos/**', // allow all images under /photos/
       },
+      // {
+      //   protocol: 'http',
+      //   hostname: '10.0.60.118',
+      //   port: '',
+      //   pathname: '/**',
+      // },
     ],
   },
 };

@@ -1,119 +1,61 @@
 "use client";
 
-import { useState } from "react";
-import Image from "next/image";
-import { Mail } from "lucide-react";
-import { useRouter } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import CustomInput from "@/components/ui/CustomInput";
 import { employerPersonalSchema } from "@/schemas/employer.schema";
 import { z } from "zod";
+import { useUpdateEmployerProfileMutation } from "@/redux/features/user/userApi";
+import { SetProfileError } from "@/redux/features/auth/authSlice";
+import { CgSpinnerTwo } from "react-icons/cg";
+import Error from "@/components/validation/Error";
+import EditProfilePic from "./EditProfilePic";
+import { useState } from "react";
 
 type TFormValues = z.infer<typeof employerPersonalSchema>;
 
 const PersonalForm = () => {
-  const [logo, setLogo] = useState<File | null>(null);
-  const [logoPreview, setLogoPreview] = useState<string | null>(null);
+  const [file, setFile] = useState<File | null>(null)
+  const { user } = useAppSelector((state) => state.user);
 
-  const handleLogoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      const file = e.target.files[0];
-      setLogo(file);
-      setLogoPreview(URL.createObjectURL(file));
-    }
-  };
-
-  const handleRemoveLogo = () => {
-    setLogo(null);
-    setLogoPreview(null);
-  };
-
-  const router = useRouter();
   const dispatch = useAppDispatch();
-  const { LoginError } = useAppSelector((state) => state.auth);
-  //const [login, { isLoading }] = useLoginMutation();
+  const { ProfileError } = useAppSelector((state) => state.auth);
+  const [updateEmployerProfile, { isLoading }] =
+    useUpdateEmployerProfileMutation();
   const { handleSubmit, control } = useForm({
     resolver: zodResolver(employerPersonalSchema),
+    defaultValues: {
+      name: user?.name as string,
+      phone_number: user?.phone_number as string,
+    },
   });
 
   const onSubmit: SubmitHandler<TFormValues> = (data) => {
-    // dispatch(SetLoginError(""))
-    //login(data)
+    dispatch(SetProfileError(""));
+    const formData = new FormData();
+    if(file){
+      formData.append("profile_image", file);
+    }
+
+    formData.append("name", data.name);
+    formData.append("phone_number", data.phone_number)
+    updateEmployerProfile(formData)
   };
 
   return (
     <div className="max-w-4xl mx-auto bg-white p-4 md:p-6">
       <div className="mb-8">
+        <p className="text-lg mb-4">Update Profile</p>
+        {ProfileError && <Error message={ProfileError} />}
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {/* Logo Upload */}
-          <div className="col-span-1">
-            <p className="text-lg mb-2">Upload Profile Picture</p>
-            <div className="relative">
-              <div className="bg-slate-400 max-h-[200px] w-full aspect-square rounded-md overflow-hidden">
-                {logoPreview ? (
-                  <Image
-                    src={logoPreview || "/placeholder.svg"}
-                    alt="Logo preview"
-                    fill
-                    className="object-cover h-full"
-                  />
-                ) : (
-                  <label
-                    htmlFor="logo-upload"
-                    className="flex items-center justify-center h-full cursor-pointer"
-                  >
-                    <span className="sr-only">Upload logo</span>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-8 w-8 text-white"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-                      />
-                    </svg>
-                  </label>
-                )}
-                <input
-                  id="logo-upload"
-                  type="file"
-                  accept="image/*"
-                  className="hidden"
-                  onChange={handleLogoChange}
-                />
-              </div>
-              {logo && (
-                <div className="mt-2 flex items-center justify-between">
-                  <span className="text-xs text-gray-500">
-                    {(logo.size / (1024 * 1024)).toFixed(1)} MB
-                  </span>
-                  <div className="space-x-2">
-                    <button
-                      onClick={handleRemoveLogo}
-                      className="text-xs text-blue-600 hover:underline"
-                    >
-                      Remove
-                    </button>
-                    <label
-                      htmlFor="logo-upload"
-                      className="text-xs text-blue-600 hover:underline cursor-pointer"
-                    >
-                      Replace
-                    </label>
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
+          <EditProfilePic setFile={setFile}/>
         </div>
-        <form onSubmit={handleSubmit(onSubmit)} className="bg-white rounded-lg mt-4">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="bg-white rounded-lg mt-4"
+        >
           <div className="space-y-4">
             <CustomInput
               label="Name"
@@ -143,14 +85,25 @@ const PersonalForm = () => {
                   id="email"
                   type="email"
                   disabled
+                  value={user?.email}
                   placeholder="Email address"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none focus:ring-blue-500"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md disabled:bg-gray-200 focus:border-blue-500 focus:outline-none focus:ring-blue-500"
                 />
               </div>
             </div>
 
-            <button className="px-4 py-2 bg-primary hover:bg-[#2b4773] cursor-pointer text-white rounded-md focus:outline-none">
-              Save Changes
+            <button
+              type="submit"
+              className="px-4 w-full md:w-64 md:justify-center py-2 flex gap-2 items-center bg-primary hover:bg-[#2b4773] text-white font-medium rounded-md focus:outline-none transition-colors cursor-pointer"
+            >
+              {isLoading ? (
+                <>
+                  <CgSpinnerTwo className="animate-spin" fontSize={16} />
+                  Processing...
+                </>
+              ) : (
+                "Save Changes"
+              )}
             </button>
           </div>
         </form>
