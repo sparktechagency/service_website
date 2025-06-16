@@ -7,6 +7,7 @@ import Image from "next/image";
 import MobileMenu from "./MobileMenu";
 import { usePathname, useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
+import DashboardButton from "./DashboardButton";
 
 export default function Navbar() {
   const AuthButton = dynamic(() => import("./AuthButton"), {
@@ -65,6 +66,7 @@ export default function Navbar() {
           >
             Subscription
           </Link> */}
+          <DashboardButton/>
           <Link
             href="/blog-list"
             className={`hover:text-secondary ${
