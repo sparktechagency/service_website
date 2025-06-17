@@ -20,3 +20,23 @@ export const employerPersonalSchema = z.object({
     })
     .trim(),
 });
+
+
+export const companySchema = z.object({
+  name: z
+    .string({
+      invalid_type_error: "Name must be string",
+      required_error: "Name is required",
+    })
+    .trim()
+    .regex(fullNameRegex, {
+      message:
+        "Name can only contain letters, spaces, apostrophes, hyphens, and dots.",
+    }),
+  employer_positions: z
+    .string({
+      invalid_type_error: "Employer position must be string",
+      required_error: "Employer position is required",
+    })
+    .trim(),
+});

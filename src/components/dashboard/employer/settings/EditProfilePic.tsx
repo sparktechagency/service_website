@@ -10,7 +10,7 @@ type TProps = {
 
 const EditProfilePic = ({ setFile }: TProps) => {
   const { user } = useAppSelector((state) => state.user);
-  const [imageSrc, setImageSrc] = useState("http://10.0.60.118:5004"+user?.profile_image || "/images/profile_placeholder.png"); // Default image
+  const [imageSrc, setImageSrc] = useState("/images/profile_placeholder.png"); // Default image
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
