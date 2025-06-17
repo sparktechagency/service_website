@@ -1,4 +1,5 @@
 "use client";
+import { baseUrl } from "@/redux/features/api/apiSlice";
 import { useAppSelector } from "@/redux/hooks/hooks";
 import { Upload} from "lucide-react";
 import Image from "next/image";
@@ -10,7 +11,7 @@ type TProps = {
 
 const EditCompanyPic = ({ setFile }: TProps) => {
   const { user } = useAppSelector((state) => state.user);
-  const [imageSrc, setImageSrc] = useState("http://24.199.120.27:5004"+user?.profile_image || "/images/placeholder.jpg"); // Default image
+  const [imageSrc, setImageSrc] = useState(user?.profile_image === null ? "/images/profile_placeholder.png" : baseUrl+user?.profile_image); // Default image
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {

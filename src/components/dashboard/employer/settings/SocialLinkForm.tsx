@@ -1,122 +1,74 @@
 "use client";
 
-import { useState } from "react";
-import { Loader2 } from "lucide-react";
-import { ImFacebook2 } from "react-icons/im";
-import { FaXTwitter } from "react-icons/fa6";
-import { FaInstagram, FaYoutube } from "react-icons/fa";
+import { Globe } from "lucide-react";
+import { ImFacebook2, ImLinkedin2 } from "react-icons/im";
+import { FaInstagram } from "react-icons/fa";
+import CustomSocialInput from "@/components/form/CustomSocialInput";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
+import { useUpdateEmployerProfileMutation } from "@/redux/features/user/userApi";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { SetProfileError } from "@/redux/features/auth/authSlice";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { socialLinkSchema } from "@/schemas/employer.schema";
+import { z } from "zod";
+import Error from "@/components/validation/Error";
+import { CgSpinnerTwo } from "react-icons/cg";
+
+type TFormValues = z.infer<typeof socialLinkSchema>;
 
 const SocialLinkForm = () => {
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { user } = useAppSelector((state) => state.user);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+  const dispatch = useAppDispatch();
+  const { ProfileError } = useAppSelector((state) => state.auth);
+  const [updateEmployerProfile, { isLoading }] =
+    useUpdateEmployerProfileMutation();
+  const { handleSubmit, control } = useForm({
+    resolver: zodResolver(socialLinkSchema),
+    defaultValues: {
+      website: user?.socialMedia?.website,
+      facebook: user?.socialMedia?.facebook,
+      linkedin: user?.socialMedia?.linkedin,
+      instagram: user?.socialMedia?.instagram,
+    },
+  });
 
-    //console.log("Submitted social links:", socialLinks);
-    setIsSubmitting(false);
+  const onSubmit: SubmitHandler<TFormValues> = (data) => {
+    dispatch(SetProfileError(""));
+    const formData = new FormData();
+    formData.append("socialMedia", JSON.stringify(data));
+    updateEmployerProfile(formData);
   };
-
-
-  
 
   return (
     <div className="p-4 bg-white rounded-lg">
-      <form onSubmit={handleSubmit}>
-        <div className="space-y-4">
-          <div className="space-y-1">
-            <div className="flex items-center">
-              <div className="relative">
-                <button
-                  type="button"
-                  className="flex items-center justify-between w-[120px] px-3 py-2 border border-gray-300 rounded-l-md bg-white text-sm"
-                >
-                  <span className="flex items-center">
-                    <ImFacebook2 className="h-4 w-4 mr-2 text-blue-500" />
-                    Facebook
-                  </span>
-                </button>
-              </div>
-              <input
-                type="text"
-                placeholder="Profile link/url..."
-                className="flex-1 px-3 py-2 border border-l-0 border-gray-300 rounded-r-md focus:outline-none focus:border-blue-500 focus:ring-blue-500 text-sm"
-              />
-            </div>
-          </div>
-          <div className="space-y-1">
-            <div className="flex items-center">
-              <div className="relative">
-                <button
-                  type="button"
-                  className="flex items-center justify-between w-[120px] px-3 py-2 border border-gray-300 rounded-l-md bg-white text-sm"
-                >
-                  <span className="flex items-center">
-                    <FaXTwitter className="h-4 w-4 mr-2 text-[#1DA1F2]" />
-                    Twitter
-                  </span>
-                </button>
-              </div>
-              <input
-                type="text"
-                placeholder="Profile link/url..."
-                className="flex-1 px-3 py-2 border border-l-0 border-gray-300 rounded-r-md focus:outline-none focus:border-blue-500 focus:ring-blue-500 text-sm"
-              />
-            </div>
-          </div>
-          <div className="space-y-1">
-            <div className="flex items-center">
-              <div className="relative">
-                <button
-                  type="button"
-                  className="flex items-center justify-between w-[120px] px-3 py-2 border border-gray-300 rounded-l-md bg-white text-sm"
-                >
-                  <span className="flex items-center">
-                    <FaInstagram className="h-4 w-4 mr-2 text-[#E1306C]" />
-                    Instagram
-                  </span>
-                </button>
-              </div>
-              <input
-                type="text"
-                placeholder="Profile link/url..."
-                className="flex-1 px-3 py-2 border border-l-0 border-gray-300 rounded-r-md focus:outline-none focus:border-blue-500 focus:ring-blue-500 text-sm"
-              />
-            </div>
-          </div>
-          <div className="space-y-1">
-            <div className="flex items-center">
-              <div className="relative">
-                <button
-                  type="button"
-                  className="flex items-center justify-between w-[120px] px-3 py-2 border border-gray-300 rounded-l-md bg-white text-sm"
-                >
-                  <span className="flex items-center">
-                    <FaYoutube className="h-4 w-4 mr-2 text-red-500" />
-                    Youtube
-                  </span>
-                </button>
-              </div>
-              <input
-                type="text"
-                placeholder="Profile link/url..."
-                className="flex-1 px-3 py-2 border border-l-0 border-gray-300 rounded-r-md focus:outline-none focus:border-blue-500 focus:ring-blue-500 text-sm"
-              />
-            </div>
-          </div>
-        </div>
+      {ProfileError && <Error message={ProfileError} />}
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          <CustomSocialInput name="website" control={control}>
+            <Globe className="h-4 w-4 mr-2 text-purple-500" />
+            Website
+          </CustomSocialInput>
+          <CustomSocialInput name="facebook" control={control}>
+            <ImFacebook2 className="h-4 w-4 mr-2 text-blue-500" />
+            Facebook
+          </CustomSocialInput>
+          <CustomSocialInput name="linkedin" control={control}>
+            <ImLinkedin2 className="h-4 w-4 mr-2 text-[#1DA1F2]" />
+            Linkedin
+          </CustomSocialInput>
+          <CustomSocialInput name="instagram" control={control}>
+            <FaInstagram className="h-4 w-4 mr-2 text-[#E1306C]" />
+            Instagram
+          </CustomSocialInput>
 
         <button
           type="submit"
-          disabled={isSubmitting}
-          className="mt-6 w-32 flex items-center cursor-pointer justify-center px-4 py-2 bg-primary hover:bg-[#2b4773] rounded-md text-sm text-white font-medium transition-colors duration-100 disabled:opacity-70 disabled:cursor-not-allowed"
+          className="px-4 w-full md:w-64 md:justify-center py-2 flex gap-2 items-center bg-primary hover:bg-[#2b4773] text-white font-medium rounded-md focus:outline-none transition-colors cursor-pointer"
         >
-          {isSubmitting ? (
+          {isLoading ? (
             <>
-              <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-              Saving...
+              <CgSpinnerTwo className="animate-spin" fontSize={16} />
+              Processing...
             </>
           ) : (
             "Save Changes"

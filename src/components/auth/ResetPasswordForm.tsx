@@ -1,7 +1,7 @@
 "use client";
 
 import { z } from "zod";
-import CustomInput from "../ui/CustomInput";
+import CustomInput from "../form/CustomInput";
 import { resetPasswordSchema } from "@/schemas/auth.schema";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";

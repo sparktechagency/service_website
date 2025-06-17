@@ -3,7 +3,7 @@
 import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import CustomInput from "@/components/ui/CustomInput";
+import CustomInput from "@/components/form/CustomInput";
 import { employerPersonalSchema } from "@/schemas/employer.schema";
 import { z } from "zod";
 import { useUpdateEmployerProfileMutation } from "@/redux/features/user/userApi";

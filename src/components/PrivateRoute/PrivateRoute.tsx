@@ -10,6 +10,9 @@ const PrivateRoute = ({ children }: TProps) => {
   const router = useRouter();
   const [token, setToken] = useState<string | null>(null);
   const [isLoadingToken, setIsLoadingToken] = useState(true);
+
+
+
  
   useEffect(() => {
     if (typeof window !== "undefined" && window.localStorage) {

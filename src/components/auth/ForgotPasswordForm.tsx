@@ -2,7 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
-import CustomInput from "../ui/CustomInput";
+import CustomInput from "../form/CustomInput";
 import { z } from "zod";
 import { forgotPasswordSendOtpSchema } from "@/schemas/auth.schema";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";

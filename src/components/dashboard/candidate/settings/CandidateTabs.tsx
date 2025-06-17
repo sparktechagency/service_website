@@ -1,10 +1,10 @@
 "use client"
 import { useState } from "react"
 import { User, Cog, UserCircle } from "lucide-react";
-import CandidatePersonalForm from "./Personal/CandidatePersonalForm";
 import CandidateAccountSettings from "./AccountSettings/CandidateAccountSettings";
 import CandidateProfileForm from "./Personal/CandidateProfileForm";
 import ProfessionalForm from "./Professional/ProfessionalForm";
+import PersonalForm from "./PersonalForm";
 
 const tabItems =  [
   {
@@ -56,7 +56,7 @@ const CandidateTabs = () =>{
 
       {/* Tab Content */}
       <div className="w-full">
-        {activeTab === "personal" && <CandidatePersonalForm/>}
+        {activeTab === "personal" && <PersonalForm/>}
         {activeTab === "professional" && <ProfessionalForm/>}
         {activeTab === "profile" && <CandidateProfileForm />}
         {activeTab === "account" && <CandidateAccountSettings />}

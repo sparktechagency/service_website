@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import CustomInput from "../ui/CustomInput";
+import CustomInput from "../form/CustomInput";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";

@@ -1,6 +1,6 @@
 "use client";
 
-import CustomInput from "@/components/ui/CustomInput";
+import CustomInput from "@/components/form/CustomInput";
 import Error from "@/components/validation/Error";
 import PasswordStrength from "@/components/validation/PasswordStrength";
 import { useChangePasswordMutation } from "@/redux/features/auth/authApi";

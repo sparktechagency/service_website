@@ -1,23 +1,25 @@
 "use client";
 
 import { useState } from "react";
-import CustomInput from "@/components/ui/CustomInput";
+import CustomInput from "@/components/form/CustomInput";
 import { useUpdateEmployerProfileMutation } from "@/redux/features/user/userApi";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useAppSelector } from "@/redux/hooks/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
 import { companySchema } from "@/schemas/employer.schema";
 import { CgSpinnerTwo } from "react-icons/cg";
 import { z } from "zod";
-import CustomTextArea from "@/components/ui/CustomTextArea";
+import CustomTextArea from "@/components/FindWork/CustomTextArea";
 import Error from "@/components/validation/Error";
 import EditCompanyPic from "./EditCompanyPic";
+import { SetProfileError } from "@/redux/features/auth/authSlice";
 
 type TFormValues = z.infer<typeof companySchema>
 
 const CompanyInformation = () => {
   const [file, setFile] = useState<File | null>(null);
   const { user } = useAppSelector((state) => state.user);
+  const dispatch = useAppDispatch();
   const { ProfileError } = useAppSelector((state) => state.auth);
 
   const [updateEmployerProfile, { isLoading }] =
@@ -27,12 +29,19 @@ const CompanyInformation = () => {
     defaultValues: {
       name: user?.company?.name as string,
       employer_position: user?.company?.employer_position as string,
+      details: user?.company?.details
     },
   });
 
     const onSubmit: SubmitHandler<TFormValues> = (data) => {
-        // dispatch(SetLoginError(""))
-        // login(data)
+      dispatch(SetProfileError(""));
+      const formData = new FormData();
+      if (file) {
+        formData.append("company_logo", file);
+      }
+
+      formData.append("company", JSON.stringify(data));
+      updateEmployerProfile(formData);
     };
 
   return (

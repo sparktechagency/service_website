@@ -2,7 +2,7 @@
 "use client";
 
 import { useEffect } from "react";
-import CustomInput from "../ui/CustomInput";
+import CustomInput from "../form/CustomInput";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerSchema } from "@/schemas/auth.schema";
@@ -13,7 +13,7 @@ import { useRegisterMutation } from "@/redux/features/auth/authApi";
 import Error from "../validation/Error";
 import { SetRegisterError } from "@/redux/features/auth/authSlice";
 import { CgSpinnerTwo } from "react-icons/cg";
-import CustomCheckbox from "../ui/CustomCheckbox";
+import CustomCheckbox from "../form/CustomCheckbox";
 import { useRouter } from "next/navigation";
 
 type TFormValues = z.infer<typeof registerSchema>;

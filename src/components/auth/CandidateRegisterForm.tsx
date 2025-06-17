@@ -2,13 +2,13 @@
 "use client";
 
 import { useEffect } from "react";
-import CustomInput from "../ui/CustomInput";
+import CustomInput from "../form/CustomInput";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerSchema } from "@/schemas/auth.schema";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import PasswordStrength from "../validation/PasswordStrength";
-import CustomCheckbox from "../ui/CustomCheckbox";
+import CustomCheckbox from "../form/CustomCheckbox";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
 import { useRegisterMutation } from "@/redux/features/auth/authApi";
 import { SetRegisterError } from "@/redux/features/auth/authSlice";

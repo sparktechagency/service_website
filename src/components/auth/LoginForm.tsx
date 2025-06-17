@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import CustomInput from "../ui/CustomInput";
+import CustomInput from "../form/CustomInput";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema } from "@/schemas/auth.schema";

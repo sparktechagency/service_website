@@ -1,10 +1,10 @@
 "use client";
 
 import LocationMap from "@/components/Location/LocationMap";
-import CustomDatePicker from "@/components/ui/CustomDatePicker";
-import CustomInput from "@/components/ui/CustomInput";
-import CustomSelect from "@/components/ui/CustomSelect";
-import CustomTextArea from "@/components/ui/CustomTextArea";
+import CustomDatePicker from "@/components/form/CustomDatePicker";
+import CustomInput from "@/components/form/CustomInput";
+import CustomSelect from "@/components/form/CustomSelect";
+import CustomTextArea from "@/components/FindWork/CustomTextArea";
 import {
   educationOptions,
   experienceOptions,
@@ -88,7 +88,6 @@ const PostJobForm = () => {
       },
     };
 
-    console.log(finalValues);
     createJob(finalValues);
   };
 
