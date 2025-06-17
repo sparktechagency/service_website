@@ -1,101 +1,93 @@
 "use client";
 
-import { useState } from "react"
+import { useState } from "react";
 import CustomInput from "@/components/ui/CustomInput";
 import { useUpdateEmployerProfileMutation } from "@/redux/features/user/userApi";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { useAppSelector } from "@/redux/hooks/hooks";
 import { companySchema } from "@/schemas/employer.schema";
+import { CgSpinnerTwo } from "react-icons/cg";
+import { z } from "zod";
+import CustomTextArea from "@/components/ui/CustomTextArea";
+import Error from "@/components/validation/Error";
+import EditCompanyPic from "./EditCompanyPic";
 
+type TFormValues = z.infer<typeof companySchema>
 
 const CompanyInformation = () => {
-  const [file, setFile] = useState<File | null>(null)
-    const { user } = useAppSelector((state) => state.user);
+  const [file, setFile] = useState<File | null>(null);
+  const { user } = useAppSelector((state) => state.user);
+  const { ProfileError } = useAppSelector((state) => state.auth);
 
   const [updateEmployerProfile, { isLoading }] =
-      useUpdateEmployerProfileMutation();
-    const { handleSubmit, control } = useForm({
-      resolver: zodResolver(companySchema),
-      defaultValues: {
-        name: user?.name as string,
-        employer_positions: user?.phone_number as string,
-      },
-    });
+    useUpdateEmployerProfileMutation();
+  const { handleSubmit, control } = useForm({
+    resolver: zodResolver(companySchema),
+    defaultValues: {
+      name: user?.company?.name as string,
+      employer_position: user?.company?.employer_position as string,
+    },
+  });
 
- 
-
-
+    const onSubmit: SubmitHandler<TFormValues> = (data) => {
+        // dispatch(SetLoginError(""))
+        // login(data)
+    };
 
   return (
     <div className="max-w-4xl mx-auto bg-white p-4 md:p-6">
       <div className="mb-8">
-
+        <p className="text-lg mb-4">Update Company Information</p>
+          {ProfileError && <Error message={ProfileError} />}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-
+          <EditCompanyPic setFile={setFile}/>
         </div>
       </div>
 
-     <form>
-       {/* Company Name */}
-     <CustomInput
-              label="Name"
-              name="name"
-              type="text"
-              control={control}
-              placeholder="Enter full name"
-            />
-
-       <div className="mb-6">
-        <label htmlFor="company-name" className="block text-sm font-medium mb-2">
-          Employer Position
-        </label>
-        <input
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        <CustomInput
+          label="Company Name"
+          name="name"
           type="text"
-          id="company-name"
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+          control={control}
+          placeholder="Enter company name"
         />
-      </div>
 
-      <div className="mb-6">
-        <label htmlFor="company-name" className="block text-sm font-medium mb-2">
-          Company Website (optional)
-        </label>
-        <input
+        <CustomInput
+          label="Employer Position"
+          name="employer_position"
           type="text"
-          placeholder="https://example.com/"
-          id="company-name"
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+          control={control}
+          placeholder="Enter your position"
         />
-      </div>
+        <CustomTextArea
+          label="Company Details"
+          name="details"
+          control={control}
+          placeholder="write here..."
+          rows={3}
+        />
 
-      {/* Company Details */}
-      <div className="mb-6">
-        <label htmlFor="company-details" className="block text-sm font-medium mb-2">
-          Company Details
-        </label>
-        <div className="">
-          <textarea
-            id="company-details"
-            rows={3}
-            placeholder="Write down about your company here. Let the candidate know who we are..."
-            className="w-full border border-gray-300 rounded-md overflow-hidden p-3 focus:outline-none focus:border-blue-500"
-          ></textarea>
+        {/* Save Button */}
+        <div>
+          <button
+            type="submit"
+            className="px-4 w-full md:w-64 md:justify-center py-2 flex gap-2 items-center bg-primary hover:bg-[#2b4773] text-white font-medium rounded-md focus:outline-none transition-colors cursor-pointer"
+          >
+            {isLoading ? (
+              <>
+                <CgSpinnerTwo className="animate-spin" fontSize={16} />
+                Processing...
+              </>
+            ) : (
+              "Save Changes"
+            )}
+          </button>
         </div>
-      </div>
-
-      {/* Save Button */}
-      <div>
-        <button
-          type="button"
-          className="px-4 py-2 bg-primary hover:bg-[#2b4773] text-white font-medium rounded-md focus:outline-non"
-        >
-          Save Changes
-        </button>
-      </div>
-     </form>
+      </form>
     </div>
-  )
-}
+  );
+};
 
 export default CompanyInformation;

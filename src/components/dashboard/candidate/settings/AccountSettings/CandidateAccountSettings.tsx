@@ -6,15 +6,11 @@ import PrivacySettings from "./PrivacySettings";
 
 const CandidateAccountSettings = () => {
   return (
-    <div className="container max-w-3xl">
+    <div className="container max-w-4xl">
       <div className="space-y-8">
         <ContactForm />
-
-        {/* Privacy Settings */}
         <PrivacySettings />
-
         <ChangePasswordForm />
-
         <DeleteCandidateAccount />
       </div>
     </div>

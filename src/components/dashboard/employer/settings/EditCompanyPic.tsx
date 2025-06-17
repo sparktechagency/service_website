@@ -8,9 +8,9 @@ type TProps = {
     setFile: Dispatch<SetStateAction<File | null>>
 }
 
-const EditProfilePic = ({ setFile }: TProps) => {
+const EditCompanyPic = ({ setFile }: TProps) => {
   const { user } = useAppSelector((state) => state.user);
-  const [imageSrc, setImageSrc] = useState("http://24.199.120.27:5004"+user?.profile_image || "/images/profile_placeholder.png"); // Default image
+  const [imageSrc, setImageSrc] = useState("http://24.199.120.27:5004"+user?.profile_image || "/images/placeholder.jpg"); // Default image
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,7 +30,7 @@ const EditProfilePic = ({ setFile }: TProps) => {
   return (
     <>
       <div className="col-span-1">
-        <p className="text-md mb-2">Profile Picture</p>
+        <p className="text-md mb-2">Company Logo</p>
         <input
           type="file"
           accept="image/*"
@@ -61,4 +61,4 @@ const EditProfilePic = ({ setFile }: TProps) => {
   );
 };
 
-export default EditProfilePic;
+export default EditCompanyPic;
