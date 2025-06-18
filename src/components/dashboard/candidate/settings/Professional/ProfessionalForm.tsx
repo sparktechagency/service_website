@@ -12,6 +12,8 @@ import Error from "@/components/validation/Error";
 import { candidateProfessionalSchema } from "@/schemas/candidate.schema";
 import CustomSelect from "@/components/form/CustomSelect";
 import { educationOptions, experienceOptions, typeOptions } from "@/data/job.options";
+import CustomMultiSelect from "@/components/form/CustomMultiSelect";
+import WorkExperienceForm from "../Personal/WorkExperience/WorkExperienceForm";
 
 type TFormValues = z.infer<typeof candidateProfessionalSchema>;
 
@@ -24,22 +26,40 @@ const ProfessionalForm = () => {
     useUpdateCandidateProfileMutation();
   const { handleSubmit, control } = useForm({
     resolver: zodResolver(candidateProfessionalSchema),
-    // defaultValues: {
-    //   name: user?.name as string,
-    //   phone_number: user?.phone_number as string,
-    //   address: user?.address===null ? "" : user?.address
-    // },
+    defaultValues: {
+      job_title: user?.job_title?.length > 0 ? user?.job_title.join(', ') : "",
+      job_seeking: user?.job_seeking?.length > 0 ? user?.job_seeking.join(', ') : "",
+      education: user?.education===null ? "" : user?.education,
+      experience: user?.experience===null ? "" : user?.experience,
+      availability: user?.availability,
+      skill: user?.skill?.length > 0 ? user?.skill.join(', ') : "",
+    },
   });
 
   const onSubmit: SubmitHandler<TFormValues> = (data) => {
     dispatch(SetProfileError(""));
     const formData = new FormData();
-   
+    const {job_title, job_seeking, skill, ...rest} = data;
+    const finalValues = {
+      ...rest,
+      job_title: job_title.split(",").map((t) => t.trim()),
+      job_seeking: job_seeking.split(",").map((s) => s.trim()),
+      skill: skill.split(",").map((s) => s.trim()),
+    };
 
-    // formData.append("name", data.name);
-    // formData.append("phone_number", data.phone_number)
-    // formData.append("address", data.address)
-    updateCandidateProfile(formData)
+    // Append to FormData
+    Object.keys(finalValues).forEach((key) => {
+      const value = finalValues[key as keyof typeof finalValues];
+
+      // If value is array or object, stringify it
+      if (Array.isArray(value) || typeof value === "object") {
+        formData.append(key, JSON.stringify(value));
+      } else {
+        formData.append(key, String(value));
+      }
+    });
+ 
+     updateCandidateProfile(formData)
   };
 
   return (
@@ -68,25 +88,21 @@ const ProfessionalForm = () => {
                 control={control}
                 placeholder="Enter title"
               />
-                 <CustomSelect
-                  label="Education"
-                  name="education"
-                  control={control}
-                  options={educationOptions}
-                />
-                <CustomSelect
-                  label="Experience"
-                  name="experience"
-                  control={control}
-                  options={experienceOptions}
-                />
-                <CustomSelect
-                label="Availability"
-                name="availability"
+              <CustomSelect
+                label="Education"
+                name="education"
                 control={control}
-                options={typeOptions}
+                options={educationOptions}
               />
-              
+              <CustomSelect
+                label="Experience"
+                name="experience"
+                control={control}
+                options={experienceOptions}
+              />
+             
+              <CustomMultiSelect name="availability" label="Availability" control={control} options={typeOptions}/>
+
               <CustomInput
                 label="Skills(multiple, comma separated)"
                 name="skill"
@@ -95,7 +111,6 @@ const ProfessionalForm = () => {
                 placeholder="Enter your skills"
               />
 
-            
               <button
                 type="submit"
                 className="px-4 w-full md:w-64 md:justify-center py-2 flex gap-2 items-center bg-primary hover:bg-[#2b4773] text-white font-medium rounded-md focus:outline-none transition-colors cursor-pointer"
@@ -112,7 +127,10 @@ const ProfessionalForm = () => {
             </div>
           </form>
         </div>
+
+       
       </div>
+       <WorkExperienceForm/>
 
     </>
   );

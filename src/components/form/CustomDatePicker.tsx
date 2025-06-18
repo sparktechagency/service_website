@@ -7,6 +7,7 @@ type TProps = {
   name: string;
   control: any;
   placeholder?: string;
+  disabled?:boolean;
 };
 
 const CustomDatePicker = ({
@@ -14,6 +15,7 @@ const CustomDatePicker = ({
   name,
   control,
   placeholder= "",
+  disabled=false
 }: TProps) => {
 
   return (
@@ -35,7 +37,8 @@ const CustomDatePicker = ({
                     {...field}
                     value={field.value ?? ""}
                     placeholder={placeholder}
-                    className={`w-full mt-1 border focus:outline-none rounded-md px-4 py-2 pr-10 ${
+                    disabled={disabled}
+                    className={`w-full mt-1 border focus:outline-none rounded-md px-4 py-2 pr-10 disabled:bg-gray-100 disabled:cursor-not-allowed ${
                       error
                         ? "border-red-500 focus:border-red-500"
                         : "border-gray-300 focus:border-blue-500"

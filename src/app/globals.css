@@ -33,3 +33,8 @@ body {
     /* Firefox */
   }
 }
+
+/* Custom padding for the multiple select input area */
+.custom-select-padding .ant-select-selector {
+  padding: 0.5rem 0.75rem; /* same as px-3 py-2 */
+}

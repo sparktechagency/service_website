@@ -115,8 +115,51 @@ export const userApi = apiSlice.injectEndpoints({
         }
       },
     }),
+    addWorkExperience: builder.mutation({
+      query: (data) => ({
+        url: `/auth/add_work_experience`,
+        method: "PATCH",
+        body: data,
+      }),
+      invalidatesTags: (result) => {
+        if (result?.success) {
+          return [TagTypes.me];
+        }
+        return [];
+      },
+      async onQueryStarted(_arg, { queryFulfilled, dispatch }) {
+        try {
+          await queryFulfilled;
+          SuccessToast("Added Success");
+        } catch (err:any) {
+          const message = err?.error?.data?.message;
+          dispatch(SetProfileError(message))
+        }
+      },
+    }),
+    removeWorkExperience: builder.mutation({
+      query: (id) => ({
+        url: `/auth/remove_work_experience/${id}`,
+        method: "PATCH",
+      }),
+      invalidatesTags: (result) => {
+        if (result?.success) {
+          return [TagTypes.me];
+        }
+        return [];
+      },
+      async onQueryStarted(_arg, { queryFulfilled, dispatch }) {
+        try {
+          await queryFulfilled;
+          SuccessToast("Added Success");
+        } catch (err:any) {
+          const message = err?.error?.data?.message;
+          dispatch(SetProfileError(message))
+        }
+      },
+    }),
   }),
 });
 
 
-export const { useGetMeQuery, useUpdateEmployerProfileMutation, useUpdateCandidateProfileMutation, useUpdateCandidateLocationMutation, useUpdateEmployerLocationMutation } = userApi;
+export const { useGetMeQuery, useUpdateEmployerProfileMutation, useUpdateCandidateProfileMutation, useUpdateCandidateLocationMutation, useUpdateEmployerLocationMutation, useAddWorkExperienceMutation, useRemoveWorkExperienceMutation } = userApi;
