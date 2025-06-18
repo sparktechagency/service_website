@@ -1,7 +1,7 @@
 "use client";
 import { baseUrl } from "@/redux/features/api/apiSlice";
 import { useAppSelector } from "@/redux/hooks/hooks";
-import { Upload} from "lucide-react";
+import { Camera, Upload} from "lucide-react";
 import Image from "next/image";
 import { Dispatch, SetStateAction, useRef, useState } from "react";
 
@@ -54,7 +54,7 @@ const EditProfilePic = ({ setFile }: TProps) => {
             onClick={() => fileInputRef.current?.click()}
             className="absolute -top-3 -right-3 bg-gray-800 text-white font-semibold p-3 rounded-full cursor-pointer hover:bg-gray-900 transition duration-200 shadow-md"
           >
-            <Upload size={16} />
+            <Camera size={16} />
           </div>
         </div>
       </div>

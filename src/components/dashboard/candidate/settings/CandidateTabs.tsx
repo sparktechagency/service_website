@@ -2,9 +2,9 @@
 import { useState } from "react"
 import { User, Cog, UserCircle } from "lucide-react";
 import CandidateAccountSettings from "./AccountSettings/CandidateAccountSettings";
-import CandidateProfileForm from "./Personal/CandidateProfileForm";
 import ProfessionalForm from "./Professional/ProfessionalForm";
 import PersonalForm from "./PersonalForm";
+import DemoForm from "./Personal/DemoForm";
 
 const tabItems =  [
   {
@@ -58,7 +58,7 @@ const CandidateTabs = () =>{
       <div className="w-full">
         {activeTab === "personal" && <PersonalForm/>}
         {activeTab === "professional" && <ProfessionalForm/>}
-        {activeTab === "profile" && <CandidateProfileForm />}
+        {activeTab === "profile" && <DemoForm />}
         {activeTab === "account" && <CandidateAccountSettings />}
       </div>
     </div>

@@ -10,7 +10,6 @@ const UserProfile = () => {
   const { isLoading } = useGetMeQuery(undefined);
 
 
-  
 
   if (isLoading) {
     return (

@@ -28,6 +28,59 @@ export const candidatePersonalSchema = z.object({
 });
 
 
+
+export const candidateProfessionalSchema = z.object({
+  job_title: z
+    .string({
+      invalid_type_error: "Job Title must be string",
+      required_error: "At least one job title required"
+    })
+    .trim()
+    .regex(/^([^,\n]+)(,\s*[^,\n]+)*$/, {
+      message: "Please enter valid comma-separated skills",
+  }),
+  job_seeking: z
+    .string({
+      invalid_type_error: "Job Seeking Title must be string",
+      required_error: "At least one job seeking title required"
+    })
+    .trim()
+    .regex(/^([^,\n]+)(,\s*[^,\n]+)*$/, {
+      message: "Please enter valid comma-separated skills",
+  }),
+   education: z
+    .string({
+      invalid_type_error: "Education must be string",
+      required_error: "Select education",
+    })
+    .trim()
+    .min(1, "Select education"),
+  experience: z
+    .string({
+      invalid_type_error: "Experience must be string",
+      required_error: "Select experience",
+    })
+    .trim()
+    .min(1, "Select experience"),
+    availability: z
+    .string({
+      invalid_type_error: "Availability must be string",
+      required_error: "Select Availability",
+    })
+    .trim()
+    .min(1, "Select Availability"),
+  skill: z
+    .string({
+      invalid_type_error: "Skill must be string",
+      required_error: "Skills required",
+    })
+    .trim()
+    .regex(/^([^,\n]+)(,\s*[^,\n]+)*$/, {
+      message: "Please enter valid comma-separated skills",
+  }),
+});
+
+
 export const locationSchema = z.object({
   longitude: z
     .string()

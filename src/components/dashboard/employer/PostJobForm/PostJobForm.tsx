@@ -27,7 +27,7 @@ type TFormValues = z.infer<typeof createJobSchema>;
 const PostJobForm = () => {
   useGetCategoriesQuery(undefined);
   const [selectedLocation, setSelectedLocation] = useState<number[]>([
-    37.7749, -122.4194,
+    51.5072, 0.1276
   ]);
 
   const { categoryOptions } = useAppSelector((state) => state.category);
@@ -42,8 +42,8 @@ const PostJobForm = () => {
   } = useForm({
     resolver: zodResolver(createJobSchema),
     defaultValues: {
-      latitude: "37.7749",
-      longitude: "-122.4194",
+      latitude: "51.5072",
+      longitude: "0.1276",
     },
   });
 

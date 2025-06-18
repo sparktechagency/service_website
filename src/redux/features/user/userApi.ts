@@ -93,8 +93,30 @@ export const userApi = apiSlice.injectEndpoints({
         }
       },
     }),
+    updateEmployerLocation: builder.mutation({
+      query: (data) => ({
+        url: `/auth/employer_map_locations_update`,
+        method: "PATCH",
+        body: data,
+      }),
+      invalidatesTags: (result) => {
+        if (result?.success) {
+          return [TagTypes.me];
+        }
+        return [];
+      },
+      async onQueryStarted(_arg, { queryFulfilled, dispatch }) {
+        try {
+          await queryFulfilled;
+          SuccessToast("Update Success");
+        } catch (err:any) {
+          const message = err?.error?.data?.message;
+          dispatch(SetProfileError(message))
+        }
+      },
+    }),
   }),
 });
 
 
-export const { useGetMeQuery, useUpdateEmployerProfileMutation, useUpdateCandidateProfileMutation, useUpdateCandidateLocationMutation } = userApi;
+export const { useGetMeQuery, useUpdateEmployerProfileMutation, useUpdateCandidateProfileMutation, useUpdateCandidateLocationMutation, useUpdateEmployerLocationMutation } = userApi;
