@@ -24,7 +24,7 @@ const WorkExperienceCard = ({
               </p>
             </div>
             <div className="flex space-x-2">
-              <EditWorkExperienceModal />
+              <EditWorkExperienceModal experience={experience}/>
               <DeleteWorkExperienceModal experienceId={experience?._id}/>
             </div>
           </div>

@@ -13,20 +13,19 @@ const CustomCheckbox = ({ name, label, control }: TProps) => {
       <Controller
         control={control}
         name={name}
-        render={({ field, fieldState: { error } }) => (
+        render={({ field: {value, ...rest}, fieldState: { error } }) => (
           <>
             <div className="flex items-start">
               <div className="flex items-center h-5">
                 <input
                   type="checkbox"
-                  {...field}
+                  checked={value || false}
+                  {...rest}
                   className="w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                 />
               </div>
               <div className="ml-3 text-sm">
                 <label htmlFor="right" className="font-medium text-gray-700">
-                  {/* I confirm I am not a recruitment agency and understand this
-              platform is for direct employers and candidates only. */}
                   {label}
                 </label>
               </div>

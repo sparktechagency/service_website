@@ -14,20 +14,31 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import { useAddWorkExperienceMutation } from "@/redux/features/user/userApi";
 import { SetProfileError } from "@/redux/features/auth/authSlice";
+import { TWorkExperience } from "@/types/candidate.type";
 
 type TFormValues = z.infer<typeof workExperienceSchema>;
 
-const EditWorkExperienceModal = () => {
+type TProps = {
+  experience: TWorkExperience
+}
+
+const EditWorkExperienceModal = ({experience}: TProps) => {
   const [modalOpen, setModalOpen] = useState(false);
-  const current = false;
-    const dispatch = useAppDispatch();
-    const [addWorkExperience, { isLoading, isSuccess }] = useAddWorkExperienceMutation();
+  const dispatch = useAppDispatch();
+  const [addWorkExperience, { isLoading, isSuccess }] = useAddWorkExperienceMutation();
+
      
   
     const { handleSubmit, control, watch, trigger, setValue, clearErrors } = useForm({
       resolver: zodResolver(workExperienceSchema),
        defaultValues: {
-        currently_work: false,
+        currently_work: experience?.currently_work,
+        job_title: experience?.job_title,
+        company_name: experience?.company_name,
+        location: experience?.location,
+        start_date: experience?.start_date.split("T")[0],
+        end_date: experience?.currently_work ? "" :experience?.end_date.split("T")[0],
+        details: experience?.details,
       },
     });
   
@@ -51,6 +62,18 @@ const EditWorkExperienceModal = () => {
       }
     }, [currentlyWork, setValue, clearErrors])
   
+
+    //handle close
+    const handleClose = () => {
+      setValue("job_title", experience?.job_title)
+      setValue("company_name", experience?.company_name)
+      setValue("currently_work", experience?.currently_work)
+      setValue("location", experience?.location)
+      setValue("start_date", experience?.start_date.split("T")[0])
+      setValue("end_date", experience?.currently_work ? "" :experience?.end_date.split("T")[0])
+      setValue("details", experience?.details);
+      setModalOpen(false)
+    }
   
   
     useEffect(()=> {
@@ -78,6 +101,10 @@ const EditWorkExperienceModal = () => {
       }
     };
 
+
+
+
+
   return (
     <>
       <button
@@ -99,10 +126,10 @@ const EditWorkExperienceModal = () => {
         <div className="rounded-md">
           <div className="">
             <div className="flex justify-between items-center">
-              <h3 className="text-lg font-semibold">Add Work Experience</h3>
+              <h3 className="text-lg font-semibold">Edit Work Experience</h3>
               <button
                 type="button"
-                onClick={() => setModalOpen(false)}
+                onClick={() => handleClose()}
                 className="p-1 text-gray-500 rounded-full bg-gray-200 cursor-pointer hover:bg-primary hover:text-white duration-200"
               >
                 <X className="h-6 w-6 text-2xl" />
@@ -165,7 +192,7 @@ const EditWorkExperienceModal = () => {
             <div className="flex items-center space-x-2">
               <button
                 type="button"
-                onClick={() => setModalOpen(false)}
+                onClick={handleClose}
                 className="px-4 py-2 w-full cursor-pointer border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none"
               >
                 Cancel
