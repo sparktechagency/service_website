@@ -21,6 +21,7 @@ export const userApi = apiSlice.injectEndpoints({
         try {
           const res = await queryFulfilled;
           const data = res?.data?.data;
+          console.log(data);
           dispatch(SetUser(data))
         } catch (err:any) {
          ErrorToast("Server error is occured");

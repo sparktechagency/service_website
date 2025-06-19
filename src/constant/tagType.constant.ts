@@ -2,7 +2,10 @@
 const TagTypes = {
    categories: "Categories",
    me: "Me",
-   candidateOverview: "CandidateOverview"
+   candidateOverview: "CandidateOverview",
+   employerOverview: "EmployerOverview",
+   appliedJobs: "AppliedJobs",
+   favouriteJobs: "FavouriteJobs"
 }
 
 export default TagTypes;

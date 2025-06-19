@@ -11,7 +11,8 @@ type TProps = {
 
 const EditCompanyPic = ({ setFile }: TProps) => {
   const { user } = useAppSelector((state) => state.user);
-  const [imageSrc, setImageSrc] = useState(user?.profile_image === null ? "/images/profile_placeholder.png" : baseUrl+user?.profile_image); // Default image
+  const companyLogoSrc = user?.company ? (user?.company?.company_logo === null ? "/images/placeholder.jpg" : baseUrl+user?.company?.company_logo) : "/images/placeholder.jpg";
+  const [imageSrc, setImageSrc] = useState(companyLogoSrc); 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -44,7 +45,7 @@ const EditCompanyPic = ({ setFile }: TProps) => {
           <Image
             src={imageSrc}
             alt="Profile"
-            onError={() => setImageSrc("/images/profile_placeholder.png")}
+            onError={() => setImageSrc("/images/placeholder.jpg")}
             width={600}
             height={600}
             className="w-48 h-48 rounded-md object-cover border-4 border-white shadow-md"

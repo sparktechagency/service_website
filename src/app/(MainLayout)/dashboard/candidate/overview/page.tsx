@@ -9,9 +9,9 @@ import { useAppSelector } from "@/redux/hooks/hooks";
 
 const CandidateOverviewPage = () => {
  const { overview } = useAppSelector((state) => state.candidate);
-  const { isLoading, isError} = useGetCandidateOverviewQuery(undefined);
+ const { isLoading, isError} = useGetCandidateOverviewQuery(undefined);
 
-   if (isLoading) {
+  if (isLoading) {
     return <OverviewLoading/>
   }
 

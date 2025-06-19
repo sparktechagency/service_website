@@ -9,10 +9,10 @@ const OverviewHeader = () => {
     <>
       <div className="mb-6">
         <h1 className="text-xl font-semibold text-gray-900">
-          Hello, {user ? user?.name : ""}
+           Hello, {user ? user?.name : ""}
         </h1>
         <p className="text-sm text-gray-500">
-          Here is your daily activities and job alerts
+          Here is your daily activities
         </p>
       </div>
     </>

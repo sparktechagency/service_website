@@ -4,30 +4,30 @@
 import TagTypes from "@/constant/tagType.constant";
 import { apiSlice } from "../api/apiSlice";
 import { ErrorToast } from "@/helper/ValidationHelper";
-import { SetCandidateOverview } from "./candidateSlice";
 import { IParam } from "@/types/global.type";
+import { SetEmployerOverview } from "./employerSlice";
 
 
-export const candidateApi = apiSlice.injectEndpoints({
+export const employerApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getCandidateOverview: builder.query({
+    getEmployerOverview: builder.query({
       query: () => ({
-        url: "/jobs/candidate_overview",
+        url: "/jobs/total_count_employer",
         method: "GET",
       }),
       keepUnusedDataFor: 600,
-      providesTags: [TagTypes.candidateOverview],
+      providesTags: [TagTypes.employerOverview],
       async onQueryStarted(_arg, { queryFulfilled, dispatch}) {
         try {
           const res = await queryFulfilled;
           const data = res?.data?.data;
-          dispatch(SetCandidateOverview(data))
+          dispatch(SetEmployerOverview(data))
         } catch (err:any) {
          ErrorToast("Server error is occured");
         }
       },
     }),
-    getAppliedJobs: builder.query({
+    getAllJobs: builder.query({
       query: (args) => {
         const params = new URLSearchParams();
 
@@ -39,36 +39,16 @@ export const candidateApi = apiSlice.injectEndpoints({
           });
         }
         return {
-          url: "/jobs/get_all_apply_candidate",
+          url: "/jobs/all/employer",
           method: "GET",
           params: params,
         };
       },
       keepUnusedDataFor: 600,
       providesTags: [TagTypes.appliedJobs],
-    }),
-    getFavouriteJobs: builder.query({
-      query: (args) => {
-        const params = new URLSearchParams();
-
-        if (args !== undefined && args.length > 0) {
-          args.forEach((item: IParam) => {
-            if (item.value) {
-              params.append(item.name, item.value);
-            }
-          });
-        }
-        return {
-          url: "/jobs/get_user_favorites_jobs",
-          method: "GET",
-          params: params,
-        };
-      },
-      keepUnusedDataFor: 600,
-      providesTags: [TagTypes.favouriteJobs],
-    }),
+    })
   }),
 });
 
 
-export const { useGetCandidateOverviewQuery, useGetAppliedJobsQuery, useGetFavouriteJobsQuery } = candidateApi;
+export const { useGetEmployerOverviewQuery, useGetAllJobsQuery } = employerApi;
