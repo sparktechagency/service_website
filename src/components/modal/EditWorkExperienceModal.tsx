@@ -12,7 +12,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { workExperienceSchema } from "@/schemas/candidate.schema";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
-import { useAddWorkExperienceMutation } from "@/redux/features/user/userApi";
+import { useUpdateWorkExperienceMutation } from "@/redux/features/user/userApi";
 import { SetProfileError } from "@/redux/features/auth/authSlice";
 import { TWorkExperience } from "@/types/candidate.type";
 
@@ -25,7 +25,7 @@ type TProps = {
 const EditWorkExperienceModal = ({experience}: TProps) => {
   const [modalOpen, setModalOpen] = useState(false);
   const dispatch = useAppDispatch();
-  const [addWorkExperience, { isLoading, isSuccess }] = useAddWorkExperienceMutation();
+  const [updateWorkExperience, { isLoading, isSuccess }] = useUpdateWorkExperienceMutation();
 
      
   
@@ -84,20 +84,25 @@ const EditWorkExperienceModal = ({experience}: TProps) => {
   
   
     const onSubmit: SubmitHandler<TFormValues> = (data) => {
-      dispatch(SetProfileError(""))
+      dispatch(SetProfileError(""));
       const { end_date, currently_work, ...rest } = data;
-      if(currently_work){
-        addWorkExperience({
-          ...rest,
-          currently_work
-        })
-      }
-      else{
-        addWorkExperience({
-          ...rest,
-          currently_work,
-          end_date
-        })
+      if (currently_work) {
+        updateWorkExperience({
+          id: experience?._id,
+          data: {
+            ...rest,
+            currently_work,
+          },
+        });
+      } else {
+        updateWorkExperience({
+          id: experience?._id,
+          data: {
+            ...rest,
+            currently_work,
+            end_date,
+          },
+        });
       }
     };
 

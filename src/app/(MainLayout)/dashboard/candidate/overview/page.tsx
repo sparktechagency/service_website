@@ -26,7 +26,7 @@ const CandidateOverviewPage = () => {
           </div>
 
           {/* Stats Cards */}
-          <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-2">
+          <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             <div className="flex items-center justify-between rounded-lg bg-blue-50 p-4">
               <div>
                 <div className="text-2xl font-bold text-gray-900">589</div>
@@ -40,6 +40,15 @@ const CandidateOverviewPage = () => {
               <div>
                 <div className="text-2xl font-bold text-gray-900">238</div>
                 <div className="text-sm text-gray-500">Favorite jobs</div>
+              </div>
+              <div className="rounded-md bg-white p-3 shadow-sm">
+                <Bookmark className="h-6 w-6 text-amber-500" />
+              </div>
+            </div>
+            <div className="flex items-center justify-between rounded-lg bg-purple-50 p-4">
+              <div>
+                <div className="text-2xl font-bold text-gray-900">240</div>
+                <div className="text-sm text-gray-500">Recently Applied</div>
               </div>
               <div className="rounded-md bg-white p-3 shadow-sm">
                 <Bookmark className="h-6 w-6 text-amber-500" />
@@ -402,11 +411,6 @@ const CandidateOverviewPage = () => {
               </div>
             </div>
           </div>
-
-          {/* Footer */}
-          {/* <footer className="mt-12 text-center text-xs text-gray-500">
-            © 2024 Tradeez - Job Portal. All rights Reserved
-          </footer> */}
         </div>
       </main>
     </>

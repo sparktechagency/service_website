@@ -158,8 +158,30 @@ export const userApi = apiSlice.injectEndpoints({
         }
       },
     }),
+    updateWorkExperience: builder.mutation({
+      query: ({ data, id}) => ({
+        url: `/auth/update_work_experience/${id}`,
+        method: "PATCH",
+        body: data
+      }),
+      invalidatesTags: (result) => {
+        if (result?.success) {
+          return [TagTypes.me];
+        }
+        return [];
+      },
+      async onQueryStarted(_arg, { queryFulfilled, dispatch }) {
+        try {
+          await queryFulfilled;
+          SuccessToast("Update Success");
+        } catch (err:any) {
+          const message = err?.error?.data?.message;
+          dispatch(SetProfileError(message))
+        }
+      },
+    }),
   }),
 });
 
 
-export const { useGetMeQuery, useUpdateEmployerProfileMutation, useUpdateCandidateProfileMutation, useUpdateCandidateLocationMutation, useUpdateEmployerLocationMutation, useAddWorkExperienceMutation, useRemoveWorkExperienceMutation } = userApi;
+export const { useGetMeQuery, useUpdateEmployerProfileMutation, useUpdateCandidateProfileMutation, useUpdateCandidateLocationMutation, useUpdateEmployerLocationMutation, useAddWorkExperienceMutation, useRemoveWorkExperienceMutation, useUpdateWorkExperienceMutation } = userApi;

@@ -4,7 +4,6 @@ import { User, ShieldPlus, Settings } from "lucide-react";
 import CandidateAccountSettings from "./AccountSettings/CandidateAccountSettings";
 import ProfessionalForm from "./Professional/ProfessionalForm";
 import PersonalForm from "./PersonalForm";
-import DemoForm from "./Personal/DemoForm";
 
 const tabItems =  [
   {
@@ -15,11 +14,6 @@ const tabItems =  [
   {
     title: "Professional",
     key: "professional",
-    icon: ShieldPlus
-  },
-   {
-    title: "Demo",
-    key: "demo",
     icon: ShieldPlus
   },
   {
@@ -58,7 +52,6 @@ const CandidateTabs = () =>{
       <div className="w-full">
         {activeTab === "personal" && <PersonalForm/>}
         {activeTab === "professional" && <ProfessionalForm/>}
-        {activeTab === "demo" && <DemoForm/>}
         {activeTab === "account" && <CandidateAccountSettings />}
       </div>
     </div>
