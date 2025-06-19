@@ -6,7 +6,7 @@ const FaqNotFoundCard = () => {
         No FAQs Found
       </h2>
       <p className="text-md text-red-700 mb-4">
-        You haven't added any frequently asked questions yet. Click below to add one.
+        You haven&apos;t added any frequently asked questions yet. Click below to add one.
       </p>
     </div>
   );

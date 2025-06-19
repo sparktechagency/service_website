@@ -1,7 +1,7 @@
 "use client";
 import { baseUrl } from "@/redux/features/api/apiSlice";
 import { useAppSelector } from "@/redux/hooks/hooks";
-import { Camera, Upload} from "lucide-react";
+import { Camera } from "lucide-react";
 import Image from "next/image";
 import { Dispatch, SetStateAction, useRef, useState } from "react";
 
