@@ -4,7 +4,7 @@ import LocationMap from "@/components/Location/LocationMap";
 import CustomDatePicker from "@/components/form/CustomDatePicker";
 import CustomInput from "@/components/form/CustomInput";
 import CustomSelect from "@/components/form/CustomSelect";
-import CustomTextArea from "@/components/FindWork/CustomTextArea";
+import CustomTextArea from "@/components/form/CustomTextArea";
 import {
   educationOptions,
   experienceOptions,

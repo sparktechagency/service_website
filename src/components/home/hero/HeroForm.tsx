@@ -1,8 +1,6 @@
 "use client";
 
 import { ChevronDown } from "lucide-react";
-// import { typeOptions } from "@/components/FindWork/AdvanceFilter";
-// import LocationDropdown from "@/components/FindWork/LocationDropdown";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -59,6 +57,7 @@ const HeroForm = () => {
             <div className="relative w-full">
               <button
                 onClick={() => setIsOpen(!isOpen)}
+                type="button"
                 className="w-full flex items-center justify-between p-2 border border-gray-300 rounded bg-white"
               >
                 <span className="text-gray-700">Location</span>

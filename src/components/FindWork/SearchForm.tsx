@@ -1,66 +1,110 @@
-import { FaMapMarkerAlt, FaSearch } from 'react-icons/fa';
-import { AiOutlineArrowDown } from 'react-icons/ai';
+"use client";
+
+import { ChevronDown } from "lucide-react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useState } from "react";
 
 const SearchForm = () => {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const initialSearchTerm = searchParams.get("searchTerm");
+  const initialDistance = searchParams.get("distance");
+  const [searchTerm, setSearchTerm] = useState(initialSearchTerm || "");
+
+  const [isOpen, setIsOpen] = useState(false);
+  const [selected, setSelected] = useState(initialDistance || 15);
+
+  const options = [5, 10, 15, 25, 50, 100];
+
+  
+  const handleSelect = (value: number) => {
+    setSelected(value);
+    setIsOpen(false);
+  };
+
+  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("searchTerm", searchTerm);
+    params.set("distance", selected.toString());
+    router.push(`/find-work?${params.toString()}`);
+  };
+
   return (
-    <section className="py-8 px-4 bg-gray-50">
-      <div className="max-w-7xl mx-auto">
-        <h2 className="text-3xl font-semibold mb-6">Find Work</h2>
-
-        <div className="bg-white shadow-md rounded-xl p-4">
-          <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4">
-            {/* Job Title / Keyword Input */}
-            <div className="relative w-full sm:w-1/5">
-              <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-xl text-gray-500" />
-              <input
-                type="text"
-                 className="w-full pl-10 pr-4 py-2 outline-none"
-                placeholder="Job title, Keyword..."
+    <div className="w-full">
+      <form
+        onSubmit={handleSearch}
+        className="flex flex-col md:flex-row gap-2 md:gap-4 bg-white p-4 rounded-lg shadow-sm"
+      >
+        <div className="relative flex-1">
+          <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+            <svg
+              className="w-4 h-4 text-gray-500"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
               />
-            </div>
+            </svg>
+          </div>
+          <input
+            type="text"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            placeholder="search by job title, skills, keywords, city, postcode..."
+            required
+            className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 focus:ring-blue-500"
+          />
+        </div>
 
-            {/* Location Input */}
-            <div className="relative w-full sm:w-1/5">
-              <FaMapMarkerAlt className="absolute left-3 top-1/2 transform -translate-y-1/2 text-xl text-gray-500" />
-              <input
-                type="text"
-                className="w-full pl-10 pr-4 py-2 outline-none"
-                placeholder="Location..."
-              />
-            </div>
+        <div className="relative flex-1">
+          <div className="relative w-full">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              type="button"
+              className="w-full flex items-center justify-between p-2 border border-gray-300 rounded bg-white"
+            >
+              <span className="text-gray-700">Location</span>
+              <div className="flex items-center gap-2">
+                <span>{selected} miles</span>
+                <ChevronDown className="w-4 h-4" />
+              </div>
+            </button>
 
-            {/* Category Dropdown */}
-            <div className="relative w-full sm:w-1/5">
-              <AiOutlineArrowDown className="absolute left-3 top-1/2 transform -translate-y-1/2 text-xl text-gray-500" />
-              <select className="w-full pl-10 pr-4 py-2 outline-none">
-                <option>Category</option>
-                <option>Engineering</option>
-                <option>Marketing</option>
-                <option>Sales</option>
-                <option>Healthcare</option>
-              </select>
-            </div>
-
-            {/* Advanced Filter Dropdown */}
-            <div className="relative w-full sm:w-1/5">
-              <AiOutlineArrowDown className="absolute left-3 top-1/2 transform -translate-y-1/2 text-xl text-gray-500" />
-              <select className="w-full pl-10 pr-4 py-2 outline-none">
-                <option>Advanced Filter</option>
-                <option>Option 1</option>
-                <option>Option 2</option>
-              </select>
-            </div>
-
-            {/* Find Job Button */}
-            <div className="w-full sm:w-auto">
-              <button className="w-full sm:w-auto bg-primary hover:bg-[#2b4773] cursor-pointer text-white py-2 px-6 rounded-lg transition">
-                Find Job
-              </button>
-            </div>
+            {isOpen && (
+              <ul className="absolute w-full mt-1 bg-white border border-gray-300 rounded shadow-sm z-40">
+                {options.map((value) => (
+                  <li
+                    key={value}
+                    onClick={() => handleSelect(value)}
+                    className={`p-2 cursor-pointer hover:bg-gray-50 ${
+                      selected === value ? "bg-blue-50" : ""
+                    }`}
+                  >
+                    {value} miles
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         </div>
-      </div>
-    </section>
+
+        <div className="flex flex-col sm:flex-row gap-2">
+          <button
+            type="submit"
+            className="px-4 py-2 text-white bg-secondary cursor-pointer rounded-md focus:outline-none"
+          >
+            Find Job
+          </button>
+        </div>
+      </form>
+    </div>
   );
 };
 

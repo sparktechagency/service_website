@@ -5,7 +5,7 @@ import { Pencil, X } from "lucide-react";
 import CustomInput from "../form/CustomInput";
 import CustomDatePicker from "../form/CustomDatePicker";
 import CustomCheckbox from "../form/CustomCheckbox";
-import CustomTextArea from "../FindWork/CustomTextArea";
+import CustomTextArea from "../form/CustomTextArea";
 import { CgSpinnerTwo } from "react-icons/cg";
 import { useAppDispatch } from "@/redux/hooks/hooks";
 import { zodResolver } from "@hookform/resolvers/zod";

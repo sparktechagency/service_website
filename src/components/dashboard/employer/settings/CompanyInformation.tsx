@@ -9,7 +9,7 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
 import { companySchema } from "@/schemas/employer.schema";
 import { CgSpinnerTwo } from "react-icons/cg";
 import { z } from "zod";
-import CustomTextArea from "@/components/FindWork/CustomTextArea";
+import CustomTextArea from "@/components/form/CustomTextArea";
 import Error from "@/components/validation/Error";
 import EditCompanyPic from "./EditCompanyPic";
 import { SetProfileError } from "@/redux/features/auth/authSlice";

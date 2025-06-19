@@ -9,7 +9,7 @@ import { workExperienceSchema } from "@/schemas/candidate.schema";
 import { z } from "zod";
 import CustomDatePicker from "../form/CustomDatePicker";
 import CustomCheckbox from "../form/CustomCheckbox";
-import CustomTextArea from "../FindWork/CustomTextArea";
+import CustomTextArea from "../form/CustomTextArea";
 import { useAddWorkExperienceMutation } from "@/redux/features/user/userApi";
 import { useAppDispatch } from "@/redux/hooks/hooks";
 import { SetProfileError } from "@/redux/features/auth/authSlice";
