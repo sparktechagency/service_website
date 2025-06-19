@@ -26,8 +26,6 @@ const CandidateSettingsPage = () => {
     );
   }
   
-
- 
    if(!isLoading && isError){
     return <ServerErrorCard/>
   }
