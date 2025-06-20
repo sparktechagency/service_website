@@ -126,4 +126,21 @@ export const createJobSchema = z.object({
     .refine((val) => val <= 90, {
       message: "Latitude must be <= 90",
     }),
-});
+}).refine(
+    (data) => {
+      
+      // If salary is provided, rate must be selected
+      if (data.salary !== undefined && data.salary > 0) {
+        return data.rate && data.rate.trim() !== ""
+      }
+      // If salary is empty, rate must be empty
+      if (data.salary === undefined) {
+        return !data.rate || data.rate.trim() === ""
+      }
+      return true
+    },
+    {
+      message: "Rate is required when salary is provided",
+      path: ["rate"], // This will show the error on the rate field
+    },
+  )

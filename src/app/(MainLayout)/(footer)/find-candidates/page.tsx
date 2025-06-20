@@ -8,6 +8,7 @@ import CandidateSearchForm from '@/components/FindCandidates/CandidateSearchForm
 import { useSearchCandidatesQuery } from '@/redux/features/candidate/candidateApi';
 import FindCandidateLoading from '@/components/loader/FindCandidateLoading';
 import CandidateNotFoundCard from '@/components/card/CandidateNotFoundCard';
+import ServerErrorCard from '@/components/card/ServerErrorCard';
 
 const FindCandidatePage = () =>{
   const [searchQuery, setSearchQuery] = useState("");
@@ -27,7 +28,7 @@ const FindCandidatePage = () =>{
     }, 600);
   }, [searchQuery]);
 
-   const { data, isLoading } = useSearchCandidatesQuery([
+   const { data, isLoading, isError } = useSearchCandidatesQuery([
     { name: "searchTrams", value: searchTerm },
     { name: "page", value: currentPage },
     { name: "limit", value: pageSize }
@@ -37,7 +38,6 @@ const FindCandidatePage = () =>{
 
   const candidates = data?.data?.result || [];
   const meta = data?.data?.meta || {};
-  console.log(candidates);
 
   
 
@@ -91,7 +91,12 @@ const FindCandidatePage = () =>{
               </>
             ) : (
               <>
-                {candidates?.length > 0 ? (
+                {
+                  !isLoading && isError ? (
+                    <ServerErrorCard/>
+                  ): (
+                    <>
+                      {candidates?.length > 0 ? (
                   <>
                     <CandidateList
                       candidates={candidates}
@@ -109,6 +114,9 @@ const FindCandidatePage = () =>{
                 ) : (
                   <CandidateNotFoundCard/>
                 )}
+                    </>
+                  )
+                }
               </>
             )}
           </div>

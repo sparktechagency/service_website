@@ -8,8 +8,9 @@ type TProps = {
   label: string;
   name: string;
   control: any;
-  type?: string;
+  type?: "text" | "password";
   placeholder?: string;
+  onInput?: React.FormEventHandler<HTMLInputElement>;
 };
 
 const CustomInput = ({
@@ -18,6 +19,7 @@ const CustomInput = ({
   type = "text",
   control,
   placeholder= "",
+  onInput,
 }: TProps) => {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -67,6 +69,7 @@ const CustomInput = ({
                     {...field}
                     value={field.value ?? ""}
                     placeholder={placeholder}
+                     onInput={onInput}
                     className={`w-full mt-1 border focus:outline-none rounded-md px-4 py-2 pr-10 ${
                       error
                         ? "border-red-500 focus:border-red-500"

@@ -2,8 +2,8 @@
 
 import { getEmail } from "@/helper/SessionHelper";
 import {
+  useForgotPasswordResendOtpMutation,
   useForgotPasswordVerifyOtpMutation,
-  useVerifyAccountResendOtpMutation,
 } from "@/redux/features/auth/authApi";
 import { SetVerifyOtpError } from "@/redux/features/auth/authSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
@@ -15,22 +15,19 @@ const VerifyOtpForm = () => {
   const router = useRouter();
   const [verificationCode, setVerificationCode] = useState("");
   const [countdown, setCountdown] = useState(60);
-  const [isResending, setIsResending] = useState(false);
 
   const dispatch = useAppDispatch();
   const { VerifyOtpError } = useAppSelector((state) => state.auth);
   const [forgotPasswordVerifyOtp, { isLoading, isSuccess: verifySuccess }] =
     useForgotPasswordVerifyOtpMutation();
   const [
-    verifyAccountResendOtp,
+    forgotPasswordResendOtp,
     { isLoading: resendLoading, isSuccess: resendSuccess },
-  ] = useVerifyAccountResendOtpMutation();
+  ] = useForgotPasswordResendOtpMutation();
+
 
   useEffect(() => {
     setTimeout(() => {
-      //setIsLoading(false);
-      //setCountdown(60) // Start 60 second countdown
-
       // Countdown timer
       const timer = setInterval(() => {
         setCountdown((prev) => {
@@ -64,10 +61,12 @@ const VerifyOtpForm = () => {
     });
   };
 
+
+  
   //if code is resent successfully
   useEffect(() => {
     if (!resendLoading && resendSuccess) {
-      setIsResending(false);
+      setCountdown(60);
       // Restart countdown
       const timer = setInterval(() => {
         setCountdown((prev) => {
@@ -81,13 +80,13 @@ const VerifyOtpForm = () => {
     }
   }, [resendLoading, resendSuccess]);
 
+
+
   //handle resend code
   const handleResendCode = () => {
     if (countdown === 0) {
       setVerificationCode("");
-      setCountdown(60);
-      setIsResending(true);
-      verifyAccountResendOtp({
+      forgotPasswordResendOtp({
         email: getEmail()
       });
     }
@@ -96,7 +95,6 @@ const VerifyOtpForm = () => {
   return (
     <>
       {VerifyOtpError && <Error message={VerifyOtpError} />}
-
       <div className="space-y-5">
         <form onSubmit={handleVerifyCode} className="space-y-5">
           <div className="space-y-2">
@@ -142,22 +140,21 @@ const VerifyOtpForm = () => {
             )}
           </button>
         </form>
-
         {/* Resend Code */}
         <div className="text-center space-y-3">
           <p className="text-sm text-gray-600">{"Didn't receive the code?"}</p>
           <button
             onClick={handleResendCode}
-            disabled={countdown > 0 || isResending}
+            disabled={countdown > 0 || resendLoading}
             className="relative inline-flex items-center justify-center px-6 py-3 text-sm font-medium text-white bg-gradient-to-r from-green-500 to-emerald-600 rounded-lg hover:from-green-600 hover:to-emerald-700 focus:ring-4 focus:ring-green-200 transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none overflow-hidden"
           >
             {/* Background Animation */}
-            {isResending && (
+            {resendLoading && (
               <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-emerald-500 animate-pulse"></div>
             )}
 
             {/* Loading Spinner */}
-            {isResending && (
+            {resendLoading && (
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="flex space-x-1">
                   <div
@@ -178,7 +175,7 @@ const VerifyOtpForm = () => {
 
             <span
               className={`relative z-10 flex items-center space-x-2 transition-opacity duration-300 ${
-                isResending ? "opacity-0" : "opacity-100"
+                resendLoading ? "opacity-0" : "opacity-100"
               }`}
             >
               {countdown > 0 ? (
@@ -219,7 +216,7 @@ const VerifyOtpForm = () => {
             </span>
 
             {/* Ripple Effect */}
-            {isResending && (
+            {resendLoading && (
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="w-8 h-8 border-2 border-white border-opacity-30 rounded-full animate-ping"></div>
                 <div
@@ -231,7 +228,7 @@ const VerifyOtpForm = () => {
           </button>
 
           {/* Loading Text */}
-          {isResending && (
+          {resendLoading && (
             <div className="flex items-center justify-center space-x-2 text-green-600 animate-fade-in">
               <div className="w-4 h-4 border-2 border-green-500 border-t-transparent rounded-full animate-spin"></div>
               <span className="text-sm font-medium">Sending new code...</span>

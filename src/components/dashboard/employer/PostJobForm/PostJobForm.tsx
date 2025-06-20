@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import LocationMap from "@/components/Location/LocationMap";
@@ -38,6 +39,8 @@ const PostJobForm = () => {
     control,
     setValue,
     watch,
+    setError,
+    clearErrors,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(createJobSchema),
@@ -47,12 +50,37 @@ const PostJobForm = () => {
     },
   });
 
-  const salary = watch("salary");
-  const isDisabled =
-    (errors?.salary && true) ||
-    (salary === undefined && true) ||
-    isNaN(Number(salary)) ||
-    salary === "";
+  // const salary = watch("salary");
+  // const isDisabled =
+  //   (errors?.salary && true) ||
+  //   (salary === undefined && true) ||
+  //   isNaN(Number(salary)) ||
+  //   salary === "";
+
+
+      // Update the salary watching logic and add rate clearing
+  const salary = watch("salary")
+  const rate = watch("rate")
+
+  // Clear rate when salary becomes empty
+  useEffect(() => {
+    if (!salary || salary === "") {
+      setValue("rate", "")
+    }
+  }, [salary, setValue])
+
+  // Update the disabled logic - rate should be disabled only when salary is empty
+  const isRateDisabled = !salary || salary === "" || Boolean(errors?.salary)
+
+  // Add validation message for rate field
+  const getRateValidationMessage = () => {
+    if (salary && salary !== "" && (!rate || rate === "")) {
+      return "Rate is required when salary is provided"
+    }
+    return ""
+  }
+
+  
 
   // Watch the latitude and longitude values
   const latitude = watch("latitude");
@@ -157,13 +185,16 @@ const PostJobForm = () => {
                   type="text"
                   control={control}
                   placeholder="e.g. 400"
+                  onInput={(e: any) => {
+                    e.target.value = e.target.value.replace(/[^0-9]/g, "");
+                  }}
                 />
                 <CustomSelect
                   label="Rate"
                   name="rate"
                   control={control}
                   options={rateOptions}
-                  disabled={isDisabled}
+                  disabled={isRateDisabled}
                 />
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
@@ -173,6 +204,9 @@ const PostJobForm = () => {
                   type="text"
                   control={control}
                   placeholder="Enter vacancy"
+                  onInput={(e: any) => {
+                    e.target.value = e.target.value.replace(/[^0-9]/g, "");
+                  }}
                 />
                 <CustomDatePicker
                   label="Expiration Date"
