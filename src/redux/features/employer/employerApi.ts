@@ -4,7 +4,6 @@
 import TagTypes from "@/constant/tagType.constant";
 import { apiSlice } from "../api/apiSlice";
 import { ErrorToast } from "@/helper/ValidationHelper";
-import { IParam } from "@/types/global.type";
 import { SetEmployerOverview } from "./employerSlice";
 
 
@@ -27,28 +26,9 @@ export const employerApi = apiSlice.injectEndpoints({
         }
       },
     }),
-    getAllJobs: builder.query({
-      query: (args) => {
-        const params = new URLSearchParams();
-
-        if (args !== undefined && args.length > 0) {
-          args.forEach((item: IParam) => {
-            if (item.value) {
-              params.append(item.name, item.value);
-            }
-          });
-        }
-        return {
-          url: "/jobs/all/employer",
-          method: "GET",
-          params: params,
-        };
-      },
-      keepUnusedDataFor: 600,
-      providesTags: [TagTypes.appliedJobs],
-    })
+    
   }),
 });
 
 
-export const { useGetEmployerOverviewQuery, useGetAllJobsQuery } = employerApi;
+export const { useGetEmployerOverviewQuery } = employerApi;

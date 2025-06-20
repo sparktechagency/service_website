@@ -1,24 +1,23 @@
 "use client"
 import React from 'react';
-import { Nanny, ViewMode } from '@/types/candidate.type';
+import { ViewMode } from '@/types/candidate.type';
 import CandidateCard from './CandidateCard';
+import { TCandidate } from '@/data/candidate.data';
 
 interface CandidateListProps {
-  nannies: Nanny[];
+  candidates: TCandidate[];
   viewMode: ViewMode;
-  onToggleSave: (id: number) => void;
 }
 
-const CandidateList: React.FC<CandidateListProps> = ({ nannies, viewMode, onToggleSave }) => {
+const CandidateList: React.FC<CandidateListProps> = ({ candidates, viewMode, onToggleSave }) => {
   if (viewMode === 'list') {
     return (
       <div className="space-y-4">
-        {nannies.map(nanny => (
+        {candidates?.map((candidate, index:number) => (
           <CandidateCard 
-            key={nanny.id} 
-            nanny={nanny} 
+            key={index} 
+            candidate={candidate} 
             viewMode={viewMode}
-            onToggleSave={onToggleSave}
           />
         ))}
       </div>
@@ -27,12 +26,11 @@ const CandidateList: React.FC<CandidateListProps> = ({ nannies, viewMode, onTogg
   
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      {nannies.map(nanny => (
+       {candidates?.map((candidate, index:number) => (
         <CandidateCard 
-          key={nanny.id} 
-          nanny={nanny} 
+          key={index} 
+          candidate={candidate} 
           viewMode={viewMode}
-          onToggleSave={onToggleSave}
         />
       ))}
     </div>

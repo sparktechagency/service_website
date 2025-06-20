@@ -67,8 +67,28 @@ export const candidateApi = apiSlice.injectEndpoints({
       keepUnusedDataFor: 600,
       providesTags: [TagTypes.favouriteJobs],
     }),
+    searchCandidates: builder.query({
+      query: (args) => {
+        const params = new URLSearchParams();
+
+        if (args !== undefined && args.length > 0) {
+          args.forEach((item: IParam) => {
+            if (item.value) {
+              params.append(item.name, item.value);
+            }
+          });
+        }
+        return {
+          url: "/jobs/search_candidate",
+          method: "GET",
+          params: params,
+        };
+      },
+      keepUnusedDataFor: 600,
+      providesTags: [TagTypes.candidates],
+    }),
   }),
 });
 
 
-export const { useGetCandidateOverviewQuery, useGetAppliedJobsQuery, useGetFavouriteJobsQuery } = candidateApi;
+export const { useGetCandidateOverviewQuery, useGetAppliedJobsQuery, useGetFavouriteJobsQuery, useSearchCandidatesQuery } = candidateApi;

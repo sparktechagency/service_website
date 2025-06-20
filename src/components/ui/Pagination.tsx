@@ -20,7 +20,7 @@ const Pagination: React.FC<PaginationProps> = ({
       <button
         key={1}
         onClick={() => onPageChange(1)}
-        className={`px-3 py-1 rounded-md ${
+        className={`px-3 py-1 rounded-md cursor-pointer ${
           currentPage === 1
             ? 'bg-blue-600 text-white'
             : 'text-gray-700 hover:bg-gray-100'
@@ -47,7 +47,7 @@ const Pagination: React.FC<PaginationProps> = ({
         <button
           key={i}
           onClick={() => onPageChange(i)}
-          className={`px-3 py-1 rounded-md ${
+          className={`px-3 py-1 rounded-md cursor-pointer ${
             currentPage === i
               ? 'bg-blue-600 text-white'
               : 'text-gray-700 hover:bg-gray-100'
@@ -73,7 +73,7 @@ const Pagination: React.FC<PaginationProps> = ({
         <button
           key={totalPages}
           onClick={() => onPageChange(totalPages)}
-          className={`px-3 py-1 rounded-md ${
+          className={`px-3 py-1 cursor-pointer rounded-md ${
             currentPage === totalPages
               ? 'bg-blue-600 text-white'
               : 'text-gray-700 hover:bg-gray-100'
@@ -92,7 +92,7 @@ const Pagination: React.FC<PaginationProps> = ({
       <button
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
-        className="p-1 rounded-md text-gray-600 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
+        className="p-1 rounded-md cursor-pointer text-gray-600 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
       >
         <ChevronLeft size={18} />
       </button>
@@ -102,7 +102,7 @@ const Pagination: React.FC<PaginationProps> = ({
       <button
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
-        className="p-1 rounded-md text-gray-600 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
+        className="p-1 rounded-md text-gray-600 cursor-pointer hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
       >
         <ChevronRight size={18} />
       </button>

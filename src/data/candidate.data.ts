@@ -1,5 +1,20 @@
 import { Nanny } from "@/types/candidate.type";
 
+
+export type TCandidate = {
+  _id: string;
+  name: string;
+  email: string;
+  profile_image: string;
+  skill: string[];
+  details: string;
+  profile_private: boolean;
+  address: string;
+  isFavorite: boolean;
+};
+
+
+
 export const nannies: Nanny[] = [
   {
     id: 1,

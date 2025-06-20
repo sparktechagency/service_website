@@ -5,15 +5,15 @@ import { ViewMode } from '@/types/candidate.type';
 interface ViewControlsProps {
   viewMode: ViewMode;
   setViewMode: (mode: ViewMode) => void;
-  itemsPerPage: number;
-  setItemsPerPage: (count: number) => void;
+  pageSize: number;
+  setPageSize: (count: number) => void;
 }
 
 const ViewControls: React.FC<ViewControlsProps> = ({
   viewMode,
   setViewMode,
-  itemsPerPage,
-  setItemsPerPage
+  pageSize,
+  setPageSize
 }) => {
   return (
     <div className="flex items-center justify-between mb-4 bg-white p-3 rounded-lg shadow-sm">
@@ -48,8 +48,8 @@ const ViewControls: React.FC<ViewControlsProps> = ({
         </label>
         <select
           id="itemsPerPage"
-          value={itemsPerPage}
-          onChange={(e) => setItemsPerPage(Number(e.target.value))}
+          value={pageSize}
+          onChange={(e) => setPageSize(Number(e.target.value))}
           className="text-sm border border-gray-300 rounded-md py-1 px-2 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
         >
           <option value={5}>5</option>

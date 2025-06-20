@@ -5,7 +5,10 @@ const TagTypes = {
    candidateOverview: "CandidateOverview",
    employerOverview: "EmployerOverview",
    appliedJobs: "AppliedJobs",
-   favouriteJobs: "FavouriteJobs"
+   favouriteJobs: "FavouriteJobs",
+   employerJobs: "EmployerJobs",
+   jobs: "Jobs",
+   candidates: "Candidates"
 }
 
 export default TagTypes;
