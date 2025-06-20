@@ -9,7 +9,7 @@ interface CandidateListProps {
   viewMode: ViewMode;
 }
 
-const CandidateList: React.FC<CandidateListProps> = ({ candidates, viewMode, onToggleSave }) => {
+const CandidateList: React.FC<CandidateListProps> = ({ candidates, viewMode }) => {
   if (viewMode === 'list') {
     return (
       <div className="space-y-4">

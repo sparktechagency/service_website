@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import { ViewMode } from '@/types/candidate.type';
-import CandidateList from '@/components/candidates/CandidateList';
+import CandidateList from '@/components/FindCandidates/CandidateList';
 import Pagination from '@/components/ui/Pagination';
 import ViewControls from '@/components/ui/ViewControls';
 import CandidateSearchForm from '@/components/FindCandidates/CandidateSearchForm';

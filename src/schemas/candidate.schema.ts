@@ -8,6 +8,7 @@ export const candidatePersonalSchema = z.object({
       required_error: "Name is required",
     })
     .trim()
+    .min(1, "Name is required")
     .regex(fullNameRegex, {
       message:
         "Name can only contain letters, spaces, apostrophes, hyphens, and dots.",
@@ -62,7 +63,7 @@ export const candidateProfessionalSchema = z.object({
     .min(1, "Select experience"),
   availability: z
     .array(z.string(), {
-      required_error: "Select at least one availibility"
+      required_error: "Select at least one availibility",
     })
     .min(1, { message: "Select at least one availibility" }),
   skill: z
@@ -97,8 +98,6 @@ export const locationSchema = z.object({
     }),
 });
 
-
-
 const startDateSchema = z
   .string({
     required_error: "Please select Start Date",
@@ -106,13 +105,13 @@ const startDateSchema = z
   .min(1, { message: "Please select Start Date" })
   .refine(
     (value) => {
-      const dateRegex = /^20\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/
-      return dateRegex.test(value)
+      const dateRegex = /^20\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/;
+      return dateRegex.test(value);
     },
     {
       message: `Invalid Date format, expected 'yyyy-MM-dd' format`,
-    },
-  )
+    }
+  );
 
 // const endDateSchema = z
 //   .string({
@@ -139,7 +138,8 @@ export const workExperienceSchema = z
       .trim()
       .min(1, "Job Title is required")
       .regex(fullNameRegex, {
-        message: "Job Title can only contain letters, spaces, apostrophes, hyphens, and dots.",
+        message:
+          "Job Title can only contain letters, spaces, apostrophes, hyphens, and dots.",
       }),
     location: z
       .string({
@@ -167,7 +167,7 @@ export const workExperienceSchema = z
       .min(1, "Description is required"),
   })
   .superRefine((values, ctx) => {
-    const { start_date, end_date, currently_work } = values
+    const { start_date, end_date, currently_work } = values;
 
     // If not currently working, end_date is required
     if (!currently_work) {
@@ -176,37 +176,37 @@ export const workExperienceSchema = z
           path: ["end_date"],
           message: "Please select End Date",
           code: z.ZodIssueCode.custom,
-        })
-        return
+        });
+        return;
       }
 
       // Validate end_date format if provided
-      const dateRegex = /^20\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/
+      const dateRegex = /^20\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/;
       if (!dateRegex.test(end_date)) {
         ctx.addIssue({
           path: ["end_date"],
           message: "Invalid Date format, expected 'yyyy-MM-dd' format",
           code: z.ZodIssueCode.custom,
-        })
-        return
+        });
+        return;
       }
 
       // Compare dates only if both are valid
-      const StartDate = new Date(start_date)
-      const EndDate = new Date(end_date)
+      const StartDate = new Date(start_date);
+      const EndDate = new Date(end_date);
 
       if (StartDate >= EndDate) {
         ctx.addIssue({
           path: ["start_date"],
           message: "Start date must be less than End Date",
           code: z.ZodIssueCode.custom,
-        })
+        });
 
         ctx.addIssue({
           path: ["end_date"],
           message: "End Date must be greater than Start Date",
           code: z.ZodIssueCode.custom,
-        })
+        });
       }
     }
-  })
+  });

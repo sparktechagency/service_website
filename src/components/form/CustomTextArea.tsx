@@ -26,6 +26,7 @@ const CustomTextArea = ({ label, name, control, placeholder, rows=2 }: TProps) =
               <textarea
                 {...field}
                 rows={rows}
+                value={field.value ?? ""}
                 placeholder={placeholder}
                 className={`w-full px-3 py-2 border rounded-md focus:outline-none ${error
                           ? "border-red-500 focus:border-red-500"
