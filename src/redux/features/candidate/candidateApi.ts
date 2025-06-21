@@ -94,7 +94,7 @@ export const candidateApi = apiSlice.injectEndpoints({
       }),
       keepUnusedDataFor: 600,
       providesTags: (result, error, arg) =>[ {type: TagTypes.candidate, id:arg} ],
-      async onQueryStarted(_arg, { queryFulfilled, dispatch}) {
+      async onQueryStarted(_arg, { queryFulfilled}) {
         try {
           await queryFulfilled;
         } catch (err:any) {

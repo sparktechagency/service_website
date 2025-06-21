@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 
@@ -44,7 +45,22 @@ export const jobApi = apiSlice.injectEndpoints({
         }
       },
     }),
+    getSingleJob: builder.query({
+      query: (id) => ({
+        url: `/jobs/details?jobId=${id}`,
+        method: "GET",
+      }),
+      keepUnusedDataFor: 600,
+      providesTags: (result, error, arg) =>[ {type: TagTypes.job, id:arg} ],
+      async onQueryStarted(_arg, { queryFulfilled}) {
+        try {
+          await queryFulfilled;
+        } catch (err:any) {
+         ErrorToast("Server error is occured");
+        }
+      },
+    }),
   }),
 });
 
-export const { useGetEmployerJobsQuery, useCreateJobMutation } = jobApi;
+export const { useGetEmployerJobsQuery, useCreateJobMutation, useGetSingleJobQuery } = jobApi;

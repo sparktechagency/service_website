@@ -9,7 +9,8 @@ const TagTypes = {
    employerJobs: "EmployerJobs",
    jobs: "Jobs",
    candidates: "Candidates",
-   candidate: "Candidate"
+   candidate: "Candidate",
+   job: "Job"
 }
 
 export default TagTypes;

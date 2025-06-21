@@ -52,6 +52,8 @@ export type TEmployerJob = {
   types: string;
   education: string;
   skill: string[];
+  salary: number;
+  rate: string;
   vacancies: number;
   application_dateline: string; // ISO string
   locations: {
