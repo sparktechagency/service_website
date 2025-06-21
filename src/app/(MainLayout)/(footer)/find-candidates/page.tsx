@@ -40,12 +40,6 @@ const FindCandidatePage = () =>{
   const meta = data?.data?.meta || {};
 
   
-
-  
-  
-  
-  // Calculate total pages
-  const totalPages = 20;
   
   // Handle page change
   const handlePageChange = (page: number) => {
@@ -53,11 +47,6 @@ const FindCandidatePage = () =>{
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
   
-
-  // if(isLoading===false){
-  //   return <FindCandidateLoading/>
-  // }
-
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -103,7 +92,7 @@ const FindCandidatePage = () =>{
                       viewMode={viewMode}
                     />
 
-                    {totalPages > 1 && (
+                    {meta?.totalPages > 1 && (
                       <Pagination
                         currentPage={currentPage}
                         totalPages={meta?.totalPages}
