@@ -1,19 +1,14 @@
+"use client";
 import React from "react";
 import { Briefcase, MapPin } from "lucide-react";
 import Image from "next/image";
-import { ProfileData } from "@/types/profile.type";
 import { useAppSelector } from "@/redux/hooks/hooks";
 import getAvailability from "@/utils/getAvailability";
 
-interface HeaderProps {
-  profileData: ProfileData;
-}
+const Header = () => {
+  const { details } = useAppSelector((state) => state.candidate);
 
-const Header: React.FC<HeaderProps> = () => {
-    const { details } = useAppSelector((state) => state.candidate);
-  
-   const availability = getAvailability(details?.availability as string[]);
-
+  const availability = getAvailability(details?.availability as string[]);
 
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden">
@@ -48,7 +43,7 @@ const Header: React.FC<HeaderProps> = () => {
 
           <div className="mt-4 sm:mt-0">
             <div className="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-800 rounded-full font-medium text-sm">
-              Availability:  {availability?.join(", ")}
+              Availability: {availability?.join(", ")}
             </div>
           </div>
         </div>

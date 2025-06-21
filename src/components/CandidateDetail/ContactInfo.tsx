@@ -1,7 +1,11 @@
+"use client";
 import React from 'react';
 import { Mail, Phone, Download } from 'lucide-react';
+import { useAppSelector } from '@/redux/hooks/hooks';
 
 const ContactInfo: React.FC = () => {
+  const { details } = useAppSelector((state) => state.candidate);
+  
   return (
     <div className="bg-white rounded-lg shadow-md p-6">
       <h2 className="text-xl font-bold text-gray-900 mb-4">Contact Details</h2>
@@ -9,16 +13,16 @@ const ContactInfo: React.FC = () => {
       <div className="space-y-3">
         <div className="flex items-center text-gray-700 group">
           <Mail size={18} className="mr-3 text-blue-500 group-hover:text-blue-600 transition-colors duration-300" />
-          <a href="mailto:sarah.johnson@example.com" className="hover:text-blue-600 transition-colors duration-300">
-            sarah.johnson@example.com
-          </a>
+          <span className="hover:text-blue-600 transition-colors duration-300">
+            {details?.email}
+          </span>
         </div>
         
         <div className="flex items-center text-gray-700 group">
           <Phone size={18} className="mr-3 text-blue-500 group-hover:text-blue-600 transition-colors duration-300" />
-          <a href="tel:+14155552671" className="hover:text-blue-600 transition-colors duration-300">
-            (415) 555-2671
-          </a>
+          <span className="hover:text-blue-600 transition-colors duration-300">
+            {details?.phone_number}
+          </span>
         </div>
         
       </div>
