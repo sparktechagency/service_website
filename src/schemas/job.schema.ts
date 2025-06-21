@@ -66,20 +66,20 @@ export const createJobSchema = z.object({
     })
     .trim()
     .optional(),
-  vacancies: z
-    .string({
-      invalid_type_error: "Vacancy must be a number",
-      required_error: "Vacancy is required",
-    })
-    .trim()
-    .transform((val) => (val === "" ? undefined : val)) // 👈 convert empty to undefined
-    .refine((val) => val === undefined || /^\d+$/.test(val), {
-      message: "Vacancy must be a number",
-    })
-    .transform((val) => (val === undefined ? undefined : Number(val)))
-    .refine((val) => val === undefined || val > 0, {
-      message: "Vacancy must be at least 1",
-    }),
+   vacancies: z
+      .string({
+        invalid_type_error: "Vacancy must be a number",
+        required_error: "Vacancy is required",
+      })
+      .trim()
+      .min(1, "Vacancy is required") 
+      .refine((val) => /^\d+$/.test(val), {
+        message: "Vacancy must be a number",
+      })
+      .transform((val) => Number(val))
+      .refine((val) => val > 0, {
+        message: "Vacancy must be at least 1",
+      }),
   application_dateline: z
     .string({
       invalid_type_error: "Expiration date must be string",
@@ -126,21 +126,14 @@ export const createJobSchema = z.object({
     .refine((val) => val <= 90, {
       message: "Latitude must be <= 90",
     }),
-}).refine(
-    (data) => {
-      
-      // If salary is provided, rate must be selected
-      if (data.salary !== undefined && data.salary > 0) {
-        return data.rate && data.rate.trim() !== ""
-      }
-      // If salary is empty, rate must be empty
-      if (data.salary === undefined) {
-        return !data.rate || data.rate.trim() === ""
-      }
-      return true
-    },
-    {
-      message: "Rate is required when salary is provided",
-      path: ["rate"], // This will show the error on the rate field
-    },
-  )
+}).superRefine((values, ctx) => {
+    const { salary, rate } = values
+    // If salary is provided, rate must also be provided
+    if (salary && (!rate || rate.trim() === "")) {
+      ctx.addIssue({
+        message: "Rate is required when salary is provided",
+        path: ["rate"],
+        code: z.ZodIssueCode.custom,
+      })
+    }
+  })

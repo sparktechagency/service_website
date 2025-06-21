@@ -30,6 +30,7 @@ const CustomSelect = ({ label, name, control, options, disabled=false }: TProps)
                 <select
                   {...field}
                   disabled={disabled}
+                  value={field.value ?? ""}
                   className={`w-full px-3 py-2 border text-gray-700 disabled:bg-gray-200 rounded-md appearance-none focus:outline-none ${
                         error
                           ? "border-red-500 focus:border-red-500"

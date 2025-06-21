@@ -28,19 +28,20 @@ type TFormValues = z.infer<typeof createJobSchema>;
 const PostJobForm = () => {
   useGetCategoriesQuery(undefined);
   const [selectedLocation, setSelectedLocation] = useState<number[]>([
-    51.5072, 0.1276
+    51.5072, 0.1276,
   ]);
 
   const { categoryOptions } = useAppSelector((state) => state.category);
-  const [createJob, { isLoading }] = useCreateJobMutation();
+  const [createJob, { isLoading, isSuccess }] = useCreateJobMutation();
 
   const {
     handleSubmit,
     control,
     setValue,
     watch,
-    setError,
     clearErrors,
+    setError,
+    reset,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(createJobSchema),
@@ -50,37 +51,30 @@ const PostJobForm = () => {
     },
   });
 
-  // const salary = watch("salary");
-  // const isDisabled =
-  //   (errors?.salary && true) ||
-  //   (salary === undefined && true) ||
-  //   isNaN(Number(salary)) ||
-  //   salary === "";
+  // Update the salary watching logic and add rate clearing
+  const salary = watch("salary");
+  const rate = watch("rate");
 
-
-      // Update the salary watching logic and add rate clearing
-  const salary = watch("salary")
-  const rate = watch("rate")
+  useEffect(() => {
+    if (salary && !rate) {
+      setError("rate", {
+        type: "manual",
+        message: "Rate is required when salary is provided",
+      });
+    } else {
+      clearErrors("rate");
+    }
+  }, [salary, rate, setError, clearErrors]);
 
   // Clear rate when salary becomes empty
   useEffect(() => {
     if (!salary || salary === "") {
-      setValue("rate", "")
+      setValue("rate", "");
     }
-  }, [salary, setValue])
+  }, [salary, setValue]);
 
   // Update the disabled logic - rate should be disabled only when salary is empty
-  const isRateDisabled = !salary || salary === "" || Boolean(errors?.salary)
-
-  // Add validation message for rate field
-  const getRateValidationMessage = () => {
-    if (salary && salary !== "" && (!rate || rate === "")) {
-      return "Rate is required when salary is provided"
-    }
-    return ""
-  }
-
-  
+  const isRateDisabled = !salary || salary === "" || Boolean(errors?.salary);
 
   // Watch the latitude and longitude values
   const latitude = watch("latitude");
@@ -104,19 +98,33 @@ const PostJobForm = () => {
     setValue("longitude", location[1].toFixed(6));
   };
 
+
+  //if success
+  useEffect(()=> {
+    if(!isLoading && isSuccess){
+      reset();
+    }
+  }, [isLoading, isSuccess, reset, setValue])
+
+
+
   const onSubmit: SubmitHandler<TFormValues> = (data) => {
-    const { skill, salary, longitude, latitude, ...rest } = data;
-    const finalValues = {
+    const { skill, salary, rate, longitude, latitude, ...rest } = data;
+    const finalValues:any = {
       ...rest,
       skill: skill.split(",").map((s) => s.trim()),
-      salary,
       location: {
         longitude,
         latitude,
       },
     };
 
+    if(salary && rate){
+      finalValues.salary= salary;
+      finalValues.rate= rate;
+    }
     createJob(finalValues);
+   
   };
 
   return (

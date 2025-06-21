@@ -3,7 +3,7 @@
 
 import TagTypes from "@/constant/tagType.constant";
 import { apiSlice } from "../api/apiSlice";
-import { ErrorToast } from "@/helper/ValidationHelper";
+import { ErrorToast, SuccessToast } from "@/helper/ValidationHelper";
 import { SetCandidateOverview } from "./candidateSlice";
 import { IParam } from "@/types/global.type";
 
@@ -102,8 +102,52 @@ export const candidateApi = apiSlice.injectEndpoints({
         }
       },
     }),
+    addRemoveFavouriteCandidate: builder.mutation({
+      query: (id) => ({
+        url: `/jobs/toggle_user_favorite/${id}`,
+        method: "PATCH",
+      }),
+      invalidatesTags: (result, error, arg) => {
+        if (result?.success) {
+          return [TagTypes.candidates, {type: TagTypes.candidate, id: arg}];
+        }
+        return [];
+      },
+      async onQueryStarted(_arg, { queryFulfilled, dispatch }) {
+        try {
+          const res = await queryFulfilled;
+          const msg = res?.data?.message;
+          SuccessToast(msg);
+        } catch (err:any) {
+          const message = err?.error?.data?.message;
+          ErrorToast(message)
+        }
+      },
+    }),
+    sendAccessRequest: builder.mutation({
+      query: (id) => ({
+        url: `/jobs/profile_access_request/${id}`,
+        method: "PATCH",
+      }),
+      invalidatesTags: (result, error, arg) => {
+        if (result?.success) {
+          return [TagTypes.candidates, {type: TagTypes.candidate, id: arg}];
+        }
+        return [];
+      },
+      async onQueryStarted(_arg, { queryFulfilled, dispatch }) {
+        try {
+          const res = await queryFulfilled;
+          const msg = res?.data?.message;
+          SuccessToast(msg);
+        } catch (err:any) {
+          const message = err?.error?.data?.message;
+          ErrorToast(message)
+        }
+      },
+    }),
   }),
 });
 
 
-export const { useGetCandidateOverviewQuery, useGetAppliedJobsQuery, useGetFavouriteJobsQuery, useSearchCandidatesQuery, useGetSingleCandidateQuery } = candidateApi;
+export const { useGetCandidateOverviewQuery, useGetAppliedJobsQuery, useGetFavouriteJobsQuery, useSearchCandidatesQuery, useGetSingleCandidateQuery, useAddRemoveFavouriteCandidateMutation, useSendAccessRequestMutation } = candidateApi;

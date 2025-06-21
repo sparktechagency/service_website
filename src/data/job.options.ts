@@ -1,7 +1,7 @@
 export const typeOptions = [
   {
     label: "Full Time",
-    value: "full_time",
+    value: "full_time", 
   },
   {
     label: "Part Time",

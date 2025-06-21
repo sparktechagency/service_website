@@ -6,6 +6,8 @@ export type TCandidate = {
   name: string;
   email: string;
   profile_image: string;
+  job_title: string[];
+  experience: string;
   skill: string[];
   details: string;
   profile_private: boolean;

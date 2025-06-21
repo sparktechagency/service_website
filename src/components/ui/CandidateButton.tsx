@@ -6,6 +6,7 @@ interface ButtonProps {
   size?: 'sm' | 'md' | 'lg';
   className?: string;
   onClick?: () => void;
+  disabled?: boolean;
 }
 
 const CandidateButton: React.FC<ButtonProps> = ({
@@ -14,8 +15,9 @@ const CandidateButton: React.FC<ButtonProps> = ({
   size = 'md',
   className = '',
   onClick,
+  disabled
 }) => {
-  const baseStyles = 'font-medium rounded-md transition-all duration-200 inline-flex items-center justify-center';
+  const baseStyles = 'font-medium rounded-md transition-all duration-200 inline-flex items-center justify-center disabled:cursor-not-allowed';
   
   const variantStyles = {
     primary: 'bg-blue-500 hover:bg-blue-600 text-white',
@@ -31,8 +33,9 @@ const CandidateButton: React.FC<ButtonProps> = ({
   
   return (
     <button
-      className={`${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${className}`}
+      className={`${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${className} ${disabled && 'cursor-not-allowed'}`}
       onClick={onClick}
+      disabled={disabled}
     >
       {children}
     </button>
