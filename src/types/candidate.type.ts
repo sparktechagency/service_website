@@ -22,3 +22,43 @@ export type TWorkExperience = {
   details: string;
   _id: string;
 };
+
+
+export type ICandidateDetails = {
+  _id: string;
+  authId: string;
+  name: string;
+  profile_image: string;
+  job_title: string[];
+  job_seeking: string[];
+  email: string;
+  availability: string[];
+  phone_number: string;
+  address: string;
+  skill: string[];
+  alert_job_type: string[];
+  profile_private: boolean;
+  status: string;
+  work_experience: {
+    job_title: string;
+    company_name: string;
+    location: string;
+    start_date: string; // ISO string
+    end_date: string;   // ISO string
+    currently_work: boolean;
+    details: string;
+    _id: string;
+  }[];
+  profile_access: string[];
+  createdAt: string; // ISO string
+  updatedAt: string; // ISO string
+  __v: number;
+  locations: {
+    type: string;
+    coordinates: [number, number];
+    _id: string;
+  };
+  details: string;
+  education: string;
+  experience: string;
+};

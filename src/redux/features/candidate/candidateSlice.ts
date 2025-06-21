@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { ICandidateDetails } from '@/types/candidate.type';
 import { createSlice } from '@reduxjs/toolkit'
 
 type TInitialState = {
@@ -9,6 +10,7 @@ type TInitialState = {
     newAlertCount: number;
     recentlyApplied: any[];
   };
+  details: ICandidateDetails | null;
 };
 
  const initialState: TInitialState = {
@@ -19,6 +21,7 @@ type TInitialState = {
      newAlertCount: 0,
      recentlyApplied: [],
    },
+   details: null
  };
 
 
@@ -29,10 +32,13 @@ const candidateSlice = createSlice({
     SetCandidateOverview: (state, action) => {
       state.overview=action.payload
     },
+    SetCandidateDetails: (state, action) => {
+      state.details=action.payload
+    },
   }
 })
 
-export const { SetCandidateOverview } = candidateSlice.actions
+export const { SetCandidateOverview, SetCandidateDetails } = candidateSlice.actions
 
 const candidateSliceReducer = candidateSlice.reducer;
 export default candidateSliceReducer;

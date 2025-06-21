@@ -1,39 +1,44 @@
 "use client"
-import React from 'react';
-import { mockProfileData } from '@/types/profile.type';
-import ContactInfo from '@/components/candidates/ContactInfo';
-import Experience from '@/components/candidates/Experience';
-import Skills from '@/components/candidates/Skills';
-import Header from '@/components/candidates/Header';
-import AboutSection from '@/components/candidate/AboutSection';
+
+import CandidateDetailsLoading from '@/components/loader/CandidateDetailsLoading';
+import { useGetSingleCandidateQuery } from '@/redux/features/candidate/candidateApi';
+import { useParams } from 'next/navigation';
+import ServerErrorCard from '@/components/card/ServerErrorCard';
+import CandidateDetail from '@/components/CandidateDetail/CandidateDetail';
+import NotFoundCard from '@/components/card/NotFoundCard';
+import { useEffect } from 'react';
+import { useAppDispatch } from '@/redux/hooks/hooks';
+import { SetCandidateDetails } from '@/redux/features/candidate/candidateSlice';
 
 const CandidateDetailsPage = ()=> {
-  return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="max-w-7xl mx-auto p-4 md:p-6">
-        <div className="space-y-6">
-          {/* Header Section */}
-          <Header profileData={mockProfileData} />
-          
-          {/* Main Content */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {/* Left Column */}
-            <div className="lg:col-span-2 space-y-6">
-              <AboutSection/>
-              <Experience />
-              {/* <SocialMedia profileData={mockProfileData} /> */}
-            </div>
-            
-            {/* Right Column */}
-            <div className="space-y-6">
-              <Skills profileData={mockProfileData} />
-              <ContactInfo />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+  const params = useParams<{ id: string; }>()
+  const { data, isLoading, isError } = useGetSingleCandidateQuery(params.id);
+  const dispatch = useAppDispatch();
+
+   useEffect(() => {
+    if (data?.data?.userDetails) {
+      dispatch(SetCandidateDetails(data?.data?.userDetails));
+    }
+  }, [data, dispatch]);
+
+  if(isLoading){
+    return <CandidateDetailsLoading/>
+  }
+
+  if(!isLoading && isError){
+    return <ServerErrorCard/>
+  }
+
+
+  if(!isLoading && !isError && data?.data?.userDetails?.name){
+    return <CandidateDetail />
+  }
+ 
+  if(!isLoading && !isError && !data?.data?.userDetails?.name){
+    return <NotFoundCard title="Candidate Not Found"/>
+  }
+
+ 
 }
 
 export default CandidateDetailsPage;

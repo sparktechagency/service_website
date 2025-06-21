@@ -56,7 +56,7 @@ const ServerErrorCard = ({
               {showRetry && (
                 <button
                   onClick={handleTry}
-                  className="w-full bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
+                  className="w-full bg-gradient-to-r cursor-pointer from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
                 >
                   <RefreshCw className="w-4 h-4" />
                   Try Again
@@ -77,7 +77,7 @@ const ServerErrorCard = ({
                 {showGoHome && (
                   <button
                     onClick={()=>router.push("/")}
-                    className={`${showGoBack ? "flex-1" : "w-full"} bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-3 px-4 rounded-xl transition-all duration-200 flex items-center justify-center gap-2`}
+                    className={`${showGoBack ? "flex-1" : "w-full"} cursor-pointer bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-3 px-4 rounded-xl transition-all duration-200 flex items-center justify-center gap-2`}
                   >
                     <Home className="w-4 h-4" />
                     Go Home
