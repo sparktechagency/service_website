@@ -8,7 +8,8 @@ const TagTypes = {
    favouriteJobs: "FavouriteJobs",
    employerJobs: "EmployerJobs",
    jobs: "Jobs",
-   candidates: "Candidates"
+   candidates: "Candidates",
+   candidate: "Candidate"
 }
 
 export default TagTypes;

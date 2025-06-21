@@ -6,6 +6,7 @@ import CandidateButton from '../ui/CandidateButton';
 import { useRouter } from 'next/navigation';
 import { TCandidate } from '@/data/candidate.data';
 import { baseUrl } from '@/redux/features/api/apiSlice';
+import { ErrorToast } from '@/helper/ValidationHelper';
 
 interface CandidateCardProps {
   candidate: TCandidate;
@@ -16,6 +17,15 @@ const CandidateCard: React.FC<CandidateCardProps> = ({ candidate, viewMode }) =>
   const router = useRouter();
   const profile_img = candidate ? (candidate?.profile_image === null ? "/images/profile_placeholder.png" : baseUrl + candidate?.profile_image) : "/images/profile_placeholder.png";
   
+
+  const handleViewDetails = () => {
+    if(candidate.profile_private){
+      ErrorToast("This Profile is Private");
+    }
+    else{
+      router.push(`/find-candidates/details/${candidate?._id}`)
+    }
+  }
 
   
   if (viewMode === 'list') {
@@ -71,9 +81,7 @@ const CandidateCard: React.FC<CandidateCardProps> = ({ candidate, viewMode }) =>
         <CandidateButton
           variant="outline"
           size="sm"
-          onClick={() =>
-            router.push(`/find-candidates/details/${candidate?._id}`)
-          }
+          onClick={handleViewDetails}
           className={`hover:bg-yellow-500 text-gray-900 cursor-pointer`}
         >
           View Profile
@@ -125,9 +133,7 @@ const CandidateCard: React.FC<CandidateCardProps> = ({ candidate, viewMode }) =>
       <CandidateButton
         variant="outline"
         size="sm"
-        onClick={() =>
-          router.push(`/find-candidates/details/${candidate?._id}`)
-        }
+        onClick={handleViewDetails}
         className={`w-full mt-2 hover:bg-yellow-500 text-gray-900 cursor-pointer`}
       >
         View Profile

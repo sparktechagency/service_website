@@ -87,8 +87,23 @@ export const candidateApi = apiSlice.injectEndpoints({
       keepUnusedDataFor: 600,
       providesTags: [TagTypes.candidates],
     }),
+    getSingleCandidate: builder.query({
+      query: (id) => ({
+        url: `/jobs/get_user_profile_details/${id}`,
+        method: "GET",
+      }),
+      keepUnusedDataFor: 600,
+      providesTags: (result, error, arg) =>[ {type: TagTypes.candidate, id:arg} ],
+      async onQueryStarted(_arg, { queryFulfilled, dispatch}) {
+        try {
+          await queryFulfilled;
+        } catch (err:any) {
+         ErrorToast("Server error is occured");
+        }
+      },
+    }),
   }),
 });
 
 
-export const { useGetCandidateOverviewQuery, useGetAppliedJobsQuery, useGetFavouriteJobsQuery, useSearchCandidatesQuery } = candidateApi;
+export const { useGetCandidateOverviewQuery, useGetAppliedJobsQuery, useGetFavouriteJobsQuery, useSearchCandidatesQuery, useGetSingleCandidateQuery } = candidateApi;
