@@ -10,9 +10,9 @@ import { useParams } from "next/navigation";
 
 const EditJobPage = () => {
   const params = useParams<{ id: string; }>()
-  const { data, isLoading, isError } = useGetSingleJobQuery(params.id);
+  const { data, isLoading,isFetching, isError } = useGetSingleJobQuery(params.id);
 
-  if(isLoading){
+  if(isLoading || isFetching){
     return <PostJobLoading/>
   }
 

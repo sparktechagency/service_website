@@ -60,7 +60,74 @@ export const jobApi = apiSlice.injectEndpoints({
         }
       },
     }),
+    updateJob: builder.mutation({
+      query: ({id, data}) => ({
+        url: `/jobs/update-jobs/${id}`,
+        method: "PATCH",
+        body: data,
+      }),
+      invalidatesTags: (result, error, arg) => {
+        console.log(arg);
+        if (result?.success) {
+          return [TagTypes.employerJobs, {type: TagTypes.job, id: arg.id}];
+        }
+        return [];
+      },
+      async onQueryStarted(_arg, { queryFulfilled }) {
+        try {
+          await queryFulfilled;
+          SuccessToast("Job is updated successfully");
+        } catch (err: any) {
+          const message = err?.error?.data?.message;
+          ErrorToast(message)
+        }
+      },
+    }),
+    deleteJob: builder.mutation({
+      query: (id) => ({
+        url: `/jobs/delete-jobs/${id}`,
+        method: "PATCH",
+      }),
+      invalidatesTags: (result, error, arg) => {
+        if (result?.success) {
+          return [TagTypes.employerJobs, {type: TagTypes.job, id: arg}];
+        }
+        return [];
+      },
+      async onQueryStarted(_arg, { queryFulfilled, dispatch }) {
+        try {
+          await queryFulfilled;
+          SuccessToast("Job is deleted successfully");
+        } catch (err:any) {
+          const message = err?.error?.data?.message;
+          ErrorToast(message)
+        }
+      },
+    }),
+    makeActiveExpireJob: builder.mutation({
+      query: ({id, data}) => ({
+        url: `/jobs/make_expire_jobs/${id}`,
+        method: "PATCH",
+        body: data,
+      }),
+      invalidatesTags: (result, error, arg) => {
+        console.log(arg);
+        if (result?.success) {
+          return [TagTypes.employerJobs, {type: TagTypes.job, id: arg.id}];
+        }
+        return [];
+      },
+      async onQueryStarted(_arg, { queryFulfilled }) {
+        try {
+          await queryFulfilled;
+          SuccessToast("Update success");
+        } catch (err: any) {
+          const message = err?.error?.data?.message;
+          ErrorToast(message)
+        }
+      },
+    }),
   }),
 });
 
-export const { useGetEmployerJobsQuery, useCreateJobMutation, useGetSingleJobQuery } = jobApi;
+export const { useGetEmployerJobsQuery, useCreateJobMutation, useGetSingleJobQuery, useUpdateJobMutation, useDeleteJobMutation, useMakeActiveExpireJobMutation } = jobApi;

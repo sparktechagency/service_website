@@ -102,6 +102,26 @@ export const candidateApi = apiSlice.injectEndpoints({
         }
       },
     }),
+    getFavouriteCandidates: builder.query({
+      query: (args) => {
+        const params = new URLSearchParams();
+
+        if (args !== undefined && args.length > 0) {
+          args.forEach((item: IParam) => {
+            if (item.value) {
+              params.append(item.name, item.value);
+            }
+          });
+        }
+        return {
+          url: "/jobs/get_favorites_user_list",
+          method: "GET",
+          params: params,
+        };
+      },
+      keepUnusedDataFor: 600,
+      providesTags: [TagTypes.favouriteCandidates],
+    }),
     addRemoveFavouriteCandidate: builder.mutation({
       query: (id) => ({
         url: `/jobs/toggle_user_favorite/${id}`,
@@ -109,7 +129,7 @@ export const candidateApi = apiSlice.injectEndpoints({
       }),
       invalidatesTags: (result, error, arg) => {
         if (result?.success) {
-          return [TagTypes.candidates, {type: TagTypes.candidate, id: arg}];
+          return [TagTypes.candidates, TagTypes.favouriteCandidates, {type: TagTypes.candidate, id: arg}];
         }
         return [];
       },
@@ -145,9 +165,9 @@ export const candidateApi = apiSlice.injectEndpoints({
           ErrorToast(message)
         }
       },
-    }),
+    }), 
   }),
 });
 
 
-export const { useGetCandidateOverviewQuery, useGetAppliedJobsQuery, useGetFavouriteJobsQuery, useSearchCandidatesQuery, useGetSingleCandidateQuery, useAddRemoveFavouriteCandidateMutation, useSendAccessRequestMutation } = candidateApi;
+export const { useGetCandidateOverviewQuery, useGetAppliedJobsQuery, useGetFavouriteJobsQuery, useSearchCandidatesQuery, useGetSingleCandidateQuery, useAddRemoveFavouriteCandidateMutation, useSendAccessRequestMutation, useGetFavouriteCandidatesQuery } = candidateApi;

@@ -3,11 +3,10 @@
 import NotFoundCard from "@/components/card/NotFoundCard";
 import ServerErrorCard from "@/components/card/ServerErrorCard";
 import JobsLoading from "@/components/loader/JobsLoading";
-import JobListItem from "@/components/MyJobs/JobListItem";
 import MyJobsList from "@/components/MyJobs/MyJobsList";
 import Pagination from "@/components/ui/Pagination";
 import { useGetEmployerJobsQuery } from "@/redux/features/job/jobApi";
-import { ChevronDown, ChevronLeft } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import React, { useState } from "react";
 
 const MyJobsPage = () => {
@@ -28,9 +27,16 @@ const MyJobsPage = () => {
   );
   const jobs = data?.data?.result || [];
   const meta = data?.data?.meta || {};
-  console.log(meta);
 
   let content: React.ReactNode;
+
+      
+  // Handle page change
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+  
 
   if (isLoading) {
     return <JobsLoading/>
@@ -41,7 +47,18 @@ const MyJobsPage = () => {
   }
 
   if (!isLoading && !isError && jobs?.length > 0) {
-    content = <MyJobsList jobs={jobs}/>
+    content = (
+      <>
+        <MyJobsList jobs={jobs}/>
+         {meta?.total != 0 && (
+            <Pagination
+              currentPage={currentPage}
+              totalPages={meta?.totalPage}
+              onPageChange={handlePageChange}
+            />
+          )}
+      </>
+    )
   }
   
    if(!isLoading && isError){
@@ -49,13 +66,6 @@ const MyJobsPage = () => {
   }
 
 
-    
-  // Handle page change
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-  
 
   
   return (
@@ -89,13 +99,6 @@ const MyJobsPage = () => {
           </div>
 
           {content}
-          {meta?.totalPage > 0 && (
-            <Pagination
-              currentPage={currentPage}
-              totalPages={meta?.totalPage}
-              onPageChange={handlePageChange}
-            />
-          )}
         </div>
       </div>
     </>

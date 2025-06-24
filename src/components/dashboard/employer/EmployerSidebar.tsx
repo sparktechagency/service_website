@@ -6,6 +6,7 @@ import {
   BriefcaseBusiness,
   Podcast,
   MessageSquareMore,
+  BookmarkIcon,
 } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 
@@ -40,6 +41,11 @@ const EmployerSidebar = () => {
             href="/dashboard/employer/my-jobs"
             icon={<BriefcaseBusiness className="h-5 w-5" />}
             label="My Jobs"
+          />
+          <SidebarLink
+            href="/dashboard/employer/favourite-candidates"
+            icon={<BookmarkIcon className="h-5 w-5" />}
+            label="Favourite Candidates"
           />
            <SidebarLink
             href="/dashboard/employer/messages"

@@ -25,8 +25,7 @@ export const employerApi = apiSlice.injectEndpoints({
          ErrorToast("Server error is occured");
         }
       },
-    }),
-    
+    }),  
   }),
 });
 

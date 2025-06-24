@@ -14,7 +14,7 @@ import {
   typeOptions,
 } from "@/data/job.options";
 import { useGetCategoriesQuery } from "@/redux/features/category/categoryApi";
-import { useCreateJobMutation } from "@/redux/features/job/jobApi";
+import { useUpdateJobMutation } from "@/redux/features/job/jobApi";
 import { useAppSelector } from "@/redux/hooks/hooks";
 import { createJobSchema } from "@/schemas/job.schema";
 import { TEmployerJob } from "@/types/job.type";
@@ -41,7 +41,7 @@ const EditJobForm = ({ job }: TProps) => {
     initialLatitude,
   ]);
   const { categoryOptions } = useAppSelector((state) => state.category);
-  const [createJob, { isLoading, isSuccess }] = useCreateJobMutation();
+  const [updateJob, { isLoading, isSuccess }] = useUpdateJobMutation();
 
   const {
     handleSubmit,
@@ -145,7 +145,10 @@ const EditJobForm = ({ job }: TProps) => {
       finalValues.salary= salary;
       finalValues.rate= rate;
     }
-    createJob(finalValues);
+    updateJob({
+      id: job?._id,
+      data: finalValues
+    });
    
   };
 
@@ -292,7 +295,7 @@ const EditJobForm = ({ job }: TProps) => {
                     Processing...
                   </>
                 ) : (
-                  "Post Job"
+                  "Save Changes"
                 )}
               </button>
             </div>

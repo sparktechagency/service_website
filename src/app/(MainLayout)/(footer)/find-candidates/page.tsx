@@ -15,7 +15,7 @@ const FindCandidatePage = () =>{
   const [searchTerm, setSearchTerm] = useState("");
   const [radius, setRadius] = useState<number>(5);
   const [ currentPage, setCurrentPage ] = useState<number>(1);
-  const [ pageSize, setPageSize ] = useState<number>(5);
+  const [ pageSize, setPageSize ] = useState<number>(6);
   const [viewMode, setViewMode] = useState<ViewMode>('list');
 
    //debounced handle
