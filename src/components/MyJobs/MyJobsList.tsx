@@ -1,10 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
-import { Dispatch, SetStateAction, useState } from "react";
-import { ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
-import { useRouter } from "next/navigation";
-import DeleteJobModal from "@/components/modal/job/DeleteJobModal";
 import JobListItem from "./JobListItem";
 import { TEmployerJob } from "@/types/job.type";
 
@@ -13,18 +8,6 @@ type TProps = {
 }
 
 const MyJobsList = ({jobs}: TProps) => {
-  const [activeDropdown, setActiveDropdown] = useState(4);
-  const [activePage, setActivePage] = useState(1);
-  const router = useRouter();
-
-
-  const toggleDropdown = (id: number) => {
-    // if (activeDropdown === id) {
-    //   setActiveDropdown(null)
-    // } else {
-    //   setActiveDropdown(id)
-    // }
-  };
 
   return (
     <>

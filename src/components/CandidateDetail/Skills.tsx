@@ -1,5 +1,4 @@
 import { useAppSelector } from '@/redux/hooks/hooks';
-import { ProfileData } from '@/types/profile.type';
 import React from 'react';
 
 
