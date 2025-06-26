@@ -1,58 +1,58 @@
-"use client";
-
-import { TJob } from "@/types/job.type";
-import { MapPin } from "lucide-react";
-// import Image from "next/image";
+import React from "react";
+import { MapPin, Clock } from "lucide-react";
+import CategoryBadge from "./CategoryBadge";
 import { useRouter } from "next/navigation";
+import { IFindJob } from "@/types/job.type";
+import useUserInfo from "@/hooks/useUserInfo";
+import FavouriteCard from "./FavouriteCard";
 
-const JobCard = ({ job }: { job: TJob }) => {
+type TProps = {
+  job: IFindJob;
+};
+
+const JobCard: React.FC<TProps> = ({ job }) => {
   const router = useRouter();
-
-  
-   
+  const userInfo = useUserInfo();
 
   return (
-    <>
-      <div onClick={()=>router.push(`/job-list/${job.category}`)} className="border border-gray-200 rounded-lg p-4 bg-white shadow-sm hover:shadow-md transition-shadow cursor-pointer">
-        <div className="flex items-start justify-between mb-4">
-          <div className="flex items-center">
-            {/* <div
-              className={`w-10 h-10 rounded-md flex items-center justify-center ${job.logoColor} text-white`}
-            >
-              <Image
-                src={job.logo || "/placeholder.svg"}
-                alt={job.title}
-                className="w-6 h-6"
-                width={600}
-                height={600}
-              />
-            </div> */}
-            <div className="">
-              {/* <h3 className="font-medium text-gray-900">{job.company}</h3> */}
-              <h2 className="text-lg font-semibold text-gray-900 mb-2">
-          {job.category}
-        </h2>
-              <div className="flex items-center text-gray-500 text-sm">
-                <MapPin className="w-3 h-3 mr-1" />
-                <span className="truncate max-w-[150px]">{job.location}</span>
-              </div>
-            </div>
-          </div>
-          {/* {job.featured && (
-            <span className="text-xs bg-red-100 text-red-600 px-2 py-1 rounded">
-              Featured
-            </span>
-          )} */}
+    <div className="bg-white rounded-lg shadow-md transition-all duration-300 hover:shadow-lg border border-gray-100 overflow-hidden flex flex-col h-full">
+      <div className="p-5 flex flex-col flex-grow">
+        <div className="flex justify-between items-start mb-3">
+          <h2 className="text-lg font-semibold text-gray-800 line-clamp-2">
+            {job.title}
+          </h2>
+          {userInfo?.authId && userInfo.role === "USER" && (
+            <FavouriteCard jobId={job?._id} />
+          )}
         </div>
-        {/* <h2 className="text-lg font-semibold text-gray-900 mb-2">
-          {job.category}
-        </h2> */}
-        <div className="flex items-center justify-between text-sm text-gray-500">
-          <span>{job.type}</span>
-          <span className="font-medium">{job.salary}</span>
+
+        <div className="flex items-center text-gray-600 mt-1 mb-2">
+          <MapPin size={16} className="mr-1 text-gray-400" />
+          <span className="text-sm">{"job.location"}</span>
+        </div>
+
+        <div className="text-gray-800 font-medium mt-1 mb-2">
+          vacancy: {job?.vacancies}
+        </div>
+
+        <div className="flex items-center justify-between text-sm text-gray-500 mt-auto">
+          <div className="flex items-center text-sm">
+            <Clock size={16} className="mr-1 text-gray-400" />
+            <span>{"job.daysRemaining"} days remaining</span>
+          </div>
+          <CategoryBadge category={job?.category?.category} />
         </div>
       </div>
-    </>
+
+      <div className="p-4 border-t border-gray-100 bg-gray-50">
+        <button
+          onClick={() => router.push(`/job-details/${job.title}`)}
+          className="w-full py-2 px-4 bg-gray-900 hover:bg-gray-800 cursor-pointer text-white text-sm font-medium rounded-md transition-colors duration-300 focus:outline-none"
+        >
+          View Details
+        </button>
+      </div>
+    </div>
   );
 };
 

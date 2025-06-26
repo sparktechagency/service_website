@@ -1,18 +1,25 @@
-"use client"
+"use client";
 
+import NotFoundCard from "@/components/card/NotFoundCard";
+import ServerErrorCard from "@/components/card/ServerErrorCard";
 import FindWorkList from "@/components/FindWork/FindWorkList";
 //import dynamic from "next/dynamic"
 import SearchForm from "@/components/FindWork/SearchForm";
+import FindWorkLoading from "@/components/loader/FindWorkLoading";
+import { useSearchJobsQuery } from "@/redux/features/job/jobApi";
+import React from "react";
 
 const FindWorkPage = () => {
+  // Lazy load the heavy component
+  // const HeavyComponent = dynamic(() => import("@/components/FindWork/JobListing/JobListings"), {
+  //   loading: () => <div className="p-4 animate-pulse bg-gray-200 rounded">Loading...</div>,
+  //   ssr: false,
+  // })
 
-    // Lazy load the heavy component
-// const HeavyComponent = dynamic(() => import("@/components/FindWork/JobListing/JobListings"), {
-//   loading: () => <div className="p-4 animate-pulse bg-gray-200 rounded">Loading...</div>,
-//   ssr: false,
-// })
+  const { data, isLoading, isError } = useSearchJobsQuery(undefined);
+  const jobs = data?.data?.jobs || [];
 
-
+  
   return (
     <>
       <div className="">
@@ -32,10 +39,39 @@ const FindWorkPage = () => {
         </div>
       </div>
 
+      {isLoading ? (
+        <>
+          <FindWorkLoading />
+        </>
+      ) : (
+        <>
+          {!isLoading && isError ? (
+            <ServerErrorCard />
+          ) : (
+            <>
+              {jobs?.length > 0 ? (
+                <>
+                  <FindWorkList jobs={jobs}/>
 
-      <FindWorkList />
+                  {/* {meta?.totalPages > 1 && (
+                      <Pagination
+                        currentPage={currentPage}
+                        totalPages={meta?.totalPages}
+                        onPageChange={handlePageChange}
+                      />
+                    )} */}
+                </>
+              ) : (
+                <NotFoundCard title="There is no jobs available." />
+              )}
+            </>
+          )}
+        </>
+      )}
+
+      {/* <FindWorkList /> */}
     </>
   );
-}
+};
 
-export default FindWorkPage
+export default FindWorkPage;

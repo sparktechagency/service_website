@@ -105,7 +105,11 @@ export const jobApi = apiSlice.injectEndpoints({
       }),
       invalidatesTags: (result, error, arg) => {
         if (result?.success) {
-          return [TagTypes.employerJobs, TagTypes.recentPostedJobs, { type: TagTypes.job, id: arg.id }];
+          return [
+            TagTypes.employerJobs,
+            TagTypes.recentPostedJobs,
+            { type: TagTypes.job, id: arg.id },
+          ];
         }
         return [];
       },
@@ -162,7 +166,33 @@ export const jobApi = apiSlice.injectEndpoints({
       keepUnusedDataFor: 600,
       providesTags: [TagTypes.jobs],
     }),
+    addRemoveFavouriteJob: builder.mutation({
+      query: (id) => ({
+        url: `/jobs/toggle_favorite/${id}`,
+        method: "PATCH",
+      }),
+      invalidatesTags: (result, error, arg) => {
+        if (result?.success) {
+          return [
+            TagTypes.jobs,
+            TagTypes.favouriteJobs,
+            { type: TagTypes.job, id: arg },
+          ];
+        }
+        return [];
+      },
+      async onQueryStarted(_arg, { queryFulfilled, dispatch }) {
+        try {
+          const res = await queryFulfilled;
+          const msg = res?.data?.message;
+          SuccessToast(msg);
+        } catch (err: any) {
+          const message = err?.error?.data?.message;
+          ErrorToast(message);
+        }
+      },
+    }),
   }),
 });
 
-export const { useGetEmployerJobsQuery, useCreateJobMutation, useGetSingleJobQuery, useUpdateJobMutation, useMakeActiveExpireJobMutation, useGetRecentPostedJobsQuery, useSearchJobsQuery } = jobApi;
+export const { useGetEmployerJobsQuery, useCreateJobMutation, useGetSingleJobQuery, useUpdateJobMutation, useMakeActiveExpireJobMutation, useGetRecentPostedJobsQuery, useSearchJobsQuery, useAddRemoveFavouriteJobMutation } = jobApi;

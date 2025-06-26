@@ -71,3 +71,37 @@ export type TEmployerJob = {
   updatedAt: string; // ISO string
 };
 
+
+export type IFindJob = {
+  _id: string;
+  userId: {
+    _id: string;
+    name: string;
+    profile_image: string | null;
+  };
+  title: string;
+  category: {
+    _id: string;
+    category: string;
+    image: string;
+    createdAt: string; // ISO string
+    updatedAt: string; // ISO string
+    __v: number;
+  };
+  salary: number;
+  vacancies: number;
+  experience: string; // e.g., "4_6_years"
+  types: string;      // e.g., "fixedterm_contract"
+  education: string;  // e.g., "apprenticeship"
+  application_dateline: string; // ISO string
+  locations: {
+    type: string; // likely "Point"
+    coordinates: [number, number]; // [longitude, latitude]
+    _id: string;
+  };
+  address: string;
+  createdAt: string; // ISO string
+  isFavorite: boolean;
+};
+
+
