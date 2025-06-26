@@ -29,13 +29,13 @@ export type TJob = {
 };
 
 
-export type ISubscription = {
-  tier: string;
-  price: number;
-  description: string;
-  features: string[];
-  recommended?: boolean;
-};
+// export type ISubscription = {
+//   tier: string;
+//   price: number;
+//   description: string;
+//   features: string[];
+//   recommended?: boolean;
+// };
 
 export type TEmployerJob = {
   _id: string;

@@ -23,18 +23,11 @@ const EditJobStatusModal = ({ jobId, status }: TProps) => {
 
 
  const handleClick = () => {
-   console.log({
-     id: jobId,
-     data: {
-      status: status == "Active" ? "Expire" : "Active"
-     }
-   });
-
    makeActiveExpire({
      id: jobId,
      data: {
-      status: status == "Active" ? "Expire" : "Active"
-     }
+       status: status == "Active" ? "Expired" : "Active",
+     },
    });
  };
 

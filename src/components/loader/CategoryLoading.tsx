@@ -2,7 +2,7 @@
 
 export default function CategoryLoading () {
   return (
-    <div className="w-full max-w-6xl mx-auto p-6">
+    <div className="w-full max-w-7xl mx-auto px-4 py-12">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {/* Skeleton cards */}
         {Array.from({ length: 8 }).map((_, index) => (

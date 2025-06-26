@@ -12,7 +12,8 @@ const TagTypes = {
    candidate: "Candidate",
    favouriteCandidates: "FavouriteCandidates",
    job: "Job",
-   recentPostedJobs: "RecentPostedJobs"
+   recentPostedJobs: "RecentPostedJobs",
+   subscriptions: "Subscriptions"
 }
 
 export default TagTypes;

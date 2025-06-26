@@ -1,4 +1,4 @@
-import { IJob, ISubscription, TJob } from "@/types/job.type";
+import { IJob, TJob } from "@/types/job.type";
 
 export const jobData: IJob[] = [
   {
@@ -142,7 +142,9 @@ export const jobData: IJob[] = [
   },
 ];
 
-export const subscriptionData: ISubscription[] = [
+
+
+export const subscriptionData = [
   {
     tier: "BASIC",
     price: 19,
