@@ -1,7 +1,7 @@
 "use client"
 
+import FindWorkList from "@/components/FindWork/FindWorkList";
 //import dynamic from "next/dynamic"
-import JobListings from "@/components/FindWork/JobListing/JobListings"
 import SearchForm from "@/components/FindWork/SearchForm";
 
 const FindWorkPage = () => {
@@ -31,7 +31,9 @@ const FindWorkPage = () => {
           <SearchForm />
         </div>
       </div>
-      <JobListings />
+
+
+      <FindWorkList />
     </>
   );
 }

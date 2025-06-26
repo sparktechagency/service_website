@@ -142,7 +142,27 @@ export const jobApi = apiSlice.injectEndpoints({
         }
       },
     }),
+    searchJobs: builder.query({
+      query: (args) => {
+        const params = new URLSearchParams();
+
+        if (args !== undefined && args.length > 0) {
+          args.forEach((item: IParam) => {
+            if (item.value) {
+              params.append(item.name, item.value);
+            }
+          });
+        }
+        return {
+          url: "/jobs/get_search_filter",
+          method: "GET",
+          params: params,
+        };
+      },
+      keepUnusedDataFor: 600,
+      providesTags: [TagTypes.jobs],
+    }),
   }),
 });
 
-export const { useGetEmployerJobsQuery, useCreateJobMutation, useGetSingleJobQuery, useUpdateJobMutation, useMakeActiveExpireJobMutation, useGetRecentPostedJobsQuery } = jobApi;
+export const { useGetEmployerJobsQuery, useCreateJobMutation, useGetSingleJobQuery, useUpdateJobMutation, useMakeActiveExpireJobMutation, useGetRecentPostedJobsQuery, useSearchJobsQuery } = jobApi;

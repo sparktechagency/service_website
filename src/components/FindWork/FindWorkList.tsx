@@ -2,10 +2,10 @@
 
 import { useState } from "react"
 import { ChevronLeft, ChevronRight, Grid, List,  } from "lucide-react"
-import JobCard from "../JobCard"
 import { jobs } from "@/data/job.data"
+import JobCard from "./JobCard"
 
-const JobListings = () => {
+const FindWorkList = () => {
   const [viewMode, setViewMode] = useState("grid")
   const [currentPage, setCurrentPage] = useState(1)
   const [itemsPerPage] = useState(12)
@@ -37,15 +37,6 @@ const JobListings = () => {
     <div className="max-w-7xl mx-auto px-4 py-8">
       {/* Header with filters */}
       <div className="flex flex-col sm:flex-row justify-end items-start sm:items-center mb-6 gap-4">
-        {/* <div className="relative">
-          <select className="appearance-none bg-white border border-gray-300 rounded-md pl-4 pr-10 py-2 focus:outline-none focus:border-blue-500 focus:ring-blue-500">
-            <option>Latest</option>
-            <option>Oldest</option>
-            <option>Highest Salary</option>
-          </select>
-          <ChevronRight className="absolute right-3 top-1/2 transform -translate-y-1/2 -rotate-90 w-4 h-4 text-gray-500" />
-        </div> */}
-
         <div className="flex items-center gap-4">
           <div className="relative">
             <select className="appearance-none bg-white border border-gray-300 rounded-md pl-4 pr-10 py-2 focus:outline-none focus:border-blue-500 focus:ring-blue-500">
@@ -116,4 +107,4 @@ const JobListings = () => {
   )
 }
 
-export default JobListings;
+export default FindWorkList;
