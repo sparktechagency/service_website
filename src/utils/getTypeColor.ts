@@ -1,6 +1,6 @@
 
 const getTypeColor = (type:string) => {
- if(type === "Full Time"){
+ if(type === "full_time"){
     return "bg-green-100 text-green-800 border-green-300"
  }
  if(type === "Part Time"){

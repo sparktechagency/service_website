@@ -89,6 +89,7 @@ export type IFindJob = {
     __v: number;
   };
   salary: number;
+  rate: string;
   vacancies: number;
   experience: string; // e.g., "4_6_years"
   types: string;      // e.g., "fixedterm_contract"

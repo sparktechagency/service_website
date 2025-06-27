@@ -27,7 +27,7 @@ const CandidateRoute = ({ children }: TProps) => {
  
   useEffect(() => {
     if (!isLoadingToken && token && userInfo?.authId && userInfo?.role==="EMPLOYER") {
-      router.replace("/");
+      router.replace("/dashboard/employer/overview");
     }
   }, [isLoadingToken, token, router, userInfo]);
  

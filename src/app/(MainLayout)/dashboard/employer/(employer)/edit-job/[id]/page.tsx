@@ -25,7 +25,7 @@ const EditJobPage = () => {
     return <EditJobForm job={data?.data?.jobDetails}/>
   }
  
-  if(!isLoading && !isError && !data?.data?.userDetails?.name){
+  if(!isLoading && !isError && !data?.data?.jobDetails?.title){
     return <NotFoundCard title="Job Not Found"/>
   }
 
