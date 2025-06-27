@@ -21,16 +21,26 @@ const DashboardButton = () => {
 
   if (!isLoading && user?.authId?.role === "EMPLOYER") {
     return (
-      <Link
-        href="/dashboard/employer/overview"
-        className={`hover:text-secondary ${
-          pathname === "/dashboard/employer/overview"
-            ? "text-secondary"
-            : "text-white"
-        }`}
-      >
-        Dashboard
-      </Link>
+      <>
+        <Link
+          href="/find-candidates"
+          className={`hover:text-secondary ${
+            pathname === "/find-candidates" ? "text-secondary" : "text-white"
+          }`}
+        >
+          Find-Candidates
+        </Link>
+        <Link
+          href="/dashboard/employer/overview"
+          className={`hover:text-secondary ${
+            pathname === "/dashboard/employer/overview"
+              ? "text-secondary"
+              : "text-white"
+          }`}
+        >
+          Dashboard
+        </Link>
+      </>
     );
   }
 

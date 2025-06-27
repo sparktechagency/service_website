@@ -4,7 +4,7 @@ import NotFoundCard from "@/components/card/NotFoundCard";
 import ServerErrorCard from "@/components/card/ServerErrorCard";
 import FavouriteJobs from "@/components/FavouriteJobs/FavouriteJobs";
 import AppliedLoading from "@/components/loader/AppliedLoading";
-import { useGetFavouriteJobsQuery } from "@/redux/features/candidate/candidateApi";
+import { useGetFavouriteJobsQuery } from "@/redux/features/job/jobApi";
 
 
 

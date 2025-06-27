@@ -166,6 +166,21 @@ export const jobApi = apiSlice.injectEndpoints({
       keepUnusedDataFor: 600,
       providesTags: [TagTypes.jobs],
     }),
+    getFavouriteJobs: builder.query({
+      query: () => ({
+        url: `/jobs/get_user_favorites_jobs`,
+        method: "GET",
+      }),
+      keepUnusedDataFor: 600,
+      providesTags: (result, error, arg) => [TagTypes.jobs, TagTypes.job],
+      async onQueryStarted(_arg, { queryFulfilled }) {
+        try {
+          await queryFulfilled;
+        } catch (err: any) {
+          ErrorToast("Server error is occured");
+        }
+      },
+    }),
     addRemoveFavouriteJob: builder.mutation({
       query: (id) => ({
         url: `/jobs/toggle_favorite/${id}`,
@@ -195,4 +210,4 @@ export const jobApi = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useGetEmployerJobsQuery, useCreateJobMutation, useGetSingleJobQuery, useUpdateJobMutation, useMakeActiveExpireJobMutation, useGetRecentPostedJobsQuery, useSearchJobsQuery, useAddRemoveFavouriteJobMutation } = jobApi;
+export const { useGetEmployerJobsQuery, useCreateJobMutation, useGetSingleJobQuery, useUpdateJobMutation, useMakeActiveExpireJobMutation, useGetRecentPostedJobsQuery, useSearchJobsQuery, useAddRemoveFavouriteJobMutation, useGetFavouriteJobsQuery } = jobApi;

@@ -43,14 +43,7 @@ export default function Navbar() {
           >
             Find Work
           </Link>
-          <Link
-            href="/find-candidates"
-            className={`hover:text-secondary ${
-              pathname === "/find-candidates" ? "text-secondary" : "text-white"
-            }`}
-          >
-            Find-Candidates
-          </Link>
+
           {userInfo?.authId && <DashboardButton />}
           <Link
             href="/blog-list"
@@ -81,7 +74,13 @@ export default function Navbar() {
                 Logout
               </button>
               <button
-                onClick={() => router.push(`/dashboard/${userInfo?.role==="USER" ? "candidate" : "employer"}/messages`)}
+                onClick={() =>
+                  router.push(
+                    `/dashboard/${
+                      userInfo?.role === "USER" ? "candidate" : "employer"
+                    }/messages`
+                  )
+                }
                 className="relative rounded-full p-1 cursor-pointer hover:bg-white/10"
               >
                 <MessageCircleMore size={20} />
@@ -100,11 +99,17 @@ export default function Navbar() {
               </button>
 
               <div
-                onClick={() => router.push(`/dashboard/${userInfo?.role==="USER" ? "candidate" : "employer"}/settings`)}
+                onClick={() =>
+                  router.push(
+                    `/dashboard/${
+                      userInfo?.role === "USER" ? "candidate" : "employer"
+                    }/settings`
+                  )
+                }
                 className="flex items-center gap-2 cursor-pointer"
               >
                 <div className="h-8 w-8 rounded-full">
-                   {userInfo?.authId && <UserProfile />}
+                  {userInfo?.authId && <UserProfile />}
                 </div>
               </div>
             </>
