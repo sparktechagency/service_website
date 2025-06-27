@@ -94,7 +94,10 @@ export type IFindJob = {
   experience: string; // e.g., "4_6_years"
   types: string;      // e.g., "fixedterm_contract"
   education: string;  // e.g., "apprenticeship"
+  descriptions: string;
   application_dateline: string; // ISO string
+  skill: string[];
+  job_pattern: string;
   locations: {
     type: string; // likely "Point"
     coordinates: [number, number]; // [longitude, latitude]

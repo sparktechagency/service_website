@@ -1,5 +1,4 @@
 import { MapPin } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 import ApplyModal from "@/components/modal/ApplyModal";
 import { FaInstagram } from "react-icons/fa";
 import { useRouter } from "next/navigation";
@@ -11,6 +10,9 @@ import getExperience from "@/utils/getExperience";
 import getEducation from "@/utils/getEducation";
 import getType from "@/utils/getType";
 import getRate from "@/utils/getRate";
+import getTypeColor from "@/utils/getTypeColor";
+import { IoPeople } from "react-icons/io5";
+import getPattern from "@/utils/getJobPattern";
 
 type TProps = {
   job: IFindJob;
@@ -38,12 +40,13 @@ const SingleJob = ({ job }: TProps) => {
                 <div>
                   <div className="flex items-center gap-2 flex-wrap">
                     <h1 className="text-2xl font-semibold">{job?.title}</h1>
-                    <Badge
-                      variant="outline"
-                      className="bg-blue-100 text-blue-600 border-blue-200"
+                    <p
+                      className={`px-2 text-sm rounded-md border ${getTypeColor(
+                        job?.types
+                      )}`}
                     >
-                      Part time
-                    </Badge>
+                      {getType(job?.types)}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -64,30 +67,11 @@ const SingleJob = ({ job }: TProps) => {
               </div>
             </div>
 
-            <div className="text-right text-sm text-gray-500 mb-6">
-              Job expire in:{" "}
-              <span className="text-red-500">
-                {getFormattedDate(job?.application_dateline)}
-              </span>
-            </div>
-
             {/* Job Description */}
             <div className="mb-8">
               <h2 className="text-xl font-semibold mb-4">Job Description</h2>
               <div className="space-y-4 text-gray-600">
-                <p>
-                  Integer aliquet pretium consequat. Donec et sapien id leo
-                  accumsan pellentesque eget maximus tellus. Duis et est ac leo
-                  rhoncus tincidunt vitae vehicula augue. Donec in suscipit
-                  diam.
-                </p>
-                <p>
-                  Pellentesque quis justo sit amet arcu commodo sollicitudin.
-                  Integer finibus blandit condimentum. Vivamus sit amet ligula
-                  ullamcorper, pulvinar ante id, tristique erat. Quisque sit
-                  amet aliquam urna. Maecenas blandit felis id massa sodales
-                  finibus. Integer bibendum eu nulla eu sollicitudin.
-                </p>
+                {job?.descriptions}
                 {/* <p>
                   Sed lobortis diam tincidunt accumsan faucibus. Quisque blandit
                   augue quis turpis auctor, dapibus euismod ante ultricies. Ut
@@ -103,35 +87,17 @@ const SingleJob = ({ job }: TProps) => {
               </div>
             </div>
 
-            {/* Responsibilities */}
-            {/* <div className="mb-8">
-              <h2 className="text-xl font-semibold mb-4">Responsibilities</h2>
+            {/* Skillss */}
+            <div className="mb-8">
+              <h2 className="text-xl font-semibold mb-4">Skill</h2>
               <ul className="list-disc pl-6 space-y-2 text-gray-600">
-                <li>Quisque semper gravida est et consectetur.</li>
-                <li>
-                  Curabitur blandit lorem velit, vitae pretium leo placerat
-                  eget.
-                </li>
-                <li>Morbi mattis in ipsum ac tempus.</li>
-                <li>
-                  Curabitur eu vehicula libero. Vestibulum sed purus
-                  ullamcorper, lobortis lectus nec.
-                </li>
-                <li>
-                  vulputate turpis. Quisque ante odio, iaculis a porttitor sit
-                  amet.
-                </li>
-                <li>lobortis vel lectus. Nulla at risus ut diam.</li>
-                <li>
-                  commodo feugiat. Nullam laoreet, diam placerat dapibus
-                  tincidunt.
-                </li>
-                <li>
-                  odio metus posuere lorem, id condimentum erat velit nec neque.
-                </li>
-                <li>dui sodales ut. Curabitur tempus augue.</li>
+                {
+                  job?.skill?.map((s, index)=> (
+                    <li key={index}> {s} </li>
+                  ))
+                }
               </ul>
-            </div> */}
+            </div>
           </div>
 
           {/* Job Overview Sidebar */}
@@ -195,7 +161,7 @@ const SingleJob = ({ job }: TProps) => {
                   </div>
                   <div>
                     <p className="text-sm text-gray-500">JOB EXPIRE IN:</p>
-                    <p className="font-medium">
+                    <p className="font-medium text-red-500">
                       {getFormattedDate(job?.application_dateline)}
                     </p>
                   </div>
@@ -228,77 +194,60 @@ const SingleJob = ({ job }: TProps) => {
                 </div>
 
                 {/* Salary */}
-                <div className="flex items-start gap-3">
-                  <div className="w-10 h-10 rounded-md bg-gray-100 flex items-center justify-center text-gray-500">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="20"
-                      height="20"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <rect x="2" y="5" width="20" height="14" rx="2"></rect>
-                      <line x1="2" y1="10" x2="22" y2="10"></line>
-                    </svg>
-                  </div>
-                  {job?.salary && job?.rate && (
+                {job?.salary && job?.rate && (
+                  <div className="flex items-start gap-3">
+                    <div className="w-10 h-10 rounded-md bg-gray-100 flex items-center justify-center text-gray-500">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <rect x="2" y="5" width="20" height="14" rx="2"></rect>
+                        <line x1="2" y1="10" x2="22" y2="10"></line>
+                      </svg>
+                    </div>
                     <div>
                       <p className="text-sm text-gray-500">SALARY:</p>
                       <p className="font-medium">
-                        ${`${job?.salary}`}/ <span className="lowercase">{`${getRate(job?.rate)}`}</span>
+                        ${`${job?.salary}`}/{" "}
+                        <span className="lowercase">{`${getRate(
+                          job?.rate
+                        )}`}</span>
                       </p>
                     </div>
-                  )}
-                </div>
+                  </div>
+                )}
 
                 {/* Location */}
-                <div className="flex items-start gap-3">
-                  <div className="w-10 h-10 rounded-md bg-gray-100 flex items-center justify-center text-gray-500">
-                    <MapPin size={20} />
+                 <div className="flex items-start gap-3">
+                    <div className="w-10 h-10 rounded-md bg-gray-100 flex items-center justify-center text-gray-500">
+                      <MapPin size={20} />
+                    </div>
+                    <div>
+                      <p className="text-sm text-gray-500">LOCATION:</p>
+                      <p className="font-medium">{job?.address}</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="text-sm text-gray-500">LOCATION:</p>
-                    <p className="font-medium">{job?.address}</p>
-                  </div>
-                </div>
 
-                {/* Job Type */}
-                <div className="flex items-start gap-3">
-                  <div className="w-10 h-10 rounded-md bg-gray-100 flex items-center justify-center text-gray-500">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="20"
-                      height="20"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <rect
-                        x="2"
-                        y="7"
-                        width="20"
-                        height="14"
-                        rx="2"
-                        ry="2"
-                      ></rect>
-                      <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-                    </svg>
+                   {/* Vacancy */}
+                 <div className="flex items-start gap-3">
+                    <div className="w-10 h-10 rounded-md bg-gray-100 flex items-center justify-center text-gray-500">
+                      <IoPeople size={20} />
+                    </div>
+                    <div>
+                      <p className="text-sm text-gray-500">Vacancy:</p>
+                      <p className="font-medium">{job?.vacancies}</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="text-sm text-gray-500">JOB TYPE:</p>
-                    <p className="font-medium">{getType(job?.types)}</p>
-                  </div>
-                </div>
 
                 {/* Experience */}
-                <div className="flex items-start gap-3 col-span-1 md:col-span-2">
+                <div className="flex items-start gap-3">
                   <div className="w-10 h-10 rounded-md bg-gray-100 flex items-center justify-center text-gray-500">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -326,6 +275,37 @@ const SingleJob = ({ job }: TProps) => {
                     <p className="text-sm text-gray-500">EXPERIENCE</p>
                     <p className="font-medium">
                       {getExperience(job?.experience)}
+                    </p>
+                  </div>
+                </div>
+                  <div className="flex items-start gap-3">
+                  <div className="w-10 h-10 rounded-md bg-gray-100 flex items-center justify-center text-gray-500">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <rect
+                        x="2"
+                        y="7"
+                        width="20"
+                        height="14"
+                        rx="2"
+                        ry="2"
+                      ></rect>
+                      <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500">Job Pattern</p>
+                    <p className="font-medium">
+                      {getPattern(job?.job_pattern)}
                     </p>
                   </div>
                 </div>
