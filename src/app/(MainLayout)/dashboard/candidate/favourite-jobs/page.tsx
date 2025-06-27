@@ -9,7 +9,7 @@ import { useGetFavouriteJobsQuery } from "@/redux/features/job/jobApi";
 
 
 const FavouriteJobsPage = () => {
-   const {data, isLoading, isError} = useGetFavouriteJobsQuery(undefined);
+  const {data, isLoading, isError} = useGetFavouriteJobsQuery(undefined);
   const favouriteJobs = data?.data?.jobs || [];
 
   if (isLoading) {
@@ -21,7 +21,7 @@ const FavouriteJobsPage = () => {
   }
 
   if (!isLoading && !isError && favouriteJobs?.length > 0) {
-    return <FavouriteJobs/>
+    return <FavouriteJobs jobs={favouriteJobs}/>
   }
   
    if(!isLoading && isError){
