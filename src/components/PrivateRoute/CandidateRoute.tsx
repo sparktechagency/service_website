@@ -1,5 +1,6 @@
 "use client";
  
+import useUserInfo from "@/hooks/useUserInfo";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import PrivateLoading from "../loader/PrivateLoading";
@@ -7,10 +8,11 @@ import PrivateLoading from "../loader/PrivateLoading";
    children: React.ReactNode;
  };
 
-const PrivateRoute = ({ children }: TProps) => {
+const CandidateRoute = ({ children }: TProps) => {
   const router = useRouter();
   const [token, setToken] = useState<string | null>(null);
   const [isLoadingToken, setIsLoadingToken] = useState(true);
+  const userInfo = useUserInfo();
 
 
 
@@ -24,19 +26,19 @@ const PrivateRoute = ({ children }: TProps) => {
   }, []);
  
   useEffect(() => {
-    if (!isLoadingToken && !token) {
-      router.replace("/login");
+    if (!isLoadingToken && token && userInfo?.authId && userInfo?.role==="EMPLOYER") {
+      router.replace("/");
     }
-  }, [isLoadingToken, token, router]);
+  }, [isLoadingToken, token, router, userInfo]);
  
   if (isLoadingToken) {
     return <PrivateLoading/>
   }
  
-  if (token) {
+  if (token && userInfo?.authId && userInfo?.role==="USER") {
     return <>{children}</>;
   }
   return null;
 };
  
-export default PrivateRoute;
+export default CandidateRoute;

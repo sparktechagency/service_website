@@ -7,21 +7,21 @@ type CategoryBadgeProps = {
 const CategoryBadge: React.FC<CategoryBadgeProps> = ({ category }) => {
   const getColorClasses = () => {
     switch(category) {
-      case 'Electrician':
+      case 'Sales & Marketing':
         return 'bg-blue-100 text-blue-800';
-      case 'Plumber':
+      case 'Office & IT Support':
         return 'bg-amber-100 text-amber-800';
-      case 'Carpentar':
+      case 'Supply Chain & Logistics':
         return 'bg-emerald-100 text-emerald-800';
-      case 'Painter':
+      case 'Leadership & Management':
         return 'bg-purple-100 text-purple-800';
-      case 'Mason':
+      case 'QHSE (Quality, Health, Safety & Environment)':
         return 'bg-pink-100 text-pink-800';
-      case 'Welder':
+      case 'Engineering':
         return 'bg-orange-100 text-orange-800';
-      case 'Roofer':
+      case 'Manufacturing & Production':
         return 'bg-indigo-100 text-indigo-800';
-      case 'Tile Setter':
+      case 'Apprenticeships & Graduates':
         return 'bg-teal-100 text-teal-800';
       case 'content':
         return 'bg-rose-100 text-rose-800';

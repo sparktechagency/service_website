@@ -49,7 +49,7 @@ const JobCard: React.FC<TProps> = ({ job }) => {
 
       <div className="p-4 border-t border-gray-100 bg-gray-50">
         <button
-          onClick={() => router.push(`/job-details/${job.title}`)}
+          onClick={() => router.push(`/jobs/job-details/${job?._id}`)}
           className="w-full py-2 px-4 bg-gray-900 hover:bg-gray-800 cursor-pointer text-white text-sm font-medium rounded-md transition-colors duration-300 focus:outline-none"
         >
           View Details
