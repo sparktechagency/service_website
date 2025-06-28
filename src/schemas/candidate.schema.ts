@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { fullNameRegex } from "./auth.schema";
+import { isEditorContentEmpty } from "./job.schema";
 
 export const candidatePersonalSchema = z.object({
   name: z
@@ -26,6 +27,20 @@ export const candidatePersonalSchema = z.object({
     })
     .min(1, "Address is required")
     .trim(),
+  details: z.preprocess(
+    (val) => {
+      if (typeof val === "string" && isEditorContentEmpty(val)) {
+        return ""; // force fail if visually empty
+      }
+      return val;
+    },
+    z
+      .string({
+        invalid_type_error: "Description must be string",
+        required_error: "Description is required",
+      })
+      .min(1, "Description is required")
+  ),
 });
 
 export const candidateProfessionalSchema = z.object({

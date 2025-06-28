@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { fullNameRegex } from "./auth.schema";
+import { isEditorContentEmpty } from "./job.schema";
 
 export const employerPersonalSchema = z.object({
   name: z
@@ -26,6 +27,20 @@ export const employerPersonalSchema = z.object({
     })
     .trim()
     .min(1, "Address is required"),
+  details: z.preprocess(
+    (val) => {
+      if (typeof val === "string" && isEditorContentEmpty(val)) {
+        return ""; // force fail if visually empty
+      }
+      return val;
+    },
+    z
+      .string({
+        invalid_type_error: "Description must be string",
+        required_error: "Description is required",
+      })
+      .min(1, "Description is required")
+  ),
 });
 
 export const companySchema = z.object({
@@ -47,13 +62,20 @@ export const companySchema = z.object({
     })
     .trim()
     .min(1, "Employer position is required"),
-  details: z
-    .string({
-      invalid_type_error: "Company Details must be string",
-      required_error: "Company detail is required",
-    })
-    .trim()
-    .min(1, "Company detail is required"),
+  details: z.preprocess(
+    (val) => {
+      if (typeof val === "string" && isEditorContentEmpty(val)) {
+        return ""; // force fail if visually empty
+      }
+      return val;
+    },
+    z
+      .string({
+        invalid_type_error: "Details must be string",
+        required_error: "Details required",
+      })
+      .min(1, "Details required")
+  ),
 });
 
 export const socialLinkSchema = z.object({

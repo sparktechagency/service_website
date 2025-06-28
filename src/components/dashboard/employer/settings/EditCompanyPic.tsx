@@ -11,7 +11,7 @@ type TProps = {
 
 const EditCompanyPic = ({ setFile }: TProps) => {
   const { user } = useAppSelector((state) => state.user);
-  const companyLogoSrc = user?.company ? (user?.company?.company_logo === null ? "/images/placeholder.jpg" : baseUrl+user?.company?.company_logo) : "/images/placeholder.jpg";
+  const companyLogoSrc = user?.company ? (user?.company?.company_logo ? baseUrl+user?.company?.company_logo: "/images/placeholder.jpg"  ) : "/images/placeholder.jpg";
   const [imageSrc, setImageSrc] = useState(companyLogoSrc); 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 

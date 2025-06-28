@@ -106,9 +106,11 @@ export const jobApi = apiSlice.injectEndpoints({
       invalidatesTags: (result, error, arg) => {
         if (result?.success) {
           return [
+            TagTypes.jobs,
             TagTypes.employerJobs,
             TagTypes.recentPostedJobs,
             { type: TagTypes.job, id: arg.id },
+            { type: TagTypes.findJob, id: arg.id },
           ];
         }
         return [];

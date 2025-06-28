@@ -14,6 +14,7 @@ import EditProfilePic from "./EditProfilePic";
 import { useState } from "react";
 import UpdateLocationForm from "./UpdateLocationForm";
 import SetLocationForm from "./SetLocationForm";
+import CustomQuilEditor from "@/components/form/CustomQuilEditor";
 
 type TFormValues = z.infer<typeof employerPersonalSchema>;
 
@@ -31,6 +32,7 @@ const PersonalForm = () => {
       name: user?.name as string,
       phone_number: user?.phone_number as string,
       address: user?.address === null ? "" : user?.address,
+      details: user?.details===null ? "" : user?.details
     },
   });
 
@@ -43,6 +45,8 @@ const PersonalForm = () => {
 
     formData.append("name", data.name);
     formData.append("phone_number", data.phone_number);
+    formData.append("address", data.address)
+    formData.append("details", data.details)
     updateEmployerProfile(formData);
   };
 
@@ -102,6 +106,7 @@ const PersonalForm = () => {
                 control={control}
                 placeholder="Enter address"
               />
+               <CustomQuilEditor label="Description" name="details" control={control} placeholder="Write a description about yourself..."/>
 
               <button
                 type="submit"

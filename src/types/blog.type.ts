@@ -1,11 +1,15 @@
-export type IBlog = {
-  id: number;
+
+
+export type TBlog = {
+  _id: string;
   title: string;
-  date: string; // You can use Date if you parse it from string
-  comments: number;
-  image: string;
-  excerpt: string;
+  category: string; 
+  descriptions: string;
+  image: string[]; 
+  createdAt: string; 
+  updatedAt: string;
 };
+
 
 export interface IRecentBlog {
   id: number;

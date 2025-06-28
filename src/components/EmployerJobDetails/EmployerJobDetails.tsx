@@ -15,7 +15,7 @@ type TProps = {
 
 
 
-const EmployerSimpleJob = ({ job }: TProps) => {
+const EmployerJobDetails = ({ job }: TProps) => {
    
 
   return (
@@ -45,21 +45,7 @@ const EmployerSimpleJob = ({ job }: TProps) => {
             {/* Job Description */}
             <div className="mb-8">
               <h2 className="text-xl font-semibold mb-4">Job Description</h2>
-              <div className="space-y-4 text-gray-600">
-                {job?.descriptions}
-                {/* <p>
-                  Sed lobortis diam tincidunt accumsan faucibus. Quisque blandit
-                  augue quis turpis auctor, dapibus euismod ante ultricies. Ut
-                  non felis lacinia turpis feugiat euismod at id magna. Sed ut
-                  orci arcu. Suspendisse sollicitudin faucibus aliquet.
-                </p>
-                <p>
-                  Nam dapibus consectetur erat in euismod. Cras urna augue,
-                  mollis venenatis augue sed, porttitor aliquet nibh. Sed
-                  tristique dictum elementum. Nulla imperdiet sit amet quam eget
-                  lobortis. Etiam in neque sit amet orci interdum tincidunt.
-                </p> */}
-              </div>
+              <div className="space-y-4 text-gray-600" dangerouslySetInnerHTML={{ __html: job?.descriptions }}></div>
             </div>
 
             {/* Skillss */}
@@ -293,4 +279,4 @@ const EmployerSimpleJob = ({ job }: TProps) => {
   );
 }
 
-export default EmployerSimpleJob;
+export default EmployerJobDetails;

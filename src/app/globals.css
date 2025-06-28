@@ -38,3 +38,10 @@ body {
 .custom-select-padding .ant-select-selector {
   padding: 0.5rem 0.75rem; /* same as px-3 py-2 */
 }
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

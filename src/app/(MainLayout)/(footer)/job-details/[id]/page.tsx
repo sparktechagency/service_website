@@ -5,7 +5,7 @@ import { useGetSingleJobQuery } from "@/redux/features/job/jobApi";
 import FindJobLoading from "@/components/loader/FindJobLoading";
 import ServerErrorCard from "@/components/card/ServerErrorCard";
 import NotFoundCard from "@/components/card/NotFoundCard";
-import EmployerSimpleJob from "@/components/SingleJob/EmployerSimpleJob";
+import EmployerSimpleJob from "@/components/EmployerJobDetails/EmployerJobDetails";
 
 export default function JobDetailsPage() {
   const params = useParams<{ id: string }>();

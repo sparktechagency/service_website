@@ -9,12 +9,12 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
 import { companySchema } from "@/schemas/employer.schema";
 import { CgSpinnerTwo } from "react-icons/cg";
 import { z } from "zod";
-import CustomTextArea from "@/components/form/CustomTextArea";
 import Error from "@/components/validation/Error";
 import EditCompanyPic from "./EditCompanyPic";
 import { SetProfileError } from "@/redux/features/auth/authSlice";
+import CustomQuilEditor from "@/components/form/CustomQuilEditor";
 
-type TFormValues = z.infer<typeof companySchema>
+type TFormValues = z.infer<typeof companySchema>;
 
 const CompanyInformation = () => {
   const [file, setFile] = useState<File | null>(null);
@@ -29,28 +29,28 @@ const CompanyInformation = () => {
     defaultValues: {
       name: user?.company?.name as string,
       employer_position: user?.company?.employer_position as string,
-      details: user?.company?.details
+      details: user?.company?.details,
     },
   });
 
-    const onSubmit: SubmitHandler<TFormValues> = (data) => {
-      dispatch(SetProfileError(""));
-      const formData = new FormData();
-      if (file) {
-        formData.append("company_logo", file);
-      }
+  const onSubmit: SubmitHandler<TFormValues> = (data) => {
+    dispatch(SetProfileError(""));
+    const formData = new FormData();
+    if (file) {
+      formData.append("company_logo", file);
+    }
 
-      formData.append("company", JSON.stringify(data));
-      updateEmployerProfile(formData);
-    };
+    formData.append("company", JSON.stringify(data));
+    updateEmployerProfile(formData);
+  };
 
   return (
     <div className="max-w-4xl mx-auto bg-white p-4 md:p-6">
       <div className="mb-8">
         <p className="text-lg mb-4">Update Company Information</p>
-          {ProfileError && <Error message={ProfileError} />}
+        {ProfileError && <Error message={ProfileError} />}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <EditCompanyPic setFile={setFile}/>
+          <EditCompanyPic setFile={setFile} />
         </div>
       </div>
 
@@ -70,12 +70,12 @@ const CompanyInformation = () => {
           control={control}
           placeholder="Enter your position"
         />
-        <CustomTextArea
+
+        <CustomQuilEditor
           label="Company Details"
           name="details"
           control={control}
-          placeholder="write here..."
-          rows={3}
+          height={300}
         />
 
         {/* Save Button */}

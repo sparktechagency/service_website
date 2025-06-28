@@ -49,10 +49,10 @@ const SingleJob = ({ job }: TProps) => {
               <div className="flex flex-col md:flex-row md:items-center gap-3 w-full md:w-auto">
                 <div className="flex gap-x-3 justify-end md:justify-start">
                   {userInfo?.authId && userInfo.role === "USER" && (
-                    <FavouriteCard jobId={"3243544"} />
+                    <FavouriteCard jobId={job?._id} />
                   )}
                   <span
-                    onClick={() => router.push(`/employer-details/4`)}
+                    onClick={() => router.push(`/employer-details/${job?.userId?._id}`)}
                     className="text-sm underline text-blue-500 cursor-pointer"
                   >
                     View Employer
@@ -66,21 +66,7 @@ const SingleJob = ({ job }: TProps) => {
             {/* Job Description */}
             <div className="mb-8">
               <h2 className="text-xl font-semibold mb-4">Job Description</h2>
-              <div className="space-y-4 text-gray-600">
-                {job?.descriptions}
-                {/* <p>
-                  Sed lobortis diam tincidunt accumsan faucibus. Quisque blandit
-                  augue quis turpis auctor, dapibus euismod ante ultricies. Ut
-                  non felis lacinia turpis feugiat euismod at id magna. Sed ut
-                  orci arcu. Suspendisse sollicitudin faucibus aliquet.
-                </p>
-                <p>
-                  Nam dapibus consectetur erat in euismod. Cras urna augue,
-                  mollis venenatis augue sed, porttitor aliquet nibh. Sed
-                  tristique dictum elementum. Nulla imperdiet sit amet quam eget
-                  lobortis. Etiam in neque sit amet orci interdum tincidunt.
-                </p> */}
-              </div>
+               <div className="space-y-4 text-gray-600" dangerouslySetInnerHTML={{ __html: job?.descriptions }}></div>
             </div>
 
             {/* Skillss */}
