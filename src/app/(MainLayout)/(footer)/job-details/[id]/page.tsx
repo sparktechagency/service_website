@@ -5,7 +5,7 @@ import { useGetSingleJobQuery } from "@/redux/features/job/jobApi";
 import FindJobLoading from "@/components/loader/FindJobLoading";
 import ServerErrorCard from "@/components/card/ServerErrorCard";
 import NotFoundCard from "@/components/card/NotFoundCard";
-import SingleJob from "@/components/SingleJob/SingleJob";
+import EmployerSimpleJob from "@/components/SingleJob/EmployerSimpleJob";
 
 export default function JobDetailsPage() {
   const params = useParams<{ id: string }>();
@@ -22,7 +22,7 @@ export default function JobDetailsPage() {
   if (!isLoading && !isError && data?.data?.jobDetails?.title) {
     return (
       <>
-        <SingleJob job={data?.data?.jobDetails} />
+        <EmployerSimpleJob job={data?.data?.jobDetails} />
       </>
     );
   }

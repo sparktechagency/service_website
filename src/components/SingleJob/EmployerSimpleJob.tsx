@@ -1,7 +1,4 @@
 import { MapPin } from "lucide-react";
-import ApplyModal from "@/components/modal/ApplyModal";
-import useUserInfo from "@/hooks/useUserInfo";
-import FavouriteCard from "@/components/FindWork/FavouriteCard";
 import { IFindJob } from "@/types/job.type";
 import getFormattedDate from "@/utils/getFormattedDate";
 import getExperience from "@/utils/getExperience";
@@ -11,7 +8,6 @@ import getRate from "@/utils/getRate";
 import getTypeColor from "@/utils/getTypeColor";
 import { IoPeople } from "react-icons/io5";
 import getPattern from "@/utils/getJobPattern";
-import { useRouter } from "next/navigation";
 
 type TProps = {
   job: IFindJob;
@@ -19,10 +15,8 @@ type TProps = {
 
 
 
-const SingleJob = ({ job }: TProps) => {
-   const router = useRouter();
-   const userInfo = useUserInfo();
-
+const EmployerSimpleJob = ({ job }: TProps) => {
+   
 
   return (
     <>
@@ -45,21 +39,6 @@ const SingleJob = ({ job }: TProps) => {
                     </p>
                   </div>
                 </div>
-              </div>
-              <div className="flex flex-col md:flex-row md:items-center gap-3 w-full md:w-auto">
-                <div className="flex gap-x-3 justify-end md:justify-start">
-                  {userInfo?.authId && userInfo.role === "USER" && (
-                    <FavouriteCard jobId={"3243544"} />
-                  )}
-                  <span
-                    onClick={() => router.push(`/employer-details/4`)}
-                    className="text-sm underline text-blue-500 cursor-pointer"
-                  >
-                    View Employer
-                  </span>
-                </div>
-                {/*  */}
-                <ApplyModal />
               </div>
             </div>
 
@@ -314,4 +293,4 @@ const SingleJob = ({ job }: TProps) => {
   );
 }
 
-export default SingleJob
+export default EmployerSimpleJob;
