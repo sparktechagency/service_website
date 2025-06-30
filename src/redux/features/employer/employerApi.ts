@@ -25,9 +25,24 @@ export const employerApi = apiSlice.injectEndpoints({
          ErrorToast("Server error is occured");
         }
       },
-    }),  
+    }),
+    getEmployerDetails: builder.query({
+      query: (id) => ({
+        url: `/dashboard/employer_details/${id}`,
+        method: "GET",
+      }),
+      keepUnusedDataFor: 600,
+      providesTags: (result, error, arg) => [{ type: TagTypes.employerDetails, id: arg }],
+      async onQueryStarted(_arg, { queryFulfilled, dispatch }) {
+        try {
+          await queryFulfilled;
+        } catch (err: any) {
+          ErrorToast("Server error is occured");
+        }
+      },
+    }),
   }),
 });
 
 
-export const { useGetEmployerOverviewQuery } = employerApi;
+export const { useGetEmployerOverviewQuery, useGetEmployerDetailsQuery} = employerApi;

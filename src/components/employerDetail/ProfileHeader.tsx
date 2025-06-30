@@ -1,9 +1,9 @@
 import React from 'react';
 import Image from 'next/image';
-import { IEmployer } from '@/types/employer.type';
+import { TEmployer } from '@/types/employer.type';
 
 interface ProfileHeaderProps {
-  employer: IEmployer;
+  employer: TEmployer;
 }
 
 const ProfileHeader: React.FC<ProfileHeaderProps> = ({ employer }) => {
@@ -16,24 +16,24 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({ employer }) => {
       <div className="px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row items-start sm:items-end -mt-20 sm:-mt-16">
           <div className="relative">
-            <Image 
+            {/* <Image 
               src={employer.picture} 
               alt={employer.name}
               height={600}
               width={600}
               className="h-32 w-32 sm:h-40 sm:w-40 rounded-full border-4 border-white shadow-lg object-cover transition-transform duration-300 hover:scale-105"
-            />
+            /> */}
           </div>
           
           <div className="mt-4 sm:mt-0 sm:ml-6 w-full">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end">
               <div>
                 <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 leading-tight">
-                  {employer.name}
+                  {employer?.name}
                 </h1>
-                <p className="text-lg text-blue-600 font-medium">
+                {/* <p className="text-lg text-blue-600 font-medium">
                   {employer.position}
-                </p>
+                </p> */}
               </div>
               
               {/* <div className="mt-4 sm:mt-0 flex gap-3">

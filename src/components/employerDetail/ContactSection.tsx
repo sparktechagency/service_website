@@ -1,9 +1,9 @@
 import React from 'react';
 import { Mail, Phone, MapPin } from 'lucide-react';
-import { IEmployer } from '@/types/employer.type';
+import { TEmployer } from '@/types/employer.type';
 
 interface ContactSectionProps {
-  employer: IEmployer;
+  employer: TEmployer;
 }
 
 const ContactSection: React.FC<ContactSectionProps> = ({ employer }) => {
@@ -21,10 +21,10 @@ const ContactSection: React.FC<ContactSectionProps> = ({ employer }) => {
           <div>
             <p className="text-sm text-gray-500 font-medium">Email</p>
             <a 
-              href={`mailto:${employer.email}`} 
+              href={`mailto:${employer?.email}`} 
               className="text-gray-800 hover:text-blue-600 transition-colors duration-300"
             >
-              {employer.email}
+              {employer?.email}
             </a>
           </div>
         </div>
