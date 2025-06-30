@@ -4,6 +4,8 @@ import BlogDetail from "@/components/blogDetail/BlogDetail";
 import { blogPost } from "@/data/blog.data";
 
 const BlogDetailsPage = () => {
+  
+
 
   return (
     <div className="min-h-screen bg-gray-50">

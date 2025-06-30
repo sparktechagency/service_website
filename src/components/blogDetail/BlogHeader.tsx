@@ -32,7 +32,7 @@ const BlogHeader: React.FC<BlogHeaderProps> = ({ post }) => {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-80"></div>
       </div> */}
-      <div className="relative h-[40vh] md:h-[60vh] lg:h-[70vh] rounded-md overflow-hidden w-full bg-[url('/images/blogs/industry.jpg')] bg-center bg-no-repeat bg-cover flex items-center justify-center px-4">
+      <div className="relative h-[35vh] md:h-[55vh] lg:h-[65vh] rounded-md overflow-hidden w-full bg-[url('/images/blogs/industry.jpg')] bg-center bg-no-repeat bg-cover flex items-center justify-center px-4">
         {/* Overlay */}
         <div className="absolute inset-0 bg-[rgba(17,24,39,0.7)] z-10"></div>
       </div>

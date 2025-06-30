@@ -1,4 +1,5 @@
 
+import { ErrorToast } from "@/helper/ValidationHelper";
 import TagTypes from "../../../constant/tagType.constant";
 import type { IParam } from "../../../types/global.type";
 import { apiSlice } from "../api/apiSlice";
@@ -25,7 +26,22 @@ export const blogApi = apiSlice.injectEndpoints({
       keepUnusedDataFor: 600,
       providesTags: [TagTypes.recentBlogs],
     }),
+    getSingleBlog: builder.query({
+      query: (id) => ({
+        url: `/dashboard/blog_details/${id}`,
+        method: "GET",
+      }),
+      keepUnusedDataFor: 600,
+      providesTags: (result, error, arg) => [{ type: TagTypes.blog, id: arg }],
+      async onQueryStarted(_arg, { queryFulfilled }) {
+        try {
+          await queryFulfilled;
+        } catch (err: any) {
+          ErrorToast("Server error is occured");
+        }
+      },
+    }),
   }),
 });
 
-export const { useGetRecentBlogsQuery } = blogApi;
+export const { useGetRecentBlogsQuery, useGetSingleBlogQuery } = blogApi;
