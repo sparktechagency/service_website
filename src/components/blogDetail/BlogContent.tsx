@@ -1,8 +1,10 @@
-import { useAppSelector } from "@/redux/hooks/hooks";
-import React from "react";
+import { TBlog } from "@/types/blog.type";
 
-const BlogContent = () => {
-  const { blog } = useAppSelector((state) => state.blog);
+type TProps = {
+  blog: TBlog
+}
+
+const BlogContent = ({ blog }: TProps) => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">

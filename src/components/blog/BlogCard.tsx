@@ -1,17 +1,30 @@
 "use client";
-import { IBlog } from "@/types/blog.type";
+import { TBlog } from "@/types/blog.type";
+import getCategory from "@/utils/getCategory";
+import getCategoryColor from "@/utils/getCategoryColor";
+import getFormattedDate from "@/utils/getFormattedDate";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-const BlogCard = ({ post }: {post: IBlog}) => {
+
+type TProps = {
+  blog: TBlog
+}
+
+const BlogCard = ({ blog }: TProps) => {
   const router = useRouter();
+
+  const imgPath = "/images/blogs/blog2.png"
+
+
+
   return (
     <>
       <div className="border rounded-lg overflow-hidden flex flex-col md:flex-row p-4 border-gray-200 hover:shadow-md">
         <div className="md:w-2/5 h-48 md:h-auto relative">
           <Image
-            src={post.image || "/placeholder.svg"}
-            alt={post.title}
+            src={imgPath}
+            alt="blog_img"
             fill
             className="object-cover"
           />
@@ -32,8 +45,8 @@ const BlogCard = ({ post }: {post: IBlog}) => {
                 d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
               />
             </svg>
-            {post.date}
-            <svg
+            {getFormattedDate(blog?.createdAt)}
+            {/* <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-4 w-4 ml-3 mr-1"
               fill="none"
@@ -47,11 +60,15 @@ const BlogCard = ({ post }: {post: IBlog}) => {
                 d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
               />
             </svg>
-            {post.comments} Comments
+            {post.comments} Comments */}
+
+            <span className={`${getCategoryColor(blog.category)} text-xs font-semibold px-3 py-1 rounded-full`}>
+            {getCategory(blog.category)}
+          </span>
           </div>
-          <h2 className="text-lg font-medium mb-2">{post.title}</h2>
-          <p className="text-sm text-gray-600 mb-3">{post.excerpt}</p>
-          <div onClick={()=>router.push(`/blog-list/details/${post.id}`)} className="flex items-center text-sm text-blue-500 cursor-pointer">
+          <h2 className="text-lg font-medium mb-2">{blog?.title}</h2>
+          <div className="space-y-4 text-gray-600 line-clamp-3" dangerouslySetInnerHTML={{ __html: blog?.descriptions }}></div>
+          <div onClick={()=>router.push(`/blog-list/details/${blog?._id}`)} className="flex mt-1 items-center text-sm text-blue-500 cursor-pointer">
             <span>Read more</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"

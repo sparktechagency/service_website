@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { TBlog } from '@/types/blog.type'
-import { createSlice } from '@reduxjs/toolkit'
+import { TBlog } from '@/types/blog.type';
+import { createSlice } from '@reduxjs/toolkit';
 
 type TState = {
   blog: TBlog | null

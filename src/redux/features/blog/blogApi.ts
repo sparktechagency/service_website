@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { ErrorToast } from "@/helper/ValidationHelper";
 import TagTypes from "../../../constant/tagType.constant";
@@ -7,6 +9,26 @@ import { SetBlog } from "./blogSlice";
 
 export const blogApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
+    getBlogs: builder.query({
+      query: (args) => {
+        const params = new URLSearchParams();
+
+        if (args !== undefined && args.length > 0) {
+          args.forEach((item: IParam) => {
+            if (item.value) {
+              params.append(item.name, item.value);
+            }
+          });
+        }
+        return {
+          url: "/dashboard/get_all_blogs",
+          method: "GET",
+          params: params,
+        };
+      },
+      keepUnusedDataFor: 600,
+      providesTags: [TagTypes.blogs],
+    }),
     getRecentBlogs: builder.query({
       query: (args) => {
         const params = new URLSearchParams();
@@ -47,4 +69,4 @@ export const blogApi = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useGetRecentBlogsQuery, useGetSingleBlogQuery } = blogApi;
+export const { useGetBlogsQuery, useGetRecentBlogsQuery, useGetSingleBlogQuery } = blogApi;

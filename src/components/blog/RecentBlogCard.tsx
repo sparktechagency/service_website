@@ -5,34 +5,23 @@ import Image from 'next/image';
 import Link from 'next/link';
 import getCategory from '@/utils/getCategory';
 import getFormattedDate from '@/utils/getFormattedDate';
+import getCategoryColor from '@/utils/getCategoryColor';
 
 interface BlogCardProps {
   blog: TBlog;
 }
 
 const RecentBlogCard : React.FC<BlogCardProps> = ({ blog }) => {
-  const { title, category, createdAt, descriptions } = blog;
+  const { title, category, createdAt, descriptions, image } = blog;
   
-  const getCategoryColor = (category: string) => {
-    switch(category) {
-      case 'industry_insights':
-        return 'bg-blue-100 text-blue-800';
-      case 'career_&_skills':
-        return 'bg-emerald-100 text-emerald-800';
-      case 'business_&_hiring':
-        return 'bg-purple-100 text-purple-800';
-      case 'mindset_&_growth':
-        return 'bg-cyan-100 text-cyan-800';
-      default:
-        return 'bg-gray-100 text-gray-800';
-    }
-  };
+  const imgPath = "/images/blogs/blog2.png"
+
 
   return (
     <article className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col h-full">
       <div className="relative h-48 overflow-hidden">
         <Image
-          src={"/images/blogs/blog2.png"} 
+          src={imgPath} 
           alt={title} 
           height={600}
           width={600}

@@ -1,16 +1,16 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useState } from "react";
-import { Calendar, Tag, Eye } from "lucide-react";
-import { BlogPost } from "@/types/blog.type";
-import { useAppSelector } from "@/redux/hooks/hooks";
+import { Calendar, Tag } from "lucide-react";
 import getCategory from "@/utils/getCategory";
 import getFormattedDate from "@/utils/getFormattedDate";
+import { TBlog } from "@/types/blog.type";
 
+type TProps = {
+  blog: TBlog
+}
 
-
-const BlogHeader = () => {
+const BlogHeader = ({ blog }: TProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
-    const { blog } = useAppSelector((state) => state.blog);
   
 
   useEffect(() => {
@@ -71,10 +71,10 @@ const BlogHeader = () => {
                 <span>{getFormattedDate(blog?.createdAt as string)}</span>
               </div>
 
-              <div className="flex items-center">
+              {/* <div className="flex items-center">
                 <Eye size={16} className="mr-2 text-teal-400" />
                 <span>{20}</span>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

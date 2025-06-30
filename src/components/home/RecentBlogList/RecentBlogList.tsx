@@ -15,7 +15,6 @@ const RecentBlogList = () => {
 
   const blogs = data?.data?.data || [];
 
-  
   let content: React.ReactNode;
 
   if (isLoading) {

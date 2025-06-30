@@ -1,122 +1,77 @@
 "use client"
-
-import { useState } from "react"
-import Image from "next/image"
-import BlogCard from "@/components/blog/BlogCard"
-import { blogPosts } from "@/data/blog.data";
+import BlogListLoading from "@/components/loader/BlogListLoading";
+import { useGetBlogsQuery } from "@/redux/features/blog/blogApi";
+import SearchBlogForm from "@/components/BlogList/SearchBlogForm";
+import FilterBlog from "@/components/BlogList/FilterBlog";
+import NotFoundCard from "@/components/card/NotFoundCard";
+import ServerErrorCard from "@/components/card/ServerErrorCard";
+import BlogList from "@/components/BlogList/BlogList";
+import Pagination from "@/components/ui/Pagination";
+import { useState } from "react";
 
 
 
 
 const BlogListPage = () => {
-  const [searchQuery, setSearchQuery] = useState("")
-  const [isOpen, setIsOpen] = useState(false)
+  const [selectedValues, setSelectedValues] = useState<string[]>(["industry_insights"]);
+  const [ currentPage, setCurrentPage ] = useState<number>(1);
+  const { data, isLoading, isError } = useGetBlogsQuery([
+    { name: "page", value: currentPage },
+    { name: "limit", value: 5 },
+    { name: "category", value: selectedValues },
+  ]);
+
+   const blogs = data?.data?.data || [];
+   const meta = data?.data?.meta || {};
 
 
-  const categories = [
-    { id: 1, name: "Industry Insights", checked: false },
-    { id: 2, name: "Career & Skills", checked: true },
-    { id: 3, name: "Business & Hiring", checked: false },
-    { id: 4, name: "Mindset & Growth", checked: false },
-    { id: 5, name: "Real Stories ", checked: false },
-  ]
+    // Handle page change
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
-  const recentPosts = [
-    {
-      id: 1,
-      title: "Integer volutpat fringilla ipsum, nec tempor risus facilisis eget.",
-      date: "Nov 12, 2021",
-      comments: 25,
-      image: "/images/blogs/blog1.png",
-    },
-    {
-      id: 2,
-      title: "Integer volutpat fringilla ipsum, nec tempor risus facilisis eget.",
-      date: "Nov 12, 2021",
-      comments: 25,
-      image: "/images/blogs/blog2.png",
-    },
-    {
-      id: 3,
-      title: "Integer volutpat fringilla ipsum, nec tempor risus facilisis eget.",
-      date: "Nov 12, 2021",
-      comments: 25,
-      image: "/images/blogs/blog3.png",
-    },
-  ]
-
-  // const galleryImages = [
-  //   "/images/blogs/blog3.png",
-  //   "/images/blogs/blog3.png",
-  //   "/images/blogs/blog3.png",
-  //   "/images/blogs/blog3.png",
-  //   "/images/blogs/blog3.png",
-  //   "/images/blogs/blog3.png",
-  // ];
-
-  // const popularTags = ["Design", "Programming", "Health & Care", "Motion Design", "Photography", "Politics"]
+  
+    let content: React.ReactNode;
+  
+    if (isLoading) {
+      content = <BlogListLoading />;
+    }
+  
+    if (!isLoading && !isError && blogs?.length === 0) {
+      content = <NotFoundCard title="There is no Blog" />;
+    }
+  
+    if (!isLoading && !isError && blogs?.length > 0) {
+      content = (
+        <>
+          <BlogList blogs={blogs} />
+          {meta?.total > 0 && (
+            <Pagination
+              currentPage={currentPage}
+              totalPages={meta?.totalPage}
+              onPageChange={handlePageChange}
+            />
+          )}
+        </>
+      );
+    }
+  
+    if (!isLoading && isError) {
+      content = <ServerErrorCard />;
+    }
+  
 
 
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-6 py-16">
       <div className="flex flex-col md:flex-row gap-6">
-        {/* Sidebar */}
         <div className="w-full md:w-1/4 space-y-6">
-          {/* Search */}
-          <div className="border border-gray-200 rounded-lg p-4">
-            <h2 className="font-medium mb-3">Search</h2>
-            <div className="relative">
-              <input
-                type="text"
-                placeholder="Search"
-                className="w-full border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 focus:ring-blue-500 py-2 px-3 pl-8 text-sm"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-4 w-4 absolute left-2.5 top-2.5 text-gray-400"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                />
-              </svg>
-            </div>
-          </div>
-
-          {/* Category */}
-          <div className="border border-gray-200 rounded-lg p-4">
-            <div className="flex justify-between items-center cursor-pointer" onClick={() => setIsOpen(!isOpen)}>
-              <h2 className="font-medium">Category</h2>
-            </div>
-            <div className={`mt-3 space-y-2 ${isOpen ? "block" : "block"}`}>
-              {categories.map((category) => (
-                <div key={category.id} className="flex items-center">
-                  <input
-                    type="checkbox"
-                    id={`category-${category.id}`}
-                    className="h-4 w-4 rounded border-gray-300 text-yellow-500 focus:ring-yellow-500"
-                    defaultChecked={category.checked}
-                  />
-                  <label
-                    htmlFor={`category-${category.id}`}
-                    className={`ml-2 text-sm ${category.checked ? "font-medium" : ""}`}
-                  >
-                    {category.name}
-                  </label>
-                </div>
-              ))}
-            </div>
-          </div>
+          <SearchBlogForm />
+          <FilterBlog selectedValues={selectedValues} setSelectedValues={setSelectedValues}/>
 
           {/* Recent Post */}
-          <div className="border border-gray-200 rounded-lg p-4">
+          {/* <div className="border border-gray-200 rounded-lg p-4">
             <h2 className="font-medium mb-3">Recent Post</h2>
             <div className="space-y-4">
               {recentPosts.map((post) => (
@@ -139,7 +94,7 @@ const BlogListPage = () => {
                 </div>
               ))}
             </div>
-          </div>
+          </div> */}
 
           {/* Gallery */}
           {/* <div className="border border-gray-200 rounded-lg p-4">
@@ -179,9 +134,7 @@ const BlogListPage = () => {
 
         {/* Main Content */}
         <div className="w-full md:w-3/4 space-y-6">
-          {blogPosts.map((post, index) => (
-            <BlogCard key={index} post={post} />
-          ))}
+           {content}
         </div>
       </div>
     </div>
