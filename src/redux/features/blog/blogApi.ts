@@ -3,6 +3,7 @@ import { ErrorToast } from "@/helper/ValidationHelper";
 import TagTypes from "../../../constant/tagType.constant";
 import type { IParam } from "../../../types/global.type";
 import { apiSlice } from "../api/apiSlice";
+import { SetBlog } from "./blogSlice";
 
 export const blogApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
@@ -33,9 +34,11 @@ export const blogApi = apiSlice.injectEndpoints({
       }),
       keepUnusedDataFor: 600,
       providesTags: (result, error, arg) => [{ type: TagTypes.blog, id: arg }],
-      async onQueryStarted(_arg, { queryFulfilled }) {
+      async onQueryStarted(_arg, { queryFulfilled, dispatch }) {
         try {
-          await queryFulfilled;
+          const res = await queryFulfilled;
+          const blog = res?.data?.data?.blog;
+          dispatch(SetBlog(blog));
         } catch (err: any) {
           ErrorToast("Server error is occured");
         }

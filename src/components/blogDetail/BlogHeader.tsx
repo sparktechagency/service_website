@@ -2,13 +2,16 @@
 import React, { useEffect, useState } from "react";
 import { Calendar, Tag, Eye } from "lucide-react";
 import { BlogPost } from "@/types/blog.type";
+import { useAppSelector } from "@/redux/hooks/hooks";
+import getCategory from "@/utils/getCategory";
+import getFormattedDate from "@/utils/getFormattedDate";
 
-interface BlogHeaderProps {
-  post: BlogPost;
-}
 
-const BlogHeader: React.FC<BlogHeaderProps> = ({ post }) => {
+
+const BlogHeader = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+    const { blog } = useAppSelector((state) => state.blog);
+  
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,6 +21,9 @@ const BlogHeader: React.FC<BlogHeaderProps> = ({ post }) => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+
+
 
   return (
     <header className="relative w-full">
@@ -43,26 +49,26 @@ const BlogHeader: React.FC<BlogHeaderProps> = ({ post }) => {
           <div className="flex items-center space-x-2 mb-4 opacity-90">
             <Tag size={16} className="text-teal-400" />
             <span className="text-teal-400 font-medium text-sm">
-              {post.category}
+              {getCategory(blog?.category as string)}
             </span>
           </div>
 
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-6 tracking-tight">
-            {post.title}
+            {blog?.title}
           </h1>
 
           <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 text-gray-100 text-sm">
-            <div className="flex items-center space-x-2">
+            {/* <div className="flex items-center space-x-2">
               <div className="w-8 h-8 rounded-full bg-teal-500 flex items-center justify-center text-white font-medium">
                 {post.author.charAt(0)}
               </div>
               <span>{post.author}</span>
-            </div>
+            </div> */}
 
             <div className="flex items-center space-x-6">
               <div className="flex items-center">
                 <Calendar size={16} className="mr-2 text-teal-400" />
-                <span>{post.date}</span>
+                <span>{getFormattedDate(blog?.createdAt as string)}</span>
               </div>
 
               <div className="flex items-center">

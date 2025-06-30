@@ -2,14 +2,14 @@
 
 export default function BlogDetailLoading () {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 py-16">
       {/* Hero Section */}
       <div className="relative">
         {/* Hero Image Skeleton */}
         <div className="w-full h-[400px] md:h-[500px] lg:h-[600px] bg-gray-300 animate-pulse rounded-lg mx-auto max-w-6xl" />
 
         {/* Overlay Content */}
-        <div className="absolute inset-0 bg-black bg-opacity-40 rounded-lg mx-auto max-w-6xl">
+        <div className="absolute inset-0 bg-gray-600 bg-opacity-30 rounded-lg mx-auto max-w-6xl">
           <div className="absolute bottom-8 left-8 right-8 md:bottom-12 md:left-12 md:right-12">
             {/* Category Tag Skeleton */}
             <div className="inline-block mb-4">

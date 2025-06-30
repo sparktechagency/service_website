@@ -7,7 +7,13 @@ const getFormattedDate = (dateString: string) => {
     month: "long", 
     year: "numeric" 
   };
-  return date.toLocaleDateString("en-GB", options);
+  
+  // "28 June 2025"
+  const formatted = date.toLocaleDateString("en-GB", options);
+
+  // Insert comma before the year
+  const parts = formatted.split(" ");
+  return `${parts[0]} ${parts[1]}, ${parts[2]}`;
 };
 
 export default getFormattedDate;
