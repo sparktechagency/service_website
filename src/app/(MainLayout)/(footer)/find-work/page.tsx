@@ -3,19 +3,12 @@
 import NotFoundCard from "@/components/card/NotFoundCard";
 import ServerErrorCard from "@/components/card/ServerErrorCard";
 import FindWorkList from "@/components/FindWork/FindWorkList";
-//import dynamic from "next/dynamic"
 import SearchForm from "@/components/FindWork/SearchForm";
 import FindWorkLoading from "@/components/loader/FindWorkLoading";
 import { useSearchJobsQuery } from "@/redux/features/job/jobApi";
-import React from "react";
+import React, { Suspense } from "react";
 
 const FindWorkPage = () => {
-  // Lazy load the heavy component
-  // const HeavyComponent = dynamic(() => import("@/components/FindWork/JobListing/JobListings"), {
-  //   loading: () => <div className="p-4 animate-pulse bg-gray-200 rounded">Loading...</div>,
-  //   ssr: false,
-  // })
-
   const { data, isLoading, isError } = useSearchJobsQuery(undefined);
   const jobs = data?.data?.jobs || [];
 
@@ -34,8 +27,9 @@ const FindWorkPage = () => {
               <span>Find jobs</span>
             </div>
           </div>
-
-          <SearchForm />
+           <Suspense fallback={<div>Loading search form...</div>}> {/* Added a more specific fallback message */}
+              <SearchForm />
+            </Suspense>
         </div>
       </div>
 
@@ -51,7 +45,7 @@ const FindWorkPage = () => {
             <>
               {jobs?.length > 0 ? (
                 <>
-                  <FindWorkList jobs={jobs}/>
+                  <FindWorkList jobs={jobs} />
 
                   {/* {meta?.totalPages > 1 && (
                       <Pagination

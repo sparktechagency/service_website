@@ -2,21 +2,30 @@
 
 import { ChevronDown } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const SearchForm = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const initialSearchTerm = searchParams.get("searchTerm");
-  const initialDistance = searchParams.get("distance");
-  const [searchTerm, setSearchTerm] = useState(initialSearchTerm || "");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selected, setSelected] = useState(15);
+
+  useEffect(() => {
+    const initialSearchTerm = searchParams.get("searchTerm");
+    const initialDistance = searchParams.get("distance");
+
+    if (initialSearchTerm) {
+      setSearchTerm(initialSearchTerm);
+    }
+    if (initialDistance) {
+      setSelected(parseInt(initialDistance));
+    }
+  }, [searchParams]);
 
   const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState(initialDistance || 15);
 
   const options = [5, 10, 15, 25, 50, 100];
 
-  
   const handleSelect = (value: number) => {
     setSelected(value);
     setIsOpen(false);
@@ -24,7 +33,7 @@ const SearchForm = () => {
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const params = new URLSearchParams(searchParams.toString());
+    const params = new URLSearchParams();
     params.set("searchTerm", searchTerm);
     params.set("distance", selected.toString());
     router.push(`/find-work?${params.toString()}`);
