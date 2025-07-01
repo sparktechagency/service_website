@@ -30,7 +30,7 @@ const ForgotPasswordForm = () => {
       if(isSuccess){
         router.push("/verify-otp");
       }
-    }, [isSuccess, router])
+    }, [isSuccess, router]);
 
   const onSubmit: SubmitHandler<TFormValues> = (data) => {
     dispatch(SetForgotError(""));

@@ -13,7 +13,8 @@ import { candidateProfessionalSchema } from "@/schemas/candidate.schema";
 import CustomSelect from "@/components/form/CustomSelect";
 import { educationOptions, experienceOptions, typeOptions } from "@/data/job.options";
 import CustomMultiSelect from "@/components/form/CustomMultiSelect";
-import WorkExperienceForm from "../Personal/WorkExperience/WorkExperienceForm";
+import WorkExperienceList from "./WorkExperienceList";
+import CVForm from "./CVForm";
 
 type TFormValues = z.infer<typeof candidateProfessionalSchema>;
 
@@ -130,7 +131,8 @@ const ProfessionalForm = () => {
 
        
       </div>
-       <WorkExperienceForm/>
+       <CVForm/>
+       <WorkExperienceList/>
 
     </>
   );

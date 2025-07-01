@@ -52,32 +52,35 @@ const SingleJob = ({ job }: TProps) => {
                     <FavouriteCard jobId={job?._id} />
                   )}
                   <span
-                    onClick={() => router.push(`/employer-details/${job?.userId?._id}`)}
+                    onClick={() =>
+                      router.push(`/employer-details/${job?.userId?._id}`)
+                    }
                     className="text-sm underline text-blue-500 cursor-pointer"
                   >
                     View Employer
                   </span>
                 </div>
                 {/*  */}
-                <ApplyModal />
+                {(userInfo?.authId && userInfo.role === "USER") ||(!userInfo?.authId) ? <ApplyModal jobId={job?._id} /> : ""}
               </div>
             </div>
 
             {/* Job Description */}
             <div className="mb-8">
               <h2 className="text-xl font-semibold mb-4">Job Description</h2>
-               <div className="space-y-4 text-gray-600" dangerouslySetInnerHTML={{ __html: job?.descriptions }}></div>
+              <div
+                className="space-y-4 text-gray-600"
+                dangerouslySetInnerHTML={{ __html: job?.descriptions }}
+              ></div>
             </div>
 
             {/* Skillss */}
             <div className="mb-8">
               <h2 className="text-xl font-semibold mb-4">Skill</h2>
               <ul className="list-disc pl-6 space-y-2 text-gray-600">
-                {
-                  job?.skill?.map((s, index)=> (
-                    <li key={index}> {s} </li>
-                  ))
-                }
+                {job?.skill?.map((s, index) => (
+                  <li key={index}> {s} </li>
+                ))}
               </ul>
             </div>
           </div>
@@ -207,26 +210,26 @@ const SingleJob = ({ job }: TProps) => {
                 )}
 
                 {/* Location */}
-                 <div className="flex items-start gap-3">
-                    <div className="w-10 h-10 rounded-md bg-gray-100 flex items-center justify-center text-gray-500">
-                      <MapPin size={20} />
-                    </div>
-                    <div>
-                      <p className="text-sm text-gray-500">LOCATION:</p>
-                      <p className="font-medium">{job?.address}</p>
-                    </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-10 h-10 rounded-md bg-gray-100 flex items-center justify-center text-gray-500">
+                    <MapPin size={20} />
                   </div>
+                  <div>
+                    <p className="text-sm text-gray-500">LOCATION:</p>
+                    <p className="font-medium">{job?.address}</p>
+                  </div>
+                </div>
 
-                   {/* Vacancy */}
-                 <div className="flex items-start gap-3">
-                    <div className="w-10 h-10 rounded-md bg-gray-100 flex items-center justify-center text-gray-500">
-                      <IoPeople size={20} />
-                    </div>
-                    <div>
-                      <p className="text-sm text-gray-500">Vacancy:</p>
-                      <p className="font-medium">{job?.vacancies}</p>
-                    </div>
+                {/* Vacancy */}
+                <div className="flex items-start gap-3">
+                  <div className="w-10 h-10 rounded-md bg-gray-100 flex items-center justify-center text-gray-500">
+                    <IoPeople size={20} />
                   </div>
+                  <div>
+                    <p className="text-sm text-gray-500">Vacancy:</p>
+                    <p className="font-medium">{job?.vacancies}</p>
+                  </div>
+                </div>
 
                 {/* Experience */}
                 <div className="flex items-start gap-3">
@@ -260,7 +263,7 @@ const SingleJob = ({ job }: TProps) => {
                     </p>
                   </div>
                 </div>
-                  <div className="flex items-start gap-3">
+                <div className="flex items-start gap-3">
                   <div className="w-10 h-10 rounded-md bg-gray-100 flex items-center justify-center text-gray-500">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

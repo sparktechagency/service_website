@@ -5,6 +5,7 @@ const TagTypes = {
    candidateOverview: "CandidateOverview",
    employerOverview: "EmployerOverview",
    appliedJobs: "AppliedJobs",
+   recentAppliedJobs: "RecentAppliedJobs",
    favouriteJobs: "FavouriteJobs",
    employerJobs: "EmployerJobs",
    jobs: "Jobs",

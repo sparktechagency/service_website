@@ -152,3 +152,14 @@ export const createJobSchema = z
       });
     }
   });
+
+
+  export const applyJobSchema = z.object({
+    icon: z
+      .string({
+        invalid_type_error: "Resume must be File",
+        required_error: "Please upload a resume",
+      })
+      .min(1, "Please upload a resume")
+      .trim(),
+  });

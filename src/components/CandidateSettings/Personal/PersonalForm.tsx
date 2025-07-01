@@ -9,12 +9,12 @@ import { useUpdateCandidateProfileMutation } from "@/redux/features/user/userApi
 import { SetProfileError } from "@/redux/features/auth/authSlice";
 import { CgSpinnerTwo } from "react-icons/cg";
 import Error from "@/components/validation/Error";
-import EditProfilePic from "./EditProfilePic";
 import { useState } from "react";
-import UpdateLocationForm from "./UpdateLocationForm";
 import { candidatePersonalSchema } from "@/schemas/candidate.schema";
-import SetLocationForm from "./SetLocationForm";
 import CustomQuilEditor from "@/components/form/CustomQuilEditor";
+import EditProfilePic from "./EditProfilePic";
+import UpdateLocationForm from "../LocationForm/UpdateLocationForm";
+import SetLocationForm from "../LocationForm/SetLocationForm";
 
 type TFormValues = z.infer<typeof candidatePersonalSchema>;
 

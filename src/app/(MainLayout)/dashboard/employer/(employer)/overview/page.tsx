@@ -24,7 +24,7 @@ const EmployerOverviewPage = () => {
     return <EmployerOverview/>
   }
   
-   if(!isLoading && isError && jobError){
+   if(!isLoading && !jobLoading && (isError || jobError)){
     return <ServerErrorCard/>
   }
 }

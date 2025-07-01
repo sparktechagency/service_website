@@ -2,12 +2,12 @@
 "use client"
 
 import type React from "react"
-import WorkExperienceCard from "./WorkExperienceCard"
 import AddWorkExperienceModal from "@/components/modal/AddWorkExperienceModal"
 import { useAppSelector } from "@/redux/hooks/hooks"
+import WorkExperienceCard from "./WorkExperienceCard"
 
 
-const WorkExperienceForm = () =>{
+const WorkExperienceList = () =>{
   const { user } = useAppSelector((state) => state.user);
   
   return (
@@ -31,4 +31,4 @@ const WorkExperienceForm = () =>{
 }
 
 
-export default WorkExperienceForm;
+export default WorkExperienceList;

@@ -1,17 +1,33 @@
 "use client";
 import { Modal } from "antd";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   AlertCircle,
-  ArrowRight,
   Check,
   File,
   Trash2,
   Upload,
 } from "lucide-react";
 import { Button } from "../ui/button";
+import { useApplyJobMutation } from "@/redux/features/job/jobApi";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { z } from "zod";
+import { applyJobSchema } from "@/schemas/job.schema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import useUserInfo from "@/hooks/useUserInfo";
+import { useRouter } from "next/navigation";
+import { ErrorToast } from "@/helper/ValidationHelper";
+import { CgSpinnerTwo } from "react-icons/cg";
 
-const ApplyModal = () => {
+type TFormValues = z.infer<typeof applyJobSchema>;
+
+type TProps = {
+  jobId: string;
+}
+
+const ApplyModal = ({ jobId }: TProps) => {
+  const router = useRouter();
+  const userInfo = useUserInfo();
   const [modalOpen, setModalOpen] = useState(false);
   const [file, setFile] = useState<File | null>(null);
   const [isDragging, setIsDragging] = useState(false);
@@ -20,10 +36,30 @@ const ApplyModal = () => {
   >("idle");
   const fileInputRef = useRef<HTMLInputElement>(null);
 
+    const [applyJob, { isLoading, isSuccess }] =
+      useApplyJobMutation();
+    const {
+      handleSubmit,
+      setValue,
+      clearErrors,
+      setError,
+      formState: { errors },
+    } = useForm<TFormValues>({
+      resolver: zodResolver(applyJobSchema),
+    });
+
+
+
+
+
+
+
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0] || null;
     if (selectedFile) {
       validateAndSetFile(selectedFile);
+      setValue("icon", "This is icon");
+      clearErrors("icon");
     }
   };
 
@@ -36,6 +72,8 @@ const ApplyModal = () => {
 
     if (allowedTypes.includes(selectedFile.type)) {
       setFile(selectedFile);
+      setValue("icon", "This is icon")
+      clearErrors("icon");
       setUploadStatus("success");
     } else {
       setFile(null);
@@ -47,15 +85,19 @@ const ApplyModal = () => {
   const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault();
     setIsDragging(true);
+    clearErrors("icon");
   };
 
   const handleDragLeave = () => {
     setIsDragging(false);
+    setValue("icon", "This is icon")
+    clearErrors("icon");
   };
 
   const handleDrop = (e: React.DragEvent) => {
     e.preventDefault();
     setIsDragging(false);
+    setValue("icon", "This is icon")
 
     const droppedFile = e.dataTransfer.files?.[0];
     if (droppedFile) {
@@ -66,6 +108,11 @@ const ApplyModal = () => {
   const removeFile = () => {
     setFile(null);
     setUploadStatus("idle");
+    setValue("icon", "");
+    setError("icon", {
+      type: "manual",
+      message: "Please upload a resume",
+    });
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
     }
@@ -85,10 +132,44 @@ const ApplyModal = () => {
     }
   };
 
+
+
+
+
+   useEffect(() => {
+     if (!isLoading && isSuccess) {
+       setFile(null);
+       setValue("icon", "");
+       clearErrors("icon");
+       setModalOpen(false);
+     }
+   }, [isSuccess, router, isLoading, setFile, setValue, setModalOpen, clearErrors]);
+
+
+   const onSubmit: SubmitHandler<TFormValues> = () => {
+   // dispatch(SetCategoryCreateError(""));
+    const formData = new FormData();
+    formData.append("resume", file as File);
+    applyJob({
+      id: jobId,
+      data: formData
+    });
+  };
+
+
+
+
   return (
     <>
       <Button
-        onClick={() => setModalOpen(true)}
+        onClick={() => {
+          if (userInfo?.authId) {
+            setModalOpen(true);
+          } else {
+            ErrorToast("You have to sign in as a Candidate");
+            router.push("/login");
+          }
+        }}
         className="w-full md:w-auto cursor-pointer bg-primary hover:bg-[#152a61] text-white flex items-center gap-2"
       >
         Apply Now
@@ -96,7 +177,12 @@ const ApplyModal = () => {
       </Button>
       <Modal
         open={modalOpen}
-        onCancel={() => setModalOpen(false)}
+        onCancel={() => {
+          setFile(null);
+          setValue("icon", "");
+          clearErrors("icon");
+          setModalOpen(false);
+        }}
         maskClosable={false}
         footer={false}
         centered
@@ -104,7 +190,7 @@ const ApplyModal = () => {
         <div className="p-6">
           <h2 className="text-2xl font-medium text-gray-900 mb-6">Apply Job</h2>
 
-          <form>
+          <form onSubmit={handleSubmit(onSubmit)}>
             {/* CV Upload */}
             <div className="mb-4">
               <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -199,6 +285,12 @@ const ApplyModal = () => {
                   </div>
                 </div>
               )}
+
+              {errors?.icon && (
+                <p className="mt-1 text-sm text-red-500">
+                  {errors?.icon?.message}
+                </p>
+              )}
             </div>
 
             {/* Action buttons */}
@@ -212,10 +304,17 @@ const ApplyModal = () => {
               </button>
               <button
                 type="submit"
-                className="px-6 w-full py-2.5 bg-primary hover:bg-[#2b4773] cursor-pointer text-white font-medium rounded-md transition-colors flex items-center justify-center"
+                disabled={isLoading}
+                className="px-6 w-full py-2.5 bg-primary hover:bg-[#2b4773] cursor-pointer text-white font-medium rounded-md transition-colors flex items-center justify-center gap-x-2"
               >
-                Apply Now
-                <ArrowRight className="ml-2 h-4 w-4" />
+                {isLoading ? (
+                  <>
+                    <CgSpinnerTwo className="animate-spin" fontSize={16} />
+                    Processing...
+                  </>
+                ) : (
+                  "Apply"
+                )}
               </button>
             </div>
           </form>

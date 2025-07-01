@@ -20,12 +20,11 @@ const ContactSection: React.FC<ContactSectionProps> = ({ employer }) => {
           </div>
           <div>
             <p className="text-sm text-gray-500 font-medium">Email</p>
-            <a 
-              href={`mailto:${employer?.email}`} 
-              className="text-gray-800 hover:text-blue-600 transition-colors duration-300"
+            <span 
+              className="text-gray-800 transition-colors duration-300"
             >
               {employer?.email}
-            </a>
+            </span>
           </div>
         </div>
         
@@ -35,12 +34,11 @@ const ContactSection: React.FC<ContactSectionProps> = ({ employer }) => {
           </div>
           <div>
             <p className="text-sm text-gray-500 font-medium">Phone</p>
-            <a 
-              href={`tel:${employer.phone}`} 
-              className="text-gray-800 hover:text-blue-600 transition-colors duration-300"
+            <span 
+              className="text-gray-800 transition-colors duration-300"
             >
-              {employer.phone}
-            </a>
+              {employer.phone_number}
+            </span>
           </div>
         </div>
         
@@ -51,7 +49,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({ employer }) => {
           <div>
             <p className="text-sm text-gray-500 font-medium">Address</p>
             <address className="text-gray-800 not-italic">
-              {employer.address}
+              {employer?.address}
             </address>
           </div>
         </div>

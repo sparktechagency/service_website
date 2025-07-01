@@ -4,7 +4,7 @@ import AppliedJobs from "@/components/AppliedJobs/AppliedJobs";
 import NotFoundCard from "@/components/card/NotFoundCard";
 import ServerErrorCard from "@/components/card/ServerErrorCard";
 import AppliedLoading from "@/components/loader/AppliedLoading";
-import { useGetAppliedJobsQuery } from "@/redux/features/candidate/candidateApi";
+import { useGetAppliedJobsQuery } from "@/redux/features/job/jobApi";
 
 
 
@@ -21,7 +21,7 @@ const AppliedJobsPage = () => {
   }
 
   if (!isLoading && !isError && appliedJobs?.length > 0) {
-    return <AppliedJobs/>
+    return <AppliedJobs jobs={appliedJobs}/>
   }
   
    if(!isLoading && isError){

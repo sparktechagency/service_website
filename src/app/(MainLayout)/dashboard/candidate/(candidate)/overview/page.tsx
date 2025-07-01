@@ -2,24 +2,29 @@
 
 import CandidateOverview from "@/components/CandidateOverview/CandidateOverview";
 import ServerErrorCard from "@/components/card/ServerErrorCard";
-import OverviewLoading from "@/components/loader/OverviewLoading";
+import CandidateOverviewLoading from "@/components/loader/CandidateOverviewLoading";
 import { useGetCandidateOverviewQuery } from "@/redux/features/candidate/candidateApi";
+import { useGetRecentAppliedJobsQuery } from "@/redux/features/job/jobApi";
 import { useAppSelector } from "@/redux/hooks/hooks";
 
 
 const CandidateOverviewPage = () => {
  const { overview } = useAppSelector((state) => state.candidate);
  const { isLoading, isError} = useGetCandidateOverviewQuery(undefined);
+ const { data, isLoading:jobLoading, isError:jobError } = useGetRecentAppliedJobsQuery([
+     { name: "page", value: 1 },
+     { name: "limit", value: 6 },
+   ]);
 
   if (isLoading) {
-    return <OverviewLoading/>
+    return <CandidateOverviewLoading/>
   }
 
-  if (!isLoading && overview) {
+  if (!isLoading && overview && data) {
     return <CandidateOverview/>
   }
   
-   if(!isLoading && isError){
+  if(!isLoading && !jobLoading && (isError || jobError)){
     return <ServerErrorCard/>
   }
 };

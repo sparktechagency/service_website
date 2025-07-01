@@ -1,9 +1,9 @@
 "use client"
 import { useState } from "react"
 import { User, ShieldPlus, Settings } from "lucide-react";
-import CandidateAccountSettings from "./AccountSettings/CandidateAccountSettings";
-import ProfessionalForm from "./Professional/ProfessionalForm";
-import PersonalForm from "./PersonalForm";
+import PersonalForm from "../Personal/PersonalForm";
+import ProfessionalForm from "../Professional/ProfessionalForm";
+import CandidateAccountSettings from "../AccountSettings/CandidateAccountSettings";
 
 const tabItems =  [
   {

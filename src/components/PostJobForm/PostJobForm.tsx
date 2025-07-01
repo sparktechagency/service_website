@@ -22,6 +22,7 @@ import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { CgSpinnerTwo } from "react-icons/cg";
 import { z } from "zod";
+import CustomQuilEditor from "../form/CustomQuilEditor";
 
 type TFormValues = z.infer<typeof createJobSchema>;
 
@@ -248,14 +249,8 @@ const PostJobForm = () => {
               />
             </div>
 
-            <div className="mb-6">
-              <CustomTextArea
-                label="Description"
-                name="descriptions"
-                control={control}
-                placeholder="write a description about the job..."
-                rows={3}
-              />
+             <div className="mb-6">
+                <CustomQuilEditor label="Description" name="descriptions" control={control} height={300}/>
             </div>
 
             <div className="mt-6">

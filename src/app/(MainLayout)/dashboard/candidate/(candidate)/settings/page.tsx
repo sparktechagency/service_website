@@ -1,6 +1,6 @@
 "use client"
 import ServerErrorCard from "@/components/card/ServerErrorCard";
-import CandidateTabs from "@/components/dashboard/candidate/settings/CandidateTabs";
+import CandidateTabs from "@/components/CandidateSettings/CandidateTabs/CandidateTabs";
 import EmployerSettingsLoading from "@/components/loader/EmployerSettingsLoading";
 import { useGetMeQuery } from "@/redux/features/user/userApi";
 import { useAppSelector } from "@/redux/hooks/hooks";

@@ -40,5 +40,3 @@ export type TEmployer = {
     coordinates: [number, number]; // [longitude, latitude]
   };
 };
-osition: string;
-}

@@ -1,5 +1,5 @@
 
-import CandidateSidebar from "@/components/dashboard/candidate/CandidateSidebar";
+import CandidateSidebar from "@/components/CandidateSettings/CandidateSidebar/CandidateSidebar";
 import CandidateRoute from "@/components/PrivateRoute/CandidateRoute";
 import { ReactNode } from "react";
 

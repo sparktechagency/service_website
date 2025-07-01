@@ -109,3 +109,57 @@ export type IFindJob = {
 };
 
 
+export type TAppliedJob = {
+  _id: string;
+  userId: string;
+  jobId: {
+    _id: string;
+    authId: string;
+    userId: {
+      _id: string;
+      profile_image: string | null;
+      years_of_establishment: number | null;
+      socialMedia: {
+        _id: string;
+      };
+      company: {
+        name: string;
+        employer_position: string;
+        details: string;
+        website_link: string | null;
+        _id: string;
+      };
+    };
+    title: string;
+    category: {
+      _id: string;
+      category: string;
+      image: string;
+    };
+    experience: string;
+    types: string;
+    education: string;
+    skill: string[];
+    vacancies: number;
+    application_dateline: string;
+    locations: {
+      type: string;
+      coordinates: [number, number];
+      _id: string;
+    };
+    descriptions: string;
+    applications: string[];
+    favorite: string[];
+    status: string;
+    job_pattern: string;
+    address: string;
+    createdAt: string;
+    updatedAt: string;
+    __v: number;
+  };
+  resume: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+
