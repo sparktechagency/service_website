@@ -1,4 +1,5 @@
 "use client";
+import UploadCVModal from "@/components/modal/UploadCVModal";
 import {
   File,
   MoreVertical,
@@ -15,11 +16,11 @@ const CVForm = () => {
   };
   return (
     <>
-      <div className="bg-white rounded-lg">
+      <div className="bg-white rounded-lg p-6">
         <h1 className="text-lg font-medium text-gray-900">Your CV/Resume</h1>
 
         <div className="p-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
             {/* Resume Item */}
             <div className="bg-gray-50 border border-gray-200 p-3 rounded-lg relative">
               <div className="flex items-center justify-between">
@@ -58,20 +59,9 @@ const CVForm = () => {
             </div>
           </div>
 
-          {/* Add Resume Card */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
-            <div className="bg-white border border-dashed border-gray-200 rounded-lg p-4 flex items-center justify-center cursor-pointer hover:bg-gray-50">
-              <div className="text-center">
-                <div className="mb-2 flex justify-center">
-                  <Plus className="h-6 w-6 text-gray-400" />
-                </div>
-                <p className="text-sm font-medium">Add CV/Resume</p>
-                <p className="text-xs text-gray-500">
-                  Browse file or drop here, only pdf
-                </p>
-              </div>
-            </div>
-          </div>
+         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+           <UploadCVModal jobId={"1234"}/>
+         </div>
         </div>
       </div>
     </>
