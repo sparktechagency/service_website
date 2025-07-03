@@ -46,7 +46,7 @@ export default function RootLayout({
           shadow="0 0 10px #EC4899,0 0 5px #EC4899"
         />
         {children}
-         <Toaster  position="top-right"/>
+         <Toaster  position="top-center"/>
         </body>
       </html>
     </GlobalProvider>
