@@ -178,7 +178,7 @@ const MessagesPage = () => {
   const activeUser = chats.find((chat) => chat.name === activeChat)
 
   return (
-    <div className="w-full flex overflow-hidden py-4">
+    <div className="flex-1 overflow-hidden py-4">
       {/* Chat List */}
       <div
         className={`${

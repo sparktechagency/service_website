@@ -234,7 +234,7 @@ export const jobApi = apiSlice.injectEndpoints({
       }),
       invalidatesTags: (result, error, arg) => {
         if (result?.success) {
-          return [TagTypes.appliedJobs, TagTypes.recentAppliedJobs];
+          return [TagTypes.appliedJobs, TagTypes.recentAppliedJobs, TagTypes.me];
         }
         return [];
       },

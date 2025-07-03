@@ -1,14 +1,17 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { Briefcase, MapPin } from "lucide-react";
 import Image from "next/image";
 import { useAppSelector } from "@/redux/hooks/hooks";
 import getAvailability from "@/utils/getAvailability";
+import { baseUrl } from "@/redux/features/api/apiSlice";
 
 const Header = () => {
   const { details } = useAppSelector((state) => state.candidate);
 
   const availability = getAvailability(details?.availability as string[]);
+
+  const [imageSrc, setImageSrc] = useState(details?.profile_image ? baseUrl+details?.profile_image : "/images/profile_placeholder.png");
 
   return (
     <>
@@ -16,7 +19,8 @@ const Header = () => {
         <div className="pt-20 pb-6 px-8">
           <div className="h-32 w-32 rounded-full border-4 border-white bg-white shadow-sm overflow-hidden">
             <Image
-              src="https://images.pexels.com/photos/3771807/pexels-photo-3771807.jpeg"
+              src={imageSrc}
+              onError={() => setImageSrc("/images/profile_placeholder.png")}
               alt="Profile"
               width={600}
               height={600}

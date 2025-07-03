@@ -9,7 +9,7 @@ export const subscriptionApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getSubscriptions: builder.query({
       query: () => ({
-        url: "/dashboard//get_all_subscriptions",
+        url: "/dashboard/get_all_subscriptions",
         method: "GET",
       }),
       keepUnusedDataFor: 600,
