@@ -13,6 +13,11 @@ const nextConfig: NextConfig = {
         protocol: "http",
         hostname: "**",
       },
+      {
+        protocol: 'https',
+        hostname: 'backend.machmakers.co.uk',
+        pathname: '/**', // allow all images under /photos/
+      },
     ],
   },
 };

@@ -1,46 +1,18 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/no-explicit-any */
+
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
-import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import ContactForm from "@/components/contact/ContactForm";
+import MapLoading from "@/components/loader/MapLoading";
+import dynamic from "next/dynamic";
 
-// Define the type for the Google Maps API
-declare global {
-  interface Window {
-    google: any;
-  }
-}
 
-// Default center coordinates (you can change these to your business location)
-const defaultCenter = {
-  lat: 41.8781,
-  lng: -87.6298, // Chicago coordinates as an example
-  //  lat: 23.7619,
-  // lng: 90.4331, // Chicago coordinates as an example
-};
-
-const mapContainerStyle = {
-  width: "100%",
-  height: "100%",
-};
 
 const ContactPage = () => {
-  const [map, setMap] = useState<google.maps.Map | null>(null);
-  const [isMounted, setIsMounted] = useState(false);
 
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  const onLoad = useCallback((map: google.maps.Map) => {
-    setMap(map);
-  }, []);
-
-  const onUnmount = useCallback(() => {
-    setMap(null);
-  }, []);
+     const ContactMap = dynamic(() => import('@/components/contact/ContactMap'), {
+        ssr: false, 
+        loading: () => <MapLoading/>
+      });
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -108,41 +80,9 @@ const ContactPage = () => {
         </div>
 
         {/* Dynamic Map Section */}
-        {/* <div className="w-full h-80 md:h-96 relative rounded-lg overflow-hidden shadow-md">
-          {isMounted && (
-            <LoadScript
-              googleMapsApiKey={
-                process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || ""
-              }
-            >
-              <GoogleMap
-                mapContainerStyle={mapContainerStyle}
-                center={defaultCenter}
-                zoom={10}
-                onLoad={onLoad}
-                onUnmount={onUnmount}
-                options={{
-                  fullscreenControl: false,
-                  streetViewControl: false,
-                  mapTypeControl: false,
-                  styles: [
-                    {
-                      featureType: "administrative",
-                      elementType: "geometry",
-                      stylers: [{ visibility: "on" }],
-                    },
-                    {
-                      featureType: "poi",
-                      stylers: [{ visibility: "simplified" }],
-                    },
-                  ],
-                }}
-              >
-                <Marker position={defaultCenter} />
-              </GoogleMap>
-            </LoadScript>
-          )}
-        </div> */}
+        <div className="w-full h-80 md:h-96 relative rounded-lg overflow-hidden shadow-md">
+          <ContactMap />
+        </div>
       </main>
     </div>
   );
