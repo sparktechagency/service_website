@@ -1,8 +1,13 @@
-import { useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { IoMdSearch } from "react-icons/io";
 
-const SearchBlogForm = () => {
-  const [searchQuery, setSearchQuery] = useState("");
+type TProps = {
+  searchQuery: string;
+  setSearchQuery: Dispatch<SetStateAction<string>>;
+}
+
+
+const SearchBlogForm = ({ searchQuery, setSearchQuery} : TProps) => {
     
   return (
     <>

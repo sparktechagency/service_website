@@ -1,19 +1,18 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import GlobalProvider from "@/providers/GlobalProvider";
 import NextTopLoader from "nextjs-toploader"
 import { Toaster } from "react-hot-toast";
+import { Poppins } from 'next/font/google';
 
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+
+
+ 
+const poppins = Poppins({
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: ["400", "600"],
+  variable: "--font-poppins",
 });
 
 export const metadata: Metadata = {
@@ -30,7 +29,7 @@ export default function RootLayout({
     <GlobalProvider>
       <html lang="en">
         <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+          className={`${poppins.variable} antialiased`}
         >
           <NextTopLoader
           //color="#2299DD"

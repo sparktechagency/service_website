@@ -8,17 +8,24 @@ import { useSearchJobsQuery } from "@/redux/features/job/jobApi";
 import { ChevronDown } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import Pagination from "../ui/Pagination";
 
 const FindWork = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const searchParams = useSearchParams();
   const [searchTerm, setSearchTerm] = useState("");
   const [selected, setSelected] = useState(15);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  
 
   const { data, isLoading, isError } = useSearchJobsQuery([
     { name: "searchTrams", value: searchQuery },
+    { name: "page", value: currentPage },
+    { name: "limit", value: 9 },
   ]);
   const jobs = data?.data?.jobs || [];
+  const meta = data?.data?.meta || {};
+
 
   useEffect(() => {
     const initialSearchTerm = searchParams.get("searchTerm");
@@ -45,6 +52,14 @@ const FindWork = () => {
     e.preventDefault();
     setSearchQuery(searchTerm);
   };
+
+
+    // Handle page change
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
 
   return (
     <>
@@ -151,13 +166,13 @@ const FindWork = () => {
                 <>
                   <FindWorkList jobs={jobs} />
 
-                  {/* {meta?.totalPages > 1 && (
+                  {meta?.total > 0 && (
                       <Pagination
                         currentPage={currentPage}
                         totalPages={meta?.totalPages}
                         onPageChange={handlePageChange}
                       />
-                    )} */}
+                    )} 
                 </>
               ) : (
                 <NotFoundCard title="There is no jobs available." />
