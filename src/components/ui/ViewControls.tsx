@@ -52,7 +52,7 @@ const ViewControls: React.FC<ViewControlsProps> = ({
           onChange={(e) => setPageSize(Number(e.target.value))}
           className="text-sm border border-gray-300 rounded-md py-1 px-2 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
         >
-          <option value={5}>5</option>
+          <option value={6}>6</option>
           <option value={10}>10</option>
           <option value={15}>15</option>
           <option value={20}>20</option>

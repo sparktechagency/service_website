@@ -66,10 +66,10 @@ const FindWork = () => {
       <div className="">
         <div className="max-w-7xl mx-auto px-4 py-8">
           <div className="flex justify-between items-center mb-6">
-            <h1 className="text-2xl font-bold">
+            <h1 className="text-lg sm:text-xl md:text-2xl font-bold">
               Find a job that works for you
             </h1>
-            <div className="flex items-center gap-2 text-sm">
+            <div className="hidden md:flex items-center gap-2 text-sm">
               <span>Home</span>
               <span>/</span>
               <span>Find jobs</span>

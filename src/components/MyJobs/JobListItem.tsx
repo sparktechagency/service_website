@@ -59,7 +59,7 @@ const JobListItem = ({ job }: TProps) => {
             }}
             className="h-3 sm:h-4 w-3 sm:w-4 mr-1 text-blue-500 cursor-pointer"
           />
-          <span className="sm:hidden">{job.applications}</span>
+          <span className="sm:hidden">{job.applications?.length}</span>
           <span className="sm:hidden text-xs text-blue-500 underline hover:text-blue-600">
             Applications
           </span>

@@ -1,5 +1,5 @@
 "use client"
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { MapPin, Bookmark, BookmarkCheck, Lock } from 'lucide-react';
 import Image from 'next/image';
 import CandidateButton from '../ui/CandidateButton';
@@ -20,6 +20,13 @@ const CandidateCard: React.FC<CandidateCardProps> = ({ candidate, viewMode }) =>
   const [ addRemoveFavouriteCandidate ] = useAddRemoveFavouriteCandidateMutation();
   const [ sendAccessRequest, { isLoading } ] = useSendAccessRequestMutation();
   const ButtonText = candidate?.profile_private ? "Send Request" : "View Profile";
+
+  const [isFavourite, setIsFavourite] = useState(false);
+  
+    // Update isFavourite when favouriteJobs are loaded
+    useEffect(() => {
+      setIsFavourite(candidate?.isFavorite);
+    }, [candidate]);
   
 
   const handleViewDetails = () => {
@@ -34,6 +41,7 @@ const CandidateCard: React.FC<CandidateCardProps> = ({ candidate, viewMode }) =>
 
 
   const toggleFavourite = (id: string) => {
+    setIsFavourite((prev) => !prev);
     addRemoveFavouriteCandidate(id)
   }
 
@@ -84,7 +92,7 @@ const CandidateCard: React.FC<CandidateCardProps> = ({ candidate, viewMode }) =>
               className="text-gray-400 hover:text-blue-500 transition-colors cursor-pointer"
               // aria-label={nanny.isSaved ? "Remove from saved" : "Save profile"}
             >
-              {candidate?.isFavorite ? 
+              {isFavourite ? 
                 <BookmarkCheck className="h-5 w-5 text-blue-500" /> : 
                 <Bookmark className="h-5 w-5" />
               }

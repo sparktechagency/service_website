@@ -6,6 +6,7 @@ import { Bell, MessageCircleMore } from "lucide-react";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { Dispatch, SetStateAction } from "react";
+import MobileDashboardButton from "./MobileDashboardButton";
 
 type TProps = {
   setIsMenuOpen: Dispatch<SetStateAction<boolean>>;
@@ -15,6 +16,7 @@ const MobileMenu = ({ setIsMenuOpen }: TProps) => {
   const userInfo = useUserInfo();
   const pathname = usePathname();
   const router = useRouter();
+
   const handleNavigate = (path: string) => {
     router.push(path);
     setIsMenuOpen(false);
@@ -40,39 +42,9 @@ const MobileMenu = ({ setIsMenuOpen }: TProps) => {
           >
             Find Work
           </div>
-          <div
-            onClick={() => handleNavigate("/find-candidates")}
-            className={`block rounded-md px-3 py-2 hover:bg-white/10 cursor-pointer ${
-              pathname === "/find-candidates" ? "text-secondary" : "text-white"
-            }`}
-          >
-            Find-Candidates
-          </div>
 
-          {userInfo?.authId && userInfo?.role === "USER" ? (
-            <div
-              onClick={() => handleNavigate("/dashboard/candidate/overview")}
-              className={`block rounded-md px-3 py-2 hover:bg-white/10 cursor-pointer ${
-                pathname === "/dashboard/candidate/overview"
-                  ? "text-secondary"
-                  : "text-white"
-              }`}
-            >
-              Dashboard
-            </div>
-          ) : (
-            <div
-              onClick={() => handleNavigate("/dashboard/employer/overview")}
-              className={`block rounded-md px-3 py-2 hover:bg-white/10 cursor-pointer ${
-                pathname === "/dashboard/employer/overview"
-                  ? "text-secondary"
-                  : "text-white"
-              }`}
-            >
-              Dashboard
-            </div>
-          )}
-
+          {userInfo?.authId && <MobileDashboardButton handleNavigate={handleNavigate}/>}
+        
           <div
             onClick={() => handleNavigate("/blog-list")}
             className={`block rounded-md px-3 py-2 hover:bg-white/10 cursor-pointer ${
@@ -95,7 +67,7 @@ const MobileMenu = ({ setIsMenuOpen }: TProps) => {
 
               <div
                   onClick={() => logout()}
-                  className="mt-2 w-full block rounded-md border border-white px-3 py-2 text-center text-white"
+                  className="mt-2 w-full block rounded-md cursor-pointer border border-white px-3 py-2 text-center text-white"
                 >
                   Logout
                 </div>
@@ -145,7 +117,7 @@ const MobileMenu = ({ setIsMenuOpen }: TProps) => {
                    <div className="flex gap-2">
                   <div
                     onClick={() => handleNavigate("/login")}
-                    className="mt-2 w-full block rounded-md border border-white px-3 py-2 text-center text-white"
+                    className="mt-2 w-full block rounded-md border cursor-pointer border-white px-3 py-2 text-center text-white"
                   >
                     Sign In
                   </div>
