@@ -22,6 +22,8 @@ const SearchForm = () => {
     }
   }, [searchParams]);
 
+  
+
   const [isOpen, setIsOpen] = useState(false);
 
   const options = [5, 10, 15, 25, 50, 100];

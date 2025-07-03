@@ -28,10 +28,10 @@ const ContactInfo: React.FC = () => {
       </div>
       
       <div className="mt-6">
-        <button className="w-full flex items-center justify-center px-4 py-2 bg-blue-500 text-white rounded-md cursor-pointer hover:bg-blue-600 transition-colors duration-300 focus:outline-none focus:ring-opacity-50">
+        <a href={details?.resume} download="OsmanGoni.pdf" className="w-full flex items-center justify-center px-4 py-2 bg-blue-500 text-white rounded-md cursor-pointer hover:bg-blue-600 transition-colors duration-300 focus:outline-none focus:ring-opacity-50">
           <Download size={18} className="mr-2" />
           Download Resume
-        </button>
+        </a>
       </div>
     </div>
   );

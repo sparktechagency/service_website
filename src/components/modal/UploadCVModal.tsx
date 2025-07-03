@@ -9,25 +9,18 @@ import {
   Trash2,
   Upload,
 } from "lucide-react";
-import { Button } from "../ui/button";
-import { useApplyJobMutation } from "@/redux/features/job/jobApi";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import { applyJobSchema } from "@/schemas/job.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import useUserInfo from "@/hooks/useUserInfo";
 import { useRouter } from "next/navigation";
-import { ErrorToast } from "@/helper/ValidationHelper";
 import { CgSpinnerTwo } from "react-icons/cg";
 import { useUploadCVMutation } from "@/redux/features/candidate/candidateApi";
 
 type TFormValues = z.infer<typeof applyJobSchema>;
 
-type TProps = {
-  jobId: string;
-}
 
-const UploadCVModal = ({ jobId }: TProps) => {
+const UploadCVModal = () => {
   const router = useRouter();
   const [modalOpen, setModalOpen] = useState(false);
   const [file, setFile] = useState<File | null>(null);

@@ -127,9 +127,10 @@ export const candidateApi = apiSlice.injectEndpoints({
       },
     }),
     uploadCV: builder.mutation({
-      query: () => ({
+      query: (data) => ({
         url: `/auth/candidate_resume_upload`,
         method: "PATCH",
+        body: data
       }),
       invalidatesTags: (result, error, arg) => {
         if (result?.success) {
