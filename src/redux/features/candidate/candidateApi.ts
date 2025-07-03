@@ -125,9 +125,31 @@ export const candidateApi = apiSlice.injectEndpoints({
           ErrorToast(message)
         }
       },
-    }), 
+    }),
+    uploadCV: builder.mutation({
+      query: () => ({
+        url: `/auth/candidate_resume_upload`,
+        method: "PATCH",
+      }),
+      invalidatesTags: (result, error, arg) => {
+        if (result?.success) {
+          return [TagTypes.candidates, TagTypes.favouriteCandidates, {type: TagTypes.candidate, id: arg}];
+        }
+        return [];
+      },
+      async onQueryStarted(_arg, { queryFulfilled, dispatch }) {
+        try {
+          const res = await queryFulfilled;
+          const msg = res?.data?.message;
+          SuccessToast(msg);
+        } catch (err:any) {
+          const message = err?.error?.data?.message;
+          ErrorToast(message)
+        }
+      },
+    }),
   }),
 });
 
 
-export const { useGetCandidateOverviewQuery, useSearchCandidatesQuery, useGetSingleCandidateQuery, useAddRemoveFavouriteCandidateMutation, useSendAccessRequestMutation, useGetFavouriteCandidatesQuery } = candidateApi;
+export const { useGetCandidateOverviewQuery, useSearchCandidatesQuery, useGetSingleCandidateQuery, useAddRemoveFavouriteCandidateMutation, useSendAccessRequestMutation, useGetFavouriteCandidatesQuery, useUploadCVMutation } = candidateApi;

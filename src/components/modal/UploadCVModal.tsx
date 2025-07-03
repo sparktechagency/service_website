@@ -19,6 +19,7 @@ import useUserInfo from "@/hooks/useUserInfo";
 import { useRouter } from "next/navigation";
 import { ErrorToast } from "@/helper/ValidationHelper";
 import { CgSpinnerTwo } from "react-icons/cg";
+import { useUploadCVMutation } from "@/redux/features/candidate/candidateApi";
 
 type TFormValues = z.infer<typeof applyJobSchema>;
 
@@ -28,7 +29,6 @@ type TProps = {
 
 const UploadCVModal = ({ jobId }: TProps) => {
   const router = useRouter();
-  const userInfo = useUserInfo();
   const [modalOpen, setModalOpen] = useState(false);
   const [file, setFile] = useState<File | null>(null);
   const [isDragging, setIsDragging] = useState(false);
@@ -37,8 +37,8 @@ const UploadCVModal = ({ jobId }: TProps) => {
   >("idle");
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-    const [applyJob, { isLoading, isSuccess }] =
-      useApplyJobMutation();
+    const [uploadCV, { isLoading, isSuccess }] =
+      useUploadCVMutation();
     const {
       handleSubmit,
       setValue,
@@ -148,13 +148,9 @@ const UploadCVModal = ({ jobId }: TProps) => {
 
 
    const onSubmit: SubmitHandler<TFormValues> = () => {
-   // dispatch(SetCategoryCreateError(""));
     const formData = new FormData();
     formData.append("resume", file as File);
-    applyJob({
-      id: jobId,
-      data: formData
-    });
+    uploadCV(formData);
   };
 
 
