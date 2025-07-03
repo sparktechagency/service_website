@@ -19,7 +19,8 @@ const TagTypes = {
    recentBlogs: "RecentBlogs",
    blogs: "Blogs",
    blog: 'Blog',
-   employerDetails: "EmployerDetails"
+   employerDetails: "EmployerDetails",
+   applications: "Applications"
 }
 
 export default TagTypes;

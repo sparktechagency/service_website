@@ -298,7 +298,38 @@ export const jobApi = apiSlice.injectEndpoints({
         }
       },
     }),
+    getApplications: builder.query({
+      query: ({args, jobId}) => {
+        const params = new URLSearchParams();
+
+        if (args !== undefined && args.length > 0) {
+          args.forEach((item: IParam) => {
+            if (item.value) {
+              params.append(item.name, item.value);
+            }
+          });
+        }
+        return {
+          url: `/jobs/applications?jobId=${jobId}`,
+          method: "GET",
+          params: params,
+        };
+      },
+      keepUnusedDataFor: 600,
+      providesTags: (result, error, arg) => [
+        { type: TagTypes.applications, id: arg.jobId },
+      ],
+      async onQueryStarted(_arg, { queryFulfilled, dispatch }) {
+        try {
+          await queryFulfilled;
+        } catch (err: any) {
+          const message = err?.error?.data?.message;
+          console.log(err);
+          ErrorToast(message);
+        }
+      },
+    }),
   }),
 });
 
-export const { useGetEmployerJobsQuery, useCreateJobMutation, useGetSingleJobQuery, useUpdateJobMutation, useMakeActiveExpireJobMutation, useGetRecentPostedJobsQuery, useSearchJobsQuery, useGetSingleFindJobQuery, useAddRemoveFavouriteJobMutation, useGetFavouriteJobsQuery, useApplyJobMutation, useGetAppliedJobsQuery, useGetRecentAppliedJobsQuery } = jobApi;
+export const { useGetEmployerJobsQuery, useCreateJobMutation, useGetSingleJobQuery, useUpdateJobMutation, useMakeActiveExpireJobMutation, useGetRecentPostedJobsQuery, useSearchJobsQuery, useGetSingleFindJobQuery, useAddRemoveFavouriteJobMutation, useGetFavouriteJobsQuery, useApplyJobMutation, useGetAppliedJobsQuery, useGetRecentAppliedJobsQuery, useGetApplicationsQuery } = jobApi;

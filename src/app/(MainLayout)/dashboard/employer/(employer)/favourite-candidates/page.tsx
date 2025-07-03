@@ -31,7 +31,7 @@ const FavouriteCandidatePage = () => {
   return (
     <div className="flex-1 overflow-auto p-3 sm:p-4 md:p-6">
       <h1 className="text-lg sm:text-xl font-bold text-gray-800 mb-3 md:mb-6">
-        Favourite Candidates <span className="text-gray-700 font-normal"></span>
+        Favourite Candidates <span className="text-gray-700 font-normal">({meta?.total})</span>
       </h1>
       <ViewControls
         viewMode={viewMode}
