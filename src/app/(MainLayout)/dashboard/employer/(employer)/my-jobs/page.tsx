@@ -75,7 +75,7 @@ const MyJobsPage = () => {
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4 md:mb-6">
             <h1 className="text-lg sm:text-xl font-bold text-gray-800 mb-3 md:mb-0">
-              My Jobs <span className="text-gray-500 font-normal">(589)</span>
+              My Jobs <span className="text-gray-500 font-normal">({meta?.total})</span>
             </h1>
             <div className="flex items-center">
               <span className="text-xs sm:text-sm text-gray-600 mr-2">

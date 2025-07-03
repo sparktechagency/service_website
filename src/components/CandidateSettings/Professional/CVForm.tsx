@@ -2,8 +2,7 @@
 import UploadCVModal from "@/components/modal/UploadCVModal";
 import { useAppSelector } from "@/redux/hooks/hooks";
 import {
-  Download,
-  Trash2,
+  Eye,
 } from "lucide-react";
 
 const CVForm = () => {
@@ -16,32 +15,36 @@ const CVForm = () => {
         <h1 className="text-lg font-medium text-gray-900">Your CV/Resume</h1>
 
         <div className="p-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+          {
+            user?.resume && (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
             {/* Resume Item */}
             <div className="bg-gray-50 border border-gray-200 p-3 rounded-lg relative">
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-center">
                 <div>
                   <a
                     href={user?.resume}
                     download="Profile.pdf"
                     className="w-full flex items-center justify-center px-4 py-2 bg-blue-500 text-white rounded-md cursor-pointer hover:bg-blue-600 transition-colors duration-300 focus:outline-none focus:ring-opacity-50"
                   >
-                    <Download size={18} className="mr-2" />
-                    Download Resume
+                    <Eye size={18} className="mr-2" />
+                    View Resume
                   </a>
                 </div>
 
-                <button
+                {/* <button
                   className="text-red-500 hover:text-red-600 cursor-pointer"
                 >
                   <Trash2 className="h-5 w-5" />
-                </button>
+                </button> */}
               </div>        
             </div>
           </div>
+            )
+          }
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-            <UploadCVModal />
+            <UploadCVModal title={user?.resume ? "Update" : "Add"}/>
           </div>
         </div>
       </div>

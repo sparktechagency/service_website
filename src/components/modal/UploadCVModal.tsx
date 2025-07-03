@@ -19,8 +19,11 @@ import { useUploadCVMutation } from "@/redux/features/candidate/candidateApi";
 
 type TFormValues = z.infer<typeof applyJobSchema>;
 
+type TProps = {
+  title: string;
+}
 
-const UploadCVModal = () => {
+const UploadCVModal = ({ title }: TProps) => {
   const router = useRouter();
   const [modalOpen, setModalOpen] = useState(false);
   const [file, setFile] = useState<File | null>(null);
@@ -159,7 +162,7 @@ const UploadCVModal = () => {
           <div className="mb-2 flex justify-center">
             <Plus className="h-6 w-6 text-gray-400" />
           </div>
-          <p className="text-sm font-medium">Add CV/Resume</p>
+          <p className="text-sm font-medium">{title} CV/Resume</p>
         </div>
       </div>
 

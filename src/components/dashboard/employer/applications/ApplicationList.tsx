@@ -1,14 +1,18 @@
 "use client";
 
+import { TApplication } from "@/types/application.type";
 import ApplicationItem from "./ApplicationItem";
 
-const ApplicationList = () => {
-  const array = [1, 2, 3, 4, 5, 6, 7, 8];
+type TProps = {
+  applications: TApplication[]
+}
+
+const ApplicationList = ({ applications }: TProps) => {
   return (
     <>
-      <div className="bg-white grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
-        {array?.map((item: number) => (
-          <ApplicationItem key={item} />
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
+        {applications?.map((item, index) => (
+          <ApplicationItem key={index} application={item}/>
         ))}
       </div>
     </>

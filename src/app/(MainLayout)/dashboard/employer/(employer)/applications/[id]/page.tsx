@@ -14,11 +14,12 @@ const ApplicationsPage = () => {
   const { data, isLoading, isError } = useGetApplicationsQuery({
     args: [
         { name: "page", value: currentPage },
-        { name: "limit", value: 2 },
+        { name: "limit", value: 8 },
     ],
     jobId: params.id,
   });
   const applications = data?.data?.result || [];
+  const meta = data?.data?.meta || {};
 
   let content: React.ReactNode;
   
@@ -29,7 +30,7 @@ const ApplicationsPage = () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     };
   
-  if(isLoading===false) {
+  if(isLoading) {
       return <ApplicationLoading />;
   }
 
@@ -61,7 +62,7 @@ const ApplicationsPage = () => {
     <>
       <div className="flex-1 overflow-auto p-4 md:p-6">
         <h1 className="text-2xl font-bold text-gray-900 mb-6">
-          Job Applications
+          Job Applications <span className="text-gray-500 font-normal">({meta?.total})</span>
         </h1>
         {content}
       </div>
