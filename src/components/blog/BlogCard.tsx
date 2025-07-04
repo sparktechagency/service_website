@@ -68,7 +68,7 @@ const BlogCard = ({ blog }: TProps) => {
           </div>
           <h2 className="text-lg font-medium mb-2">{blog?.title}</h2>
           <div className="space-y-4 text-gray-600 line-clamp-3" dangerouslySetInnerHTML={{ __html: blog?.descriptions }}></div>
-          <div onClick={()=>router.push(`/blog-list/details/${blog?._id}`)} className="flex mt-1 items-center text-sm text-blue-500 cursor-pointer">
+          <div onClick={()=>router.push(`/blog-list/details/${blog?._id}?title=${blog?.title}`)} className="flex mt-1 items-center text-sm text-blue-500 cursor-pointer">
             <span>Read more</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"

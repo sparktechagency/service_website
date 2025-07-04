@@ -17,7 +17,7 @@ const AppliedJobsPage = () => {
   }
 
   if(!isLoading && !isError && appliedJobs?.length === 0){
-    return <NotFoundCard title="There is applied jobs"/>
+    return <NotFoundCard title="There are no applied jobs  "/>
   }
 
   if (!isLoading && !isError && appliedJobs?.length > 0) {

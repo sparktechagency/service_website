@@ -81,6 +81,10 @@ export const experienceOptions = [
     label: "10+ years",
     value: "10plus",
   },
+  {
+    label: "N/A",
+    value: "n/a",
+  },
 ];
 
 export const rateOptions = [

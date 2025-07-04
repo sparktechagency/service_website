@@ -32,11 +32,11 @@ const ProfileCompletion = () => {
               />
             </div>
             <div>
-              <h3 className="font-medium text-gray-900">
+              {/* <h3 className="font-medium text-gray-900">
                 Your profile editing is not completed.
-              </h3>
+              </h3> */}
               <p className="text-sm text-gray-700">
-                Complete your profile editing & build your custom Resume
+                Complete your profile to start posting jobs and attracting candidates.
               </p>
             </div>
           </div>

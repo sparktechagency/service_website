@@ -17,7 +17,7 @@ const FavouriteJobsPage = () => {
   }
 
   if(!isLoading && !isError && favouriteJobs?.length === 0){
-    return <NotFoundCard title="There is favourite jobs"/>
+    return <NotFoundCard title="There are no favourite jobs"/>
   }
 
   if (!isLoading && !isError && favouriteJobs?.length > 0) {

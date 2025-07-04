@@ -84,68 +84,7 @@ const BlogListPage = () => {
           <FilterBlog
             selectedValues={selectedValues}
             setSelectedValues={setSelectedValues}
-          />
-
-          {/* Recent Post */}
-          {/* <div className="border border-gray-200 rounded-lg p-4">
-            <h2 className="font-medium mb-3">Recent Post</h2>
-            <div className="space-y-4">
-              {recentPosts.map((post) => (
-                <div key={post.id} className="flex gap-3">
-                  <div className="flex-shrink-0">
-                    <Image
-                      src={post.image || "/placeholder.svg"}
-                      alt={post.title}
-                      width={80}
-                      height={60}
-                      className="rounded object-cover"
-                    />
-                  </div>
-                  <div className="flex-1">
-                    <div className="text-xs text-gray-500 mb-1">
-                      {post.date} • {post.comments} Comments
-                    </div>
-                    <h3 className="text-sm leading-tight">{post.title}</h3>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div> */}
-
-          {/* Gallery */}
-          {/* <div className="border border-gray-200 rounded-lg p-4">
-            <h2 className="font-medium mb-3">Gallery</h2>
-            <div className="grid grid-cols-3 gap-2">
-              {galleryImages.map((image, index) => (
-                <div key={index} className="aspect-square">
-                  <Image
-                    src={image || "/placeholder.svg"}
-                    alt={`Gallery image ${index + 1}`}
-                    width={80}
-                    height={80}
-                    className="rounded object-cover w-full h-full"
-                  />
-                </div>
-              ))}
-            </div>
-          </div> */}
-
-          {/* Popular Tag */}
-          {/* <div className="border border-gray-200 rounded-lg p-4">
-            <h2 className="font-medium mb-3">Popular Tag</h2>
-            <div className="flex flex-wrap gap-2">
-              {popularTags.map((tag, index) => (
-                <span
-                  key={index}
-                  className={`text-xs px-3 py-1 rounded-full ${
-                    tag === "Programming" ? "bg-yellow-500 text-white" : "bg-gray-100"
-                  }`}
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div> */}
+          /> 
         </div>
 
         {/* Main Content */}

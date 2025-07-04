@@ -167,11 +167,13 @@ const FindWork = () => {
                   <FindWorkList jobs={jobs} />
 
                   {meta?.total > 0 && (
-                      <Pagination
+                     <div className="pb-8">
+                       <Pagination
                         currentPage={currentPage}
                         totalPages={meta?.totalPages}
                         onPageChange={handlePageChange}
                       />
+                     </div>
                     )} 
                 </>
               ) : (

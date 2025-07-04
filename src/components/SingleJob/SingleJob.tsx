@@ -49,19 +49,20 @@ const SingleJob = ({ job }: TProps) => {
               <div className="flex flex-col md:flex-row md:items-center gap-3 w-full md:w-auto">
                 <div className="flex gap-x-3 justify-end md:justify-start">
                   {userInfo?.authId && userInfo.role === "USER" && (
-                    <FavouriteCard jobId={job?._id} />
+                    <>
+                      <FavouriteCard jobId={job?._id} />
+                      <span
+                        onClick={() =>
+                          router.push(`/employer-details/${job?.userId?._id}`)
+                        }
+                        className="text-sm underline text-blue-500 cursor-pointer"
+                      >
+                        View Employer
+                      </span>
+                      <ApplyModal jobId={job?._id} />
+                    </>
                   )}
-                  <span
-                    onClick={() =>
-                      router.push(`/employer-details/${job?.userId?._id}`)
-                    }
-                    className="text-sm underline text-blue-500 cursor-pointer"
-                  >
-                    View Employer
-                  </span>
                 </div>
-                {/*  */}
-                {(userInfo?.authId && userInfo.role === "USER") ||(!userInfo?.authId) ? <ApplyModal jobId={job?._id} /> : ""}
               </div>
             </div>
 
