@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { fullNameRegex } from "./auth.schema";
+import { fullNameRegex, ukPhoneRegex } from "./auth.schema";
 import { isEditorContentEmpty } from "./job.schema";
 
 export const employerPersonalSchema = z.object({
@@ -17,9 +17,13 @@ export const employerPersonalSchema = z.object({
   phone_number: z
     .string({
       invalid_type_error: "Phone Number must be string",
-      required_error: "phone number is required",
+      required_error: "Phone number is required",
     })
-    .trim(),
+    .min(1, "Phone number is required")
+    .trim()
+    .regex(ukPhoneRegex, {
+      message: "Enter a valid UK phone number",
+    }),
   address: z
     .string({
       invalid_type_error: "Address must be string",

@@ -1,5 +1,7 @@
 import { z } from "zod";
 export const fullNameRegex = /^[A-Za-z\s'.-]+$/; //only contain letters, spaces, apostrophes, hyphens, and dots
+export const ukPhoneRegex = /^(?:(?:\+44\s?|0)(?:1\d{8,9}|2\d{9}|3\d{9}|7\d{9}|8\d{9}|9\d{8}))$/
+
 
 export const loginSchema = z.object({
   email: z
@@ -84,6 +86,7 @@ export const registerSchema = z
         invalid_type_error: "Name must be string",
         required_error: "Name is required",
       })
+      .min(1, "Name is required")
       .trim()
       .regex(fullNameRegex, {
         message:
@@ -96,9 +99,13 @@ export const registerSchema = z
     phone_number: z
       .string({
         invalid_type_error: "Phone Number must be string",
-        required_error: "phone number is required",
+        required_error: "Phone number is required",
       })
-      .trim(),
+      .min(1, "Phone number is required")
+      .trim()
+      .regex(ukPhoneRegex, {
+        message: "Enter a valid UK phone number",
+      }),
     password: z
       .string({ required_error: "Password is required" })
       .min(1, "Password is required")
