@@ -2,6 +2,7 @@
 import { baseUrl } from "@/redux/features/api/apiSlice";
 import { ICategory } from "@/types/category.type";
 import Image from "next/image";
+import Link from "next/link";
 
 
 type TProps = {
@@ -14,7 +15,7 @@ const CategoryCard = ({ category }: TProps) => {
 
 
   return (
-    <div className="flex items-center gap-4 bg-blue-50 p-4 rounded-xl shadow-sm hover:shadow-md transition">
+    <Link href={`/jobs-by-category/${category?._id}`} className="flex items-center gap-4 bg-blue-50 p-4 rounded-xl shadow-sm hover:shadow-md transition cursor-pointer">
       <div className="bg-white p-3 rounded-lg">
         <Image
           src={icon}
@@ -26,9 +27,8 @@ const CategoryCard = ({ category }: TProps) => {
       </div>
       <div>
         <h3 className="font-semibold text-[15px] text-gray-800">{category?.category}</h3>
-        {/* <p className="text-sm text-gray-500">{positions} Open positions</p> */}
       </div>
-    </div>
+    </Link>
   );
 };
 export default CategoryCard;
