@@ -84,9 +84,9 @@ export default function Navbar() {
                 className="relative rounded-full p-1 cursor-pointer hover:bg-white/10"
               >
                 <MessageCircleMore size={20} />
-                <span className="absolute -top-1 -right-1 min-w-[16px] h-[16px] px-[4px] text-[10px] leading-tight flex items-center justify-center rounded-full bg-red-500 text-white">
+                {/* <span className="absolute -top-1 -right-1 min-w-[16px] h-[16px] px-[4px] text-[10px] leading-tight flex items-center justify-center rounded-full bg-red-500 text-white">
                   2
-                </span>
+                </span> */}
               </button>
               <button
                 onClick={() =>
@@ -99,9 +99,9 @@ export default function Navbar() {
                 className="relative rounded-full p-1 cursor-pointer hover:bg-white/10"
               >
                 <Bell size={20} />
-                <span className="absolute -top-1 -right-1 min-w-[16px] h-[16px] px-[4px] text-[10px] leading-tight flex items-center justify-center rounded-full bg-red-500 text-white">
+                {/* <span className="absolute -top-1 -right-1 min-w-[16px] h-[16px] px-[4px] text-[10px] leading-tight flex items-center justify-center rounded-full bg-red-500 text-white">
                   2
-                </span>
+                </span> */}
               </button>
 
               <div

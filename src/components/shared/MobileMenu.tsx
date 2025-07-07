@@ -95,18 +95,20 @@ const MobileMenu = ({ setIsMenuOpen }: TProps) => {
                   }
                 >
                   <MessageCircleMore size={20} />
-                  <span className="absolute -top-1 -right-1 min-w-[16px] h-[16px] px-[4px] text-[10px] leading-tight flex items-center justify-center rounded-full bg-red-500 text-white">
+                  {/* <span className="absolute -top-1 -right-1 min-w-[16px] h-[16px] px-[4px] text-[10px] leading-tight flex items-center justify-center rounded-full bg-red-500 text-white">
                     2
-                  </span>
+                  </span> */}
                 </div>
                 <div
                   className="relative ml-auto cursor-pointer"
-                  onClick={() => handleNavigate("/notifications")}
+                   onClick={() =>
+                    handleNavigate(`/dashboard/${userInfo?.role==="USER" ? "candidate" : "employer"}/notifications`)
+                  }
                 >
                   <Bell size={20} />
-                  <span className="absolute -top-1 -right-1 min-w-[16px] h-[16px] px-[4px] text-[10px] leading-tight flex items-center justify-center rounded-full bg-red-500 text-white">
+                  {/* <span className="absolute -top-1 -right-1 min-w-[16px] h-[16px] px-[4px] text-[10px] leading-tight flex items-center justify-center rounded-full bg-red-500 text-white">
                     2
-                  </span>
+                  </span> */}
                 </div>
               </div>
             </div>
