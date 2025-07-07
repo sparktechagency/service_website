@@ -1,12 +1,14 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { SetMessageList } from '@/redux/features/chat/chatSlice';
 import { store } from '@/redux/store/store';
 import { io } from 'socket.io-client';
 
+
  
 const socket = io("http://10.0.60.118:5004", {
-  query: { id: "685407cc450a47934022a9d7" },
+  query: { id: localStorage.getItem("authId") },
   transports: ["websocket"],
-    autoConnect: true,
+  autoConnect: true,
   withCredentials: true,
 });
 

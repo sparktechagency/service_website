@@ -1,9 +1,9 @@
 "use client";
 
-import { baseUrl } from "@/redux/features/api/apiSlice";
+// import { baseUrl } from "@/redux/features/api/apiSlice";
 import { useGetMeQuery } from "@/redux/features/user/userApi";
 import { useAppSelector } from "@/redux/hooks/hooks";
-import Image from "next/image";
+// import Image from "next/image";
 
 const UserProfile = () => {
   const { user } = useAppSelector((state) => state.user);
@@ -19,7 +19,8 @@ const UserProfile = () => {
 
   if (!isLoading && user?.authId) {
     return (
-      <Image
+     <>
+        {/* <Image
         src={user?.profile_image === null ? "/images/profile_placeholder.png" : baseUrl+user?.profile_image }
         onError={(e) => {
           e.currentTarget.onerror = null;
@@ -29,7 +30,9 @@ const UserProfile = () => {
         width={500}
         height={600}
         className="h-full w-full rounded-full"
-      />
+      /> */}
+      <h1>Hello</h1>
+     </>
     );
   }
 };

@@ -9,7 +9,7 @@ export interface ApiError {
 
 
 export type IAuthUser = {
-  id: string;
+  authId: string;
   iat: number;
   email: string;
   role: "USER" | "EMPLOYER";

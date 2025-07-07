@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client"
 
 import type React from "react"
@@ -7,20 +7,20 @@ import { useState, useRef, useEffect } from "react"
 import { Search, Send, ArrowLeft } from "lucide-react"
 import { useMobile } from "@/hooks/useMobile";
 import Image from "next/image";
-import ChatBox from "@/components/ChatBox/ChatBox";
-import { messages } from "@/data/message.data";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
 import { SetConversationList, SetMessageList } from "@/redux/features/chat/chatSlice";
 import ConversationItem from "./ConversationItem";
 import { useSearchParams } from "next/navigation";
 import MessageListItem from "./MessageListItem";
 import socket from "@/socket/socket";
+import { SuccessToast } from "@/helper/ValidationHelper";
 
 
 
 const EmployerMessage = () => {
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.user);   
+  
   
   const searchParams = useSearchParams();
   const participantId = searchParams.get("participantId");
@@ -86,13 +86,17 @@ const EmployerMessage = () => {
 
  
 
-
+const receiverId = "685407cc450a47934022a9d7";
 
   const handleSendMessage = () => {
+   
+    console.log(localStorage.getItem("authId"))
+    SuccessToast("Hello")
+
     if (message.trim() === "") return;
     socket.emit(
       "new-message",
-      { receiverId: participantId, text: message },
+      { receiverId: receiverId, text: message },
     );
 
     socket.emit("all-message", {
@@ -102,6 +106,7 @@ const EmployerMessage = () => {
 
     setMessage("")
 
+  
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -276,7 +281,9 @@ const emitAllChats = () => {
                     placeholder="Type a message..."
                   />
                   <button
-                    onClick={handleSendMessage}
+                    onClick={()=> {
+                      SuccessToast("Success");
+                    }}
                     className="ml-2 p-2 text-white cursor-pointer bg-blue-600 rounded-full hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                   >
                     <Send className="w-5 h-5" />

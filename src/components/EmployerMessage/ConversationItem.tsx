@@ -1,8 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
+import { SuccessToast } from "@/helper/ValidationHelper";
 import useUserInfo from "@/hooks/useUserInfo";
 import getPartner from "@/utils/getPartner";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+
 
 type TConversation = {
     chat: any
@@ -16,6 +19,7 @@ const ConversationItem = ({ chat }: TConversation) => {
 
 
   const handleSelect = (participantId: string) => {
+    SuccessToast("Hello")
     router.push(`/dashboard/${userInfo?.role.toLowerCase()}/messages?participantId=${participantId}`)
   }
   
