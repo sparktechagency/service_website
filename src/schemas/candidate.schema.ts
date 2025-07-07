@@ -94,6 +94,13 @@ export const candidateProfessionalSchema = z.object({
     .regex(/^([^,\n]+)(,\s*[^,\n]+)*$/, {
       message: "Please enter valid comma-separated skills",
     }),
+    availabil_date: z
+      .string({
+        invalid_type_error: "Available date must be string",
+        required_error: "Select available date",
+      })
+      .trim()
+      .min(1, "Select available date"),
 });
 
 export const locationSchema = z.object({

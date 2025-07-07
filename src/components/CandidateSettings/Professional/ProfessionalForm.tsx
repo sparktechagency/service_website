@@ -21,6 +21,7 @@ type TFormValues = z.infer<typeof candidateProfessionalSchema>;
 
 const ProfessionalForm = () => {
   const { user } = useAppSelector((state) => state.user);
+  console.log(user)
 
   const dispatch = useAppDispatch();
   const { ProfileError } = useAppSelector((state) => state.auth);
@@ -35,6 +36,7 @@ const ProfessionalForm = () => {
       experience: user?.experience===null ? "" : user?.experience,
       availability: user?.availability,
       skill: user?.skill?.length > 0 ? user?.skill.join(', ') : "",
+      availabil_date: user?.availabil_date.split("T")[0],
     },
   });
 

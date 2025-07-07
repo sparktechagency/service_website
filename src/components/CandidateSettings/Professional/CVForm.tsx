@@ -7,6 +7,17 @@ import {
 
 const CVForm = () => {
   const { user } = useAppSelector((state) => state.user);
+
+  
+  const handleDownload = () => {
+    const link = document.createElement("a")
+    link.href = user?.resume as string;
+    link.download = "document.pdf"
+    link.target = "_blank"
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+  }
   
   
   return (
@@ -22,21 +33,14 @@ const CVForm = () => {
             <div className="bg-gray-50 border border-gray-200 p-3 rounded-lg relative">
               <div className="flex items-center justify-center">
                 <div>
-                  <a
-                    href={user?.resume}
-                    download="Profile.pdf"
+                  <button
+                    onClick={handleDownload}
                     className="w-full flex items-center justify-center px-4 py-2 bg-blue-500 text-white rounded-md cursor-pointer hover:bg-blue-600 transition-colors duration-300 focus:outline-none focus:ring-opacity-50"
                   >
                     <Eye size={18} className="mr-2" />
                     View Resume
-                  </a>
+                  </button>
                 </div>
-
-                {/* <button
-                  className="text-red-500 hover:text-red-600 cursor-pointer"
-                >
-                  <Trash2 className="h-5 w-5" />
-                </button> */}
               </div>        
             </div>
           </div>

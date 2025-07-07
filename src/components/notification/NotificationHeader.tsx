@@ -1,7 +1,5 @@
 "use client";
 
-import { BellIcon } from "lucide-react";
-
 interface NotificationsHeaderProps {
   count: number;
 }
@@ -20,14 +18,14 @@ export default function NotificationsHeader({ count }: NotificationsHeaderProps)
         )}
       </div>
       
-      <div className="mt-4 sm:mt-0 flex space-x-2">
+      {/* <div className="mt-4 sm:mt-0 flex space-x-2">
         <button 
           className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none cursor-pointer transition-all duration-200"
         >
           <BellIcon className="h-4 w-4 mr-2" />
           Mark all as read
         </button>
-      </div>
+      </div> */}
     </div>
   );
 }
