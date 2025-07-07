@@ -89,9 +89,6 @@ const EmployerMessage = () => {
 const receiverId = "685407cc450a47934022a9d7";
 
   const handleSendMessage = () => {
-   
-    console.log(localStorage.getItem("authId"))
-    SuccessToast("Hello")
 
     if (message.trim() === "") return;
     socket.emit(

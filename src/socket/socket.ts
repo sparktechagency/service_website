@@ -6,7 +6,7 @@ import { io } from 'socket.io-client';
 
  
 const socket = io("http://10.0.60.118:5004", {
-  query: { id: localStorage.getItem("authId") },
+  query: { id: "685407cc450a47934022a9d7" },
   transports: ["websocket"],
   autoConnect: true,
   withCredentials: true,
