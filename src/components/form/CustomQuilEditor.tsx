@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+"use client"
 import JoditEditor from "jodit-react";
 import { Controller } from "react-hook-form";
 
