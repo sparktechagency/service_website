@@ -5,6 +5,16 @@ import { useAppSelector } from '@/redux/hooks/hooks';
 
 const ContactInfo: React.FC = () => {
   const { details } = useAppSelector((state) => state.candidate);
+
+  const handleDownload = () => {
+    const link = document.createElement("a")
+    link.href = details?.resume as string;
+    link.download = "document.pdf"
+    link.target = "_blank"
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+  }
   
   return (
     <div className="bg-white rounded-lg shadow-md p-6">
@@ -28,10 +38,10 @@ const ContactInfo: React.FC = () => {
       </div>
       
       <div className="mt-6">
-        <a href={details?.resume} download="Profile.pdf" className="w-full flex items-center justify-center px-4 py-2 bg-blue-500 text-white rounded-md cursor-pointer hover:bg-blue-600 transition-colors duration-300 focus:outline-none focus:ring-opacity-50">
+        <button onClick={handleDownload} className="w-full flex items-center justify-center px-4 py-2 bg-blue-500 text-white rounded-md cursor-pointer hover:bg-blue-600 transition-colors duration-300 focus:outline-none focus:ring-opacity-50">
           <Download size={18} className="mr-2" />
           Download Resume
-        </a>
+        </button>
       </div>
     </div>
   );

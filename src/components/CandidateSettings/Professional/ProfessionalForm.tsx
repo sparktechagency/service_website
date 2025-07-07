@@ -15,6 +15,7 @@ import { educationOptions, experienceOptions, typeOptions } from "@/data/job.opt
 import CustomMultiSelect from "@/components/form/CustomMultiSelect";
 import WorkExperienceList from "./WorkExperienceList";
 import CVForm from "./CVForm";
+import CustomDatePicker from "@/components/form/CustomDatePicker";
 
 type TFormValues = z.infer<typeof candidateProfessionalSchema>;
 
@@ -111,6 +112,12 @@ const ProfessionalForm = () => {
                 control={control}
                 placeholder="Enter your skills"
               />
+               <CustomDatePicker
+                  label="Available Date"
+                  name="availabil_date"
+                  control={control}
+                  placeholder="DD/MM/YYYY"
+                />
 
               <button
                 type="submit"

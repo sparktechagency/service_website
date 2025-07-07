@@ -125,6 +125,7 @@ const PostJobForm = () => {
       finalValues.rate= rate;
     }
     createJob(finalValues);
+
    
   };
 

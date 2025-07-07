@@ -9,7 +9,7 @@ import { usePathname, useRouter } from "next/navigation";
 import DashboardButton from "./DashboardButton";
 import useUserInfo from "@/hooks/useUserInfo";
 import { logout } from "@/helper/SessionHelper";
-//import UserProfile from "./UserProfile";
+import UserProfile from "./UserProfile";
 
 export default function Navbar() {
   const userInfo = useUserInfo();
@@ -109,7 +109,7 @@ export default function Navbar() {
                 className="flex items-center gap-2 cursor-pointer"
               >
                 <div className="h-8 w-8 rounded-full">
-                  {/* {userInfo?.authId && <UserProfile />} */}
+                  {userInfo?.authId && <UserProfile />}
                 </div>
               </div>
             </>

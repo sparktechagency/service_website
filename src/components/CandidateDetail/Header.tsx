@@ -3,13 +3,10 @@ import React, { useState } from "react";
 import { Briefcase, MapPin } from "lucide-react";
 import Image from "next/image";
 import { useAppSelector } from "@/redux/hooks/hooks";
-import getAvailability from "@/utils/getAvailability";
 import { baseUrl } from "@/redux/features/api/apiSlice";
 
 const Header = () => {
   const { details } = useAppSelector((state) => state.candidate);
-
-  const availability = getAvailability(details?.availability as string[]);
 
   const [imageSrc, setImageSrc] = useState(details?.profile_image ? baseUrl+details?.profile_image : "/images/profile_placeholder.png");
 
@@ -48,7 +45,7 @@ const Header = () => {
 
             <div className="mt-4 sm:mt-0">
               <div className="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-800 rounded-full font-medium text-sm">
-                Availability: {availability?.join(", ")}
+                Availability: 26 July, 2025
               </div>
             </div>
           </div>
