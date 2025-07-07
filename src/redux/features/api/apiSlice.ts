@@ -6,8 +6,8 @@ import TagTypes from "@/constant/tagType.constant";
 import { ApiError } from "@/types/global.type";
 import { SetLoginError } from "../auth/authSlice";
 
-export const baseUrl = "https://backend.machmakers.co.uk";
-//export const baseUrl = "http://10.0.60.118:5004"
+//export const baseUrl = "https://backend.machmakers.co.uk";
+export const baseUrl = "http://10.0.60.118:5004"
 
 const baseQuery = fetchBaseQuery({
   //baseUrl: "http://24.199.120.27:5004", //http://10.0.60.118

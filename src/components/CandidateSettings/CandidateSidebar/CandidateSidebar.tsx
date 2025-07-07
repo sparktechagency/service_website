@@ -1,5 +1,5 @@
 "use client"
-import { LayoutDashboardIcon, BriefcaseIcon, BookmarkIcon, SettingsIcon, MessageSquareMore } from "lucide-react"
+import { LayoutDashboardIcon, BriefcaseIcon, BookmarkIcon, SettingsIcon, MessageSquareMore, Bell } from "lucide-react"
 import { usePathname, useRouter } from "next/navigation"
 
 const CandidateSidebar = () =>{
@@ -39,6 +39,11 @@ const CandidateSidebar = () =>{
             href="/dashboard/candidate/messages"
             icon={<MessageSquareMore className="h-5 w-5" />}
             label="Messages"
+          />
+           <SidebarLink
+            href="/dashboard/candidate/notifications"
+            icon={<Bell className="h-5 w-5" />}
+            label="Notifications"
           />
           <SidebarLink
             href="/dashboard/candidate/settings"

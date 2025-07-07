@@ -25,11 +25,11 @@ import {
               <Image src="/images/logo.png" alt="logo" width={110} height={110} />
             </div>
             <p>
-              <span className="text-gray-400">Call now:</span>{" "}
-              <span className="text-white font-semibold">(319) 555-0115</span>
+              <span className="text-gray-400">Email:</span>{" "}
+              <span className="text-white font-semibold">hello@machmakers.co.uk</span>
             </p>
             <p className="text-sm text-gray-400">
-              6391 Elgin St. Celina, Delaware 10299, New York
+             24-26 Regent Place Regent Place, Birmingham, England, B1 3NJ
             </p>
           </div>
 
@@ -59,7 +59,7 @@ import {
 
         {/* Bottom Bar */}
         <div className="border-t border-gray-700 mt-10 pt-4 flex flex-col md:flex-row justify-between items-center text-sm text-gray-400 max-w-7xl mx-auto">
-          <p>@ 2024 Tradieez - Job Portal. All rights Reserved</p>
+          <p className="pl-3">@ 2025 MachMakers - Job Portal. All rights Reserved</p>
           {/* <div className="flex space-x-4 mt-4 md:mt-0">
             <FaFacebookF className="hover:text-white cursor-pointer" />
             <FaYoutube className="hover:text-white cursor-pointer" />

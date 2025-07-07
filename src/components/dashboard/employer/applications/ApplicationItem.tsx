@@ -12,6 +12,18 @@ type TProps = {
 }
 
 const ApplicationItem = ({ application } : TProps) => {
+
+   const handleDownload = () => {
+    const link = document.createElement("a")
+    link.href = application?.resume as string;
+    link.download = "document.pdf"
+    link.target = "_blank"
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+  }
+
+
   return (
     <>
       <div className="p-4 shadow-sm rounded-md bg-white">
@@ -57,14 +69,13 @@ const ApplicationItem = ({ application } : TProps) => {
             </span>
           </li>
         </ul>
-        <a
-          href={application?.resume}
-          download="resume.pdf"
-          className="mt-3 text-blue-600 hover:text-blue-800 flex items-center text-sm"
+        <button
+          onClick={handleDownload}
+          className="mt-3 text-blue-600 cursor-pointer hover:text-blue-800 flex items-center text-sm"
         >
           <Download className="h-4 w-4 mr-1" />
           Download CV
-        </a>
+        </button>
       </div>
     </>
   );

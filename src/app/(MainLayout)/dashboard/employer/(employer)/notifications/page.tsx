@@ -4,7 +4,7 @@ import { useGetNotificationsQuery } from "@/redux/features/notification/notifica
 import NotificationsLoading from "@/components/loader/NotificationsLoading";
 import ServerErrorCard from "@/components/card/ServerErrorCard";
 
-const NotificationPage = () => {
+const EmployerNotificationPage = () => {
   const { data, isLoading, isError } = useGetNotificationsQuery(undefined);
   const notifications = data?.data?.allNotification || [];
 
@@ -45,4 +45,4 @@ const NotificationPage = () => {
 
 };
 
-export default NotificationPage;
+export default EmployerNotificationPage;

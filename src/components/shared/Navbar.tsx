@@ -89,7 +89,13 @@ export default function Navbar() {
                 </span>
               </button>
               <button
-                onClick={() => router.push("/notifications")}
+                onClick={() =>
+                  router.push(
+                    `/dashboard/${
+                      userInfo?.role === "USER" ? "candidate" : "employer"
+                    }/notifications`
+                  )
+                }
                 className="relative rounded-full p-1 cursor-pointer hover:bg-white/10"
               >
                 <Bell size={20} />
