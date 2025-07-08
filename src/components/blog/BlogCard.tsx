@@ -1,5 +1,7 @@
 "use client";
+import { baseUrl } from "@/redux/features/api/apiSlice";
 import { TBlog } from "@/types/blog.type";
+import getBlogImgPath from "@/utils/getBlogImgPath";
 import getCategory from "@/utils/getCategory";
 import getCategoryColor from "@/utils/getCategoryColor";
 import getFormattedDate from "@/utils/getFormattedDate";
@@ -13,8 +15,7 @@ type TProps = {
 
 const BlogCard = ({ blog }: TProps) => {
   const router = useRouter();
-
-  const imgPath = "/images/blogs/blog2.png"
+  const imgPath = blog?.image?.length > 0 ? baseUrl+ getBlogImgPath(blog?.image[0]) : "/images/placeholder.jpg";
 
 
 
@@ -27,6 +28,10 @@ const BlogCard = ({ blog }: TProps) => {
             alt="blog_img"
             fill
             className="object-cover"
+            onError={(e) => {
+              e.currentTarget.onerror = null;
+              e.currentTarget.src = "/images/placeholder.jpg";
+            }}
           />
         </div>
         <div className="p-4 md:p-6 md:w-3/5">
@@ -46,22 +51,6 @@ const BlogCard = ({ blog }: TProps) => {
               />
             </svg>
             {getFormattedDate(blog?.createdAt)}
-            {/* <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-4 w-4 ml-3 mr-1"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
-              />
-            </svg>
-            {post.comments} Comments */}
-
             <span className={`${getCategoryColor(blog.category)} text-xs font-semibold px-3 py-1 rounded-full`}>
             {getCategory(blog.category)}
           </span>

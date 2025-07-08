@@ -17,6 +17,10 @@ const BlogListPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedValues, setSelectedValues] = useState<string[]>([
     "industry_insights",
+    "career_&_skills",
+    "business_&_hiring",
+    "mindset_&_growth",
+    "real_stories",
   ]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const { data, isLoading, isError } = useGetBlogsQuery([

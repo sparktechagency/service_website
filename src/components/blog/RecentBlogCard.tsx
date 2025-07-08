@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import { TBlog } from '@/types/blog.type';
 import Image from 'next/image';
@@ -6,6 +5,8 @@ import Link from 'next/link';
 import getCategory from '@/utils/getCategory';
 import getFormattedDate from '@/utils/getFormattedDate';
 import getCategoryColor from '@/utils/getCategoryColor';
+import { baseUrl } from '@/redux/features/api/apiSlice';
+import getBlogImgPath from '@/utils/getBlogImgPath';
 
 interface BlogCardProps {
   blog: TBlog;
@@ -13,19 +14,22 @@ interface BlogCardProps {
 
 const RecentBlogCard : React.FC<BlogCardProps> = ({ blog }) => {
   const { title, category, createdAt, descriptions, image } = blog;
-  
-  const imgPath = "/images/blogs/blog2.png"
+  const imgPath = image?.length > 0 ? baseUrl+ getBlogImgPath(blog?.image[0]) : "/images/placeholder.jpg";
 
 
   return (
     <article className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col h-full">
       <div className="relative h-48 overflow-hidden">
         <Image
-          src={imgPath} 
-          alt={title} 
+          src={imgPath}
+          alt={title}
           height={600}
           width={600}
           className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+          onError={(e) => {
+            e.currentTarget.onerror = null;
+            e.currentTarget.src = "/images/placeholder.jpg";
+          }}
         />
       </div>
       <div className="p-6 flex flex-col flex-grow">
