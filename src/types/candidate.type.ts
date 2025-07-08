@@ -61,5 +61,6 @@ export type ICandidateDetails = {
   details: string;
   education: string;
   experience: string;
+  availabil_date: string;
   resume: string;
 };

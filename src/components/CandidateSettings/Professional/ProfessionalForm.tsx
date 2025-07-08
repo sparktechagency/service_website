@@ -36,7 +36,7 @@ const ProfessionalForm = () => {
       experience: user?.experience===null ? "" : user?.experience,
       availability: user?.availability,
       skill: user?.skill?.length > 0 ? user?.skill.join(', ') : "",
-      availabil_date: user?.availabil_date.split("T")[0],
+      availabil_date: user?.availabil_date ? user?.availabil_date.split("T")[0] : "",
     },
   });
 

@@ -2,7 +2,7 @@
 
 export default function CandidateDetailsLoading () {
   return (
-    <div className="max-w-6xl mx-auto bg-white p-4 sm:p-6 lg:p-8 shadow-lg">
+    <div className="max-w-6xl mx-auto bg-white px-4 sm:px-6 lg:px-8 py-12 shadow-lg">
       {/* Header Section */}
       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 sm:gap-6 mb-6 sm:mb-8">
         <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6">

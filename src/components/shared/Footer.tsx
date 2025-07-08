@@ -38,7 +38,6 @@ import {
             <h3 className="text-white font-semibold mb-3">Quick Link</h3>
             <ul className="space-y-2 text-sm">
               <li onClick={() => handleNavigate("/contact")} className="hover:text-white cursor-pointer">Contact</li>
-              {/* <li onClick={() => handleNavigate("/")} className="hover:text-white cursor-pointer">Pricing</li> */}
               <li onClick={() => handleNavigate("/blog-list")} className="hover:text-white cursor-pointer">Blog</li>
             </ul>
           </div>

@@ -1,14 +1,14 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { Briefcase, MapPin } from "lucide-react";
 import Image from "next/image";
 import { useAppSelector } from "@/redux/hooks/hooks";
 import { baseUrl } from "@/redux/features/api/apiSlice";
+import getFormattedDate from "@/utils/getFormattedDate";
 
 const Header = () => {
   const { details } = useAppSelector((state) => state.candidate);
-
-  const [imageSrc, setImageSrc] = useState(details?.profile_image ? baseUrl+details?.profile_image : "/images/profile_placeholder.png");
+  const imgSrc = details?.profile_image ? baseUrl+details?.profile_image : "/images/profile_placeholder.png";
 
   return (
     <>
@@ -16,8 +16,11 @@ const Header = () => {
         <div className="pt-20 pb-6 px-8">
           <div className="h-32 w-32 rounded-full border-4 border-white bg-white shadow-sm overflow-hidden">
             <Image
-              src={imageSrc}
-              onError={() => setImageSrc("/images/profile_placeholder.png")}
+              src={imgSrc}
+              onError={(e) => {
+            e.currentTarget.onerror = null;
+            e.currentTarget.src = "/images/profile_placeholder.png";
+          }}
               alt="Profile"
               width={600}
               height={600}
@@ -45,7 +48,7 @@ const Header = () => {
 
             <div className="mt-4 sm:mt-0">
               <div className="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-800 rounded-full font-medium text-sm">
-                Availability: 26 July, 2025
+                Availability: {getFormattedDate(details?.availabil_date as string)}
               </div>
             </div>
           </div>

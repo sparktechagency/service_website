@@ -78,7 +78,7 @@ const EmplyerRegisterForm = () => {
           name="phone_number"
           type="text"
           control={control}
-          placeholder="Enter phone number"
+          placeholder="e.g., +44 20 1234 5678 or 020 1234 5678"
         />
         <CustomInput
           label="Password"
