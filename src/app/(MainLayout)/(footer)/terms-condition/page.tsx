@@ -1,11 +1,13 @@
 "use client"
 
+import PolicyLoading from "@/components/loader/PolicyLoading";
+
 const TermsAndConditionsPage = () =>{
 
-
+return <PolicyLoading/>
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8 md:py-12">
+    <div className="w-full max-w-7xl mx-auto px-4 py-8 md:py-12">
       <div className="gap-8 w-full lg:gap-16">
         {/* Main Content */}
         <div className="md:w-3/4 lg:w-4/5">
@@ -32,7 +34,6 @@ const TermsAndConditionsPage = () =>{
 
           {/* Limitations Section */}
           <section id="limitations" className="mb-12">
-            <h2 className="text-xl font-bold mb-4">02. Limitations</h2>
             <p className="mb-4 text-justify">
               In pretium mi non sem facilisis, in vulputate quam maximus. Aliquam metus mauris, semper eu eros vitae,
               blandit tristique metus. Sed condimentum facilisis eros. Ut id facilisis metus. Lorem ipsum dolor sit
@@ -52,7 +53,6 @@ const TermsAndConditionsPage = () =>{
 
           {/* Security Section */}
           <section id="security" className="mb-12">
-            <h2 className="text-xl font-bold mb-4">03. Security</h2>
             <p className="mb-4">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ex neque, elementum eu blandit in,
               ornare eu ligula. Fusce eu rhoncus mi, quis ultricies lacus. Phasellus id pellentesque nulla. Cras erat

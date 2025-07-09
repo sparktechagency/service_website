@@ -21,7 +21,10 @@ const TagTypes = {
    blog: 'Blog',
    employerDetails: "EmployerDetails",
    applications: "Applications",
-   notifications: "Notifications"
+   notifications: "Notifications",
+   termsConditions: "TermsConditions",
+   privacyPolicy: "PrivacyPolicy",
+   aboutUs: "AboutUs",
 }
 
 export default TagTypes;
