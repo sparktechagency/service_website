@@ -2,11 +2,11 @@
 
 import NotFoundCard from "@/components/card/NotFoundCard";
 import PolicyLoading from "@/components/loader/PolicyLoading";
-import TermsCondition from "@/components/Policy/TermsCondition";
-import { useGetTermsConditionsQuery } from "@/redux/features/policy/policyApi";
+import PrivacyPolicy from "@/components/Policy/PrivacyPolicy";
+import { useGetPrivacyPolicyQuery } from "@/redux/features/policy/policyApi";
 
-const TermsAndConditionsPage = () =>{
-   const { data, isLoading, isError } = useGetTermsConditionsQuery(undefined);
+const PrivacyPolicyPage = () =>{
+   const { data, isLoading, isError } = useGetPrivacyPolicyQuery(undefined);
 
    if (isLoading) {
       return <PolicyLoading />;
@@ -19,15 +19,15 @@ const TermsAndConditionsPage = () =>{
     if (!isLoading && !isError && data?.data?._id) {
       return (
         <>
-          <TermsCondition description={data?.data?.description} />
+          <PrivacyPolicy description={data?.data?.description} />
         </>
       );
     }
   
     if (!isLoading && !isError && !data?.data?.jobDetails?.title) {
-      return <NotFoundCard title="Terms-Condition Not Found" />;
+      return <NotFoundCard title="Privacy Policy Not Found" />;
     }
 }
 
 
-export default TermsAndConditionsPage;
+export default PrivacyPolicyPage;

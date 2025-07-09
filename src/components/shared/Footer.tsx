@@ -45,12 +45,14 @@ import {
           <div>
             <h3 className="text-white font-semibold mb-3">Support</h3>
             <ul className="space-y-2 text-sm">
-              {/* <li className="hover:text-white cursor-pointer">Faqs</li> */}
-              <li onClick={() => handleNavigate("/terms-condition")} className="hover:text-white cursor-pointer">
+              <li onClick={() => handleNavigate("/privacy-policy")} className="hover:text-white cursor-pointer">
                 Privacy Policy
               </li>
               <li onClick={() => handleNavigate("/terms-condition")} className="hover:text-white cursor-pointer">
                 Terms & Conditions
+              </li>
+              <li onClick={() => handleNavigate("/about-us")} className="hover:text-white cursor-pointer">
+                About-Us
               </li>
             </ul>
           </div>

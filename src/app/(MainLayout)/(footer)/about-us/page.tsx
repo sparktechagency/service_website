@@ -2,11 +2,11 @@
 
 import NotFoundCard from "@/components/card/NotFoundCard";
 import PolicyLoading from "@/components/loader/PolicyLoading";
-import TermsCondition from "@/components/Policy/TermsCondition";
-import { useGetTermsConditionsQuery } from "@/redux/features/policy/policyApi";
+import AboutUs from "@/components/Policy/AboutUs";
+import { useGetAboutUsQuery } from "@/redux/features/policy/policyApi";
 
-const TermsAndConditionsPage = () =>{
-   const { data, isLoading, isError } = useGetTermsConditionsQuery(undefined);
+const AboutUsPage = () =>{
+   const { data, isLoading, isError } = useGetAboutUsQuery(undefined);
 
    if (isLoading) {
       return <PolicyLoading />;
@@ -19,15 +19,15 @@ const TermsAndConditionsPage = () =>{
     if (!isLoading && !isError && data?.data?._id) {
       return (
         <>
-          <TermsCondition description={data?.data?.description} />
+          <AboutUs description={data?.data?.description} />
         </>
       );
     }
   
     if (!isLoading && !isError && !data?.data?.jobDetails?.title) {
-      return <NotFoundCard title="Terms-Condition Not Found" />;
+      return <NotFoundCard title="About us Not Found" />;
     }
 }
 
 
-export default TermsAndConditionsPage;
+export default AboutUsPage;
