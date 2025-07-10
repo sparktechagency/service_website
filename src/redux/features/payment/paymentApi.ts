@@ -34,7 +34,8 @@ export const paymentApi = apiSlice.injectEndpoints({
             providesTags: [TagTypes.payments],
             async onQueryStarted(_arg, { queryFulfilled }) {
                 try {
-                    await queryFulfilled;
+                   const res = await queryFulfilled;
+                   console.log(res)
                 } catch{
                     ErrorToast("Server error is occured");
                 }
@@ -43,4 +44,4 @@ export const paymentApi = apiSlice.injectEndpoints({
     }),
 });
 
-export const { useCreatePaymentIntentMutation } = paymentApi;
+export const { useCreatePaymentIntentMutation, useSaveToPaymentsQuery } = paymentApi;

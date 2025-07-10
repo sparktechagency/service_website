@@ -1,6 +1,7 @@
 import { useCreatePaymentIntentMutation } from "@/redux/features/payment/paymentApi";
 import { ISubscription } from "@/types/subscription.type";
 import { ArrowRight, CheckCircle } from "lucide-react";
+import { CgSpinnerTwo } from "react-icons/cg";
 
 type TProps = {
   subscription: ISubscription
@@ -51,7 +52,12 @@ const PriceCard = ({ subscription }: TProps ) => {
           `}
         >
           {
-            isLoading ? "Processing" : (
+            isLoading ? (
+              <>
+                <CgSpinnerTwo className="animate-spin" fontSize={16} />
+                Processing...
+              </>
+            ) : (
               <>
                 Choose Plan
                 <ArrowRight className="h-4 w-4" />
