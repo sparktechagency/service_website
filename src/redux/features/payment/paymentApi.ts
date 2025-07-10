@@ -27,7 +27,7 @@ export const paymentApi = apiSlice.injectEndpoints({
         }),
         saveToPayments: builder.query({
             query: (sessionId) => ({
-                url: `/payment/stripe-webhooks/session_id=${sessionId}`,
+                url: `/payment/stripe-webhooks?session_id=${sessionId}`,
                 method: "GET",
             }),
             keepUnusedDataFor: 600,
@@ -37,7 +37,7 @@ export const paymentApi = apiSlice.injectEndpoints({
                    const res = await queryFulfilled;
                    console.log(res)
                 } catch{
-                    //ErrorToast("Server error is occured");
+                    ErrorToast("Server error is occured");
                 }
             },
         }),

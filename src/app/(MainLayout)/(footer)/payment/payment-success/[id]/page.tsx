@@ -6,8 +6,8 @@ import dynamic from "next/dynamic";
 import { useParams } from "next/navigation";
 
 const PaymentSuccessPage = () => {
-    const params = useParams<{ session_id: string }>();
-    useSaveToPaymentsQuery(params.session_id);
+    const params = useParams<{ id: string }>();
+    useSaveToPaymentsQuery(params.id);
 
      const PaymentSuccess = dynamic(() => import('@/components/payment/PaymentSuccess'), {
           ssr: false,

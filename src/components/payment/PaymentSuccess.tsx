@@ -1,35 +1,34 @@
 "use client"
 
-import { CheckCircle, Copy } from "lucide-react"
-import { useState } from "react"
+import { CheckCircle } from "lucide-react"
 
 const PaymentSuccess = () => {
-    const [copied, setCopied] = useState(false);
+    // const [copied, setCopied] = useState(false);
 
 
     // Mock data - replace with actual payment data from Stripe
-    const paymentData = {
-        orderId: "ORD-2024-001234",
-        amount: 99.99,
-        currency: "USD",
-        customerEmail: "customer@example.com",
-        paymentMethod: "•••• •••• •••• 4242",
-        transactionId: "pi_3OqIC92eZvKYlo2C0u2zqjzz",
-        date: new Date().toLocaleDateString("en-US", {
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-        }),
-    }
+    // const paymentData = {
+    //     orderId: "ORD-2024-001234",
+    //     amount: 99.99,
+    //     currency: "USD",
+    //     customerEmail: "customer@example.com",
+    //     paymentMethod: "•••• •••• •••• 4242",
+    //     transactionId: "pi_3OqIC92eZvKYlo2C0u2zqjzz",
+    //     date: new Date().toLocaleDateString("en-US", {
+    //         year: "numeric",
+    //         month: "long",
+    //         day: "numeric",
+    //     }),
+    // }
 
-    const copyTransactionId = () => {
-        navigator.clipboard.writeText(paymentData.transactionId)
-        setCopied(true)
-        setTimeout(() => setCopied(false), 2000)
-    }
+    // const copyTransactionId = () => {
+    //     navigator.clipboard.writeText(paymentData.transactionId)
+    //     setCopied(true)
+    //     setTimeout(() => setCopied(false), 2000)
+    // }
 
     return (
-        <div className="min-h-full bg-gradient-to-br from-green-50 to-blue-50 py-8 px-4 sm:px-6 lg:px-8">
+        <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 py-8 px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl mx-auto">
                 {/* Success Header */}
                 <div className="text-center mb-8">
@@ -43,8 +42,8 @@ const PaymentSuccess = () => {
                 </div>
 
                 {/* Payment Details Card */}
-                <div className="bg-white rounded-2xl shadow-xl p-6 sm:p-8 mb-8">
-                    <div className="border-b border-gray-200 pb-6 mb-6">
+                {/* <div className="bg-white rounded-2xl shadow-xl p-6 sm:p-8 mb-8"> */}
+                    {/* <div className="border-b border-gray-200 pb-6 mb-6">
                         <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4">Payment Details</h2>
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
@@ -70,10 +69,10 @@ const PaymentSuccess = () => {
                                 <p className="text-base sm:text-lg font-semibold text-gray-900">{paymentData.date}</p>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
 
                     {/* Transaction ID */}
-                    <div className="mb-6">
+                    {/* <div className="mb-6">
                         <p className="text-sm font-medium text-gray-500 mb-2">Transaction ID</p>
                         <div className="flex items-center justify-between bg-gray-50 rounded-lg p-3">
                             <code className="text-sm font-mono text-gray-700 break-all">{paymentData.transactionId}</code>
@@ -86,7 +85,7 @@ const PaymentSuccess = () => {
                             </button>
                         </div>
                         {copied && <p className="text-sm text-green-600 mt-1">Transaction ID copied!</p>}
-                    </div>
+                    </div> */}
 
                     {/* Email Confirmation */}
                     {/* <div className="bg-blue-50 rounded-lg p-4 flex items-start space-x-3">
@@ -96,7 +95,7 @@ const PaymentSuccess = () => {
                             <p className="text-sm text-blue-700">A receipt has been sent to {paymentData.customerEmail}</p>
                         </div>
                     </div> */}
-                </div>
+                {/* </div> */}
             </div>
         </div>
     )
