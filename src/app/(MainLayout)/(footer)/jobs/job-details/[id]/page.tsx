@@ -7,10 +7,12 @@ import FindJobLoading from "@/components/loader/FindJobLoading";
 import ServerErrorCard from "@/components/card/ServerErrorCard";
 import NotFoundCard from "@/components/card/NotFoundCard";
 import SingleJob from "@/components/SingleJob/SingleJob";
+import { useGetMeQuery } from "@/redux/features/user/userApi";
 
 export default function JobDetailsPage() {
   const params = useParams<{ id: string }>();
   const { data, isLoading, isError } = useGetSingleFindJobQuery(params.id);
+  useGetMeQuery(undefined);
 
   if (isLoading) {
     return <FindJobLoading />;

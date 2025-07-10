@@ -25,6 +25,7 @@ const TagTypes = {
    termsConditions: "TermsConditions",
    privacyPolicy: "PrivacyPolicy",
    aboutUs: "AboutUs",
+   payments: "Payments"
 }
 
 export default TagTypes;

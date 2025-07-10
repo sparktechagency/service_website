@@ -1,3 +1,4 @@
+import { useCreatePaymentIntentMutation } from "@/redux/features/payment/paymentApi";
 import { ISubscription } from "@/types/subscription.type";
 import { ArrowRight, CheckCircle } from "lucide-react";
 
@@ -6,6 +7,14 @@ type TProps = {
 }
 
 const PriceCard = ({ subscription }: TProps ) => {
+  const [createPaymentIntent, {isLoading}] = useCreatePaymentIntentMutation();
+  
+  const handlePaymentIntent = () => {
+    createPaymentIntent({
+      subscriptionId: subscription?._id
+    })
+  }
+
   return (
     <div
       className={`border border-gray-200 rounded-lg overflow-hidden hover:border-gray-400 hover:shadow-sm duration-200`}
@@ -31,16 +40,24 @@ const PriceCard = ({ subscription }: TProps ) => {
           ))}
         </div>
         <button
+          onClick={handlePaymentIntent}
           // className={`mt-6 w-full py-2 px-4 rounded flex items-center justify-center gap-2 cursor-pointer ${
           //   recommended
           //     ? "bg-primary hover:bg-[#2b4773] text-white"
           //     : "bg-light-gray text-primary hover:bg-primary hover:text-white cursor-pointer duration-200"
           // }`}
+          disabled={isLoading}
           className={`mt-6 w-full py-2 px-4 rounded flex items-center justify-center gap-2 bg-light-gray text-primary hover:bg-primary hover:text-white cursor-pointer duration-200"
           `}
         >
-          Choose Plan
-          <ArrowRight className="h-4 w-4" />
+          {
+            isLoading ? "Processing" : (
+              <>
+                Choose Plan
+                <ArrowRight className="h-4 w-4" />
+              </>
+            )
+          }
         </button>
       </div>
     </div>

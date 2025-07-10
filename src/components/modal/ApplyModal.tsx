@@ -7,6 +7,7 @@ import useUserInfo from "@/hooks/useUserInfo";
 import { useRouter } from "next/navigation";
 import { ErrorToast } from "@/helper/ValidationHelper";
 import { CgSpinnerTwo } from "react-icons/cg";
+import { useAppSelector } from "@/redux/hooks/hooks";
 
 
 type TProps = {
@@ -17,6 +18,7 @@ const ApplyModal = ({ jobId }: TProps) => {
   const router = useRouter();
   const userInfo = useUserInfo();
   const [modalOpen, setModalOpen] = useState(false);
+  const { user } = useAppSelector((state) => state.user);
 
   const [applyJob, { isLoading, isSuccess }] =
     useApplyJobMutation();
@@ -31,12 +33,18 @@ const ApplyModal = ({ jobId }: TProps) => {
 
 
   const handleSubmit = () => {
-    applyJob({
-      id: jobId,
-      data: {
-        resume: "https://res.cloudinary.com/dqhbgockh/raw/upload/v1751533157/real_estate/1751533155088-gg.pdf"
-      }
-    });
+    if (user?.resume) {
+      applyJob({
+        id: jobId,
+        data: {
+          //resume: "https://res.cloudinary.com/dqhbgockh/raw/upload/v1751533157/real_estate/1751533155088-gg.pdf"
+          resume: user?.resume
+        }
+      });
+    }
+    else{
+      ErrorToast("Please upload your resume");
+    }
   };
 
 
@@ -65,6 +73,7 @@ const ApplyModal = ({ jobId }: TProps) => {
         }}
         maskClosable={false}
         footer={false}
+        closable={false}
         centered
       >
         <div className="p-6">
