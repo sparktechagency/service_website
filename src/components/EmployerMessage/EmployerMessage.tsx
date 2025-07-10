@@ -12,16 +12,14 @@ import { SetConversationList, SetMessageList } from "@/redux/features/chat/chatS
 import ConversationItem from "./ConversationItem";
 import { useSearchParams } from "next/navigation";
 import MessageListItem from "./MessageListItem";
-import socket from "@/socket/socket";
 import { SuccessToast } from "@/helper/ValidationHelper";
+import socket from "@/socket/socket";
 
 
 
 const EmployerMessage = () => {
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.user);   
-  
-  
   const searchParams = useSearchParams();
   const participantId = searchParams.get("participantId");
   const { conversationList, messageList } = useAppSelector((state)=> state.chat)
@@ -89,22 +87,18 @@ const EmployerMessage = () => {
 const receiverId = "685407cc450a47934022a9d7";
 
   const handleSendMessage = () => {
-
     if (message.trim() === "") return;
     socket.emit(
       "new-message",
       { receiverId: receiverId, text: message },
     );
-
     socket.emit("all-message", {
       receiverId: participantId,
       page: 1,
     });
-
     setMessage("")
-
-  
   };
+
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter" && !e.shiftKey) {
@@ -168,17 +162,12 @@ const emitAllChats = () => {
  });
 
 
- socket.on("conversion-list", (conversations) => {
-   dispatch(SetConversationList(conversations))
-   //console.log("💬 Conversation list:", conversations);
- });
-
 
 
 
   return (
     <>
-      <div className="flex-1 overflow-hidden py-4">
+      <div className="flex-1 py-4 flex">
         {/* Chat List */}
         <div
           className={`${
@@ -191,18 +180,6 @@ const emitAllChats = () => {
         >
           <div className="p-4 border-b border-gray-200">
             <h2 className="text-xl font-semibold">Message</h2>
-          </div>
-          <div className="flex items-center justify-between p-4 border-b border-gray-200">
-            <div className="relative w-full">
-              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                <Search className="w-5 h-5 text-gray-400" />
-              </div>
-              <input
-                type="text"
-                className="w-full py-2 pl-10 pr-4 text-sm border border-gray-200 rounded-md focus:outline-none focus:border-blue-500 focus:ring-blue-500"
-                placeholder="Search"
-              />
-            </div>
           </div>
           <div
             ref={chatListRef}
@@ -221,78 +198,7 @@ const emitAllChats = () => {
             isMobile ? (showChatList ? "hidden" : "w-full") : "flex-1"
           } flex flex-col bg-white h-full`}
         >
-          {activeUser ? (
-            <>
-              <div className="flex items-center justify-between p-4 border-b border-gray-200">
-                <div className="flex items-center">
-                  {isMobile && (
-                    <button
-                      onClick={handleBackToList}
-                      className="mr-2 p-1 text-gray-500 rounded-full hover:bg-gray-100 focus:outline-none"
-                      aria-label="Go back to chat list"
-                    >
-                      <ArrowLeft className="w-5 h-5" />
-                    </button>
-                  )}
-                  <div className="relative">
-                    <Image
-                      src="/images/user.jpg"
-                      alt="go"
-                      className="w-12 h-12 rounded-full object-cover"
-                      width={500}
-                      height={500}
-                    />
-                    {activeUser.online && (
-                      <span className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white rounded-full"></span>
-                    )}
-                  </div>
-                  <div className="ml-3">
-                    <h3 className="text-lg font-medium">{activeUser.name}</h3>
-                    {activeUser.phone && (
-                      <p className="text-sm text-gray-500">
-                        {activeUser.phone}
-                      </p>
-                    )}
-                  </div>
-                </div>
-              </div>
-
-              <div
-                className="flex-1 p-4 overflow-y-auto bg-gray-50"
-                style={{ maxHeight: "calc(100vh - 140px)" }}
-              >
-                {messageList?.map((msg, index) => (
-                  <MessageListItem msg={msg} key={index} />
-                ))}
-                <div ref={messageEndRef} />
-              </div>
-
-              <div className="p-4 border-t border-gray-200 bg-white">
-                <div className="flex items-center">
-                  <input
-                    type="text"
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
-                    onKeyDown={handleKeyDown}
-                    className="flex-1 py-2 px-4 bg-gray-100 border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="Type a message..."
-                  />
-                  <button
-                    onClick={()=> {
-                      SuccessToast("Success");
-                    }}
-                    className="ml-2 p-2 text-white cursor-pointer bg-blue-600 rounded-full hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-                  >
-                    <Send className="w-5 h-5" />
-                  </button>
-                </div>
-              </div>
-            </>
-          ) : (
-            <div className="flex-1 flex items-center justify-center">
-              <p className="text-gray-500">Select a chat to start messaging</p>
-            </div>
-          )}
+          Hello
         </div>
       </div>
       {/* <ChatBox/> */}

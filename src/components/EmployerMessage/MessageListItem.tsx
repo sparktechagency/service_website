@@ -1,28 +1,43 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useAppSelector } from "@/redux/hooks/hooks";
 
 
-const MessageListItem = (msg:any) => {
-  const { user } = useAppSelector((state) => state.user);   
-  const currentAuthId = user?.authId?._id;
+const MessageListItem = ({ msg }: any) => {
   
+const currentAuthId = localStorage.getItem("authId")
+
 
   return (
     <>
+  
+
       <div
-        className={`flex ${
-          msg.senderId === currentAuthId ? "justify-end" : "justify-start"
-        } mb-4`}
+        className={`flex ${msg.senderId === currentAuthId ? "justify-end" : "justify-start"}`}
       >
         <div
-          className={`max-w-xs md:max-w-md lg:max-w-lg px-4 py-2 rounded-lg ${
-            msg.senderId === currentAuthId
-              ? "bg-blue-600 text-white rounded-br-none"
-              : "bg-gray-200 text-gray-800 rounded-bl-none"
-          }`}
+          className={`flex max-w-xs lg:max-w-md ${msg.senderId === currentAuthId ? "flex-row-reverse" : "flex-row"}`}
         >
-          <p className="text-sm">{msg.message}</p>
-          {/* <p className={`text-xs mt-1 ${msg.sent ? "text-blue-200" : "text-gray-500"}`}>{msg.time}</p> */}
+          {/* {message.sender === "other" && (
+                          <img
+                            src={message.avatar || "/placeholder.svg"}
+                            alt={message.senderName}
+                            className="w-8 h-8 rounded-full object-cover"
+                          />
+                        )} */}
+          <div className={`mx-2 ${msg.senderId === currentAuthId ? "mr-0" : "ml-0"}`}>
+            <div
+              className={`px-4 py-2 rounded-2xl ${msg.senderId === currentAuthId
+                ? "bg-blue-500 text-white rounded-br-sm"
+                : "bg-white text-gray-900 rounded-bl-sm border border-gray-200"
+                }`}
+            >
+              <p className="text-sm">{msg?.message}</p>
+            </div>
+            {/* <p
+              className={`text-xs text-gray-500 mt-1 ${message.sender === "user" ? "text-right" : "text-left"}`}
+            >
+              {message.timestamp}
+            </p> */}
+          </div>
         </div>
       </div>
     </>

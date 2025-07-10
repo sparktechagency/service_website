@@ -5,10 +5,13 @@ import Image from "next/image";
 import { useAppSelector } from "@/redux/hooks/hooks";
 import { baseUrl } from "@/redux/features/api/apiSlice";
 import getFormattedDate from "@/utils/getFormattedDate";
+import SendMessageModal from "../modal/message/SendMessageModal";
 
 const Header = () => {
   const { details } = useAppSelector((state) => state.candidate);
   const imgSrc = details?.profile_image ? baseUrl+details?.profile_image : "/images/profile_placeholder.png";
+
+ 
 
   return (
     <>
@@ -44,6 +47,7 @@ const Header = () => {
                 {/* <span className="ml-1">San Francisco (15 mile radius)</span> */}
                 <span className="ml-1">{details?.address}</span>
               </div>
+              <SendMessageModal receiverId={details?.authId as string}/>
             </div>
 
             <div className="mt-4 sm:mt-0">

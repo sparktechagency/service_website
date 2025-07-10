@@ -5,7 +5,7 @@ export interface Notification {
   name: string;
   title: string;
   timestamp: string;
-  read: boolean;
+  createdAt: string;
 }
 
 // Generate unique ID
@@ -55,15 +55,3 @@ const companies = [
   "Pran"
 ];
 
-// Generate mock notifications
-export const mockNotifications: Notification[] = Array.from({ length: 150 }, (_, i) => {
-  const companyName = companies[Math.floor(Math.random() * companies.length)];
-  
-  return {
-    id: generateId(),
-    name: companyName,
-    title: `You have a new profile access request from [Employer Name]. Do you want to allow them to view your profile?`,
-    timestamp: generateTimestamp(),
-    read: Math.random() > 0.3, // 30% chance of being unread
-  };
-}).sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()); // Sort by timestamp (newest first)

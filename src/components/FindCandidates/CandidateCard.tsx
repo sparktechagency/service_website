@@ -8,6 +8,8 @@ import { TCandidate } from '@/data/candidate.data';
 import { baseUrl } from '@/redux/features/api/apiSlice';
 import { useAddRemoveFavouriteCandidateMutation, useSendAccessRequestMutation } from '@/redux/features/candidate/candidateApi';
 import getExperience from '@/utils/getExperience';
+import { useAppSelector } from '@/redux/hooks/hooks';
+import { ErrorToast } from '@/helper/ValidationHelper';
 
 interface CandidateCardProps {
   candidate: TCandidate;
@@ -20,6 +22,8 @@ const CandidateCard: React.FC<CandidateCardProps> = ({ candidate, viewMode }) =>
   const [ addRemoveFavouriteCandidate ] = useAddRemoveFavouriteCandidateMutation();
   const [ sendAccessRequest, { isLoading } ] = useSendAccessRequestMutation();
   const ButtonText = candidate?.profile_private ? "Send Request" : "View Profile";
+  const { subscription_status } = useAppSelector((state) => state.subscription);
+  
 
   const [isFavourite, setIsFavourite] = useState(false);
   
@@ -30,12 +34,18 @@ const CandidateCard: React.FC<CandidateCardProps> = ({ candidate, viewMode }) =>
   
 
   const handleViewDetails = () => {
-    if(candidate.profile_private){
-      sendAccessRequest(candidate?._id);
+    if (subscription_status?.subscription_status === "None") {
+      ErrorToast("You have no subscription");
     }
-    else{
-      router.push(`/find-candidates/details/${candidate?._id}`)
+    else {
+      if (candidate.profile_private) {
+        sendAccessRequest(candidate?._id);
+      }
+      else {
+        router.push(`/find-candidates/details/${candidate?._id}`)
+      }
     }
+
   }
 
 

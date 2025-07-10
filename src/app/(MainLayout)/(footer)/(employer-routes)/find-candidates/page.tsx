@@ -9,14 +9,16 @@ import { useSearchCandidatesQuery } from '@/redux/features/candidate/candidateAp
 import FindCandidateLoading from '@/components/loader/FindCandidateLoading';
 import CandidateNotFoundCard from '@/components/card/CandidateNotFoundCard';
 import ServerErrorCard from '@/components/card/ServerErrorCard';
+import { useCheckSubscriptionStatusQuery } from '@/redux/features/subscription/subscriptionApi';
 
 const FindCandidatePage = () =>{
   const [searchQuery, setSearchQuery] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [radius, setRadius] = useState<number>(5);
   const [ currentPage, setCurrentPage ] = useState<number>(1);
-  const [ pageSize, setPageSize ] = useState<number>(6);
+  const [ pageSize, setPageSize ] = useState<number>(10);
   const [viewMode, setViewMode] = useState<ViewMode>('list');
+  useCheckSubscriptionStatusQuery(undefined);
 
    //debounced handle
   useEffect(() => {
@@ -92,7 +94,7 @@ const FindCandidatePage = () =>{
                       viewMode={viewMode}
                     />
 
-                    {meta?.totalPages > 1 && (
+                    {meta?.total > 0 && (
                       <Pagination
                         currentPage={currentPage}
                         totalPages={meta?.totalPages}

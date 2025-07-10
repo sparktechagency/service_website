@@ -23,6 +23,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { CgSpinnerTwo } from "react-icons/cg";
 import { z } from "zod";
 import CustomQuilEditor from "../form/CustomQuilEditor";
+import { ErrorToast } from "@/helper/ValidationHelper";
 
 type TFormValues = z.infer<typeof createJobSchema>;
 
@@ -33,6 +34,7 @@ const PostJobForm = () => {
   ]);
 
   const { categoryOptions } = useAppSelector((state) => state.category);
+  const { subscription_status } = useAppSelector((state) => state.subscription);
   const [createJob, { isLoading, isSuccess }] = useCreateJobMutation();
 
   const {
@@ -124,9 +126,13 @@ const PostJobForm = () => {
       finalValues.salary= salary;
       finalValues.rate= rate;
     }
-    createJob(finalValues);
 
-   
+    if(subscription_status?.subscription_status === "None"){
+      ErrorToast("You have no subscription");
+    }
+    else{
+      createJob(finalValues);
+    }
   };
 
   return (

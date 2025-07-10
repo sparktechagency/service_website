@@ -1,9 +1,11 @@
 "use client";
 
 import SubscriptionList from "@/components/subscription/SubscriptionList";
+import { useCheckSubscriptionStatusQuery } from "@/redux/features/subscription/subscriptionApi";
 import Image from "next/image";
 
 const SubscriptionPage = () => {
+  useCheckSubscriptionStatusQuery(undefined);
   return (
     <>
        <div className="flex-1 overflow-auto p-6">

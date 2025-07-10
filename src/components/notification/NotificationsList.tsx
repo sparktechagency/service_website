@@ -5,10 +5,9 @@ import NotificationItem from "./NotificationItem";
 
 interface NotificationsListProps {
   notifications: Notification[];
-  onAction: (id: string, action: "accept" | "reject") => void;
 }
 
-const NotificationsList = ({ notifications, onAction }: NotificationsListProps) =>{
+const NotificationsList = ({ notifications }: NotificationsListProps) =>{
   if (notifications.length === 0) {
     return (
       <div className="p-6 text-center">
@@ -18,15 +17,12 @@ const NotificationsList = ({ notifications, onAction }: NotificationsListProps) 
   }
 
   return (
-    <div className="overflow-hidden">
+    <div className="w-full overflow-hidden bg-red-500">
       {/* Desktop view - Table */}
       <div className="hidden md:block">
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
-              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Name
-              </th>
               <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Title
               </th>
@@ -36,11 +32,10 @@ const NotificationsList = ({ notifications, onAction }: NotificationsListProps) 
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
-            {notifications?.map((notification) => (
+            {notifications?.map((notification, index) => (
               <NotificationItem 
-                key={notification.id}
+                key={index}
                 notification={notification}
-                onAction={onAction}
                 view="table"
               />
             ))}
@@ -51,11 +46,10 @@ const NotificationsList = ({ notifications, onAction }: NotificationsListProps) 
       {/* Mobile view - Cards */}
       <div className="md:hidden">
         <ul className="divide-y divide-gray-200">
-          {notifications?.map((notification) => (
+          {notifications?.map((notification, index) => (
             <NotificationItem 
-              key={notification.id}
+              key={index}
               notification={notification}
-              onAction={onAction}
               view="card"
             />
           ))}

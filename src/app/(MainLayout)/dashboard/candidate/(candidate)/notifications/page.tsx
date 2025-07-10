@@ -3,6 +3,7 @@ import NotificationsHeader from "@/components/notification/NotificationHeader";
 import { useGetNotificationsQuery } from "@/redux/features/notification/notificationApi";
 import NotificationsLoading from "@/components/loader/NotificationsLoading";
 import ServerErrorCard from "@/components/card/ServerErrorCard";
+import NotificationsList from "@/components/notification/NotificationsList";
 
 const CandidateNotificationPage = () => {
   const { data, isLoading, isError } = useGetNotificationsQuery(undefined);
@@ -18,16 +19,16 @@ const CandidateNotificationPage = () => {
 
   if (!isLoading && !isError) {
     return (
-      <main className="min-h-screen bg-gray-50">
+      <main className="min-h-screen flex-1 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <NotificationsHeader count={notifications.length} />
 
           <div className="mt-8 bg-white rounded-lg shadow-sm overflow-hidden">
-            {/* <NotificationsList/> */}
+           
 
             {notifications.length > 0 ? (
               <>
-                <h1>Notification List</h1>
+                 <NotificationsList notifications={notifications}/>
               </>
             ) : (
               <div className="px-6 py-12 text-center">

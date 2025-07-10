@@ -34,8 +34,8 @@ export const paymentApi = apiSlice.injectEndpoints({
             providesTags: [TagTypes.payments],
             async onQueryStarted(_arg, { queryFulfilled }) {
                 try {
-                   const res = await queryFulfilled;
-                   console.log(res)
+                   await queryFulfilled;
+                   SuccessToast("Payment Success")
                 } catch{
                     ErrorToast("Server error is occured");
                 }

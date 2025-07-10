@@ -6,12 +6,14 @@ import JobsLoading from "@/components/loader/JobsLoading";
 import MyJobsList from "@/components/MyJobs/MyJobsList";
 import Pagination from "@/components/ui/Pagination";
 import { useGetEmployerJobsQuery } from "@/redux/features/job/jobApi";
+import { useCheckSubscriptionStatusQuery } from "@/redux/features/subscription/subscriptionApi";
 import { ChevronDown } from "lucide-react";
 import React, { useState } from "react";
 
 const MyJobsPage = () => {
   const [status, setStatus] = useState("");
   const [ currentPage, setCurrentPage ] = useState<number>(1);
+    useCheckSubscriptionStatusQuery(undefined);
   //const [ pageSize, setPageSize ] = useState<number>(5);
   const { data, isLoading, isError } = useGetEmployerJobsQuery(
     status === ""
