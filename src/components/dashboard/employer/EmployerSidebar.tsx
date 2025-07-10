@@ -7,6 +7,7 @@ import {
   Podcast,
   MessageSquareMore,
   BookmarkIcon,
+  Bell,
 } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 
@@ -51,6 +52,11 @@ const EmployerSidebar = () => {
             href="/dashboard/employer/messages"
             icon={<MessageSquareMore className="h-5 w-5" />}
             label="Messages"
+          />
+           <SidebarLink
+            href="/dashboard/employer/notifications"
+            icon={<Bell className="h-5 w-5" />}
+            label="Notifications"
           />
           <SidebarLink
             href="/dashboard/employer/settings"

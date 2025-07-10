@@ -37,7 +37,7 @@ export const paymentApi = apiSlice.injectEndpoints({
                    const res = await queryFulfilled;
                    console.log(res)
                 } catch{
-                    ErrorToast("Server error is occured");
+                    //ErrorToast("Server error is occured");
                 }
             },
         }),

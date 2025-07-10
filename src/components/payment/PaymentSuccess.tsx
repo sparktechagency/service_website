@@ -1,14 +1,10 @@
 "use client"
 
-import { useSaveToPaymentsQuery } from "@/redux/features/payment/paymentApi";
 import { CheckCircle, Copy } from "lucide-react"
-import { useParams } from "next/navigation";
 import { useState } from "react"
 
-const PaymentSuccessPage = () => {
+const PaymentSuccess = () => {
     const [copied, setCopied] = useState(false);
-    const params = useParams<{ session_id: string }>();
-    useSaveToPaymentsQuery(params.session_id);
 
 
     // Mock data - replace with actual payment data from Stripe
@@ -107,4 +103,4 @@ const PaymentSuccessPage = () => {
 }
 
 
-export default PaymentSuccessPage;
+export default PaymentSuccess;
