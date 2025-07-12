@@ -1,7 +1,6 @@
 "use client";
 
 import NotFoundCard from "@/components/card/NotFoundCard";
-import ServerErrorCard from "@/components/card/ServerErrorCard";
 import FindWorkList from "@/components/FindWork/FindWorkList";
 import FindWorkLoading from "@/components/loader/FindWorkLoading";
 import { useSearchJobsQuery } from "@/redux/features/job/jobApi";
@@ -159,7 +158,8 @@ const FindWork = () => {
       ) : (
         <>
           {!isLoading && isError ? (
-            <ServerErrorCard />
+            // <ServerErrorCard />
+            <h1>....</h1>
           ) : (
             <>
               {jobs?.length > 0 ? (

@@ -31,7 +31,7 @@ export const apiSlice = createApi({
       }
       else{
         localStorage.clear();
-        ErrorToast("Authorization Expired");
+        //ErrorToast("Authorization Expired");
         window.location.href = "/login";
       }
     }
