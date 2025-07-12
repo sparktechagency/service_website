@@ -1,6 +1,7 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 
-const getPartner = (participants: any[], currentAuthId: string) => {
+import { TParticipant } from "@/types/participant.type";
+
+const getPartner = (participants: TParticipant[], currentAuthId: string) => {
     const partner = participants?.find((cv)=> cv?._id !== currentAuthId);
     return partner;
 }

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { baseUrl } from '@/redux/features/api/apiSlice';
 import { SetMessageList } from '@/redux/features/chat/chatSlice';
 import { store } from '@/redux/store/store';
@@ -27,7 +26,7 @@ socket.on("connection", () => {
  
 // 3. GET ALL MESSAGES (RESPONSE)
 socket.on("all-message", (messages) => {
-  console.log("📜 All messages received:", messages);
+  //console.log("📜 All messages received:", messages);
   store.dispatch(SetMessageList(messages?.messages))
 });
 

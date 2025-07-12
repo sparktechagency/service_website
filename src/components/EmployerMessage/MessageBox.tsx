@@ -1,30 +1,27 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client"
 
 import type React from "react"
 
 import { useEffect, useRef, useState } from "react"
 import { Send } from "lucide-react"
-import { usePathname, useSearchParams } from "next/navigation"
+import { useParams, usePathname, } from "next/navigation"
 import socket from "@/socket/socket"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks"
 import { SetConversationList, SetMessageList } from "@/redux/features/chat/chatSlice"
-import ConversationItem from "./ConversationItem"
 import MessageListItem from "./MessageListItem"
+import ChatItem from "./ChatItem"
 
 
 
 
-export default function NewMessage() {
+export default function MessageBox () {
     const [messageText, setMessageText] = useState("");
+    const { receiverId, conversationId} = useParams<{ receiverId: string, conversationId: string }>();
     const dispatch = useAppDispatch();
     const { conversationList, messageList } = useAppSelector((state) => state.chat);
-    const searchParams = useSearchParams();
-    const participantId = searchParams.get("participantId");
-    const name = searchParams.get("name");
-    //const image = searchParams.get("image");
     const path = usePathname();
-    //const imgSrc = image === "null" ? "/images/profile_placeholder.png" : baseUrl + image;
     const messageEndRef = useRef<HTMLDivElement>(null);
 
 
@@ -58,36 +55,41 @@ export default function NewMessage() {
     };
 
     useEffect(() => {
-        if (!participantId) return;
+        if (!receiverId) return;
         //if (socket.connected) {
             //console.log("Connected------------------------------------------------");
-            emitAllMessages(participantId as string);
+            emitAllMessages(receiverId as string);
         //}
-    }, [participantId]);
+    }, [receiverId]);
 
 
-    socket.on(`all-message/${participantId}`, (messages) => {
-        dispatch(SetMessageList(messages?.messages))
-        console.log("📜 All messages received fdgfer:------->", messages?.messages);
+    socket.on(`all-message/${receiverId}`, (messages) => {
+        //dispatch(SetMessageList(messages?.messages))
+        //console.log("📜 All messages received fdgfer:------->", messages?.messages);
     });
     //messaging part ended
 
     // 2. NEW MESSAGE RECEIVED
-    // socket.on("new-message", (message) => {
-    //     //console.log("📩 New message received:", message);
-    //     //console.log("outside-----",message)
-    //     if ((message.conversationId === conversationId)) {
-    //         //console.log("inside-----",message)
-    //         dispatch(SetMessageList([...messageList, message]));
-    //         setTimeout(scrollToBottom, 100);
-    //         console.log("new-message", {
-    //             conv: message.conversationId,
-    //             chatId: conversationId
-    //         })
-    //     }
+    useEffect(()=> {
+            socket.on("new-message", (message) => {
+        //console.log("📩 New message received:", message);
+        //console.log("outside-----",message)
+        //console.log(message)
+        
+        if ((message.conversationId === conversationId)) {
+            console.log(message.conversationId === conversationId)
+             console.log("new-message", {
+                conv: message.conversationId,
+                chatId: conversationId
+            })
+            //console.log("inside-----",message)
+            dispatch(SetMessageList([...messageList, message]));
+            setTimeout(scrollToBottom, 100);
+        }
 
-    // });
+    });
 
+    }, [conversationId])
 
 
     const scrollToBottom = () => {
@@ -106,7 +108,7 @@ export default function NewMessage() {
             console.log("Sending message:", messageText)
             socket.emit(
                 "new-message",
-                { receiverId: participantId, text: messageText.trim() },
+                { receiverId: receiverId, text: messageText.trim() },
             );
             // socket.emit("all-message", {
             //     receiverId: participantId,
@@ -132,21 +134,21 @@ export default function NewMessage() {
                 <div className="w-full md:w-80 bg-white border-r border-gray-200 flex flex-col">
                     <div className="p-4 border-b border-gray-200">
                         <div className="flex items-center justify-between mb-4">
-                            <h2 className="text-xl font-semibold text-gray-900">Messages</h2>
+                            <h2 className="text-xl font-semibold text-gray-900">Message Box</h2>
                         </div>
                     </div>
 
                     {/* Scrollable Chat List */}
                     <div className="flex-1 overflow-y-auto">
                         {conversationList?.map((chat, index) => (
-                          <ConversationItem key={index} chat={chat}/>                       
+                          <ChatItem key={index} chat={chat} />                       
                         ))}
                     </div>
                 </div>
 
                 {/* Chat Area */}
                 <div className="hidden md:flex flex-1  w-full flex-col bg-gray-50">
-                    {participantId ? (
+                    {receiverId ? (
                         <>
                             {/* Chat Header */}
                             <div className="flex items-center justify-between p-4 bg-white border-b border-gray-200">
@@ -163,7 +165,7 @@ export default function NewMessage() {
                                         }}
                                     /> */}
                                     <div className="ml-3">
-                                        <h3 className="text-lg font-medium text-gray-900">{name}</h3>
+                                        <h3 className="text-lg font-medium text-gray-900">{"name"}</h3>
                                     </div>
                                 </div>
                             </div>

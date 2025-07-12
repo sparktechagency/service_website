@@ -5,7 +5,7 @@ import { baseUrl } from "@/redux/features/api/apiSlice";
 import { TParticipant } from "@/types/participant.type";
 import getPartner from "@/utils/getPartner";
 import Image from "next/image";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import React from "react";
 
 
@@ -13,25 +13,24 @@ type TConversation = {
   chat: any,
 }
 
-const ConversationItem = ({ chat }: TConversation) => {
+const ChatItem = ({ chat }: TConversation) => {
   const currentAuthId = localStorage.getItem("authId")
   const partner = getPartner(chat?.participants, currentAuthId as string) as TParticipant;
+  const { receiverId} = useParams<{ receiverId: string, conversationId: string }>();
   const userInfo = useUserInfo();
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const participantId = searchParams.get("participantId");
   const imgSrc = partner?.profile_image ? baseUrl + partner?.profile_image : "/images/profile_placeholder.png";
 
 
 
   const handleSelect = (participantId: string,) => {
-    router.push(`/dashboard/${userInfo?.role === "USER" ? "candidate" : "employer"}/messages?participantId=${participantId}&chatId=${chat?._id}&name=${partner?.name}&image=${partner?.profile_image}`)
+    router.push(`/dashboard/${userInfo?.role === "USER" ? "candidate" : "employer"}/messages/${participantId}/${chat?._id}`)
   }
 
   return (
     <>
       <div
-        className={`flex items-center p-4 cursor-pointer transition-colors hover:bg-gray-50 ${participantId === partner?._id ? "bg-blue-50 border-r-2 border-blue-500" : ""
+        className={`flex items-center p-4 cursor-pointer transition-colors hover:bg-gray-50 ${receiverId === partner?._id ? "bg-blue-50 border-r-2 border-blue-500" : ""
           }`}
         onClick={() => handleSelect(partner?._id)}
       // className={`flex items-center p-4 cursor-pointer transition-colors hover:bg-gray-50`}
@@ -76,4 +75,4 @@ const ConversationItem = ({ chat }: TConversation) => {
   );
 };
 
-export default ConversationItem;
+export default ChatItem;
