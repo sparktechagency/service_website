@@ -3,7 +3,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { MapContainer, TileLayer, Marker, useMapEvents } from "react-leaflet";
-import { Icon } from "leaflet";
+import { Icon, Map as LeafletMap } from "leaflet";
 import { Map } from "lucide-react";
 import "leaflet/dist/leaflet.css";
 
@@ -94,7 +94,7 @@ const LocationMap = ({
 }: LocationMapProps) => {
   const [mapLoaded, setMapLoaded] = useState(false);
   const defaultCenter: LatLngTuple = [37.7749, -122.4194];
-  const mapRef = useRef<any>(null);
+  const mapRef = useRef<LeafletMap>(null);
 
   useEffect(() => {
     const timer = setTimeout(() => setMapLoaded(true), 300);
@@ -128,7 +128,7 @@ const LocationMap = ({
           zoom={13}
           scrollWheelZoom={true}
           style={{ height: "100%", width: "100%" }}
-          whenCreated={(mapInstance) => (mapRef.current = mapInstance)}
+          // whenCreated={(mapInstance: any) => (mapRef.current = mapInstance)}
         >
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
