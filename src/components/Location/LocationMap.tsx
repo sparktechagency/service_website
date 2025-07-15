@@ -128,7 +128,6 @@ const LocationMap = ({
           zoom={13}
           scrollWheelZoom={true}
           style={{ height: "100%", width: "100%" }}
-          // @ts-expect-error
           whenCreated={(mapInstance) => (mapRef.current = mapInstance)}
         >
           <TileLayer
@@ -141,7 +140,6 @@ const LocationMap = ({
           )}
         </MapContainer>
       </div>
-
       <div className="absolute bottom-3 left-3 right-3 bg-white bg-opacity-90 py-2 px-3 rounded-md text-xs text-gray-600 shadow-sm">
         Click on the map to select a location
       </div>
