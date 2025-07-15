@@ -22,8 +22,8 @@ const UpdateLocationForm = () => {
     initialLatitude,
     initialLongitude,
   ]);
-  const [address, setAddress] = useState<string>("");
-  const [postalCode, setPostalCode] = useState<string>("");
+  // const [address, setAddress] = useState<string>("");
+  // const [postalCode, setPostalCode] = useState<string>("");
 
   const [updateLocation, { isLoading }] = useUpdateCandidateLocationMutation();
 
@@ -58,8 +58,8 @@ const UpdateLocationForm = () => {
     selectedPostalCode?: string
   ) => {
     setSelectedLocation(location);
-    setAddress(selectedAddress ?? "");
-    setPostalCode(selectedPostalCode ?? "");
+    // setAddress(selectedAddress ?? "");
+    // setPostalCode(selectedPostalCode ?? "");
 
     setValue("latitude", location[0].toFixed(6));
     setValue("longitude", location[1].toFixed(6));
@@ -85,7 +85,7 @@ const UpdateLocationForm = () => {
         </div>
 
         {/* Show Address */}
-        <div>
+        {/* <div>
           <label className="block font-medium mb-1">Address</label>
           <input
             type="text"
@@ -93,10 +93,10 @@ const UpdateLocationForm = () => {
             value={address}
             readOnly
           />
-        </div>
+        </div> */}
 
         {/* Show Postal Code */}
-        <div>
+        {/* <div>
           <label className="block font-medium mb-1">Postal Code</label>
           <input
             type="text"
@@ -104,7 +104,7 @@ const UpdateLocationForm = () => {
             value={postalCode}
             readOnly
           />
-        </div>
+        </div> */}
 
         <button
           type="submit"
