@@ -77,7 +77,7 @@ const SetLocationForm = () => {
         </div>
 
         {/* Address display */}
-        <div>
+        {/* <div>
           <label className="block font-medium mb-1">Address</label>
           <input
             type="text"
@@ -85,10 +85,10 @@ const SetLocationForm = () => {
             value={address}
             readOnly
           />
-        </div>
+        </div> */}
 
         {/* Postal code display */}
-        <div>
+        {/* <div>
           <label className="block font-medium mb-1">Postal Code</label>
           <input
             type="text"
@@ -96,7 +96,7 @@ const SetLocationForm = () => {
             value={postalCode}
             readOnly
           />
-        </div>
+        </div> */}
 
         <button
           type="submit"
