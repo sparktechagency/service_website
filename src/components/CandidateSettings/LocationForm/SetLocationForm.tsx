@@ -2,14 +2,16 @@
 
 import LocationMap, { LatLngTuple } from "@/components/Location/LocationMap";
 import { useUpdateCandidateLocationMutation } from "@/redux/features/user/userApi";
-// import { locationSchema } from "@/schemas/candidate.schema";
-// import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { CgSpinnerTwo } from "react-icons/cg";
-// import { z } from "zod";
 
-// type TFormValues = z.infer<typeof locationSchema>;
+interface LocationFormData {
+  latitude: string;
+  longitude: string;
+  address: string;
+  postalCode: string;
+}
 
 const SetLocationForm = () => {
   const [selectedLocation, setSelectedLocation] = useState<LatLngTuple>([
@@ -20,7 +22,7 @@ const SetLocationForm = () => {
 
   const [updateLocation, { isLoading }] = useUpdateCandidateLocationMutation();
 
-  const { handleSubmit, setValue, watch } = useForm({
+  const { handleSubmit, setValue, watch } = useForm<LocationFormData>({
     defaultValues: {
       latitude: "51.5072",
       longitude: "0.1276",
@@ -29,11 +31,9 @@ const SetLocationForm = () => {
     },
   });
 
-  // Watch latitude and longitude fields
   const latitude = watch("latitude");
   const longitude = watch("longitude");
 
-  // Update map when latitude or longitude changes in form
   useEffect(() => {
     if (latitude && longitude) {
       const lat = parseFloat(latitude);
@@ -44,7 +44,6 @@ const SetLocationForm = () => {
     }
   }, [latitude, longitude]);
 
-  // When user selects a location on map, update lat/lng, address, postal code
   const handleLocationSelect = (
     location: LatLngTuple,
     selectedAddress?: string,
@@ -60,7 +59,7 @@ const SetLocationForm = () => {
     setValue("postalCode", selectedPostalCode || "");
   };
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: LocationFormData) => {
     updateLocation(data);
   };
 
