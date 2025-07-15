@@ -11,11 +11,11 @@ type TProps = {
   job: TAppliedJob;
 };
 
-const AppliedJobCard : React.FC<TProps> = ({ job }) => {
+const AppliedJobCard: React.FC<TProps> = ({ job }) => {
   const router = useRouter();
   const userInfo = useUserInfo();
 
-  const daysRemaining = getDaysRemaining(job?.jobId?.application_dateline);;
+  const daysRemaining = getDaysRemaining(job?.jobId?.application_dateline);
 
   return (
     <div className="bg-white rounded-lg shadow-md transition-all duration-300 hover:shadow-lg border border-gray-100 overflow-hidden flex flex-col h-full">
@@ -41,7 +41,11 @@ const AppliedJobCard : React.FC<TProps> = ({ job }) => {
         <div className="flex items-center justify-between text-sm text-gray-500 mt-auto">
           <div className="flex items-center text-sm">
             <Clock size={16} className="mr-1 text-gray-400" />
-            <span>{daysRemaining > 0 ? `${daysRemaining} days remaining` : "Deadline passed"}</span>
+            <span>
+              {daysRemaining > 0
+                ? `${daysRemaining} days remaining`
+                : "Deadline passed"}
+            </span>
           </div>
           <CategoryBadge category={job?.jobId?.category?.category} />
         </div>

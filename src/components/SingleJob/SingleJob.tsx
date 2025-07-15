@@ -17,12 +17,9 @@ type TProps = {
   job: IFindJob;
 };
 
-
-
 const SingleJob = ({ job }: TProps) => {
-   const router = useRouter();
-   const userInfo = useUserInfo();
-
+  const router = useRouter();
+  const userInfo = useUserInfo();
 
   return (
     <>
@@ -51,6 +48,7 @@ const SingleJob = ({ job }: TProps) => {
                   {userInfo?.authId && userInfo.role === "USER" && (
                     <>
                       <FavouriteCard jobId={job?._id} />
+
                       <span
                         onClick={() =>
                           router.push(`/employer-details/${job?.userId?._id}`)
@@ -59,9 +57,9 @@ const SingleJob = ({ job }: TProps) => {
                       >
                         View Employer
                       </span>
-                      <ApplyModal jobId={job?._id} />
                     </>
                   )}
+                  <ApplyModal jobId={job?._id} />
                 </div>
               </div>
             </div>
@@ -217,7 +215,9 @@ const SingleJob = ({ job }: TProps) => {
                   </div>
                   <div>
                     <p className="text-sm text-gray-500">LOCATION:</p>
-                    <p className="font-medium">{job?.address}</p>
+                    <p className="font-medium">
+                      {job?.address}, {job?.postalCode}
+                    </p>
                   </div>
                 </div>
 
@@ -302,6 +302,6 @@ const SingleJob = ({ job }: TProps) => {
       </div>
     </>
   );
-}
+};
 
-export default SingleJob
+export default SingleJob;

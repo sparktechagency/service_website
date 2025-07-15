@@ -6,8 +6,8 @@ import TagTypes from "@/constant/tagType.constant";
 import { ApiError } from "@/types/global.type";
 import { SetLoginError } from "../auth/authSlice";
 
-export const baseUrl = "https://backend.machmakers.co.uk";
-//export const baseUrl = "http://10.0.60.118:5004"
+// export const baseUrl = "https://backend.machmakers.co.uk";
+export const baseUrl = "http://10.0.60.118:5004"
 
 const baseQuery = fetchBaseQuery({
   //baseUrl: "http://24.199.120.27:5004", //http://10.0.60.118
@@ -26,10 +26,10 @@ export const apiSlice = createApi({
     const result = await baseQuery(args, api, extraOptions);
     const error = result?.error as ApiError;
     if (error?.status === 401) {
-      if(error?.data?.message === "Please activate your account then try to login"){
+      if (error?.data?.message === "Please activate your account then try to login") {
         api.dispatch(SetLoginError(error?.data?.message))
       }
-      else{
+      else {
         localStorage.clear();
         //ErrorToast("Authorization Expired");
         window.location.href = "/login";

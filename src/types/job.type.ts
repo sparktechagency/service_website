@@ -14,7 +14,7 @@ export interface IJob {
 
 export type TJob = {
   id: number;
-  company:string;
+  company: string;
   logo: string;
   logoColor: string;
   featured: boolean;
@@ -91,6 +91,7 @@ export type IFindJob = {
   salary: number;
   rate: string;
   vacancies: number;
+  postalCode: string;
   experience: string; // e.g., "4_6_years"
   types: string;      // e.g., "fixedterm_contract"
   education: string;  // e.g., "apprenticeship"

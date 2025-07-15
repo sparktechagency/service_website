@@ -1,101 +1,74 @@
 "use client";
 
-import { ChevronDown } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const HeroForm = () => {
   const router = useRouter();
-  const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState(15);
-  const [searchTerm, setSearchTerm] = useState("")
-
-  const options = [5, 10, 15, 25, 50, 100];
-
-  const handleSelect = (value: number) => {
-    setSelected(value);
-    setIsOpen(false);
-  };
+  const [searchTerm, setSearchTerm] = useState("");
+  const [location, setLocation] = useState("");
+  const [postalCode, setPostalCode] = useState("");
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    router.push(`/find-work?searchTerm=${searchTerm}&distance=${selected}`);
+    e.preventDefault();
+    router.push(
+      `/find-work?searchTerm=${searchTerm}&location=${location}&postalCode=${postalCode}`
+    );
   };
 
   return (
-    <>
-      <div className="w-full">
-        <form onSubmit={handleSearch} className="flex flex-col md:flex-row gap-2 md:gap-4 bg-white p-4 rounded-lg shadow-sm">
-          <div className="relative flex-1">
-            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-              <svg
-                className="w-4 h-4 text-gray-500"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                />
-              </svg>
-            </div>
-            <input
-              type="text"
-              value={searchTerm}
-              onChange={(e)=>setSearchTerm(e.target.value)}
-              placeholder="search by job title, skills, keywords"
-              required
-              className="w-full pl-10 pr-4 py-2 border placeholder:text-gray-400 text-gray-700 border-gray-300 rounded-md focus:outline-none focus:border-blue-500 focus:ring-blue-500"
-            />
-          </div>
+    <div className="w-full px-4">
+      <form
+        onSubmit={handleSearch}
+        className="w-full max-w-4xl mx-auto flex flex-col sm:flex-row flex-wrap items-stretch gap-3 bg-white p-4 rounded-xl shadow-lg border border-gray-100"
+      >
+        {/* Search by job title */}
+        <div className="w-full sm:flex-1">
+          <input
+            type="text"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            placeholder="Search by job title, skills, keywords"
+            required
+            className="w-full h-12 px-4 text-sm text-gray-800 border border-gray-300 rounded-md focus:outline-none focus:border-blue-600 transition-all"
+          />
+        </div>
 
-          <div className="relative flex-1">
-            <div className="relative w-full">
-              <button
-                onClick={() => setIsOpen(!isOpen)}
-                type="button"
-                className="w-full flex items-center justify-between p-2 border border-gray-300 rounded bg-white"
-              >
-                <span className="text-gray-700">Location</span>
-                <div className="flex items-center gap-2">
-                  <span className="text-gray-700">{selected} miles</span>
-                  <ChevronDown className="w-4 h-4 text-gray-700" />
-                </div>
-              </button>
+        {/* Location */}
+        <div className="w-full sm:w-[200px]">
+          <input
+            type="text"
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
+            placeholder="Location"
+            required
+            className="w-full h-12 px-4 text-sm text-gray-800 border border-gray-300 rounded-md focus:outline-none focus:border-blue-600 transition-all"
+          />
+        </div>
 
-              {isOpen && (
-                <ul className="absolute w-full mt-1 bg-white border border-gray-300 rounded shadow-sm z-40">
-                  {options.map((value) => (
-                    <li
-                      key={value}
-                      onClick={() => handleSelect(value)}
-                      className={`p-2 cursor-pointer text-gray-700 hover:bg-gray-50 ${
-                        selected === value ? "bg-blue-50" : ""
-                      }`}
-                    >
-                      {value} miles
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </div>
-          </div>
+        {/* Postal code */}
+        <div className="w-full sm:w-[160px]">
+          <input
+            type="text"
+            value={postalCode}
+            onChange={(e) => setPostalCode(e.target.value)}
+            placeholder="Postal code"
+            required
+            className="w-full h-12 px-4 text-sm text-gray-800 border border-gray-300 rounded-md focus:outline-none focus:border-blue-600 transition-all"
+          />
+        </div>
 
-          <div className="flex flex-col sm:flex-row gap-2">
-            <button
-              type="submit"
-              className="px-4 py-2 text-white bg-secondary cursor-pointer rounded-md focus:outline-none"
-            >
-              Search
-            </button>
-          </div>
-        </form>
-      </div>
-    </>
+        {/* Search button */}
+        <div className="w-full sm:w-auto">
+          <button
+            type="submit"
+            className="w-full sm:w-auto h-12 px-6 bg-yellow-500 hover:bg-yellow-600 text-white font-semibold rounded-md shadow-sm transition-colors"
+          >
+            Search
+          </button>
+        </div>
+      </form>
+    </div>
   );
 };
 

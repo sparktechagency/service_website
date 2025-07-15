@@ -5,14 +5,13 @@ import { Button } from "../ui/button";
 import { useApplyJobMutation } from "@/redux/features/job/jobApi";
 import useUserInfo from "@/hooks/useUserInfo";
 import { useRouter } from "next/navigation";
-import { ErrorToast } from "@/helper/ValidationHelper";
+import { ErrorToast, WarningToast } from "@/helper/ValidationHelper";
 import { CgSpinnerTwo } from "react-icons/cg";
 import { useAppSelector } from "@/redux/hooks/hooks";
 
-
 type TProps = {
   jobId: string;
-}
+};
 
 const ApplyModal = ({ jobId }: TProps) => {
   const router = useRouter();
@@ -20,10 +19,7 @@ const ApplyModal = ({ jobId }: TProps) => {
   const [modalOpen, setModalOpen] = useState(false);
   const { user } = useAppSelector((state) => state.user);
 
-  const [applyJob, { isLoading, isSuccess }] =
-    useApplyJobMutation();
-
-
+  const [applyJob, { isLoading, isSuccess }] = useApplyJobMutation();
 
   useEffect(() => {
     if (!isLoading && isSuccess) {
@@ -31,24 +27,19 @@ const ApplyModal = ({ jobId }: TProps) => {
     }
   }, [isSuccess, isLoading]);
 
-
   const handleSubmit = () => {
     if (user?.resume) {
       applyJob({
         id: jobId,
         data: {
           //resume: "https://res.cloudinary.com/dqhbgockh/raw/upload/v1751533157/real_estate/1751533155088-gg.pdf"
-          resume: user?.resume
-        }
+          resume: user?.resume,
+        },
       });
-    }
-    else{
+    } else {
       ErrorToast("Please upload your resume");
     }
   };
-
-
-
 
   return (
     <>
@@ -57,7 +48,7 @@ const ApplyModal = ({ jobId }: TProps) => {
           if (userInfo?.authId) {
             setModalOpen(true);
           } else {
-            ErrorToast("You have to sign in as a Candidate");
+            WarningToast("You have to sign in as a Candidate");
             router.push("/login");
           }
         }}

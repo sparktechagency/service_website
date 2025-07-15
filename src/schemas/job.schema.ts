@@ -122,6 +122,13 @@ export const createJobSchema = z
         })
         .min(1, "Description is required")
     ),
+    postalCode: z
+      .string({
+        invalid_type_error: "Postal code must be string",
+        required_error: "Postal code is required",
+      })
+      .trim()
+      .optional(),
     longitude: z
       .string()
       .transform((val) => Number(val))
@@ -154,12 +161,12 @@ export const createJobSchema = z
   });
 
 
-  export const applyJobSchema = z.object({
-    icon: z
-      .string({
-        invalid_type_error: "Resume must be File",
-        required_error: "Please upload a resume",
-      })
-      .min(1, "Please upload a resume")
-      .trim(),
-  });
+export const applyJobSchema = z.object({
+  icon: z
+    .string({
+      invalid_type_error: "Resume must be File",
+      required_error: "Please upload a resume",
+    })
+    .min(1, "Please upload a resume")
+    .trim(),
+});
