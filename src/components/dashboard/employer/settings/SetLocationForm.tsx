@@ -15,13 +15,12 @@ const SetLocationForm = () => {
   const [selectedLocation, setSelectedLocation] = useState<LatLngTuple>([
     51.5072, 0.1276,
   ]);
-  const [address, setAddress] = useState<string>("");
+  const [address, setAddress] = useState("");
   const [postalCode, setPostalCode] = useState<string>("");
 
   const [updateLocation, { isLoading }] = useUpdateEmployerLocationMutation();
 
-  const { handleSubmit, setValue, watch } = useForm<TFormValues>({
-    resolver: zodResolver(locationSchema),
+  const { handleSubmit, setValue, watch } = useForm({
     defaultValues: {
       latitude: "51.5072",
       longitude: "0.1276",
@@ -58,7 +57,7 @@ const SetLocationForm = () => {
     setValue("postalCode", selectedPostalCode || "");
   };
 
-  const onSubmit: SubmitHandler<TFormValues> = (data) => {
+  const onSubmit = (data: any) => {
     updateLocation(data);
   };
 

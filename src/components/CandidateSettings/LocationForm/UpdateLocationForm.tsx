@@ -27,8 +27,7 @@ const UpdateLocationForm = () => {
 
   const [updateLocation, { isLoading }] = useUpdateCandidateLocationMutation();
 
-  const { handleSubmit, setValue, watch } = useForm<TFormValues>({
-    resolver: zodResolver(locationSchema),
+  const { handleSubmit, setValue, watch } = useForm({
     defaultValues: {
       latitude: initialLatitude.toString(),
       longitude: initialLongitude.toString(),
