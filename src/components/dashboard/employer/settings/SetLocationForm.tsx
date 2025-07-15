@@ -2,14 +2,14 @@
 
 import LocationMap, { LatLngTuple } from "@/components/Location/LocationMap";
 import { useUpdateEmployerLocationMutation } from "@/redux/features/user/userApi";
-import { locationSchema } from "@/schemas/candidate.schema";
-import { zodResolver } from "@hookform/resolvers/zod";
+// import { locationSchema } from "@/schemas/candidate.schema";
+// import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useState } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { CgSpinnerTwo } from "react-icons/cg";
 import { z } from "zod";
 
-type TFormValues = z.infer<typeof locationSchema>;
+// type TFormValues = z.infer<typeof locationSchema>;
 
 const SetLocationForm = () => {
   const [selectedLocation, setSelectedLocation] = useState<LatLngTuple>([

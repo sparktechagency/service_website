@@ -4,7 +4,7 @@ import LocationMap, { LatLngTuple } from "@/components/Location/LocationMap";
 import { useUpdateCandidateLocationMutation } from "@/redux/features/user/userApi";
 import { useAppSelector } from "@/redux/hooks/hooks";
 import { locationSchema } from "@/schemas/candidate.schema";
-import { zodResolver } from "@hookform/resolvers/zod";
+// import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { CgSpinnerTwo } from "react-icons/cg";
