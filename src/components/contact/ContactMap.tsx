@@ -1,23 +1,24 @@
 "use client";
 
 import { useState } from "react";
-import LocationMap from "../Location/LocationMap";
+import LocationMap, { LatLngTuple } from "../Location/LocationMap";
 
 const ContactMap = () => {
-  const [selectedLocation, setSelectedLocation] = useState<number[]>([
+  // Use LatLngTuple for precise typing: [number, number]
+  const [selectedLocation, setSelectedLocation] = useState<LatLngTuple>([
     51.5072, 0.1276,
   ]);
 
-  const handleLocationSelect = (location: number[]) => {
+  const handleLocationSelect = (location: LatLngTuple) => {
     setSelectedLocation(location);
   };
 
   return (
     <>
-        <LocationMap
-          onLocationSelect={handleLocationSelect}
-          selectedLocation={selectedLocation}
-        />
+      <LocationMap
+        onLocationSelect={handleLocationSelect}
+        selectedLocation={selectedLocation}
+      />
     </>
   );
 };
