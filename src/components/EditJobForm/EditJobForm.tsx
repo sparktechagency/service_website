@@ -20,9 +20,9 @@ import { useAppSelector } from "@/redux/hooks/hooks";
 import { createJobSchema } from "@/schemas/job.schema";
 import { TEmployerJob } from "@/types/job.type";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { CgSpinnerTwo } from "react-icons/cg";
-import { z } from "zod";
+
 import CustomQuilEditor from "../form/CustomQuilEditor";
 
 type TProps = {
