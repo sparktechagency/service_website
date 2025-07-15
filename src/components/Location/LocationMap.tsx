@@ -4,7 +4,7 @@
 import { useEffect, useRef, useState } from "react";
 import { MapContainer, TileLayer, Marker, useMapEvents } from "react-leaflet";
 import { Icon } from "leaflet";
-import { Map, Search } from "lucide-react";
+import { Map } from "lucide-react";
 import "leaflet/dist/leaflet.css";
 
 const markerIcon = new Icon({
@@ -26,18 +26,28 @@ interface InteractiveMapProps {
   ) => void;
 }
 
+// Clean and shorten address
 const cleanAddress = (fullAddress: string): string => {
   if (!fullAddress) return "";
 
   const parts = fullAddress.split(",").map((part) => part.trim());
 
-  const filteredParts = parts.filter(
-    (part) => part.toLowerCase() !== "rajshahi division"
-  );
+  // Filter out unwanted parts (e.g. Rajshahi Division)
+  const filtered = parts.filter((part) => {
+    const lower = part.toLowerCase();
+    return ![
+      "rajshahi division",
+      "dhaka division",
+      "chittagong division",
+    ].includes(lower);
+  });
 
-  const shortParts = filteredParts.slice(0, 3);
+  // Optionally remove the 3rd part (index 2) if present
+  if (filtered.length >= 3) {
+    filtered.splice(2, 1); // remove index 2
+  }
 
-  return shortParts.join(", ");
+  return filtered.slice(0, 4).join(", ");
 };
 
 const InteractiveMap = ({ onLocationSelect }: InteractiveMapProps) => {
@@ -83,7 +93,6 @@ const LocationMap = ({
   selectedLocation,
 }: LocationMapProps) => {
   const [mapLoaded, setMapLoaded] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
   const defaultCenter: LatLngTuple = [37.7749, -122.4194];
   const mapRef = useRef<any>(null);
 
@@ -119,7 +128,7 @@ const LocationMap = ({
           zoom={13}
           scrollWheelZoom={true}
           style={{ height: "100%", width: "100%" }}
-          // @ts-ignore
+          // @ts-expect-error
           whenCreated={(mapInstance) => (mapRef.current = mapInstance)}
         >
           <TileLayer
@@ -134,7 +143,7 @@ const LocationMap = ({
       </div>
 
       <div className="absolute bottom-3 left-3 right-3 bg-white bg-opacity-90 py-2 px-3 rounded-md text-xs text-gray-600 shadow-sm">
-        Click on the map or search above to select a location
+        Click on the map to select a location
       </div>
     </div>
   );
