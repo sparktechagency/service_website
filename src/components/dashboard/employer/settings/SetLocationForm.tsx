@@ -2,14 +2,16 @@
 
 import LocationMap, { LatLngTuple } from "@/components/Location/LocationMap";
 import { useUpdateEmployerLocationMutation } from "@/redux/features/user/userApi";
-// import { locationSchema } from "@/schemas/candidate.schema";
-// import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { CgSpinnerTwo } from "react-icons/cg";
-// import { z } from "zod";
 
-// type TFormValues = z.infer<typeof locationSchema>;
+interface LocationFormData {
+  latitude: string;
+  longitude: string;
+  address: string;
+  postalCode: string;
+}
 
 const SetLocationForm = () => {
   const [selectedLocation, setSelectedLocation] = useState<LatLngTuple>([
@@ -20,7 +22,7 @@ const SetLocationForm = () => {
 
   const [updateLocation, { isLoading }] = useUpdateEmployerLocationMutation();
 
-  const { handleSubmit, setValue, watch } = useForm({
+  const { handleSubmit, setValue, watch } = useForm<LocationFormData>({
     defaultValues: {
       latitude: "51.5072",
       longitude: "0.1276",
@@ -57,7 +59,7 @@ const SetLocationForm = () => {
     setValue("postalCode", selectedPostalCode || "");
   };
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: LocationFormData) => {
     updateLocation(data);
   };
 
@@ -75,8 +77,12 @@ const SetLocationForm = () => {
         </div>
 
         <div>
-          <label className="block font-medium mb-1">Address</label>
+          <label htmlFor="address" className="block font-medium mb-1">
+            Address
+          </label>
           <input
+            id="address"
+            name="address"
             type="text"
             className="w-full border rounded px-3 py-2"
             value={address}
@@ -85,8 +91,12 @@ const SetLocationForm = () => {
         </div>
 
         <div>
-          <label className="block font-medium mb-1">Postal Code</label>
+          <label htmlFor="postalCode" className="block font-medium mb-1">
+            Postal Code
+          </label>
           <input
+            id="postalCode"
+            name="postalCode"
             type="text"
             className="w-full border rounded px-3 py-2"
             value={postalCode}
