@@ -1,3 +1,5 @@
+import CookieBannerSlider from "../CookieBanner";
+
 const About = () => {
   return (
     <>
@@ -8,7 +10,7 @@ const About = () => {
           </h2>
           <div className="space-y-2">
             <p className="md:text-lg text-gray-600 text-justify">
-              MachMakers is here to make hiring easier, faster, and fairer for
+              Machmakers is here to make hiring easier, faster, and fairer for
               manufacturing and engineering businesses.
             </p>
 
@@ -20,10 +22,10 @@ const About = () => {
             </p>
 
             <p className="md:text-lg text-gray-600 text-justify">
-              We built MachMakers because we understand the pressures on both
-              sides. Whether you&rsquo;re growing your team or stepping into a new
-              role, the hiring process shouldn’t be a barrier; it should be a
-              bridge.
+              We built Machmakers because we understand the pressures on both
+              sides. Whether you&rsquo;re growing your team or stepping into a
+              new role, the hiring process shouldn’t be a barrier; it should be
+              a bridge.
             </p>
 
             <p className="md:text-lg text-gray-600 text-justify">
@@ -33,7 +35,7 @@ const About = () => {
             </p>
 
             <p className="md:text-lg text-gray-600 text-justify">
-              But MachMakers is about more than hiring.
+              But Machmakers is about more than hiring.
             </p>
 
             <p className="md:text-lg text-gray-600 text-justify">
@@ -89,33 +91,42 @@ const About = () => {
           </h2>
           <div className="space-y-2">
             <p className="md:text-lg text-gray-600 text-justify">
-              <span className="text-black font-semibold">Fairness:</span> Recruitment should be fair and transparent for both
-              employers and candidates.{" "}
+              <span className="text-black font-semibold">Fairness:</span>{" "}
+              Recruitment should be fair and transparent for both employers and
+              candidates.{" "}
             </p>
 
             <p className="md:text-lg text-gray-600 text-justify">
               <span className="text-black font-semibold">Empowerment: </span>
-               We give employers and candidates the tools and
-              confidence to take control of their hiring journey.{" "}
+              We give employers and candidates the tools and confidence to take
+              control of their hiring journey.{" "}
             </p>
 
             <p className="md:text-lg text-gray-600 text-justify">
               <span className="text-black font-semibold">Choice: </span>
-               Businesses should have hiring options that work for them,
-              not just what the industry’s always done.
+              Businesses should have hiring options that work for them, not just
+              what the industry’s always done.
             </p>
 
             <p className="md:text-lg text-gray-600 text-justify">
               <span className="text-black font-semibold">Industry Pride: </span>
-               Manufacturing and engineering are essential. We’re
-              proud to support the sectors that keep the world moving.{" "}
+              Manufacturing and engineering are essential. We’re proud to
+              support the sectors that keep the world moving.{" "}
             </p>
             <p>
-              <span className="text-black font-semibold"> Quality Connections: </span>
-              We focus on lasting matches with people who
-              genuinely want to work in these industries.
+              <span className="text-black font-semibold">
+                {" "}
+                Quality Connections:{" "}
+              </span>
+              We focus on lasting matches with people who genuinely want to work
+              in these industries.
             </p>
           </div>
+        </div>
+      </section>
+      <section className="py-10 px-4 mb-10">
+        <div className="mx-auto px:2 sm:px-4">
+          <CookieBannerSlider />
         </div>
       </section>
     </>
