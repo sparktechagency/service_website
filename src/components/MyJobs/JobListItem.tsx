@@ -1,14 +1,12 @@
 "use client";
 
-import {
-  Eye,
-  SquarePen,
-} from "lucide-react";
+import { Eye, SquarePen, Trash2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { TEmployerJob } from "@/types/job.type";
 import getType from "@/utils/getType";
 import { ErrorToast } from "@/helper/ValidationHelper";
 import EditJobStatusModal from "../modal/job/EditJobStatusModal";
+import { useDeleteEmployerJobMutation } from "@/redux/features/job/jobApi";
 
 type TProps = {
   job: TEmployerJob;
@@ -17,6 +15,20 @@ type TProps = {
 const JobListItem = ({ job }: TProps) => {
   const router = useRouter();
   const type = getType(job?.types);
+  const [deleteEmployerJob] = useDeleteEmployerJobMutation();
+
+  const handleDelete = async (id: string) => {
+    const confirmDelete = confirm("Are you sure you want to delete this job?");
+    if (!confirmDelete) return;
+
+    try {
+      await deleteEmployerJob(id).unwrap();
+      alert("Job deleted successfully!");
+    } catch (error) {
+      console.error("Failed to delete job:", error);
+      alert("Something went wrong while deleting the job.");
+    }
+  };
 
   return (
     <>
@@ -44,7 +56,7 @@ const JobListItem = ({ job }: TProps) => {
               <span className="text-sm font-medium">Expired</span>
             </div>
           )}
-         <EditJobStatusModal jobId={job?._id} status={job?.status}/>
+          <EditJobStatusModal jobId={job?._id} status={job?.status} />
         </div>
         <div className="col-span-3 md:col-span-2 flex justify-center gap-1 items-center text-gray-600 text-xs sm:text-sm">
           {/* <FileText className="h-3 sm:h-4 w-3 sm:w-4 mr-1" /> */}
@@ -71,6 +83,10 @@ const JobListItem = ({ job }: TProps) => {
             }
             className="h-3 sm:h-4 w-3 sm:w-4 mr-1 text-green-500 cursor-pointer"
           />
+          <Trash2
+            onClick={() => handleDelete(job?._id)}
+            className="h-3 sm:h-4 w-3 sm:w-4 text-red-500 cursor-pointer"
+          />
         </div>
         {/* Mobile Actions - Only visible on small screens */}
         <div className="col-span-12 mt-2 flex justify-end md:hidden">
@@ -79,8 +95,9 @@ const JobListItem = ({ job }: TProps) => {
               router.push(`/dashboard/employer/edit-job/${job?._id}`)
             }
             className="h-3 sm:h-4 w-3 sm:w-4 mr-1 text-green-500 cursor-pointer"
-          />  
+          />
         </div>
+        {/* ===================== */}
       </div>
     </>
   );

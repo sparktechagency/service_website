@@ -30,6 +30,13 @@ export const jobApi = apiSlice.injectEndpoints({
       keepUnusedDataFor: 600,
       providesTags: [TagTypes.employerJobs],
     }),
+    deleteEmployerJob: builder.mutation({
+      query: (id: string) => ({
+        url: `/jobs/deletes/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: [TagTypes.employerJobs],
+    }),
     getRecentPostedJobs: builder.query({
       query: (args) => {
         const params = new URLSearchParams();
@@ -227,7 +234,7 @@ export const jobApi = apiSlice.injectEndpoints({
       },
     }),
     applyJob: builder.mutation({
-      query: ({id, data}) => ({
+      query: ({ id, data }) => ({
         url: `/jobs/apply/${id}`,
         method: "POST",
         body: data,
@@ -299,7 +306,7 @@ export const jobApi = apiSlice.injectEndpoints({
       },
     }),
     getApplications: builder.query({
-      query: ({args, jobId}) => {
+      query: ({ args, jobId }) => {
         const params = new URLSearchParams();
 
         if (args !== undefined && args.length > 0) {
@@ -332,4 +339,4 @@ export const jobApi = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useGetEmployerJobsQuery, useCreateJobMutation, useGetSingleJobQuery, useUpdateJobMutation, useMakeActiveExpireJobMutation, useGetRecentPostedJobsQuery, useSearchJobsQuery, useGetSingleFindJobQuery, useAddRemoveFavouriteJobMutation, useGetFavouriteJobsQuery, useApplyJobMutation, useGetAppliedJobsQuery, useGetRecentAppliedJobsQuery, useGetApplicationsQuery } = jobApi;
+export const { useGetEmployerJobsQuery, useCreateJobMutation, useGetSingleJobQuery, useUpdateJobMutation, useMakeActiveExpireJobMutation, useGetRecentPostedJobsQuery, useSearchJobsQuery, useGetSingleFindJobQuery, useAddRemoveFavouriteJobMutation, useGetFavouriteJobsQuery, useApplyJobMutation, useGetAppliedJobsQuery, useGetRecentAppliedJobsQuery, useGetApplicationsQuery, useDeleteEmployerJobMutation } = jobApi;
