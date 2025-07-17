@@ -11,17 +11,22 @@ import { CgSpinnerTwo } from "react-icons/cg";
 import Error from "@/components/validation/Error";
 import { candidateProfessionalSchema } from "@/schemas/candidate.schema";
 import CustomSelect from "@/components/form/CustomSelect";
-import { educationOptions, experienceOptions, typeOptions } from "@/data/job.options";
+import {
+  educationOptions,
+  experienceOptions,
+  typeOptions,
+} from "@/data/job.options";
 import CustomMultiSelect from "@/components/form/CustomMultiSelect";
 import WorkExperienceList from "./WorkExperienceList";
 import CVForm from "./CVForm";
 import CustomDatePicker from "@/components/form/CustomDatePicker";
+import CustomTextArea from "@/components/form/CustomTextArea";
 
 type TFormValues = z.infer<typeof candidateProfessionalSchema>;
 
 const ProfessionalForm = () => {
   const { user } = useAppSelector((state) => state.user);
-  console.log(user)
+  console.log(user);
 
   const dispatch = useAppDispatch();
   const { ProfileError } = useAppSelector((state) => state.auth);
@@ -30,20 +35,24 @@ const ProfessionalForm = () => {
   const { handleSubmit, control } = useForm({
     resolver: zodResolver(candidateProfessionalSchema),
     defaultValues: {
-      job_title: user?.job_title?.length > 0 ? user?.job_title.join(', ') : "",
-      job_seeking: user?.job_seeking?.length > 0 ? user?.job_seeking.join(', ') : "",
-      education: user?.education===null ? "" : user?.education,
-      experience: user?.experience===null ? "" : user?.experience,
+      job_title: user?.job_title?.length > 0 ? user?.job_title.join(", ") : "",
+      job_seeking:
+        user?.job_seeking?.length > 0 ? user?.job_seeking.join(", ") : "",
+      education: user?.education === null ? "" : user?.education,
+      experience: user?.experience === null ? "" : user?.experience,
       availability: user?.availability,
-      skill: user?.skill?.length > 0 ? user?.skill.join(', ') : "",
-      availabil_date: user?.availabil_date ? user?.availabil_date.split("T")[0] : "",
+      skill: user?.skill?.length > 0 ? user?.skill.join(", ") : "",
+      careerObjective: user?.careerObjective ? user?.careerObjective : "",
+      availabil_date: user?.availabil_date
+        ? user?.availabil_date.split("T")[0]
+        : "",
     },
   });
 
   const onSubmit: SubmitHandler<TFormValues> = (data) => {
     dispatch(SetProfileError(""));
     const formData = new FormData();
-    const {job_title, job_seeking, skill, ...rest} = data;
+    const { job_title, job_seeking, skill, ...rest } = data;
     const finalValues = {
       ...rest,
       job_title: job_title.split(",").map((t) => t.trim()),
@@ -62,8 +71,8 @@ const ProfessionalForm = () => {
         formData.append(key, String(value));
       }
     });
- 
-     updateCandidateProfile(formData)
+
+    updateCandidateProfile(formData);
   };
 
   return (
@@ -104,8 +113,13 @@ const ProfessionalForm = () => {
                 control={control}
                 options={experienceOptions}
               />
-             
-              <CustomMultiSelect name="availability" label="Availability" control={control} options={typeOptions}/>
+
+              <CustomMultiSelect
+                name="availability"
+                label="Availability"
+                control={control}
+                options={typeOptions}
+              />
 
               <CustomInput
                 label="Skills(multiple, comma separated)"
@@ -114,12 +128,20 @@ const ProfessionalForm = () => {
                 control={control}
                 placeholder="Enter your skills"
               />
-               <CustomDatePicker
-                  label="Available Date"
-                  name="availabil_date"
-                  control={control}
-                  placeholder="DD/MM/YYYY"
-                />
+              <CustomDatePicker
+                label="Available Date"
+                name="availabil_date"
+                control={control}
+                placeholder="DD/MM/YYYY"
+              />
+
+              <CustomTextArea
+                label="Career Objective"
+                name="careerObjective"
+                control={control}
+                placeholder="write here..."
+                rows={3}
+              />
 
               <button
                 type="submit"
@@ -137,12 +159,9 @@ const ProfessionalForm = () => {
             </div>
           </form>
         </div>
-
-       
       </div>
-       <CVForm/>
-       <WorkExperienceList/>
-
+      <CVForm />
+      <WorkExperienceList />
     </>
   );
 };

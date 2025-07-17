@@ -16,8 +16,8 @@ export type TWorkExperience = {
   job_title: string;
   company_name: string;
   location: string;
-  start_date: string; 
-  end_date: string;   
+  start_date: string;
+  end_date: string;
   currently_work: boolean;
   details: string;
   _id: string;
@@ -38,6 +38,7 @@ export type ICandidateDetails = {
   skill: string[];
   alert_job_type: string[];
   profile_private: boolean;
+  careerObjective: string;
   status: string;
   work_experience: {
     job_title: string;

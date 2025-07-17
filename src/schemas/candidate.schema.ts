@@ -15,15 +15,15 @@ export const candidatePersonalSchema = z.object({
         "Name can only contain letters, spaces, apostrophes, hyphens, and dots.",
     }),
   phone_number: z
-        .string({
-          invalid_type_error: "Phone Number must be string",
-          required_error: "Phone number is required",
-        })
-        .min(1, "Phone number is required")
-        .trim()
-        .regex(ukPhoneRegex, {
-          message: "Enter a valid UK phone number",
-        }),
+    .string({
+      invalid_type_error: "Phone Number must be string",
+      required_error: "Phone number is required",
+    })
+    .min(1, "Phone number is required")
+    .trim()
+    .regex(ukPhoneRegex, {
+      message: "Enter a valid UK phone number",
+    }),
   address: z
     .string({
       invalid_type_error: "Address must be string",
@@ -57,6 +57,13 @@ export const candidateProfessionalSchema = z.object({
     .regex(/^([^,\n]+)(,\s*[^,\n]+)*$/, {
       message: "Please enter valid comma-separated skills",
     }),
+  careerObjective: z
+    .string({
+      invalid_type_error: "Career Objective must be a string",
+      required_error: "Career Objective is required",
+    })
+    .trim()
+    .min(10, "Career Objective must be at least 10 characters"),
   job_seeking: z
     .string({
       invalid_type_error: "Job Seeking Title must be string",
@@ -94,13 +101,13 @@ export const candidateProfessionalSchema = z.object({
     .regex(/^([^,\n]+)(,\s*[^,\n]+)*$/, {
       message: "Please enter valid comma-separated skills",
     }),
-    availabil_date: z
-      .string({
-        invalid_type_error: "Available date must be string",
-        required_error: "Select available date",
-      })
-      .trim()
-      .min(1, "Select available date"),
+  availabil_date: z
+    .string({
+      invalid_type_error: "Available date must be string",
+      required_error: "Select available date",
+    })
+    .trim()
+    .min(1, "Select available date"),
 });
 
 export const locationSchema = z.object({
