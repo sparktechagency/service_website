@@ -1,4 +1,4 @@
-import CookieBannerSlider from "../CookieBanner";
+import CookieBanner from "../CookieBanner";
 
 const About = () => {
   return (
@@ -126,7 +126,7 @@ const About = () => {
       </section>
       <section className="py-10 px-4 mb-10">
         <div className="mx-auto px:2 sm:px-4">
-          <CookieBannerSlider />
+          <CookieBanner />
         </div>
       </section>
     </>
