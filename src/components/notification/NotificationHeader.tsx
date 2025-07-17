@@ -1,10 +1,32 @@
 "use client";
 
+import { baseUrl } from "@/redux/features/api/apiSlice";
+import { useEffect } from "react";
+
 interface NotificationsHeaderProps {
   count: number;
 }
 
-export default function NotificationsHeader({ count }: NotificationsHeaderProps) {
+export default function NotificationsHeader({
+  count,
+}: NotificationsHeaderProps) {
+  useEffect(() => {
+    const markAllNotificationsAsRead = async () => {
+      try {
+        await fetch(`${baseUrl}/notification/update-notification`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+      } catch (error) {
+        console.error("Failed to mark notifications as read", error);
+      }
+    };
+
+    markAllNotificationsAsRead();
+  }, []);
+
   return (
     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
       <div className="flex items-center">
@@ -17,7 +39,7 @@ export default function NotificationsHeader({ count }: NotificationsHeaderProps)
           </div>
         )}
       </div>
-      
+
       {/* <div className="mt-4 sm:mt-0 flex space-x-2">
         <button 
           className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none cursor-pointer transition-all duration-200"
