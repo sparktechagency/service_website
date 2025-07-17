@@ -20,7 +20,8 @@ export default function Navbar() {
   const pathname = usePathname();
   const router = useRouter();
   const unSeenNotifications =
-    notifications && notifications.filter((data: any) => data?.status === true);
+    notifications &&
+    notifications.filter((data: any) => data?.status === false);
   console.log("notifications", notifications);
   return (
     <nav className="sticky top-0 h-[88px] z-50 w-full bg-primary text-white shadow-md">
