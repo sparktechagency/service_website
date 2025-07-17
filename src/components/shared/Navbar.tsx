@@ -15,7 +15,7 @@ import { useGetNotificationsQuery } from "@/redux/features/notification/notifica
 export default function Navbar() {
   const userInfo = useUserInfo();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { data, isLoading, isError } = useGetNotificationsQuery(undefined);
+  const { data } = useGetNotificationsQuery(undefined);
   const notifications = data?.data?.allNotification || [];
   const pathname = usePathname();
   const router = useRouter();
