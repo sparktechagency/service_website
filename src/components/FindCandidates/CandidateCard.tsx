@@ -172,7 +172,10 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
       </div>
 
       <div className="flex-grow">
-        <h3 className="font-medium text-gray-900">{candidate?.name}</h3>
+        <h3 className="font-medium text-gray-900">
+          {" "}
+          {candidate?.profile_private ? "Private Account" : candidate?.name}
+        </h3>
         <p className="text-sm text-gray-500">
           {candidate?.job_title?.length > 0 && candidate?.job_title[0]}
         </p>
