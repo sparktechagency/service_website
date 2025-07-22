@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Bell, Menu, MessageCircleMore, X } from "lucide-react";
+import { Menu, MessageCircleMore, X } from "lucide-react";
 import Image from "next/image";
 import MobileMenu from "./MobileMenu";
 import { usePathname, useRouter } from "next/navigation";
@@ -10,26 +10,17 @@ import DashboardButton from "./DashboardButton";
 import useUserInfo from "@/hooks/useUserInfo";
 import { logout } from "@/helper/SessionHelper";
 import UserProfile from "./UserProfile";
-import { useGetNotificationsQuery } from "@/redux/features/notification/notificationApi";
-
-interface Notification {
-  status: boolean;
-  // Add other fields as needed if you use them
-}
+import NotificationNav from "../notification/NotificationNav";
 
 export default function Navbar() {
   const userInfo = useUserInfo();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { data } = useGetNotificationsQuery(undefined);
-  const notifications = data?.data?.allNotification || [];
   const pathname = usePathname();
   const router = useRouter();
 
-  const unSeenNotifications =
-    notifications &&
-    notifications.filter((data: Notification) => data?.status === false);
 
-  console.log("notifications", notifications);
+
+
 
   return (
     <nav className="sticky top-0 h-[88px] z-50 w-full bg-primary text-white shadow-md">
@@ -106,23 +97,8 @@ export default function Navbar() {
                 <MessageCircleMore size={20} />
                 {/* Notification count badge can be added here if needed */}
               </button>
-              <button
-                onClick={() =>
-                  router.push(
-                    `/dashboard/${
-                      userInfo?.role === "USER" ? "candidate" : "employer"
-                    }/notifications`
-                  )
-                }
-                className="relative rounded-full p-1 cursor-pointer hover:bg-white/10"
-              >
-                <Bell size={20} />
-                {unSeenNotifications?.length > 0 && (
-                  <span className="absolute -top-1 -right-1 min-w-[16px] h-[16px] px-[4px] text-[10px] leading-tight flex items-center justify-center rounded-full bg-red-500 text-white">
-                    {unSeenNotifications.length}
-                  </span>
-                )}
-              </button>
+
+              <NotificationNav/>
 
               <div
                 onClick={() =>
