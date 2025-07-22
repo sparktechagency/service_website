@@ -49,7 +49,7 @@ const RecentPostedJobs = () => {
             </>
           ) : (
             <>
-              <NotFoundCard title="There is no recent posted jobs." />
+              <NotFoundCard title="There are no recent posted jobs." />
             </>
           )}
         </div>

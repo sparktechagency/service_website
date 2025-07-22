@@ -35,7 +35,7 @@ const ApplicationsPage = () => {
   }
 
     if(!isLoading && !isError && applications?.length === 0){
-    content = <NotFoundCard title="There is no jobs available."/>
+    content = <NotFoundCard title="There are no applications available."/>
   }
 
   if (!isLoading && !isError && applications?.length > 0) {
