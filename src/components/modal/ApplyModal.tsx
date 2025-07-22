@@ -38,6 +38,8 @@ const ApplyModal = ({ jobId }: TProps) => {
       });
     } else {
       ErrorToast("Please upload your resume");
+      setModalOpen(false)
+      router.push("/dashboard/candidate/settings");
     }
   };
 

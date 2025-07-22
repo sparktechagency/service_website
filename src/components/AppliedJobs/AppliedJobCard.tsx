@@ -24,18 +24,18 @@ const AppliedJobCard: React.FC<TProps> = ({ job }) => {
           <h2 className="text-lg font-semibold text-gray-800 line-clamp-2">
             {job?.jobId?.title}
           </h2>
-          {userInfo?.authId && userInfo.role === "USER" && (
+          {userInfo?.authId && userInfo?.role === "USER" && (
             <FavouriteCard jobId={job?.jobId?._id} />
           )}
         </div>
 
         <div className="flex items-center text-gray-600 mt-1 mb-2">
           <MapPin size={16} className="mr-1 text-gray-400" />
-          <span className="text-sm">{job?.jobId.address}</span>
+          <span className="text-sm">{job?.jobId?.address}</span>
         </div>
 
         <div className="text-gray-800 font-medium mt-1 mb-2">
-          vacancy: {job?.jobId.vacancies}
+          vacancy: {job?.jobId?.vacancies}
         </div>
 
         <div className="flex items-center justify-between text-sm text-gray-500 mt-auto">
