@@ -53,7 +53,7 @@ const JobsByCategoryPage = () => {
   }
 
   if (!isLoading && !isError && jobs?.length=== 0) {
-    return <NotFoundCard title="There is no jobs available by this category" />
+    return <NotFoundCard title="There are no jobs available by this category" />
   }
 
 
