@@ -9,12 +9,14 @@ const EmployerNotificationPage = () => {
   const notifications = data?.data?.allNotification || [];
 
   if (isLoading) {
-    return <NotificationsLoading />
+    return <NotificationsLoading />;
   }
 
   if (!isLoading && isError) {
-    return <ServerErrorCard />
+    return <ServerErrorCard />;
   }
+
+  console.log("Notifications:", notifications);
 
   if (!isLoading && !isError) {
     return (
@@ -31,9 +33,7 @@ const EmployerNotificationPage = () => {
               </>
             ) : (
               <div className="px-6 py-12 text-center">
-                <p className="text-gray-500">
-                  No notifications at this time.
-                </p>
+                <p className="text-gray-500">No notifications at this time.</p>
               </div>
             )}
           </div>
@@ -41,8 +41,6 @@ const EmployerNotificationPage = () => {
       </main>
     );
   }
-
-
 };
 
 export default EmployerNotificationPage;

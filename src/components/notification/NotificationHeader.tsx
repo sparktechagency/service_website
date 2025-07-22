@@ -1,7 +1,7 @@
 "use client";
 
-import { baseUrl } from "@/redux/features/api/apiSlice";
 import { useEffect } from "react";
+import { useUpdateNotificationMutation } from "@/redux/features/notification/notificationApi"; // adjust path as needed
 
 interface NotificationsHeaderProps {
   count: number;
@@ -10,22 +10,19 @@ interface NotificationsHeaderProps {
 export default function NotificationsHeader({
   count,
 }: NotificationsHeaderProps) {
+  const [updateNotification] = useUpdateNotificationMutation();
+
   useEffect(() => {
     const markAllNotificationsAsRead = async () => {
       try {
-        await fetch(`${baseUrl}/notification/update-notification`, {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        await updateNotification({}).unwrap();
       } catch (error) {
         console.error("Failed to mark notifications as read", error);
       }
     };
 
     markAllNotificationsAsRead();
-  }, []);
+  }, [updateNotification]);
 
   return (
     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
@@ -39,15 +36,6 @@ export default function NotificationsHeader({
           </div>
         )}
       </div>
-
-      {/* <div className="mt-4 sm:mt-0 flex space-x-2">
-        <button 
-          className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none cursor-pointer transition-all duration-200"
-        >
-          <BellIcon className="h-4 w-4 mr-2" />
-          Mark all as read
-        </button>
-      </div> */}
     </div>
   );
 }
