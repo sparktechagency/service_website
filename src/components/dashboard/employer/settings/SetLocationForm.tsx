@@ -17,8 +17,8 @@ const SetLocationForm = () => {
   const [selectedLocation, setSelectedLocation] = useState<LatLngTuple>([
     51.5072, 0.1276,
   ]);
-  const [address, setAddress] = useState("");
-  const [postalCode, setPostalCode] = useState<string>("");
+  // const [address, setAddress] = useState("");
+  // const [postalCode, setPostalCode] = useState<string>("");
 
   const [updateLocation, { isLoading }] = useUpdateEmployerLocationMutation();
 
@@ -50,8 +50,8 @@ const SetLocationForm = () => {
     selectedPostalCode?: string
   ) => {
     setSelectedLocation(location);
-    setAddress(selectedAddress || "");
-    setPostalCode(selectedPostalCode || "");
+    // setAddress(selectedAddress || "");
+    // setPostalCode(selectedPostalCode || "");
 
     setValue("latitude", location[0].toFixed(6));
     setValue("longitude", location[1].toFixed(6));
