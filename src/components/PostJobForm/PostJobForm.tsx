@@ -34,7 +34,7 @@ const PostJobForm = () => {
   ]);
 
   const { categoryOptions } = useAppSelector((state) => state.category);
-  const { subscription_status } = useAppSelector((state) => state.subscription);
+  // const { subscription_status } = useAppSelector((state) => state.subscription);
   const [createJob, { isLoading, isSuccess }] = useCreateJobMutation();
 
   const {
