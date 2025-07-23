@@ -11,7 +11,7 @@ import {
   useSendAccessRequestMutation,
 } from "@/redux/features/candidate/candidateApi";
 import getExperience from "@/utils/getExperience";
-import { useAppSelector } from "@/redux/hooks/hooks";
+// import { useAppSelector } from "@/redux/hooks/hooks";
 // import { ErrorToast } from "@/helper/ValidationHelper";
 
 interface CandidateCardProps {
@@ -35,7 +35,7 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
   const ButtonText = candidate?.profile_private
     ? "Send Request"
     : "View Profile";
-  const { subscription_status } = useAppSelector((state) => state.subscription);
+  // const { subscription_status } = useAppSelector((state) => state.subscription);
 
   const [isFavourite, setIsFavourite] = useState(false);
 
