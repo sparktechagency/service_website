@@ -123,11 +123,11 @@ const PostJobForm = () => {
       finalValues.rate = rate;
     }
 
-    if (subscription_status?.subscription_status === "None") {
-      ErrorToast("You have no subscription");
-    } else {
-      createJob(finalValues);
-    }
+    // if (subscription_status?.subscription_status === "None") {
+    //   ErrorToast("You have no subscription");
+    // } else {
+    createJob(finalValues);
+    // }
   };
 
   return (

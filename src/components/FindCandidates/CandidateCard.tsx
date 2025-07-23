@@ -45,15 +45,15 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
   }, [candidate]);
 
   const handleViewDetails = () => {
-    if (subscription_status?.subscription_status === "None") {
-      ErrorToast("You have no subscription");
+    // if (subscription_status?.subscription_status === "None") {
+    //   ErrorToast("You have no subscription");
+    // } else {
+    if (candidate.profile_private) {
+      sendAccessRequest(candidate?._id);
     } else {
-      if (candidate.profile_private) {
-        sendAccessRequest(candidate?._id);
-      } else {
-        router.push(`/find-candidates/details/${candidate?._id}`);
-      }
+      router.push(`/find-candidates/details/${candidate?._id}`);
     }
+    // }
   };
 
   const toggleFavourite = (id: string) => {
