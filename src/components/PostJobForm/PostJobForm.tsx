@@ -23,7 +23,7 @@ import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { CgSpinnerTwo } from "react-icons/cg";
 import { z } from "zod";
-import { ErrorToast } from "@/helper/ValidationHelper";
+// import { ErrorToast } from "@/helper/ValidationHelper";
 
 type TFormValues = z.infer<typeof createJobSchema>;
 

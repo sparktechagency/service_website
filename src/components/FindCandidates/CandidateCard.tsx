@@ -12,7 +12,7 @@ import {
 } from "@/redux/features/candidate/candidateApi";
 import getExperience from "@/utils/getExperience";
 import { useAppSelector } from "@/redux/hooks/hooks";
-import { ErrorToast } from "@/helper/ValidationHelper";
+// import { ErrorToast } from "@/helper/ValidationHelper";
 
 interface CandidateCardProps {
   candidate: TCandidate;
