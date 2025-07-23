@@ -76,7 +76,7 @@ const SetLocationForm = () => {
           />
         </div>
 
-        <div>
+        {/* <div>
           <label htmlFor="address" className="block font-medium mb-1">
             Address
           </label>
@@ -102,7 +102,7 @@ const SetLocationForm = () => {
             value={postalCode}
             readOnly
           />
-        </div>
+        </div> */}
 
         <button
           type="submit"
