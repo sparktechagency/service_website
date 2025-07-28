@@ -3,10 +3,10 @@
 import { logout } from "@/helper/SessionHelper";
 import useUserInfo from "@/hooks/useUserInfo";
 import { Bell, MessageCircleMore } from "lucide-react";
-import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { Dispatch, SetStateAction } from "react";
 import MobileDashboardButton from "./MobileDashboardButton";
+import MobileUserProfile from "./MobileUserProfile";
 
 type TProps = {
   setIsMenuOpen: Dispatch<SetStateAction<boolean>>;
@@ -73,20 +73,12 @@ const MobileMenu = ({ setIsMenuOpen }: TProps) => {
                 </div>
 
                 <div className="mt-4 flex items-center justify-between gap-2 px-3">
-              <div
-                onClick={() => handleNavigate("/")}
-                className="flex items-center gap-2"
-              >
-                <div className="h-8 w-8 rounded-full">
-                  <Image
-                    src="/images/avatar.png"
-                    alt="user"
-                    width={500}
-                    height={600}
-                  />
-                </div>
-                <span className="text-sm">Andrew Ainsley</span>
-              </div>
+                  <div
+                    onClick={() => handleNavigate("/")}
+                    className="flex items-center gap-2"
+                  >
+                   <MobileUserProfile/>
+                  </div>
               <div className="flex gap-3">
                 <div
                   className="relative ml-auto cursor-pointer"
