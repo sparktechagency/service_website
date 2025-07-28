@@ -28,6 +28,7 @@ const MobileUserProfile = () => {
                         alt="user"
                         width={500}
                         height={600}
+                        className="h-8 w-8 rounded-full"
                         onError={(e) => {
                             e.currentTarget.onerror = null;
                             e.currentTarget.src = "/images/profile_placeholder.png";
