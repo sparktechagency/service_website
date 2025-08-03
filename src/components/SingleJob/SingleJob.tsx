@@ -199,7 +199,7 @@ const SingleJob = ({ job }: TProps) => {
                     <div>
                       <p className="text-sm text-gray-500">SALARY:</p>
                       <p className="font-medium">
-                        ${`${job?.salary}`}/{" "}
+                        £{`${job?.salary}`}/{" "}
                         <span className="lowercase">{`${getRate(
                           job?.rate
                         )}`}</span>

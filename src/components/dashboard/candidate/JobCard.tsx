@@ -1,11 +1,11 @@
 "use client";
 import { IJob } from "@/types/job.type";
 import getTypeColor from "@/utils/getTypeColor";
-import { BookmarkIcon } from "lucide-react"
-import Image from "next/image"
+import { BookmarkIcon } from "lucide-react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-const JobCard = ({ job }: { job: IJob }) =>{
+const JobCard = ({ job }: { job: IJob }) => {
   const router = useRouter();
 
   return (
@@ -13,7 +13,9 @@ const JobCard = ({ job }: { job: IJob }) =>{
       <div className="p-4 flex flex-col md:flex-row md:items-center">
         {/* Company Logo */}
         <div className="flex-shrink-0 mb-4 md:mb-0 md:mr-4">
-          <div className={`w-10 h-10 rounded flex items-center justify-center ${job.logoBackground}`}>
+          <div
+            className={`w-10 h-10 rounded flex items-center justify-center ${job.logoBackground}`}
+          >
             {job.logo && (
               <Image
                 src={"/images/profile.png"}
@@ -37,11 +39,15 @@ const JobCard = ({ job }: { job: IJob }) =>{
           </div>
 
           <div className="col-span-1 flex items-center">
-            <div className={`${getTypeColor(job.type)} text-xs px-2 py-1 rounded`}>{job.type}</div>
+            <div
+              className={`${getTypeColor(job.type)} text-xs px-2 py-1 rounded`}
+            >
+              {job.type}
+            </div>
           </div>
 
           <div className="col-span-1 flex items-center text-sm">
-            <span className="text-gray-900 font-medium">{job.salary}</span>
+            <span className="text-gray-900 font-medium"> £{job.salary}</span>
             {job.timeRemaining && (
               <div className="ml-4 flex items-center text-gray-500">
                 <span className="inline-block w-1.5 h-1.5 bg-gray-300 rounded-full mr-1.5"></span>
@@ -58,9 +64,14 @@ const JobCard = ({ job }: { job: IJob }) =>{
           </button>
 
           <button
-            onClick={()=> job.status !== "expired" && router.push(`/job-details/${job.title}`)}
+            onClick={() =>
+              job.status !== "expired" &&
+              router.push(`/job-details/${job.title}`)
+            }
             className={`px-4 py-2 rounded-md flex items-center text-sm ${
-              job.status === "expired" ? "bg-gray-100 text-gray-500" : "bg-blue-50 text-primary hover:bg-blue-100 cursor-pointer"
+              job.status === "expired"
+                ? "bg-gray-100 text-gray-500"
+                : "bg-blue-50 text-primary hover:bg-blue-100 cursor-pointer"
             }`}
             disabled={job.status === "expired"}
           >
@@ -70,7 +81,7 @@ const JobCard = ({ job }: { job: IJob }) =>{
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default JobCard;
