@@ -8,6 +8,7 @@ interface BlogDetailsPageProps {
   }>;
   searchParams: Promise<{
     title?: string;
+    image?: string;
   }>;
 }
 
@@ -18,10 +19,22 @@ export async function generateMetadata({
 }: BlogDetailsPageProps): Promise<Metadata> {
   const resolvedSearchParams = await searchParams;
   const title = resolvedSearchParams.title || "Machmakers Blog";
+  const imageUrl = resolvedSearchParams.image || "/images/placeholder.jpg";
   
   return {
     title,
     description: "This is Blog",
+    openGraph: {
+      title,
+      images: [
+        {
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
+    },
   };
 }
 

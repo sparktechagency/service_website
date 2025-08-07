@@ -67,7 +67,7 @@ const BlogCard = ({ blog }: TProps) => {
           <div
             onClick={() =>
               router.push(
-                `/blog-list/details/${blog?._id}?title=gg${blog?.title}`
+                `/blog-list/details/${blog?._id}?title=gg${blog?.title}?image=${imgPath}`
               )
             }
             className="flex mt-1 items-center text-sm text-blue-500 cursor-pointer"
