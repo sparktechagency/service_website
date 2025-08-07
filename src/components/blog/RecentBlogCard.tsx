@@ -53,7 +53,7 @@ const RecentBlogCard : React.FC<BlogCardProps> = ({ blog }) => {
              {getFormattedDate(createdAt)}
           </div>
           <Link
-            href={`/blog-list/details/${blog?._id}`} 
+            href={`/blog-list/details/${blog?._id}?title=${title}&image=${imgPath}`} 
             className="text-blue-800 font-medium text-sm hover:text-blue-600 transition-colors"
           >
             Read more
