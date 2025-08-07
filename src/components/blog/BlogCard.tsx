@@ -8,16 +8,16 @@ import getFormattedDate from "@/utils/getFormattedDate";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-
 type TProps = {
-  blog: TBlog
-}
+  blog: TBlog;
+};
 
 const BlogCard = ({ blog }: TProps) => {
   const router = useRouter();
-  const imgPath = blog?.image?.length > 0 ? baseUrl+ getBlogImgPath(blog?.image[0]) : "/images/placeholder.jpg";
-
-
+  const imgPath =
+    blog?.image?.length > 0
+      ? baseUrl + getBlogImgPath(blog?.image[0])
+      : "/images/placeholder.jpg";
 
   return (
     <>
@@ -51,13 +51,27 @@ const BlogCard = ({ blog }: TProps) => {
               />
             </svg>
             {getFormattedDate(blog?.createdAt)}
-            <span className={`${getCategoryColor(blog.category)} text-xs font-semibold px-3 py-1 rounded-full`}>
-            {getCategory(blog.category)}
-          </span>
+            <span
+              className={`${getCategoryColor(
+                blog.category
+              )} text-xs font-semibold px-3 py-1 rounded-full`}
+            >
+              {getCategory(blog.category)}
+            </span>
           </div>
           <h2 className="text-lg font-medium mb-2">{blog?.title}</h2>
-          <div className="space-y-4 text-gray-600 line-clamp-3" dangerouslySetInnerHTML={{ __html: blog?.descriptions }}></div>
-          <div onClick={()=>router.push(`/blog-list/details/${blog?._id}?title=${blog?.title}`)} className="flex mt-1 items-center text-sm text-blue-500 cursor-pointer">
+          <div
+            className="space-y-4 text-gray-600 line-clamp-3"
+            dangerouslySetInnerHTML={{ __html: blog?.descriptions }}
+          ></div>
+          <div
+            onClick={() =>
+              router.push(
+                `/blog-list/details/${blog?._id}?title=${blog?.title}`
+              )
+            }
+            className="flex mt-1 items-center text-sm text-blue-500 cursor-pointer"
+          >
             <span>Read more</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
