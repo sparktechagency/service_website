@@ -1,43 +1,39 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-//import BlogDetailMain from "@/components/blogDetail/BlogDetailMain";
-import BlogDetailMain from "@/components/blogDetail/BlogDetailMain";
 import { Metadata } from "next";
-
-
-
-// export const metadata: Metadata = {
-//   title: "Machmakers Blog",
-//   description: "This is Blog",
-// };
+import BlogDetailMain from "@/components/blogDetail/BlogDetailMain";
 
 interface BlogDetailsPageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
-  searchParams: {
+  }>;
+  searchParams: Promise<{
     title?: string;
-  };
+  }>;
 }
 
-// 👇 This dynamically sets the <title> and <meta name="description" />
-export function generateMetadata(
-  { searchParams }: BlogDetailsPageProps
-): Metadata {
-  const title = searchParams.title || "Machmakers Blog";
+// ✅ FIXED: Both params and searchParams are now Promise types
+export async function generateMetadata({
+  params,
+  searchParams,
+}: BlogDetailsPageProps): Promise<Metadata> {
+  const resolvedSearchParams = await searchParams;
+  const title = resolvedSearchParams.title || "Machmakers Blog";
+  
   return {
     title,
     description: "This is Blog",
   };
 }
 
-const  BlogDetailsPage = ({ params, searchParams }: BlogDetailsPageProps) => {
-  const { id } = params;
- 
+const BlogDetailsPage = async ({ params }: BlogDetailsPageProps) => {
+  const resolvedParams = await params;
+  const { id } = resolvedParams;
+  
   return (
     <>
-     <BlogDetailMain id={id}/>
+      <BlogDetailMain id={id} />
     </>
-  )
+  );
 };
 
 export default BlogDetailsPage;
