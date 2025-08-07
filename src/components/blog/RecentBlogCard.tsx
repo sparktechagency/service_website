@@ -42,10 +42,10 @@ const RecentBlogCard : React.FC<BlogCardProps> = ({ blog }) => {
             <span>{10}</span>
           </div> */}
         </div>
-        <h3 className="text-xl font-bold mb-3 text-gray-900 line-clamp-2 hover:text-blue-800 transition-colors">
-          <a href={`/blog/${blog?._id}`} className="hover:underline decoration-2 underline-offset-2">
+        <h3 className="text-xl font-bold mb-3 text-gray-900 line-clamp-2 transition-colors">
+          <span className="decoration-2 underline-offset-2">
             {title}
-          </a>
+          </span>
         </h3>
          <div className="space-y-4 text-gray-600 line-clamp-3" dangerouslySetInnerHTML={{ __html: descriptions }}></div>
         <div className="mt-auto pt-4 border-t border-gray-100 flex justify-between items-center">

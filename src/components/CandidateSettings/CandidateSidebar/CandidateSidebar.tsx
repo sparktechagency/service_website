@@ -48,7 +48,7 @@ const CandidateSidebar = () =>{
           <SidebarLink
             href="/dashboard/candidate/settings"
             icon={<SettingsIcon className="h-5 w-5" />}
-            label="Settings"
+            label="Profile"
           />
         </nav>
       </aside>
