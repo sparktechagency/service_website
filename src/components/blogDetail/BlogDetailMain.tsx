@@ -7,11 +7,14 @@ import NotFoundCard from "@/components/card/NotFoundCard";
 import ServerErrorCard from "@/components/card/ServerErrorCard";
 import BlogDetailLoading from "@/components/loader/BlogDetailLoading";
 import { useGetSingleBlogQuery } from "@/redux/features/blog/blogApi";
-import { useParams } from "next/navigation";
 
-const BlogDetailMain = () => {
-  const params = useParams<{ id: string }>();
-  const { data, isLoading, isError } = useGetSingleBlogQuery(params.id);
+type TProps = {
+    id: string
+}
+
+const BlogDetailMain = ({id} : TProps) => {
+ // const params = useParams<{ id: string }>();
+  const { data, isLoading, isError } = useGetSingleBlogQuery(id);
   const relatedBlogs = data?.data?.relatedBlogs || [];
 
   const blog = data?.data?.blog;

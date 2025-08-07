@@ -1,43 +1,43 @@
-import type { Metadata } from "next";
+/* eslint-disable @typescript-eslint/no-unused-vars */
+//import BlogDetailMain from "@/components/blogDetail/BlogDetailMain";
 import BlogDetailMain from "@/components/blogDetail/BlogDetailMain";
+import { Metadata } from "next";
 
 
 
-export const metadata: Metadata = {
-  title: "Machmakers Blog",
-  description: "This is Blog",
-};
+// export const metadata: Metadata = {
+//   title: "Machmakers Blog",
+//   description: "This is Blog",
+// };
 
-const BlogDetailsPage = () => {
+interface BlogDetailsPageProps {
+  params: {
+    id: string;
+  };
+  searchParams: {
+    title?: string;
+  };
+}
 
+// 👇 This dynamically sets the <title> and <meta name="description" />
+export function generateMetadata(
+  { searchParams }: BlogDetailsPageProps
+): Metadata {
+  const title = searchParams.title || "Machmakers Blog";
+  return {
+    title,
+    description: "This is Blog",
+  };
+}
+
+const  BlogDetailsPage = ({ params, searchParams }: BlogDetailsPageProps) => {
+  const { id } = params;
+ 
   return (
     <>
-     <BlogDetailMain/>
+     <BlogDetailMain id={id}/>
     </>
   )
-
-  // return (
-  //   <>
-  //     <Head>
-  //       <title>{title}</title>
-  //       <meta name="description" content={description} />
-
-  //       {/* Open Graph Meta Tags for Facebook, LinkedIn, etc. */}
-  //       <meta property="og:type" content="article" />
-  //       <meta property="og:title" content={title} />
-  //       <meta property="og:description" content={description} />
-  //       <meta property="og:image" content={image} />
-  //       <meta property="og:url" content={blogUrl} />
-  //       <meta property="og:site_name" content="Your Site Name" />
-
-  //       {/* Twitter Card Meta Tags */}
-  //       <meta name="twitter:card" content="summary_large_image" />
-  //       <meta name="twitter:title" content={title} />
-  //       <meta name="twitter:description" content={description} />
-  //       <meta name="twitter:image" content={image} />
-  //     </Head>  
-  //   </>
-  // );
 };
 
 export default BlogDetailsPage;
