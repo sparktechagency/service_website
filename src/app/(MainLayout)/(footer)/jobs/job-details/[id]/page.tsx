@@ -21,8 +21,8 @@ export async function generateMetadata({
   const title = resolvedSearchParams.title || "Machmakers Jobs";
   
   return {
-    title,
-    description: "This is Job",
+    title: "This is Job world next tyo updates all",
+    description: "This is Job world next tyo updates all",
   };
 }
 
