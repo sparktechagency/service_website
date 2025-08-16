@@ -14,8 +14,8 @@ type TProps = {
 const JobCard: React.FC<TProps> = ({ job }) => {
   const router = useRouter();
   const userInfo = useUserInfo();
+  const daysRemaining = getDaysRemaining(job?.application_dateline);
 
-   const daysRemaining = getDaysRemaining(job?.application_dateline);;
 
   return (
     <div className="bg-white rounded-lg shadow-md transition-all duration-300 hover:shadow-lg border border-gray-100 overflow-hidden flex flex-col h-full">
@@ -49,7 +49,7 @@ const JobCard: React.FC<TProps> = ({ job }) => {
 
       <div className="p-4 border-t border-gray-100 bg-gray-50">
         <button
-          onClick={() => router.push(`/jobs/job-details/${job?._id}?title=${job?.title}`)}
+          onClick={() => router.push(`/jobs/job-details/${job?._id}`)}
           className="w-full py-2 px-4 bg-gray-900 hover:bg-gray-800 cursor-pointer text-white text-sm font-medium rounded-md transition-colors duration-300 focus:outline-none"
         >
           View Details

@@ -8,6 +8,7 @@ interface TProps {
   }>;
   searchParams: Promise<{
     title?: string;
+    description?: string;
   }>;
 }
 
@@ -18,11 +19,21 @@ export async function generateMetadata({
   searchParams,
 }: TProps): Promise<Metadata> {
   const resolvedSearchParams = await searchParams;
-  const title = resolvedSearchParams.title || "Machmakers Jobs";
+//  const title = resolvedSearchParams.title || "Machmakers Jobs";
+  //const description = resolvedSearchParams.description || "This is Job world next tyo updates all";
+  const { id } = await params;
+  const res = await fetch(`https://backend.machmakers.co.uk/jobs/get_details/${id}`).then((res) => res.json());
+  const job = res?.data?.jobDetails;
+
+  const plainText = job?.descriptions?.replace(/<[^>]+>/g, '')   // remove all HTML tags
+  .replace(/\u00a0/g, ' ')   // replace &nbsp; with space
+  .trim();
+
+  const shortText = plainText.slice(0, 150) + '...';
   
   return {
-    title: title,
-    description: "This is Job world next tyo updates all",
+    title: job?.title || "Machmakers Jobs",
+    description: shortText || "This is Job world next tyo updates all"
   };
 }
 
