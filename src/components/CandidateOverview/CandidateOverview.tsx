@@ -1,9 +1,14 @@
 "use client";
 
+import ChangePasswordForm from "../CandidateSettings/AccountSettings/ChangePasswordForm";
+import DeleteCandidateAccount from "../CandidateSettings/AccountSettings/DeleteCandidateAccount";
+import PrivacySettings from "../CandidateSettings/AccountSettings/PrivacySettings";
+import PersonalForm from "../CandidateSettings/Personal/PersonalForm";
+import ProfessionalForm from "../CandidateSettings/Professional/ProfessionalForm";
 import OverviewHeader from "./OverviewHeader";
 import OverviewStats from "./OverviewStats";
 import ProfileCompletion from "./ProfileCompletion";
-import RecentlyApplied from "./RecentlyApplied";
+// import RecentlyApplied from "./RecentlyApplied";
 
 const CandidateOverview = () => {
   return (
@@ -13,7 +18,12 @@ const CandidateOverview = () => {
           <OverviewHeader />
           <OverviewStats />
           <ProfileCompletion />
-          <RecentlyApplied />
+          <PersonalForm/>
+          <ProfessionalForm/>
+          <PrivacySettings/>
+          <ChangePasswordForm/>
+          <DeleteCandidateAccount/>
+          {/* <RecentlyApplied /> */}
         </div>
       </main>
     </>

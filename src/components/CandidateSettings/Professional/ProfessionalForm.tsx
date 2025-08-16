@@ -77,9 +77,9 @@ const ProfessionalForm = () => {
 
   return (
     <>
-      <div className="max-w-4xl mx-auto bg-white p-4 md:p-6 mb-8">
+      <div className="mx-auto bg-white p-4 mb-8 mt-12 shadow-md rounded-md">
         <div className="">
-          <p className="text-lg mb-4">Update Professional Information</p>
+          <p className="text-lg font-semibold mb-4">Update Professional Information</p>
           {ProfileError && <Error message={ProfileError} />}
           <form
             onSubmit={handleSubmit(onSubmit)}

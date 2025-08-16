@@ -11,7 +11,7 @@ const WorkExperienceList = () =>{
   const { user } = useAppSelector((state) => state.user);
   
   return (
-    <div className="space-y-6 py-4 bg-white p-4 md:p-6 mb-8">
+    <div className="space-y-6 py-4 bg-white p-4 md:p-6 mb-8 shadow-md rounded-md">
       <div className="flex items-center justify-between">
         <h2 className="text-lg">Previous Work Experience</h2>
       </div>
