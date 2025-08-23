@@ -97,15 +97,13 @@ export default function Navbar() {
                 <MessageCircleMore size={20} />
                 {/* Notification count badge can be added here if needed */}
               </button>
-
               <NotificationNav/>
-
               <div
                 onClick={() =>
                   router.push(
                     `/dashboard/${
-                      userInfo?.role === "USER" ? "candidate" : "employer"
-                    }/settings`
+                      userInfo?.role === "USER" ? "candidate/overview" : "employer/settings"
+                    }`
                   )
                 }
                 className="flex items-center gap-2 cursor-pointer"
