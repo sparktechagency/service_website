@@ -1,4 +1,6 @@
 "use client";
+import { useAppSelector } from "@/redux/hooks/hooks";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 type TProps = {
@@ -9,6 +11,8 @@ type TProps = {
 }
 
 const CandidateSearchForm = ({searchQuery, setSearchQuery, radius, setRadius}: TProps) => {
+  const { subscription_status } = useAppSelector((state) => state.subscription);
+  const router = useRouter();
   //const router = useRouter();
   //const searchParams = useSearchParams();
 //   const initialSearchTerm = searchParams.get("searchTerm");
@@ -20,20 +24,6 @@ const CandidateSearchForm = ({searchQuery, setSearchQuery, radius, setRadius}: T
     setRadius(parseInt(e.target.value, 10));
   };
 
-//  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
-//     e.preventDefault();
-//     const params = new URLSearchParams(searchParams.toString());
-//     params.set("searchTerm", searchTerm);
-//     params.set("distance", radius.toString());
-//     router.push(`/find-candidates?${params.toString()}`);
-                
-//                  const params = new URLSearchParams(searchParams.toString());
-//     params.set("searchTerm", searchTerm);
-//     params.set("distance", radius.toString());
-//     //router.push(`/find-candidates?${params.toString()}`);
-//     //router.replace(`?${e.target.value.toString()}`);
-//     //setSearchTerm(e.target.value)
-  //};
 
   return (
     <>
@@ -46,7 +36,15 @@ const CandidateSearchForm = ({searchQuery, setSearchQuery, radius, setRadius}: T
               placeholder="search by name, skill, location here..."
               className="w-full border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 focus:ring-blue-500 py-2 px-3 pl-8 text-sm"
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={(e) => {
+                if (subscription_status?.subscription_status === "None") {
+                  if (e.target.value.length === 1) {
+                    router.push("/dashboard/employer/subscription")
+                  }
+                } else {
+                  setSearchQuery(e.target.value)
+                }
+              }}
             />
             <svg
               xmlns="http://www.w3.org/2000/svg"

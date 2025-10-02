@@ -23,6 +23,8 @@ import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { CgSpinnerTwo } from "react-icons/cg";
 import { z } from "zod";
+import { ErrorToast } from "@/helper/ValidationHelper";
+import { useRouter } from "next/navigation";
 // import { ErrorToast } from "@/helper/ValidationHelper";
 
 type TFormValues = z.infer<typeof createJobSchema>;
@@ -34,8 +36,9 @@ const PostJobForm = () => {
   ]);
 
   const { categoryOptions } = useAppSelector((state) => state.category);
-  // const { subscription_status } = useAppSelector((state) => state.subscription);
+  const { subscription_status } = useAppSelector((state) => state.subscription);
   const [createJob, { isLoading, isSuccess }] = useCreateJobMutation();
+  const router = useRouter();
 
   const {
     handleSubmit,
@@ -122,12 +125,8 @@ const PostJobForm = () => {
       finalValues.salary = salary;
       finalValues.rate = rate;
     }
-
-    // if (subscription_status?.subscription_status === "None") {
-    //   ErrorToast("You have no subscription");
-    // } else {
     createJob(finalValues);
-    // }
+
   };
 
   return (
@@ -268,20 +267,37 @@ const PostJobForm = () => {
           </div>
 
           <div className="mt-6">
-            <button
-              type="submit"
-              disabled={isLoading}
-              className="w-full flex items-center cursor-pointer justify-center gap-2 bg-primary text-white py-2 rounded-md hover:bg-dis transition disabled:bg-gray-800 disabled:cursor-not-allowed"
-            >
-              {isLoading ? (
-                <>
-                  <CgSpinnerTwo className="animate-spin" fontSize={16} />
-                  Processing...
-                </>
-              ) : (
-                "Post Job"
-              )}
-            </button>
+            {subscription_status?.subscription_status === "None" ? (
+              <>
+                <button
+                  type="button"
+                  onClick={()=> {
+                    ErrorToast("You have no subscription");
+                    router.push("/dashboard/employer/subscription")
+                  }}
+                  className="w-full flex items-center cursor-pointer justify-center gap-2 bg-primary text-white py-2 rounded-md hover:bg-dis transition disabled:bg-gray-800 disabled:cursor-not-allowed"
+                >
+                    Post Job
+                </button>
+              </>
+            ) : (
+              <>
+                <button
+                  type="submit"
+                  disabled={isLoading}
+                  className="w-full flex items-center cursor-pointer justify-center gap-2 bg-primary text-white py-2 rounded-md hover:bg-dis transition disabled:bg-gray-800 disabled:cursor-not-allowed"
+                >
+                  {isLoading ? (
+                    <>
+                      <CgSpinnerTwo className="animate-spin" fontSize={16} />
+                      Processing...
+                    </>
+                  ) : (
+                    "Post Job"
+                  )}
+                </button>
+              </>
+            )}
           </div>
         </form>
       </div>
