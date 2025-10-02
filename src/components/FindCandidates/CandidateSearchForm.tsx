@@ -37,12 +37,12 @@ const CandidateSearchForm = ({searchQuery, setSearchQuery, radius, setRadius}: T
               className="w-full border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 focus:ring-blue-500 py-2 px-3 pl-8 text-sm"
               value={searchQuery}
               onChange={(e) => {
-                if (subscription_status?.subscription_status === "None") {
+                if (subscription_status?.subscription) {
+                  setSearchQuery(e.target.value)
+                } else {
                   if (e.target.value.length === 1) {
                     router.push("/dashboard/employer/subscription")
                   }
-                } else {
-                  setSearchQuery(e.target.value)
                 }
               }}
             />

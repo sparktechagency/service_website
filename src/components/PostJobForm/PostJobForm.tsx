@@ -36,9 +36,10 @@ const PostJobForm = () => {
   ]);
 
   const { categoryOptions } = useAppSelector((state) => state.category);
-  const { subscription_status } = useAppSelector((state) => state.subscription);
+  const { subscription_status} = useAppSelector((state) => state.subscription);
   const [createJob, { isLoading, isSuccess }] = useCreateJobMutation();
   const router = useRouter();
+
 
   const {
     handleSubmit,
@@ -267,20 +268,7 @@ const PostJobForm = () => {
           </div>
 
           <div className="mt-6">
-            {subscription_status?.subscription_status === "None" ? (
-              <>
-                <button
-                  type="button"
-                  onClick={()=> {
-                    ErrorToast("You have no subscription");
-                    router.push("/dashboard/employer/subscription")
-                  }}
-                  className="w-full flex items-center cursor-pointer justify-center gap-2 bg-primary text-white py-2 rounded-md hover:bg-dis transition disabled:bg-gray-800 disabled:cursor-not-allowed"
-                >
-                    Post Job
-                </button>
-              </>
-            ) : (
+            {subscription_status?.subscription ? (
               <>
                 <button
                   type="submit"
@@ -295,6 +283,19 @@ const PostJobForm = () => {
                   ) : (
                     "Post Job"
                   )}
+                </button>
+              </>
+            ) : (
+              <>
+                <button
+                  type="button"
+                  onClick={() => {
+                    ErrorToast("You have no subscription");
+                    router.push("/dashboard/employer/subscription")
+                  }}
+                  className="w-full flex items-center cursor-pointer justify-center gap-2 bg-primary text-white py-2 rounded-md hover:bg-dis transition disabled:bg-gray-800 disabled:cursor-not-allowed"
+                >
+                  Post Job
                 </button>
               </>
             )}
