@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-head-element */
+/* eslint-disable @next/next/next-script-for-ga */
 import Navbar from "@/components/shared/Navbar";
 import React from "react";
 

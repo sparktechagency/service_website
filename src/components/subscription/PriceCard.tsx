@@ -45,7 +45,7 @@ const PriceCard = ({ subscription }: TProps ) => {
         <h3 className="font-bold text-gray-800 uppercase">{subscription?.name}</h3>
         <p className="text-sm text-gray-600 mt-1 mb-3">{subscription?.notice}</p>
         <div className="flex items-end gap-1 mb-4">
-          <span className="text-3xl font-bold">${subscription?.price}</span>
+          <span className="text-3xl font-bold">£{subscription?.price}</span>
           <span className="text-gray-500 mb-1">/{subscription?.validation}</span>
         </div>
         <div className="space-y-3">
