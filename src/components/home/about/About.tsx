@@ -1,5 +1,3 @@
-import CookieBanner from "../CookieBanner";
-
 const About = () => {
   return (
     <>
