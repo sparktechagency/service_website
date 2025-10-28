@@ -11,7 +11,7 @@ interface Banner {
 }
 
 const COOKIE_BANNER_KEY = "cookie_banner_visibility";
-const TWO_HOURS = 2 * 60 * 60 * 1000; // 2 hours in milliseconds
+const TWO_HOURS = 0.5 * 60 * 60 * 1000; // 30 hours in milliseconds
 
 const CookieBannerSlider = () => {
   const [banners, setBanners] = useState<Banner[]>([]);
