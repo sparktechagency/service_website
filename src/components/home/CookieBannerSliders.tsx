@@ -17,14 +17,12 @@ const CookieBannerSlider = () => {
   const [banners, setBanners] = useState<Banner[]>([]);
   const [showBanner, setShowBanner] = useState(true);
 
-  // Load initial showBanner from localStorage
   useEffect(() => {
     const savedData = localStorage.getItem(COOKIE_BANNER_KEY);
     if (savedData) {
       const parsed = JSON.parse(savedData);
       const now = new Date().getTime();
 
-      // If 2 hours have passed, show banner again
       if (now - parsed.timestamp > TWO_HOURS) {
         setShowBanner(true);
         localStorage.removeItem(COOKIE_BANNER_KEY);
