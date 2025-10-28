@@ -10,10 +10,31 @@ interface Banner {
   image: string;
 }
 
+const COOKIE_BANNER_KEY = "cookie_banner_visibility";
+const TWO_HOURS = 2 * 60 * 60 * 1000; // 2 hours in milliseconds
+
 const CookieBannerSlider = () => {
   const [banners, setBanners] = useState<Banner[]>([]);
   const [showBanner, setShowBanner] = useState(true);
 
+  // Load initial showBanner from localStorage
+  useEffect(() => {
+    const savedData = localStorage.getItem(COOKIE_BANNER_KEY);
+    if (savedData) {
+      const parsed = JSON.parse(savedData);
+      const now = new Date().getTime();
+
+      // If 2 hours have passed, show banner again
+      if (now - parsed.timestamp > TWO_HOURS) {
+        setShowBanner(true);
+        localStorage.removeItem(COOKIE_BANNER_KEY);
+      } else {
+        setShowBanner(parsed.visible);
+      }
+    }
+  }, []);
+
+  // Fetch banners from API
   useEffect(() => {
     const fetchBanners = async () => {
       try {
@@ -26,6 +47,14 @@ const CookieBannerSlider = () => {
     };
     fetchBanners();
   }, []);
+
+  // Save showBanner to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem(
+      COOKIE_BANNER_KEY,
+      JSON.stringify({ visible: showBanner, timestamp: new Date().getTime() })
+    );
+  }, [showBanner]);
 
   if (!banners.length || !showBanner) return null;
 

@@ -76,34 +76,6 @@ const SetLocationForm = () => {
           />
         </div>
 
-        {/* <div>
-          <label htmlFor="address" className="block font-medium mb-1">
-            Address
-          </label>
-          <input
-            id="address"
-            name="address"
-            type="text"
-            className="w-full border rounded px-3 py-2"
-            value={address}
-            readOnly
-          />
-        </div>
-
-        <div>
-          <label htmlFor="postalCode" className="block font-medium mb-1">
-            Postal Code
-          </label>
-          <input
-            id="postalCode"
-            name="postalCode"
-            type="text"
-            className="w-full border rounded px-3 py-2"
-            value={postalCode}
-            readOnly
-          />
-        </div> */}
-
         <button
           type="submit"
           className="px-4 w-full md:w-64 md:justify-center py-2 flex gap-2 items-center bg-primary hover:bg-[#2b4773] text-white font-medium rounded-md focus:outline-none transition-colors cursor-pointer"
