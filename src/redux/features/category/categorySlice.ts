@@ -1,7 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  categoryOptions: [],
+  categoryOptions: [
+    {
+      label: "Plumbing",
+      value: "plumbing"
+    },
+    {
+      label: "Carpentar",
+      value: "carpentar"
+    }
+  ],
 }
 
 export const categorySlice = createSlice({

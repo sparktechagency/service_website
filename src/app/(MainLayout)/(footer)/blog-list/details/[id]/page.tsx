@@ -1,43 +1,51 @@
-import type { Metadata } from "next";
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { Metadata } from "next";
 import BlogDetailMain from "@/components/blogDetail/BlogDetailMain";
 
+interface BlogDetailsPageProps {
+  params: Promise<{
+    id: string;
+  }>;
+  searchParams: Promise<{
+    title?: string;
+    image?: string;
+  }>;
+}
 
+export async function generateMetadata({
+  params,
+  searchParams,
+}: BlogDetailsPageProps): Promise<Metadata> {
+  const resolvedSearchParams = await searchParams;
+  const title = resolvedSearchParams.title || "Machmakers Blog";
+  const imageUrl = resolvedSearchParams.image || "/images/placeholder.jpg";
 
-export const metadata: Metadata = {
-  title: "Machmakers Blog",
-  description: "This is Blog",
-};
+  return {
+    title,
+    description: "This is Blog",
+    openGraph: {
+      title,
+      images: [
+        {
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
+    },
+  };
+}
 
-const BlogDetailsPage = () => {
+const BlogDetailsPage = async ({ params }: BlogDetailsPageProps) => {
+  const resolvedParams = await params;
+  const { id } = resolvedParams;
 
   return (
     <>
-     <BlogDetailMain/>
+      <BlogDetailMain id={id} />
     </>
-  )
-
-  // return (
-  //   <>
-  //     <Head>
-  //       <title>{title}</title>
-  //       <meta name="description" content={description} />
-
-  //       {/* Open Graph Meta Tags for Facebook, LinkedIn, etc. */}
-  //       <meta property="og:type" content="article" />
-  //       <meta property="og:title" content={title} />
-  //       <meta property="og:description" content={description} />
-  //       <meta property="og:image" content={image} />
-  //       <meta property="og:url" content={blogUrl} />
-  //       <meta property="og:site_name" content="Your Site Name" />
-
-  //       {/* Twitter Card Meta Tags */}
-  //       <meta name="twitter:card" content="summary_large_image" />
-  //       <meta name="twitter:title" content={title} />
-  //       <meta name="twitter:description" content={description} />
-  //       <meta name="twitter:image" content={image} />
-  //     </Head>  
-  //   </>
-  // );
+  );
 };
 
 export default BlogDetailsPage;

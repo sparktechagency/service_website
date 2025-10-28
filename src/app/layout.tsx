@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/next-script-for-ga */
 import type { Metadata } from "next";
 import "./globals.css";
 import GlobalProvider from "@/providers/GlobalProvider";
@@ -36,7 +37,7 @@ export default function RootLayout({
                 })(window,document,'script','dataLayer','GTM-5VWGRHTN');
               `,
             }}
-          />
+          /> 
         </head>
         <body className={`${poppins.variable} antialiased`}>
           {/* Google Tag Manager - NoScript iframe */}

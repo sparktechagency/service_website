@@ -124,10 +124,8 @@ const About = () => {
           </div>
         </div>
       </section>
-      <section className="py-10 px-4 mb-10">
-        <div className="mx-auto px:2 sm:px-4">
-          <CookieBanner />
-        </div>
+      <section className=" mb-10">
+        <div className="mx-auto px:2 sm:px-4">{/* <CookieBanner /> */}</div>
       </section>
     </>
   );

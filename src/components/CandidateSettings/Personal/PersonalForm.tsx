@@ -52,9 +52,9 @@ const PersonalForm = () => {
 
   return (
     <>
-      <div className="max-w-4xl mx-auto bg-white p-4 md:p-6 mb-8">
+      <div className="mx-auto bg-white p-4 md:p-6 mb-8 shadow-md rounded-md">
         <div className="">
-          <p className="text-lg mb-4">Update Profile</p>
+          <p className="text-lg font-semibold mb-4">Update Profile</p>
           {ProfileError && <Error message={ProfileError} />}
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

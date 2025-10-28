@@ -14,8 +14,8 @@ type TProps = {
 const JobCard: React.FC<TProps> = ({ job }) => {
   const router = useRouter();
   const userInfo = useUserInfo();
+  const daysRemaining = getDaysRemaining(job?.application_dateline);
 
-   const daysRemaining = getDaysRemaining(job?.application_dateline);;
 
   return (
     <div className="bg-white rounded-lg shadow-md transition-all duration-300 hover:shadow-lg border border-gray-100 overflow-hidden flex flex-col h-full">
