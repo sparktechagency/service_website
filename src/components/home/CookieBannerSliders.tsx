@@ -8,10 +8,11 @@ import { baseUrl } from "@/redux/features/api/apiSlice";
 interface Banner {
   _id: string;
   image: string;
+  url: string;
 }
 
 const COOKIE_BANNER_KEY = "cookie_banner_visibility";
-const TWO_HOURS = 0.5 * 60 * 60 * 1000; // 30 hours in milliseconds
+const TWO_HOURS = 0.5 * 60 * 60 * 1000;
 
 const CookieBannerSlider = () => {
   const [banners, setBanners] = useState<Banner[]>([]);
@@ -74,11 +75,29 @@ const CookieBannerSlider = () => {
         >
           {banners.map((banner) => (
             <SwiperSlide key={banner._id}>
-              <img
-                src={`${baseUrl}/${banner.image}`}
-                alt="Cookie banner"
-                className="w-full h-[200px] sm:h-[140px] md:h-[300px] object-cover"
-              />
+              {banner?.url ? (
+                <a
+                  href={
+                    banner.url.startsWith("http")
+                      ? banner.url
+                      : `https://${banner.url}`
+                  }
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    src={`${baseUrl}/${banner.image}`}
+                    alt="Banner"
+                    className="w-full h-[200px] sm:h-[140px] md:h-[300px] object-cover cursor-pointer"
+                  />
+                </a>
+              ) : (
+                <img
+                  src={`${baseUrl}/${banner.image}`}
+                  alt="Banner"
+                  className="w-full h-[200px] sm:h-[140px] md:h-[300px] object-cover"
+                />
+              )}
             </SwiperSlide>
           ))}
         </Swiper>
