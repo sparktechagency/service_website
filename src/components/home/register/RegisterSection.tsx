@@ -27,7 +27,7 @@ const RegisterSection = () => {
 
   return (
     <section className="w-full py-10 px-4 bg-white my-5">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 px:2 sm:px-4">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 px-2 sm:px-4">
         {options.map((opt, idx) => (
           <div
             key={idx}
