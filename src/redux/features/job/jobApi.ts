@@ -225,7 +225,6 @@ export const jobApi = apiSlice.injectEndpoints({
         try {
           const res = await queryFulfilled;
           const msg = res?.data?.message;
-          SuccessToast(msg);
         } catch (err: any) {
           const message = err?.error?.data?.message;
           ErrorToast(message);

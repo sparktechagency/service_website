@@ -20,7 +20,6 @@ const NotificationNav = () => {
         notifications &&
         notifications.filter((data: Notification) => data?.status === false);
 
-    // console.log("notifications", notifications);
 
 
     return (

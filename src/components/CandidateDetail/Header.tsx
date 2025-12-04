@@ -16,7 +16,7 @@ const Header = () => {
   return (
     <>
       <div className="bg-white rounded-lg shadow-md overflow-hidden">
-        <div className="pt-20 pb-6 px-8">
+        <div className="pt-20 pb-6 px-8 ">
           <div className="h-32 w-32 rounded-full border-4 border-white bg-white shadow-sm overflow-hidden">
             <Image
               src={imgSrc}
@@ -30,19 +30,19 @@ const Header = () => {
               className="h-full w-full object-cover"
             />
           </div>
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between">
-            <div>
+          <div className="flex flex-col mt-4 sm:flex-row sm:items-end justify-between">
+            <div className="mt-2">
               <h1 className="text-3xl font-bold text-gray-900">
                 {details?.name}
               </h1>
-              <div className="mt-1 flex flex-wrap items-center gap-x-2 text-gray-600">
+              <div className="mt-4 flex flex-wrap items-center gap-x-2 text-gray-600">
                 <Briefcase size={18} className="flex-shrink-0" />
                 <span className="font-medium">
                   {/* Production Supervisor, Product Manager, Quality Assurance Engineer */}
                   {details?.job_title?.join(", ")}
                 </span>
               </div>
-              <div className="mt-1 flex items-center text-gray-600">
+              <div className="mt-4  mb-4 flex items-centertext-gray-600">
                 <MapPin size={18} className="flex-shrink-0" />
                 {/* <span className="ml-1">San Francisco (15 mile radius)</span> */}
                 <span className="ml-1">{details?.address}</span>
@@ -50,14 +50,14 @@ const Header = () => {
               <SendMessageModal receiverId={details?.authId as string}/>
             </div>
 
-            <div className="mt-4 sm:mt-0">
-              <div className="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-800 rounded-full font-medium text-sm">
+            <div className="mt-4 sm:mt-0 min-w-76 flex items-center">
+              <div className="px-4 py-2 bg-blue-100 text-blue-800 rounded-full font-medium text-sm">
                 Availability: {getFormattedDate(details?.availabil_date as string)}
               </div>
             </div>
           </div>
 
-          <div className="mt-4 flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2 mt-8">
             <span>Job Seeking: </span>
             {details?.job_seeking?.map((t, index) => (
               <span
