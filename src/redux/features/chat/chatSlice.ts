@@ -23,7 +23,6 @@ const chatSlice = createSlice({
       state.conversationList=action.payload
     },
     SetMessageList: (state, action) => {
-      //console.log("Messages from slice------------------",action.payload)
       state.messageList=action.payload
     },
      SetReceiverId: (state, action) => {

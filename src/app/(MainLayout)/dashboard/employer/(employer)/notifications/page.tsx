@@ -16,7 +16,6 @@ const EmployerNotificationPage = () => {
     return <ServerErrorCard />;
   }
 
-  console.log("Notifications:", notifications);
 
   if (!isLoading && !isError) {
     return (

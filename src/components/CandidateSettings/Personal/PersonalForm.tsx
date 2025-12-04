@@ -21,17 +21,17 @@ type TFormValues = z.infer<typeof candidatePersonalSchema>;
 const PersonalForm = () => {
   const [file, setFile] = useState<File | null>(null)
   const { user } = useAppSelector((state) => state.user);
-
   const dispatch = useAppDispatch();
   const { ProfileError } = useAppSelector((state) => state.auth);
   const [updateCandidateProfile, { isLoading }] =
     useUpdateCandidateProfileMutation();
+
+
   const { handleSubmit, control } = useForm({
     resolver: zodResolver(candidatePersonalSchema),
     defaultValues: {
       name: user?.name as string,
       phone_number: user?.phone_number as string,
-      address: user?.address===null ? "" : user?.address,
       details: user?.details===null ? "" : user?.details
     },
   });
@@ -45,7 +45,6 @@ const PersonalForm = () => {
 
     formData.append("name", data.name);
     formData.append("phone_number", data.phone_number)
-    formData.append("address", data.address)
     formData.append("details", data.details)
     updateCandidateProfile(formData)
   };
@@ -99,17 +98,7 @@ const PersonalForm = () => {
                 control={control}
                 placeholder="Enter phone number"
               />
-
-              <CustomInput
-                label="Address"
-                name="address"
-                type="text"
-                control={control}
-                placeholder="Enter address"
-              />
-
               <CustomQuilEditor label="Description" name="details" control={control} placeholder="Write a description about yourself..."/>
-
               <button
                 type="submit"
                 className="px-4 w-full md:w-64 md:justify-center py-2 flex gap-2 items-center bg-primary hover:bg-[#2b4773] text-white font-medium rounded-md focus:outline-none transition-colors cursor-pointer"

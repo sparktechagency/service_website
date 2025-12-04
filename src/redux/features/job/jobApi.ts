@@ -139,7 +139,6 @@ export const jobApi = apiSlice.injectEndpoints({
         body: data,
       }),
       invalidatesTags: (result, error, arg) => {
-        console.log(arg);
         if (result?.success) {
           return [TagTypes.employerJobs, { type: TagTypes.job, id: arg.id }];
         }
@@ -331,7 +330,6 @@ export const jobApi = apiSlice.injectEndpoints({
           await queryFulfilled;
         } catch (err: any) {
           const message = err?.error?.data?.message;
-          console.log(err);
           ErrorToast(message);
         }
       },

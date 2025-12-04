@@ -17,13 +17,27 @@ export const userApi = apiSlice.injectEndpoints({
       }),
       keepUnusedDataFor: 600,
       providesTags: [TagTypes.me],
-      async onQueryStarted(_arg, { queryFulfilled, dispatch}) {
+      async onQueryStarted(_arg, { queryFulfilled, dispatch }) {
         try {
           const res = await queryFulfilled;
           const data = res?.data?.data;
           dispatch(SetUser(data))
-        } catch (err:any) {
-         ErrorToast("Server error is occured");
+        } catch (err: any) {
+          ErrorToast("Server error is occured");
+        }
+      },
+      async onCacheEntryAdded(
+        _arg,
+        { cacheDataLoaded, cacheEntryRemoved, dispatch }
+      ) {
+        try {
+          const { data } = await cacheDataLoaded;
+          // ২. redux store এ সেট করবো
+          dispatch(SetUser(data?.data));
+          // ৩. cache remove না হওয়া পর্যন্ত অপেক্ষা করবে
+          await cacheEntryRemoved;
+        } catch (error) {
+          ErrorToast("Server error occured");
         }
       },
     }),
@@ -43,7 +57,7 @@ export const userApi = apiSlice.injectEndpoints({
         try {
           await queryFulfilled;
           SuccessToast("Update Success");
-        } catch (err:any) {
+        } catch (err: any) {
           const message = err?.error?.data?.message;
           dispatch(SetProfileError(message))
         }
@@ -65,11 +79,24 @@ export const userApi = apiSlice.injectEndpoints({
         try {
           await queryFulfilled;
           SuccessToast("Update Success");
-        } catch (err:any) {
+        } catch (err: any) {
           const message = err?.error?.data?.message;
           dispatch(SetProfileError(message))
         }
       },
+    }),
+    updateCandidateAddress: builder.mutation({
+      query: (data) => ({
+        url: `/auth/user/edit-profile`,
+        method: "PATCH",
+        body: data,
+      }),
+      invalidatesTags: (result) => {
+        if (result?.success) {
+          return [TagTypes.me];
+        }
+        return [];
+      }
     }),
     updateCandidateLocation: builder.mutation({
       query: (data) => ({
@@ -87,7 +114,7 @@ export const userApi = apiSlice.injectEndpoints({
         try {
           await queryFulfilled;
           SuccessToast("Update Success");
-        } catch (err:any) {
+        } catch (err: any) {
           const message = err?.error?.data?.message;
           dispatch(SetProfileError(message))
         }
@@ -109,7 +136,7 @@ export const userApi = apiSlice.injectEndpoints({
         try {
           await queryFulfilled;
           SuccessToast("Update Success");
-        } catch (err:any) {
+        } catch (err: any) {
           const message = err?.error?.data?.message;
           dispatch(SetProfileError(message))
         }
@@ -131,7 +158,7 @@ export const userApi = apiSlice.injectEndpoints({
         try {
           await queryFulfilled;
           SuccessToast("Added Success");
-        } catch (err:any) {
+        } catch (err: any) {
           const message = err?.error?.data?.message;
           dispatch(SetProfileError(message))
         }
@@ -152,14 +179,14 @@ export const userApi = apiSlice.injectEndpoints({
         try {
           await queryFulfilled;
           SuccessToast("Added Success");
-        } catch (err:any) {
+        } catch (err: any) {
           const message = err?.error?.data?.message;
           dispatch(SetProfileError(message))
         }
       },
     }),
     updateWorkExperience: builder.mutation({
-      query: ({ data, id}) => ({
+      query: ({ data, id }) => ({
         url: `/auth/update_work_experience/${id}`,
         method: "PATCH",
         body: data
@@ -174,7 +201,7 @@ export const userApi = apiSlice.injectEndpoints({
         try {
           await queryFulfilled;
           SuccessToast("Update Success");
-        } catch (err:any) {
+        } catch (err: any) {
           const message = err?.error?.data?.message;
           dispatch(SetProfileError(message))
         }
@@ -184,4 +211,4 @@ export const userApi = apiSlice.injectEndpoints({
 });
 
 
-export const { useGetMeQuery, useUpdateEmployerProfileMutation, useUpdateCandidateProfileMutation, useUpdateCandidateLocationMutation, useUpdateEmployerLocationMutation, useAddWorkExperienceMutation, useRemoveWorkExperienceMutation, useUpdateWorkExperienceMutation } = userApi;
+export const { useGetMeQuery, useUpdateEmployerProfileMutation, useUpdateCandidateProfileMutation, useUpdateCandidateAddressMutation, useUpdateCandidateLocationMutation, useUpdateEmployerLocationMutation, useAddWorkExperienceMutation, useRemoveWorkExperienceMutation, useUpdateWorkExperienceMutation } = userApi;

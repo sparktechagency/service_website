@@ -32,7 +32,6 @@ const VerifyAccountOtpPage = ()=> {
       }, 1000)
     }, 2000)
 
-    console.log("Sending verification code to:", email)
   }
 
   const handleVerifyCode = async (e: React.FormEvent) => {
@@ -42,7 +41,6 @@ const VerifyAccountOtpPage = ()=> {
     // Simulate API call
     setTimeout(() => {
       setIsLoading(false)
-      console.log("Verifying code:", verificationCode)
       // Handle successful verification
       alert("Account verified successfully!")
     }, 2000)
@@ -51,7 +49,6 @@ const VerifyAccountOtpPage = ()=> {
   const handleResendCode = () => {
     if (countdown === 0) {
       setCountdown(60)
-      console.log("Resending verification code to:", email)
 
       // Restart countdown
       const timer = setInterval(() => {
@@ -67,7 +64,6 @@ const VerifyAccountOtpPage = ()=> {
   }
 
   const handleBackToLogin = () => {
-    console.log("Navigate back to login")
   }
 
   const handleChangeEmail = () => {

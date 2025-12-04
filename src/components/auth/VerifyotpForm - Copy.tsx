@@ -62,7 +62,6 @@ const VerifyotpForm = () => {
   };
 
   const handleVerify = () => {
-    console.log(code);
     SuccessToast("Verify Success");
   };
   return (

@@ -38,7 +38,6 @@ export default function MessageBox () {
 
     socket.on("conversion-list", (conversations) => {
         dispatch(SetConversationList(conversations))
-        //console.log("💬 Conversation list:", conversations);
     });
 
 
@@ -57,7 +56,6 @@ export default function MessageBox () {
     useEffect(() => {
         if (!receiverId) return;
         //if (socket.connected) {
-            //console.log("Connected------------------------------------------------");
             emitAllMessages(receiverId as string);
         //}
     }, [receiverId]);
@@ -65,7 +63,6 @@ export default function MessageBox () {
 
     socket.on(`all-message/${receiverId}`, (messages) => {
         //dispatch(SetMessageList(messages?.messages))
-        //console.log("📜 All messages received fdgfer:------->", messages?.messages);
     });
     //messaging part ended
 
@@ -76,12 +73,7 @@ export default function MessageBox () {
         //console.log("outside-----",message)
         //console.log(message)
         
-        if ((message.conversationId === conversationId)) {
-            console.log(message.conversationId === conversationId)
-             console.log("new-message", {
-                conv: message.conversationId,
-                chatId: conversationId
-            })
+        if ((message.conversationId === conversationId)) {    
             //console.log("inside-----",message)
             dispatch(SetMessageList([...messageList, message]));
             setTimeout(scrollToBottom, 100);

@@ -26,7 +26,6 @@ type TFormValues = z.infer<typeof candidateProfessionalSchema>;
 
 const ProfessionalForm = () => {
   const { user } = useAppSelector((state) => state.user);
-  console.log(user);
 
   const dispatch = useAppDispatch();
   const { ProfileError } = useAppSelector((state) => state.auth);

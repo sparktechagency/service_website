@@ -141,7 +141,6 @@ const EditJobForm = ({ job }: TProps) => {
       data: finalValues,
     });
 
-    console.log({ finalValues });
   };
 
   return (

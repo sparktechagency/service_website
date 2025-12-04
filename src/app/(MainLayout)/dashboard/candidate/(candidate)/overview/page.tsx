@@ -5,27 +5,31 @@ import ServerErrorCard from "@/components/card/ServerErrorCard";
 import CandidateOverviewLoading from "@/components/loader/CandidateOverviewLoading";
 import { useGetCandidateOverviewQuery } from "@/redux/features/candidate/candidateApi";
 import { useGetRecentAppliedJobsQuery } from "@/redux/features/job/jobApi";
+import { useGetMeQuery } from "@/redux/features/user/userApi";
 import { useAppSelector } from "@/redux/hooks/hooks";
 
 
 const CandidateOverviewPage = () => {
- const { overview } = useAppSelector((state) => state.candidate);
- const { isLoading, isError} = useGetCandidateOverviewQuery(undefined);
- const { data, isLoading:jobLoading, isError:jobError } = useGetRecentAppliedJobsQuery([
-     { name: "page", value: 1 },
-     { name: "limit", value: 6 },
-   ]);
+  //const dispatch = useAppDispatch();
+  const { overview } = useAppSelector((state) => state.candidate);
+  const { isLoading, isError } = useGetCandidateOverviewQuery(undefined);
+  const { data, isLoading: jobLoading, isError: jobError } = useGetRecentAppliedJobsQuery([
+    { name: "page", value: 1 },
+    { name: "limit", value: 6 },
+  ]);
+  const { isFetching } = useGetMeQuery(undefined);
 
-  if (isLoading) {
-    return <CandidateOverviewLoading/>
+
+  if (isLoading || isFetching) {
+    return <CandidateOverviewLoading />
   }
 
   if (!isLoading && overview && data) {
-    return <CandidateOverview/>
+    return <CandidateOverview />
   }
-  
-  if(!isLoading && !jobLoading && (isError || jobError)){
-    return <ServerErrorCard/>
+
+  if (!isLoading && !jobLoading && (isError || jobError)) {
+    return <ServerErrorCard />
   }
 };
 

@@ -24,13 +24,6 @@ export const candidatePersonalSchema = z.object({
     .regex(ukPhoneRegex, {
       message: "Enter a valid UK phone number",
     }),
-  address: z
-    .string({
-      invalid_type_error: "Address must be string",
-      required_error: "Address is required",
-    })
-    .min(1, "Address is required")
-    .trim(),
   details: z.preprocess(
     (val) => {
       if (typeof val === "string" && isEditorContentEmpty(val)) {
@@ -129,6 +122,24 @@ export const locationSchema = z.object({
     .refine((val) => val <= 90, {
       message: "Latitude must be <= 90",
     }),
+  address: z
+    .string({
+      invalid_type_error: "Address must be string",
+      required_error: "Address is required",
+    })
+    .optional(),
+  city: z
+    .string({
+      invalid_type_error: "city must be string",
+      required_error: "city is required",
+    })
+    .optional(),
+  postalCode: z
+    .string({
+      invalid_type_error: "postalCode must be string",
+      required_error: "postalCode is required",
+    })
+    .optional(),
 });
 
 const startDateSchema = z

@@ -12,7 +12,6 @@ type TProps = {
 const PriceCard = ({ subscription }: TProps ) => {
   const [createPaymentIntent, {isLoading}] = useCreatePaymentIntentMutation();
   const { subscription_status } = useAppSelector((state) => state.subscription);
-  console.log(subscription_status)
   
   
   const handlePaymentIntent = () => {
