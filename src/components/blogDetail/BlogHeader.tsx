@@ -3,8 +3,6 @@ import { Calendar, Tag } from "lucide-react";
 import getCategory from "@/utils/getCategory";
 import getFormattedDate from "@/utils/getFormattedDate";
 import { TBlog } from "@/types/blog.type";
-import { baseUrl } from "@/redux/features/api/apiSlice";
-import getBlogImgPath from "@/utils/getBlogImgPath";
 
 type TProps = {
   blog: TBlog
@@ -12,7 +10,7 @@ type TProps = {
 
 const BlogHeader = ({ blog }: TProps) => {
   
-  const imgPath = blog?.image?.length > 0 ? baseUrl+ getBlogImgPath(blog?.image[0]) : "/images/placeholder.jpg";
+  const imgPath = "/images/placeholder.jpg";
 
 
   return (

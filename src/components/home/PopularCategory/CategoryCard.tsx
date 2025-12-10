@@ -1,5 +1,4 @@
 "use client"
-import { baseUrl } from "@/redux/features/api/apiSlice";
 import { ICategory } from "@/types/category.type";
 import Image from "next/image";
 import Link from "next/link";
@@ -11,7 +10,7 @@ type TProps = {
 
 const CategoryCard = ({ category }: TProps) => {
 
-  const icon = category ? (category?.image === null ? "/images/icon_placeholder.jpg" : baseUrl + category?.image) : "/images/icon_placeholder.jpg";
+  const icon = "/images/icon_placeholder.jpg";
 
 
   return (

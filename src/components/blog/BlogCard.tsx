@@ -1,7 +1,5 @@
 "use client";
-import { baseUrl } from "@/redux/features/api/apiSlice";
 import { TBlog } from "@/types/blog.type";
-import getBlogImgPath from "@/utils/getBlogImgPath";
 import getCategory from "@/utils/getCategory";
 import getCategoryColor from "@/utils/getCategoryColor";
 import getFormattedDate from "@/utils/getFormattedDate";
@@ -14,10 +12,7 @@ type TProps = {
 
 const BlogCard = ({ blog }: TProps) => {
   const router = useRouter();
-  const imgPath =
-    blog?.image?.length > 0
-      ? baseUrl + getBlogImgPath(blog?.image[0])
-      : "/images/placeholder.jpg";
+  const imgPath = "/images/placeholder.jpg";
 
   return (
     <>

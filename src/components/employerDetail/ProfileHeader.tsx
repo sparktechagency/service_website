@@ -1,7 +1,6 @@
 import React from "react";
 import Image from "next/image";
 import { TEmployer } from "@/types/employer.type";
-import { baseUrl } from "@/redux/features/api/apiSlice";
 import { Globe } from "lucide-react";
 import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
 
@@ -10,10 +9,7 @@ interface ProfileHeaderProps {
 }
 
 const ProfileHeader: React.FC<ProfileHeaderProps> = ({ employer }) => {
-  const imgSrc =
-    employer?.profile_image === null
-      ? "/images/profile_placeholder.png"
-      : baseUrl + employer?.profile_image;
+  const imgSrc = "/images/profile_placeholder.png";
 
   return (
     <div className="relative w-full mb-8">

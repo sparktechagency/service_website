@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import useUserInfo from "@/hooks/useUserInfo";
-import { baseUrl } from "@/redux/features/api/apiSlice";
 import { TParticipant } from "@/types/participant.type";
 import getPartner from "@/utils/getPartner";
 import Image from "next/image";
@@ -20,7 +19,8 @@ const ConversationItem = ({ chat }: TConversation) => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const participantId = searchParams.get("participantId");
-  const imgSrc = partner?.profile_image ? baseUrl + partner?.profile_image : "/images/profile_placeholder.png";
+  //const imgSrc = partner?.profile_image ? baseUrl + partner?.profile_image : "/images/profile_placeholder.png";
+  const imgSrc = "/images/profile_placeholder.png";
 
 
 

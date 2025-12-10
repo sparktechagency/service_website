@@ -24,7 +24,6 @@ export default function NewMessage() {
     const name = searchParams.get("name");
     //const image = searchParams.get("image");
     const path = usePathname();
-    //const imgSrc = image === "null" ? "/images/profile_placeholder.png" : baseUrl + image;
     const messageEndRef = useRef<HTMLDivElement>(null);
 
 

@@ -5,19 +5,15 @@ import Link from "next/link";
 import getCategory from "@/utils/getCategory";
 import getFormattedDate from "@/utils/getFormattedDate";
 import getCategoryColor from "@/utils/getCategoryColor";
-import { baseUrl } from "@/redux/features/api/apiSlice";
-import getBlogImgPath from "@/utils/getBlogImgPath";
 
 interface BlogCardProps {
   blog: TBlog;
 }
 
 const RecentBlogCard: React.FC<BlogCardProps> = ({ blog }) => {
-  const { title, category, createdAt, descriptions, image } = blog;
-  const imgPath =
-    image?.length > 0
-      ? baseUrl + getBlogImgPath(blog?.image[0])
-      : "/images/placeholder.jpg";
+  const { title, category, createdAt, descriptions } = blog;
+
+  const imgPath = "/images/placeholder.jpg";
 
   return (
     <article className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col h-full">

@@ -1,6 +1,4 @@
 "use client";
-
-import { baseUrl } from "@/redux/features/api/apiSlice";
 import { useGetMeQuery } from "@/redux/features/user/userApi";
 import { useAppSelector } from "@/redux/hooks/hooks";
 import Image from "next/image";
@@ -8,8 +6,7 @@ import Image from "next/image";
 const UserProfile = () => {
   const { user } = useAppSelector((state) => state.user);
   const { isLoading } = useGetMeQuery(undefined);
-  const imgSrc = user?.profile_image ? baseUrl + user?.profile_image : "/images/profile_placeholder.png";
-  //const imgSrc = "/images/profile_placeholder.png";
+  const imgSrc = "/images/profile_placeholder.png";
 
 
 

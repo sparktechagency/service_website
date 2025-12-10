@@ -5,7 +5,6 @@ import Image from "next/image";
 import CandidateButton from "../ui/CandidateButton";
 import { useRouter } from "next/navigation";
 import { TCandidate } from "@/data/candidate.data";
-import { baseUrl } from "@/redux/features/api/apiSlice";
 import {
   useAddRemoveFavouriteCandidateMutation,
   useSendAccessRequestMutation,
@@ -23,10 +22,7 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
 }) => {
   const router = useRouter();
 
-  const profile_img =
-    candidate?.profile_image === null
-      ? "/images/profile_placeholder.png"
-      : baseUrl + candidate?.profile_image;
+  const profile_img = "/images/profile_placeholder.png";
 
   const [addRemoveFavouriteCandidate] =
     useAddRemoveFavouriteCandidateMutation();

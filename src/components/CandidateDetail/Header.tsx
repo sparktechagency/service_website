@@ -3,13 +3,12 @@ import React from "react";
 import { Briefcase, MapPin } from "lucide-react";
 import Image from "next/image";
 import { useAppSelector } from "@/redux/hooks/hooks";
-import { baseUrl } from "@/redux/features/api/apiSlice";
 import getFormattedDate from "@/utils/getFormattedDate";
 import SendMessageModal from "../modal/message/SendMessageModal";
 
 const Header = () => {
   const { details } = useAppSelector((state) => state.candidate);
-  const imgSrc = details?.profile_image ? baseUrl+details?.profile_image : "/images/profile_placeholder.png";
+  const imgSrc = "/images/profile_placeholder.png";
 
  
 

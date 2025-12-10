@@ -3,14 +3,13 @@ import React from 'react';
 import { Building2, Link } from 'lucide-react';
 import Image from 'next/image';
 import { TEmployer } from '@/types/employer.type';
-import { baseUrl } from '@/redux/features/api/apiSlice';
 
 interface CompanySectionProps {
   employer: TEmployer;
 }
 
 const CompanySection: React.FC<CompanySectionProps> = ({ employer }) => {
-    const companyLogoSrc = employer?.company ? (employer?.company?.company_logo ? baseUrl+employer?.company?.company_logo: "/images/placeholder.jpg"  ) : "/images/placeholder.jpg";
+    const companyLogoSrc = "/images/placeholder.jpg";
   
 
   return (
