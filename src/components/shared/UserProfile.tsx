@@ -6,7 +6,7 @@ import Image from "next/image";
 const UserProfile = () => {
   const { user } = useAppSelector((state) => state.user);
   const { isLoading } = useGetMeQuery(undefined);
-  const imgSrc = "/images/profile_placeholder.png";
+  const imgSrc = user.profile_image || "/images/profile_placeholder.png";
 
 
 
