@@ -24,8 +24,7 @@ const JobListItem = ({ job }: TProps) => {
     try {
       await deleteEmployerJob(id).unwrap();
       alert("Job deleted successfully!");
-    } catch (error) {
-      console.error("Failed to delete job:", error);
+    } catch{
       alert("Something went wrong while deleting the job.");
     }
   };
