@@ -18,6 +18,11 @@ const nextConfig: NextConfig = {
         hostname: 'backend.machmakers.co.uk',
         pathname: '/**', // allow all images under /photos/
       },
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+        pathname: '/**', // allow all images under /photos/
+      },
     ],
   },
 };

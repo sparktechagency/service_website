@@ -12,7 +12,7 @@ type TProps = {
 
 const BlogCard = ({ blog }: TProps) => {
   const router = useRouter();
-  const imgPath = "/images/placeholder.jpg";
+  const imgPath = blog.image || "/images/placeholder.jpg";
 
   return (
     <>

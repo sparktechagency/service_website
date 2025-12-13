@@ -10,7 +10,7 @@ type TProps = {
 
 const BlogHeader = ({ blog }: TProps) => {
   
-  const imgPath = "/images/placeholder.jpg";
+  const imgPath = blog.image || "/images/placeholder.jpg";
 
 
   return (

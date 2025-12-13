@@ -40,6 +40,7 @@ const BlogListPage = () => {
     clearTimeout(timeoutId); //clear timeout after onChange
     timeoutId = setTimeout(() => {
       setSearchTerm(searchQuery);
+      setCurrentPage(1);
     }, 600);
   }, [searchQuery]);
 
