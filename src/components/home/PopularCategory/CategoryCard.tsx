@@ -10,7 +10,7 @@ type TProps = {
 
 const CategoryCard = ({ category }: TProps) => {
 
-  const icon = "/images/icon_placeholder.jpg";
+  const icon = category.image || "/images/icon_placeholder.jpg";
 
 
   return (

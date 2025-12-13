@@ -9,9 +9,8 @@ interface CompanySectionProps {
 }
 
 const CompanySection: React.FC<CompanySectionProps> = ({ employer }) => {
-    const companyLogoSrc = "/images/placeholder.jpg";
+  const companyLogoSrc = employer?.company?.company_logo || "/images/placeholder.jpg";
   
-
   return (
     <div className="bg-white rounded-xl shadow-md p-6 mb-6 transition-all duration-300 hover:shadow-lg">
       <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">

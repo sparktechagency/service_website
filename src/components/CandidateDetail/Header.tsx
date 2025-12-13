@@ -8,7 +8,7 @@ import SendMessageModal from "../modal/message/SendMessageModal";
 
 const Header = () => {
   const { details } = useAppSelector((state) => state.candidate);
-  const imgSrc = "/images/profile_placeholder.png";
+  const imgSrc = details?.profile_image || "/images/profile_placeholder.png";
 
  
 
@@ -20,9 +20,9 @@ const Header = () => {
             <Image
               src={imgSrc}
               onError={(e) => {
-            e.currentTarget.onerror = null;
-            e.currentTarget.src = "/images/profile_placeholder.png";
-          }}
+                e.currentTarget.onerror = null;
+                e.currentTarget.src = "/images/profile_placeholder.png";
+              }}
               alt="Profile"
               width={600}
               height={600}

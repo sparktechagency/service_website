@@ -22,7 +22,7 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
 }) => {
   const router = useRouter();
 
-  const profile_img = "/images/profile_placeholder.png";
+  const profile_img = candidate.profile_image || "/images/profile_placeholder.png";
 
   const [addRemoveFavouriteCandidate] =
     useAddRemoveFavouriteCandidateMutation();

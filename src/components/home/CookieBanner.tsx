@@ -14,6 +14,7 @@ const CookieBanner = () => {
   const [banners, setBanners] = useState<Banner | null>(null);
   const [showBanner, setShowBanner] = useState(true);
 
+
   useEffect(() => {
     const cookieAccepted = Cookies.get("myAwesomeCookieName2");
     if (cookieAccepted === "true") {
@@ -32,7 +33,10 @@ const CookieBanner = () => {
     }
   }, []);
 
+
   if (!banners || !banners.description || !showBanner) return null;
+
+
 
   return (
     <div className="fixed bottom-4 left-0 w-full z-50 flex justify-center px-4">

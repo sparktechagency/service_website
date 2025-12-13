@@ -87,7 +87,7 @@ const CookieBannerSlider = () => {
                   rel="noopener noreferrer"
                 >
                   <img
-                    src={`${baseUrl}/${banner.image}`}
+                    src={`${banner.image}`}
                     alt="Banner"
                     className="w-full h-[200px] sm:h-[140px] md:h-[300px] object-cover cursor-pointer"
                   />

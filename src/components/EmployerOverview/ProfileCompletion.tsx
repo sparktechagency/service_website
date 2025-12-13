@@ -1,12 +1,13 @@
 "use client";
+import { useAppSelector } from "@/redux/hooks/hooks";
 import { ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 const ProfileCompletion = () => {
   const router = useRouter();
-  //const { user } = useAppSelector((state) => state.user);
-  const profile_img = "/images/profile_placeholder.png";
+  const { user } = useAppSelector((state) => state.user);
+  const profile_img = user?.profile_image || "/images/profile_placeholder.png";
 
   return (
     <>

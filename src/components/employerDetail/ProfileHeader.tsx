@@ -9,7 +9,7 @@ interface ProfileHeaderProps {
 }
 
 const ProfileHeader: React.FC<ProfileHeaderProps> = ({ employer }) => {
-  const imgSrc = "/images/profile_placeholder.png";
+  const imgSrc = employer.profile_image || "/images/profile_placeholder.png";
 
   return (
     <div className="relative w-full mb-8">
@@ -21,6 +21,10 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({ employer }) => {
               alt={"employer_img"}
               height={600}
               width={600}
+              onError={(e) => {
+                e.currentTarget.onerror = null;
+                e.currentTarget.src = "/images/profile_placeholder.png";
+              }}
               className="h-32 w-32 sm:h-40 sm:w-40 rounded-full border-4 border-white shadow-lg object-cover transition-transform duration-300 hover:scale-105"
             />
           </div>

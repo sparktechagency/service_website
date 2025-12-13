@@ -1,4 +1,5 @@
 "use client";
+import { useAppSelector } from "@/redux/hooks/hooks";
 import { Camera } from "lucide-react";
 import Image from "next/image";
 import { Dispatch, SetStateAction, useRef, useState } from "react";
@@ -8,8 +9,8 @@ type TProps = {
 }
 
 const EditProfilePic = ({ setFile }: TProps) => {
-  //const { user } = useAppSelector((state) => state.user);
-  const [imageSrc, setImageSrc] = useState("/images/profile_placeholder.png"); // Default image
+  const { user } = useAppSelector((state) => state.user);
+  const [imageSrc, setImageSrc] = useState(user.profile_image || "/images/profile_placeholder.png"); // Default image
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {

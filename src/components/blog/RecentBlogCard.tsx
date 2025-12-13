@@ -13,7 +13,7 @@ interface BlogCardProps {
 const RecentBlogCard: React.FC<BlogCardProps> = ({ blog }) => {
   const { title, category, createdAt, descriptions } = blog;
 
-  const imgPath = "/images/placeholder.jpg";
+  const imgPath = blog.image || "/images/placeholder.jpg";
 
   return (
     <article className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col h-full">
